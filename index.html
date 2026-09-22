@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1"
+>
+
 <title>EDISERVICE</title>
 
-<link rel="icon" type="image/png" href="ediservice-icon.png">
-<link rel="apple-touch-icon" href="ediservice-icon.png">
+<link
+rel="icon"
+type="image/png"
+href="ediservice-icon.png"
+>
+
+<link
+rel="apple-touch-icon"
+href="ediservice-icon.png"
+>
+
 
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box
+}
 
 body{
 margin:0;
@@ -180,7 +199,12 @@ padding:14px;
 background:#555;
 color:white;
 font-size:17px;
-font-weight:600
+font-weight:600;
+cursor:pointer
+}
+
+.primary:active{
+transform:scale(.98)
 }
 
 .work.done{
@@ -207,7 +231,8 @@ flex:1;
 border:0;
 border-radius:9px;
 padding:10px;
-background:#e8edf2
+background:#e8edf2;
+cursor:pointer
 }
 
 .back-home{
@@ -216,7 +241,8 @@ border:0;
 background:#e8edf2;
 border-radius:11px;
 padding:13px;
-font-size:16px
+font-size:16px;
+cursor:pointer
 }
 
 .status{
@@ -224,10 +250,14 @@ text-align:center;
 font-size:13px;
 color:#777
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -237,7 +267,9 @@ src="IMG_1571.png"
 alt="EDISERVICE"
 >
 
-<p>Gestione manutenzioni</p>
+<p>
+Gestione manutenzioni
+</p>
 
 <div
 class="status"
@@ -251,7 +283,11 @@ Connessione Firebase...
 
 <main>
 
+
+<!-- HOME -->
+
 <div id="home">
+
 
 <div class="summary">
 
@@ -273,12 +309,16 @@ lavori aperti in tutti i punti vendita
 </div>
 
 
-<h2>Lavori da fare</h2>
+<h2>
+Lavori da fare
+</h2>
 
 <div id="homeLavori"></div>
 
 
-<h2>Punti vendita</h2>
+<h2>
+Punti vendita
+</h2>
 
 
 <div class="group-title">
@@ -301,17 +341,22 @@ IPERFAMILY
 
 <div id="iperfamily"></div>
 
+
 </div>
 
+
+<!-- PAGINA NEGOZIO -->
 
 <div
 id="negozio"
 class="hidden"
 >
 
+
 <button
 class="back"
-onclick="home()"
+id="btnHome"
+type="button"
 >
 ← Torna ai punti vendita
 </button>
@@ -322,10 +367,13 @@ onclick="home()"
 
 <div class="form-card">
 
+
 <input
 id="lavoro"
+type="text"
 placeholder="Scrivi il lavoro da fare..."
 >
+
 
 <textarea
 id="note"
@@ -336,42 +384,60 @@ placeholder="Note (facoltative)"
 
 <button
 class="primary"
-onclick="aggiungi()"
+id="btnAggiungi"
+type="button"
 >
 + Aggiungi lavoro
 </button>
 
+
 </div>
 
 
-<h2>Lavori</h2>
+<h2>
+Lavori
+</h2>
 
 <div id="lista"></div>
 
 
 <button
 class="back-home"
-onclick="home()"
+id="btnHome2"
+type="button"
 >
 Torna alla schermata principale
 </button>
 
+
 </div>
+
 
 </main>
 
 
 <script type="module">
 
-import {initializeApp}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+/* =========================
+   FIREBASE
+========================= */
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 
 import {
 getAuth,
 signInAnonymously,
 onAuthStateChanged
 }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
 
 import {
 getFirestore,
@@ -384,42 +450,54 @@ doc,
 updateDoc,
 serverTimestamp
 }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-
-/* FIREBASE */
 
 const firebaseConfig={
 
-apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+apiKey:
+"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
 
-authDomain:"ediservice-bb88c.firebaseapp.com",
+authDomain:
+"ediservice-bb88c.firebaseapp.com",
 
-projectId:"ediservice-bb88c",
+projectId:
+"ediservice-bb88c",
 
-storageBucket:"ediservice-bb88c.firebasestorage.app",
+storageBucket:
+"ediservice-bb88c.firebasestorage.app",
 
-messagingSenderId:"420418885149",
+messagingSenderId:
+"420418885149",
 
-appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
+appId:
+"1:420418885149:web:2a07ba2ddfdafd31c798f4",
 
-measurementId:"G-BM489YWSY4"
+measurementId:
+"G-BM489YWSY4"
 
 };
 
 
-const app=initializeApp(firebaseConfig);
+const app=
+initializeApp(firebaseConfig);
 
-const auth=getAuth(app);
+const auth=
+getAuth(app);
 
-const db=getFirestore(app);
+const db=
+getFirestore(app);
 
 
-/* PUNTI VENDITA */
+/* =========================
+   PUNTI VENDITA
+========================= */
 
 const punti={
 
 PIM:[
+
 "Torresina",
 "Fontanile",
 "Torrevecchia 313",
@@ -445,24 +523,31 @@ PIM:[
 "Casal Palocco",
 "Guidonia",
 "Nepi"
+
 ],
 
 AGORA:[
+
 "Taverna",
 "Boccea",
 "Gregorio",
 "San Basilio",
 "Laurentina"
+
 ],
 
 IPERFAMILY:[
+
 "Iperfamily"
+
 ]
 
 };
 
 
-/* VARIABILI */
+/* =========================
+   VARIABILI
+========================= */
 
 let lavori=[];
 
@@ -471,60 +556,91 @@ let negozio="";
 let utente=null;
 
 
-/* SICUREZZA TESTO */
+/* =========================
+   FUNZIONE SICUREZZA TESTO
+========================= */
 
 function safe(x){
 
-const d=document.createElement("div");
+const d=
+document.createElement("div");
 
-d.textContent=x||"";
+d.textContent=x || "";
 
 return d.innerHTML;
 
 }
 
 
-/* CONTA LAVORI */
+/* =========================
+   CONTA LAVORI
+========================= */
 
 function conta(nome){
 
 return lavori.filter(x=>
+
 x.punto===nome &&
 x.attivo &&
 !x.completato
+
 ).length;
 
 }
 
 
-/* GRUPPI */
+/* =========================
+   CREA GRUPPI
+========================= */
 
 function gruppi(){
 
-crea("PIM","pim");
+crea(
+"PIM",
+"pim"
+);
 
-crea("AGORA","agora");
+crea(
+"AGORA",
+"agora"
+);
 
-crea("IPERFAMILY","iperfamily");
+crea(
+"IPERFAMILY",
+"iperfamily"
+);
 
 }
 
 
-/* CREA PUNTI VENDITA */
+/* =========================
+   CREA PUNTI VENDITA
+========================= */
 
 function crea(gruppo,id){
 
-const box=document.getElementById(id);
+const box=
+document.getElementById(id);
 
 box.innerHTML="";
 
+
 punti[gruppo].forEach(nome=>{
 
-const div=document.createElement("div");
 
-div.className="point-card";
+const div=
+document.createElement("div");
 
-div.onclick=()=>apri(nome);
+
+div.className=
+"point-card";
+
+
+div.addEventListener(
+"click",
+()=>apri(nome)
+);
+
 
 div.innerHTML=`
 
@@ -546,6 +662,7 @@ ${conta(nome)}
 
 `;
 
+
 box.appendChild(div);
 
 });
@@ -553,7 +670,9 @@ box.appendChild(div);
 }
 
 
-/* AGGIORNA HOME */
+/* =========================
+   AGGIORNA HOME
+========================= */
 
 function aggiorna(){
 
@@ -562,12 +681,18 @@ lavori.filter(
 x=>x.attivo&&!x.completato
 );
 
-document.getElementById("totale")
-.textContent=aperti.length;
+
+document.getElementById(
+"totale"
+).textContent=
+aperti.length;
 
 
 const box=
-document.getElementById("homeLavori");
+document.getElementById(
+"homeLavori"
+);
+
 
 box.innerHTML="";
 
@@ -579,14 +704,17 @@ box.innerHTML=
 
 }else{
 
+
 Object.values(punti)
 .flat()
 .forEach(nome=>{
+
 
 const ls=
 aperti.filter(
 x=>x.punto===nome
 );
+
 
 if(!ls.length)return;
 
@@ -594,9 +722,15 @@ if(!ls.length)return;
 const card=
 document.createElement("div");
 
-card.className="store-card";
 
-card.onclick=()=>apri(nome);
+card.className=
+"store-card";
+
+
+card.addEventListener(
+"click",
+()=>apri(nome)
+);
 
 
 let html=`
@@ -610,6 +744,7 @@ ${safe(nome)}
 
 ls.forEach(x=>{
 
+
 html+=`
 
 <div class="task-row">
@@ -621,9 +756,11 @@ ${safe(x.testo)}
 ${
 x.note
 ?
-`<div class="task-note">
+`
+<div class="task-note">
 ${safe(x.note)}
-</div>`
+</div>
+`
 :
 ""
 }
@@ -637,6 +774,7 @@ ${safe(x.note)}
 
 card.innerHTML=html;
 
+
 box.appendChild(card);
 
 });
@@ -649,7 +787,9 @@ gruppi();
 }
 
 
-/* APRI PUNTO VENDITA */
+/* =========================
+   APRI NEGOZIO
+========================= */
 
 function apri(nome){
 
@@ -670,7 +810,8 @@ document
 
 document
 .getElementById("titolo")
-.textContent=nome;
+.textContent=
+nome;
 
 
 document
@@ -685,12 +826,18 @@ document
 
 mostra();
 
-window.scrollTo(0,0);
+
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-/* TORNA HOME */
+/* =========================
+   HOME
+========================= */
 
 function home(){
 
@@ -708,27 +855,40 @@ document
 
 aggiorna();
 
-window.scrollTo(0,0);
+
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-/* AGGIUNGI LAVORO */
+/* =========================
+   AGGIUNGI LAVORO
+========================= */
 
 async function aggiungi(){
 
+
+const input=
+document.getElementById(
+"lavoro"
+);
+
+
+const noteInput=
+document.getElementById(
+"note"
+);
+
+
 const testo=
-document
-.getElementById("lavoro")
-.value
-.trim();
+input.value.trim();
 
 
 const note=
-document
-.getElementById("note")
-.value
-.trim();
+noteInput.value.trim();
 
 
 if(!testo){
@@ -764,41 +924,59 @@ return;
 }
 
 
+const bottone=
+document.getElementById(
+"btnAggiungi"
+);
+
+
+bottone.disabled=true;
+
+bottone.textContent=
+"Salvataggio...";
+
+
 try{
+
 
 await addDoc(
 
-collection(db,"lavori"),
+collection(
+db,
+"lavori"
+),
 
 {
 
-punto:negozio,
+punto:
+negozio,
 
-testo:testo,
+testo:
+testo,
 
-note:note,
+note:
+note,
 
-completato:false,
+completato:
+false,
 
-attivo:true,
+attivo:
+true,
 
-creatoDa:utente.uid,
+creatoDa:
+utente.uid,
 
-creatoIl:serverTimestamp()
+creatoIl:
+serverTimestamp()
 
 }
 
 );
 
 
-document
-.getElementById("lavoro")
-.value="";
+input.value="";
 
-
-document
-.getElementById("note")
-.value="";
+noteInput.value="";
 
 
 alert(
@@ -808,33 +986,50 @@ alert(
 
 }catch(error){
 
+
 console.error(
-"Errore aggiunta lavoro:",
+"ERRORE FIREBASE:",
 error
 );
 
+
 alert(
-"Errore durante il salvataggio del lavoro:\n\n"+
+"Errore durante il salvataggio:\n\n"+
 error.message
 );
 
-}
+
+}finally{
+
+
+bottone.disabled=false;
+
+bottone.textContent=
+"+ Aggiungi lavoro";
 
 }
 
+}
 
-/* MOSTRA LAVORI */
+
+/* =========================
+   MOSTRA LAVORI
+========================= */
 
 function mostra(){
 
 const box=
-document.getElementById("lista");
+document.getElementById(
+"lista"
+);
 
 
 const ls=
 lavori.filter(x=>
+
 x.punto===negozio &&
 x.attivo
+
 );
 
 
@@ -844,7 +1039,11 @@ box.innerHTML="";
 if(!ls.length){
 
 box.innerHTML=
-'<div class="empty">Nessun lavoro inserito per questo punto vendita.</div>';
+`
+<div class="empty">
+Nessun lavoro inserito per questo punto vendita.
+</div>
+`;
 
 return;
 
@@ -853,13 +1052,20 @@ return;
 
 ls.forEach(x=>{
 
+
 const div=
 document.createElement("div");
 
 
 div.className=
 "work"+
-(x.completato?" done":"");
+(
+x.completato
+?
+" done"
+:
+""
+);
 
 
 div.innerHTML=`
@@ -871,9 +1077,11 @@ ${safe(x.testo)}
 ${
 x.note
 ?
-`<div class="work-note">
+`
+<div class="work-note">
 ${safe(x.note)}
-</div>`
+</div>
+`
 :
 ""
 }
@@ -881,13 +1089,24 @@ ${safe(x.note)}
 <div class="work-buttons">
 
 <button
-onclick="completa('${x.id}')"
+type="button"
+class="btnCompleta"
+data-id="${x.id}"
 >
-${x.completato?"Da rifare":"Completato"}
+${
+x.completato
+?
+"Da rifare"
+:
+"Completato"
+}
 </button>
 
+
 <button
-onclick="elimina('${x.id}')"
+type="button"
+class="btnElimina"
+data-id="${x.id}"
 >
 Elimina
 </button>
@@ -897,6 +1116,34 @@ Elimina
 `;
 
 
+const btnCompleta=
+div.querySelector(
+".btnCompleta"
+);
+
+
+const btnElimina=
+div.querySelector(
+".btnElimina"
+);
+
+
+btnCompleta.addEventListener(
+"click",
+()=>{
+completa(x.id)
+}
+);
+
+
+btnElimina.addEventListener(
+"click",
+()=>{
+elimina(x.id)
+}
+);
+
+
 box.appendChild(div);
 
 });
@@ -904,34 +1151,48 @@ box.appendChild(div);
 }
 
 
-/* COMPLETA / RIAPRI */
+/* =========================
+   COMPLETA
+========================= */
 
-window.completa=
-async function(id){
+async function completa(id){
+
 
 const x=
 lavori.find(
 y=>y.id===id
 );
 
+
 if(!x)return;
 
 
 try{
 
+
 await updateDoc(
 
-doc(db,"lavori",id),
+doc(
+db,
+"lavori",
+id
+),
 
 {
-completato:!x.completato
+
+completato:
+!x.completato
+
 }
 
 );
 
+
 }catch(error){
 
+
 console.error(error);
+
 
 alert(
 "Errore durante l'aggiornamento."
@@ -939,36 +1200,52 @@ alert(
 
 }
 
-};
+}
 
 
-/* ELIMINA */
+/* =========================
+   ELIMINA
+========================= */
 
-window.elimina=
-async function(id){
+async function elimina(id){
+
 
 if(
 !confirm(
 "Vuoi eliminare questo lavoro?"
 )
-)return;
+){
+
+return;
+
+}
 
 
 try{
 
+
 await updateDoc(
 
-doc(db,"lavori",id),
+doc(
+db,
+"lavori",
+id
+),
 
 {
+
 attivo:false
+
 }
 
 );
 
+
 }catch(error){
 
+
 console.error(error);
+
 
 alert(
 "Errore durante l'eliminazione."
@@ -976,25 +1253,48 @@ alert(
 
 }
 
-};
+}
 
 
-/* FUNZIONI VISIBILI AI PULSANTI */
+/* =========================
+   COLLEGAMENTO PULSANTI
+========================= */
 
-window.aggiungi=aggiungi;
+document
+.getElementById("btnAggiungi")
+.addEventListener(
+"click",
+aggiungi
+);
 
-window.apri=apri;
 
-window.home=home;
+document
+.getElementById("btnHome")
+.addEventListener(
+"click",
+home
+);
 
 
-/* FIREBASE AUTH */
+document
+.getElementById("btnHome2")
+.addEventListener(
+"click",
+home
+);
+
+
+/* =========================
+   FIREBASE AUTH
+========================= */
 
 onAuthStateChanged(
 auth,
 user=>{
 
+
 if(user){
+
 
 utente=user;
 
@@ -1008,7 +1308,10 @@ document
 const q=
 query(
 
-collection(db,"lavori"),
+collection(
+db,
+"lavori"
+),
 
 where(
 "attivo",
@@ -1020,8 +1323,11 @@ true
 
 
 onSnapshot(
+
 q,
+
 snap=>{
+
 
 lavori=
 snap.docs.map(
@@ -1050,44 +1356,60 @@ mostra();
 }
 
 },
+
+
 error=>{
 
+
 console.error(
-"Errore Firestore:",
+"ERRORE FIRESTORE:",
 error
 );
+
 
 document
 .getElementById("status")
 .textContent=
 "Errore Firestore";
 
+
+alert(
+"Errore Firestore:\n\n"+
+error.message
+);
+
 }
 
 );
 
 }
 
-}
-);
+});
 
 
-/* ACCESSO ANONIMO */
+/* =========================
+   ACCESSO ANONIMO
+========================= */
 
-signInAnonymously(auth)
+signInAnonymously(
+auth
+)
 
 .catch(
 error=>{
 
+
 console.error(
-"Errore autenticazione:",
+"ERRORE AUTENTICAZIONE:",
 error
 );
+
 
 document
 .getElementById("status")
 .textContent=
 "Errore Firebase";
+
 
 alert(
 "Firebase non riesce a collegarsi.\n\n"+
@@ -1098,11 +1420,15 @@ error.message
 );
 
 
-/* AVVIO */
+/* =========================
+   AVVIO
+========================= */
 
 aggiorna();
+
 
 </script>
 
 </body>
+
 </html>
