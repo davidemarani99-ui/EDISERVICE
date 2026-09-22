@@ -4,101 +4,357 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EDISERVICE</title>
+
 <link rel="icon" type="image/png" href="ediservice-icon.png">
 <link rel="apple-touch-icon" href="ediservice-icon.png">
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f3f5f7;color:#111}
-header{background:#fff;padding:25px 20px 20px;text-align:center;border-bottom:1px solid #ddd}
-.logo{width:100%;max-width:300px;max-height:130px;object-fit:contain}
-header p{margin:10px 0;color:#555;font-size:18px}
-main{max-width:750px;margin:auto;padding:20px}
-h2{font-size:30px;margin:28px 0 15px}
-.group-title{font-size:25px;font-weight:700;margin:28px 0 12px}
-.summary{background:#555;color:#fff;border-radius:28px;padding:28px;margin-bottom:35px}
-.summary-title{font-size:19px;font-weight:600;text-transform:uppercase}
-.summary-number{font-size:70px;font-weight:700;margin:10px 0}
-.summary-text{font-size:19px;color:#eee}
-.store-card,.form-card,.work,.point-card,.empty{background:#fff;border-radius:20px;padding:20px;margin:12px 0;box-shadow:0 3px 12px #00000010}
-.store-card,.point-card{cursor:pointer}
-.point-card{display:flex;align-items:center;justify-content:space-between}
-.point-name{font-size:22px;font-weight:700}
-.point-arrow{font-size:30px;color:#666}
-.store-count{background:#e8edf2;min-width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700}
-.work-store-name{color:#c62828;font-size:23px;font-weight:800;margin-bottom:15px}
-.task-row{padding:10px 0;border-top:1px solid #eee;font-size:17px}
-.task-note,.work-note{color:#666;font-size:14px;margin-top:5px}
-.hidden{display:none}
-.empty{text-align:center;color:#666}
-.back{border:0;background:none;padding:5px 0 15px;color:#555;font-size:17px}
-input,textarea{width:100%;border:1px solid #d5dbe1;border-radius:11px;padding:14px;font-size:16px;margin:7px 0 12px;font-family:inherit}
-.primary{width:100%;border:0;border-radius:11px;padding:14px;background:#555;color:white;font-size:17px;font-weight:600}
-.work.done{opacity:.5}
-.work.done .work-title{text-decoration:line-through}
-.work-title{font-size:18px;font-weight:700}
-.work-buttons{display:flex;gap:8px;margin-top:12px}
-.work-buttons button{flex:1;border:0;border-radius:9px;padding:10px;background:#e8edf2}
-.back-home{width:100%;border:0;background:#e8edf2;border-radius:11px;padding:13px;font-size:16px}
-.status{text-align:center;font-size:13px;color:#777}
+
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:#f3f5f7;
+color:#111
+}
+
+header{
+background:#fff;
+padding:25px 20px 20px;
+text-align:center;
+border-bottom:1px solid #ddd
+}
+
+.logo{
+width:100%;
+max-width:300px;
+max-height:130px;
+object-fit:contain
+}
+
+header p{
+margin:10px 0;
+color:#555;
+font-size:18px
+}
+
+main{
+max-width:750px;
+margin:auto;
+padding:20px
+}
+
+h2{
+font-size:30px;
+margin:28px 0 15px
+}
+
+.group-title{
+font-size:25px;
+font-weight:700;
+margin:28px 0 12px
+}
+
+.summary{
+background:#555;
+color:#fff;
+border-radius:28px;
+padding:28px;
+margin-bottom:35px
+}
+
+.summary-title{
+font-size:19px;
+font-weight:600;
+text-transform:uppercase
+}
+
+.summary-number{
+font-size:70px;
+font-weight:700;
+margin:10px 0
+}
+
+.summary-text{
+font-size:19px;
+color:#eee
+}
+
+.store-card,
+.form-card,
+.work,
+.point-card,
+.empty{
+background:#fff;
+border-radius:20px;
+padding:20px;
+margin:12px 0;
+box-shadow:0 3px 12px #00000010
+}
+
+.store-card,
+.point-card{
+cursor:pointer
+}
+
+.point-card{
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.point-name{
+font-size:22px;
+font-weight:700
+}
+
+.point-arrow{
+font-size:30px;
+color:#666
+}
+
+.store-count{
+background:#e8edf2;
+min-width:42px;
+height:42px;
+border-radius:50%;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+font-weight:700
+}
+
+.work-store-name{
+color:#c62828;
+font-size:23px;
+font-weight:800;
+margin-bottom:15px
+}
+
+.task-row{
+padding:10px 0;
+border-top:1px solid #eee;
+font-size:17px
+}
+
+.task-note,
+.work-note{
+color:#666;
+font-size:14px;
+margin-top:5px
+}
+
+.hidden{
+display:none
+}
+
+.empty{
+text-align:center;
+color:#666
+}
+
+.back{
+border:0;
+background:none;
+padding:5px 0 15px;
+color:#555;
+font-size:17px
+}
+
+input,
+textarea{
+width:100%;
+border:1px solid #d5dbe1;
+border-radius:11px;
+padding:14px;
+font-size:16px;
+margin:7px 0 12px;
+font-family:inherit
+}
+
+.primary{
+width:100%;
+border:0;
+border-radius:11px;
+padding:14px;
+background:#555;
+color:white;
+font-size:17px;
+font-weight:600
+}
+
+.work.done{
+opacity:.5
+}
+
+.work.done .work-title{
+text-decoration:line-through
+}
+
+.work-title{
+font-size:18px;
+font-weight:700
+}
+
+.work-buttons{
+display:flex;
+gap:8px;
+margin-top:12px
+}
+
+.work-buttons button{
+flex:1;
+border:0;
+border-radius:9px;
+padding:10px;
+background:#e8edf2
+}
+
+.back-home{
+width:100%;
+border:0;
+background:#e8edf2;
+border-radius:11px;
+padding:13px;
+font-size:16px
+}
+
+.status{
+text-align:center;
+font-size:13px;
+color:#777
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<img class="logo" src="IMG_1571.png" alt="EDISERVICE">
+
+<img
+class="logo"
+src="IMG_1571.png"
+alt="EDISERVICE"
+>
+
 <p>Gestione manutenzioni</p>
-<div class="status" id="status">Connessione Firebase...</div>
+
+<div
+class="status"
+id="status"
+>
+Connessione Firebase...
+</div>
+
 </header>
+
 
 <main>
 
 <div id="home">
 
 <div class="summary">
-<div class="summary-title">Lavori da fare</div>
-<div class="summary-number" id="totale">0</div>
-<div class="summary-text">lavori aperti in tutti i punti vendita</div>
+
+<div class="summary-title">
+Lavori da fare
 </div>
 
+<div
+class="summary-number"
+id="totale"
+>
+0
+</div>
+
+<div class="summary-text">
+lavori aperti in tutti i punti vendita
+</div>
+
+</div>
+
+
 <h2>Lavori da fare</h2>
+
 <div id="homeLavori"></div>
+
 
 <h2>Punti vendita</h2>
 
-<div class="group-title">PIM</div>
+
+<div class="group-title">
+PIM
+</div>
+
 <div id="pim"></div>
 
-<div class="group-title">AGORÀ</div>
+
+<div class="group-title">
+AGORÀ
+</div>
+
 <div id="agora"></div>
 
-<div class="group-title">IPERFAMILY</div>
+
+<div class="group-title">
+IPERFAMILY
+</div>
+
 <div id="iperfamily"></div>
 
 </div>
 
 
-<div id="negozio" class="hidden">
+<div
+id="negozio"
+class="hidden"
+>
 
-<button class="back" onclick="home()">← Torna ai punti vendita</button>
+<button
+class="back"
+onclick="home()"
+>
+← Torna ai punti vendita
+</button>
+
 
 <h2 id="titolo"></h2>
 
+
 <div class="form-card">
 
-<input id="lavoro" placeholder="Scrivi il lavoro da fare...">
+<input
+id="lavoro"
+placeholder="Scrivi il lavoro da fare..."
+>
 
-<textarea id="note" rows="3" placeholder="Note (facoltative)"></textarea>
+<textarea
+id="note"
+rows="3"
+placeholder="Note (facoltative)"
+></textarea>
 
-<button class="primary" onclick="aggiungi()">+ Aggiungi lavoro</button>
+
+<button
+class="primary"
+onclick="aggiungi()"
+>
++ Aggiungi lavoro
+</button>
 
 </div>
+
 
 <h2>Lavori</h2>
 
 <div id="lista"></div>
 
-<button class="back-home" onclick="home()">Torna alla schermata principale</button>
+
+<button
+class="back-home"
+onclick="home()"
+>
+Torna alla schermata principale
+</button>
 
 </div>
 
@@ -131,6 +387,8 @@ serverTimestamp
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
+/* FIREBASE */
+
 const firebaseConfig={
 
 apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
@@ -157,20 +415,44 @@ const auth=getAuth(app);
 const db=getFirestore(app);
 
 
+/* PUNTI VENDITA */
+
 const punti={
 
 PIM:[
-"Torresina","Fontanile","Torrevecchia 313",
-"Pietro Maffi","Pineta Sacchetti","Trionfale",
-"Igea","Piedicavallo","Mazzini","Bravetta",
-"Cassia","Flaminia","Zambarelli","Parioli",
-"Newton","Biolchini","Oderisi","Tripoli",
-"Labaro","San Paolo","Malafede","Cinecittà",
-"Casal Palocco","Guidonia","Nepi"
+"Torresina",
+"Fontanile",
+"Torrevecchia 313",
+"Pietro Maffi",
+"Pineta Sacchetti",
+"Trionfale",
+"Igea",
+"Piedicavallo",
+"Mazzini",
+"Bravetta",
+"Cassia",
+"Flaminia",
+"Zambarelli",
+"Parioli",
+"Newton",
+"Biolchini",
+"Oderisi",
+"Tripoli",
+"Labaro",
+"San Paolo",
+"Malafede",
+"Cinecittà",
+"Casal Palocco",
+"Guidonia",
+"Nepi"
 ],
 
 AGORA:[
-"Taverna","Boccea","Gregorio","San Basilio","Laurentina"
+"Taverna",
+"Boccea",
+"Gregorio",
+"San Basilio",
+"Laurentina"
 ],
 
 IPERFAMILY:[
@@ -180,12 +462,16 @@ IPERFAMILY:[
 };
 
 
+/* VARIABILI */
+
 let lavori=[];
 
 let negozio="";
 
 let utente=null;
 
+
+/* SICUREZZA TESTO */
 
 function safe(x){
 
@@ -198,6 +484,8 @@ return d.innerHTML;
 }
 
 
+/* CONTA LAVORI */
+
 function conta(nome){
 
 return lavori.filter(x=>
@@ -209,6 +497,8 @@ x.attivo &&
 }
 
 
+/* GRUPPI */
+
 function gruppi(){
 
 crea("PIM","pim");
@@ -219,6 +509,8 @@ crea("IPERFAMILY","iperfamily");
 
 }
 
+
+/* CREA PUNTI VENDITA */
 
 function crea(gruppo,id){
 
@@ -236,7 +528,9 @@ div.onclick=()=>apri(nome);
 
 div.innerHTML=`
 
-<div class="point-name">${safe(nome)}</div>
+<div class="point-name">
+${safe(nome)}
+</div>
 
 <div>
 
@@ -244,7 +538,9 @@ div.innerHTML=`
 ${conta(nome)}
 </span>
 
-<span class="point-arrow">›</span>
+<span class="point-arrow">
+›
+</span>
 
 </div>
 
@@ -257,35 +553,60 @@ box.appendChild(div);
 }
 
 
+/* AGGIORNA HOME */
+
 function aggiorna(){
 
-const aperti=lavori.filter(x=>x.attivo&&!x.completato);
+const aperti=
+lavori.filter(
+x=>x.attivo&&!x.completato
+);
 
-document.getElementById("totale").textContent=aperti.length;
+document.getElementById("totale")
+.textContent=aperti.length;
 
-const box=document.getElementById("homeLavori");
+
+const box=
+document.getElementById("homeLavori");
 
 box.innerHTML="";
 
+
 if(!aperti.length){
 
-box.innerHTML='<div class="empty">Nessun lavoro da fare.</div>';
+box.innerHTML=
+'<div class="empty">Nessun lavoro da fare.</div>';
 
 }else{
 
-Object.values(punti).flat().forEach(nome=>{
+Object.values(punti)
+.flat()
+.forEach(nome=>{
 
-const ls=aperti.filter(x=>x.punto===nome);
+const ls=
+aperti.filter(
+x=>x.punto===nome
+);
 
 if(!ls.length)return;
 
-const card=document.createElement("div");
+
+const card=
+document.createElement("div");
 
 card.className="store-card";
 
 card.onclick=()=>apri(nome);
 
-let html=`<div class="work-store-name">${safe(nome)}</div>`;
+
+let html=`
+
+<div class="work-store-name">
+${safe(nome)}
+</div>
+
+`;
+
 
 ls.forEach(x=>{
 
@@ -293,14 +614,26 @@ html+=`
 
 <div class="task-row">
 
-<strong>${safe(x.testo)}</strong>
+<strong>
+${safe(x.testo)}
+</strong>
 
-${x.note?
-`<div class="task-note">${safe(x.note)}</div>`:""}
+${
+x.note
+?
+`<div class="task-note">
+${safe(x.note)}
+</div>`
+:
+""
+}
 
-</div>`;
+</div>
+
+`;
 
 });
+
 
 card.innerHTML=html;
 
@@ -310,24 +643,45 @@ box.appendChild(card);
 
 }
 
+
 gruppi();
 
 }
 
 
+/* APRI PUNTO VENDITA */
+
 function apri(nome){
 
 negozio=nome;
 
-document.getElementById("home").classList.add("hidden");
 
-document.getElementById("negozio").classList.remove("hidden");
+document
+.getElementById("home")
+.classList
+.add("hidden");
 
-document.getElementById("titolo").textContent=nome;
 
-document.getElementById("lavoro").value="";
+document
+.getElementById("negozio")
+.classList
+.remove("hidden");
 
-document.getElementById("note").value="";
+
+document
+.getElementById("titolo")
+.textContent=nome;
+
+
+document
+.getElementById("lavoro")
+.value="";
+
+
+document
+.getElementById("note")
+.value="";
+
 
 mostra();
 
@@ -336,11 +690,21 @@ window.scrollTo(0,0);
 }
 
 
+/* TORNA HOME */
+
 function home(){
 
-document.getElementById("negozio").classList.add("hidden");
+document
+.getElementById("negozio")
+.classList
+.add("hidden");
 
-document.getElementById("home").classList.remove("hidden");
+
+document
+.getElementById("home")
+.classList
+.remove("hidden");
+
 
 aggiorna();
 
@@ -349,29 +713,64 @@ window.scrollTo(0,0);
 }
 
 
+/* AGGIUNGI LAVORO */
+
 async function aggiungi(){
 
-const testo=document.getElementById("lavoro").value.trim();
+const testo=
+document
+.getElementById("lavoro")
+.value
+.trim();
 
-const note=document.getElementById("note").value.trim();
+
+const note=
+document
+.getElementById("note")
+.value
+.trim();
+
 
 if(!testo){
 
-alert("Scrivi prima il lavoro da fare.");
+alert(
+"Scrivi prima il lavoro da fare."
+);
 
 return;
 
 }
+
+
+if(!negozio){
+
+alert(
+"Seleziona prima un punto vendita."
+);
+
+return;
+
+}
+
 
 if(!utente){
 
-alert("Firebase non è ancora connesso.");
+alert(
+"Firebase non è ancora connesso."
+);
 
 return;
 
 }
 
-await addDoc(collection(db,"lavori"),{
+
+try{
+
+await addDoc(
+
+collection(db,"lavori"),
+
+{
 
 punto:negozio,
 
@@ -387,25 +786,60 @@ creatoDa:utente.uid,
 
 creatoIl:serverTimestamp()
 
-});
+}
 
-document.getElementById("lavoro").value="";
+);
 
-document.getElementById("note").value="";
+
+document
+.getElementById("lavoro")
+.value="";
+
+
+document
+.getElementById("note")
+.value="";
+
+
+alert(
+"Lavoro aggiunto correttamente."
+);
+
+
+}catch(error){
+
+console.error(
+"Errore aggiunta lavoro:",
+error
+);
+
+alert(
+"Errore durante il salvataggio del lavoro:\n\n"+
+error.message
+);
+
+}
 
 }
 
 
+/* MOSTRA LAVORI */
+
 function mostra(){
 
-const box=document.getElementById("lista");
+const box=
+document.getElementById("lista");
 
-const ls=lavori.filter(x=>
+
+const ls=
+lavori.filter(x=>
 x.punto===negozio &&
 x.attivo
 );
 
+
 box.innerHTML="";
+
 
 if(!ls.length){
 
@@ -416,11 +850,17 @@ return;
 
 }
 
+
 ls.forEach(x=>{
 
-const div=document.createElement("div");
+const div=
+document.createElement("div");
 
-div.className="work"+(x.completato?" done":"");
+
+div.className=
+"work"+
+(x.completato?" done":"");
+
 
 div.innerHTML=`
 
@@ -428,22 +868,34 @@ div.innerHTML=`
 ${safe(x.testo)}
 </div>
 
-${x.note?
-`<div class="work-note">${safe(x.note)}</div>`:""}
+${
+x.note
+?
+`<div class="work-note">
+${safe(x.note)}
+</div>`
+:
+""
+}
 
 <div class="work-buttons">
 
-<button onclick="completa('${x.id}')">
+<button
+onclick="completa('${x.id}')"
+>
 ${x.completato?"Da rifare":"Completato"}
 </button>
 
-<button onclick="elimina('${x.id}')">
+<button
+onclick="elimina('${x.id}')"
+>
 Elimina
 </button>
 
 </div>
 
 `;
+
 
 box.appendChild(div);
 
@@ -452,93 +904,201 @@ box.appendChild(div);
 }
 
 
-window.completa=async function(id){
+/* COMPLETA / RIAPRI */
 
-const x=lavori.find(y=>y.id===id);
+window.completa=
+async function(id){
+
+const x=
+lavori.find(
+y=>y.id===id
+);
 
 if(!x)return;
 
-await updateDoc(
 
-doc(db,"lavori",id),
-
-{completato:!x.completato}
-
-);
-
-};
-
-
-window.elimina=async function(id){
-
-if(!confirm("Vuoi eliminare questo lavoro?"))return;
+try{
 
 await updateDoc(
 
 doc(db,"lavori",id),
 
-{attivo:false}
+{
+completato:!x.completato
+}
 
 );
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Errore durante l'aggiornamento."
+);
+
+}
 
 };
 
 
-onAuthStateChanged(auth,user=>{
+/* ELIMINA */
+
+window.elimina=
+async function(id){
+
+if(
+!confirm(
+"Vuoi eliminare questo lavoro?"
+)
+)return;
+
+
+try{
+
+await updateDoc(
+
+doc(db,"lavori",id),
+
+{
+attivo:false
+}
+
+);
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Errore durante l'eliminazione."
+);
+
+}
+
+};
+
+
+/* FUNZIONI VISIBILI AI PULSANTI */
+
+window.aggiungi=aggiungi;
+
+window.apri=apri;
+
+window.home=home;
+
+
+/* FIREBASE AUTH */
+
+onAuthStateChanged(
+auth,
+user=>{
 
 if(user){
 
 utente=user;
 
-document.getElementById("status").textContent=
+
+document
+.getElementById("status")
+.textContent=
 "Connesso a Firebase";
 
-const q=query(
+
+const q=
+query(
 
 collection(db,"lavori"),
 
-where("attivo","==",true)
+where(
+"attivo",
+"==",
+true
+)
 
 );
 
-onSnapshot(q,snap=>{
 
-lavori=snap.docs.map(d=>({
+onSnapshot(
+q,
+snap=>{
+
+lavori=
+snap.docs.map(
+d=>({
 
 id:d.id,
 
 ...d.data()
 
-}));
+})
+);
+
 
 aggiorna();
 
-if(!document
+
+if(
+!document
 .getElementById("negozio")
-.classList.contains("hidden")){
+.classList
+.contains("hidden")
+){
 
 mostra();
 
 }
 
-});
+},
+error=>{
+
+console.error(
+"Errore Firestore:",
+error
+);
+
+document
+.getElementById("status")
+.textContent=
+"Errore Firestore";
 
 }
 
-});
+);
 
+}
+
+}
+);
+
+
+/* ACCESSO ANONIMO */
 
 signInAnonymously(auth)
 
-.catch(e=>{
+.catch(
+error=>{
 
-console.error(e);
+console.error(
+"Errore autenticazione:",
+error
+);
 
-document.getElementById("status").textContent=
+document
+.getElementById("status")
+.textContent=
 "Errore Firebase";
 
-});
+alert(
+"Firebase non riesce a collegarsi.\n\n"+
+error.message
+);
 
+}
+);
+
+
+/* AVVIO */
 
 aggiorna();
 
