@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDISERVICE</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f4f6f8;
+  color: #172033;
+}
+
+header {
+  background: #102a43;
+  color: white;
+  padding: 28px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
+header p {
+  margin: 6px 0 0;
+  opacity: .8;
+}
+
+.container {
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.05);
+}
+
+.number {
+  font-size: 28px;
+  font-weight: 700;
+  color: #102a43;
+}
+
+button {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 10px;
+  background: #102a43;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+button.secondary {
+  background: #e9eef3;
+  color: #102a43;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 13px;
+  margin: 7px 0 12px;
+  border: 1px solid #d6dce2;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.item {
+  border-left: 4px solid #102a43;
+  padding: 12px;
+  background: #f7f9fb;
+  margin: 8px 0;
+  border-radius: 8px;
+}
+
+nav {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 8px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,.1);
+}
+
+nav button {
+  margin: 0 3px;
+  padding: 10px 5px;
+  font-size: 12px;
+  background: white;
+  color: #102a43;
+}
+
+nav button.active {
+  background: #102a43;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EDISERVICE</h1>
+  <p>Gestione lavori e manutenzioni</p>
+</header>
+
+<div class="container">
+
+<section id="home">
+
+  <div class="card">
+    <h2>Benvenuto</h2>
+    <p>Gestisci lavori, manutenzioni, materiali e fatture in un unico posto.</p>
+  </div>
+
+  <div class="grid">
+    <div class="box">
+      <div class="number" id="lavori">0</div>
+      <div>Lavori</div>
+    </div>
+
+    <div class="box">
+      <div class="number" id="manutenzioni">0</div>
+      <div>Manutenzioni</div>
+    </div>
+
+    <div class="box">
+      <div class="number" id="materiali">0</div>
+      <div>Materiali</div>
+    </div>
+
+    <div class="box">
+      <div class="number" id="fatture">0</div>
+      <div>Fatture</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Accesso rapido</h2>
+    <button onclick="mostra('lavoriPage')">+ Nuovo lavoro</button>
+    <button onclick="mostra('manutenzioniPage')">+ Nuova manutenzione</button>
+    <button onclick="mostra('materialiPage')">+ Materiale</button>
+    <button onclick="mostra('fatturePage')">+ Fattura</button>
+  </div>
+
+</section>
+
+<section id="lavoriPage" class="hidden">
+
+  <div class="card">
+    <h2>Nuovo lavoro</h2>
+
+    <input id="lavoroNome" placeholder="Nome del lavoro">
+
+    <input id="lavoroLuogo" placeholder="Luogo / cantiere">
+
+    <input id="lavoroOperai" placeholder="Operai">
+
+    <textarea id="lavoroNote" placeholder="Note"></textarea>
+
+    <button onclick="salvaLavoro()">Salva lavoro</button>
+
+    <div id="listaLavori"></div>
+  </div>
+
+</section>
+
+<section id="manutenzioniPage" class="hidden">
+
+  <div class="card">
+    <h2>Manutenzioni</h2>
+
+    <input id="manutenzioneNome" placeholder="Nome intervento">
+
+    <input id="manutenzioneLuogo" placeholder="Stabile / indirizzo">
+
+    <textarea id="manutenzioneNote" placeholder="Cosa bisogna fare?"></textarea>
+
+    <button onclick="salvaManutenzione()">Salva manutenzione</button>
+
+    <div id="listaManutenzioni"></div>
+  </div>
+
+</section>
+
+<section id="materialiPage" class="hidden">
+
+  <div class="card">
+    <h2>Magazzino materiali</h2>
+
+    <input id="materialeNome" placeholder="Nome materiale">
+
+    <input id="materialeQuantita" type="number" placeholder="Quantità">
+
+    <select id="movimento">
+      <option value="entrata">Entrata</option>
+      <option value="uscita">Uscita</option>
+    </select>
+
+    <button onclick="salvaMateriale()">Registra movimento</button>
+
+    <div id="listaMateriali"></div>
+  </div>
+
+</section>
+
+<section id="fatturePage" class="hidden">
+
+  <div class="card">
+    <h2>Fatture</h2>
+
+    <input id="fatturaFornitore" placeholder="Fornitore">
+
+    <input id="fatturaNumero" placeholder="Numero fattura">
+
+    <input id="fatturaImporto" type="number" placeholder="Importo €">
+
+    <button onclick="salvaFattura()">Salva fattura</button>
+
+    <div id="listaFatture"></div>
+  </div>
+
+</section>
+
+</div>
+
+<nav>
+  <button class="active" onclick="mostra('home')">Home</button>
+  <button onclick="mostra('lavoriPage')">Lavori</button>
+  <button onclick="mostra('manutenzioniPage')">Manutenzioni</button>
+  <button onclick="mostra('materialiPage')">Magazzino</button>
+</nav>
+
+<script>
+
+let lavori = JSON.parse(localStorage.getItem("lavori") || "[]");
+let manutenzioni = JSON.parse(localStorage.getItem("manutenzioni") || "[]");
+let materiali = JSON.parse(localStorage.getItem("materiali") || "[]");
+let fatture = JSON.parse(localStorage.getItem("fatture") || "[]");
+
+function mostra(id) {
+  document.querySelectorAll("section").forEach(s => {
+    s.classList.add("hidden");
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+
+  aggiorna();
+}
+
+function salvaLavoro() {
+
+  let nome = document.getElementById("lavoroNome").value;
+  let luogo = document.getElementById("lavoroLuogo").value;
+  let operai = document.getElementById("lavoroOperai").value;
+  let note = document.getElementById("lavoroNote").value;
+
+  if (!nome) return alert("Inserisci il nome del lavoro");
+
+  lavori.push({
+    nome,
+    luogo,
+    operai,
+    note
+  });
+
+  localStorage.setItem("lavori", JSON.stringify(lavori));
+
+  document.getElementById("lavoroNome").value = "";
+  document.getElementById("lavoroLuogo").value = "";
+  document.getElementById("lavoroOperai").value = "";
+  document.getElementById("lavoroNote").value = "";
+
+  aggiorna();
+}
+
+function salvaManutenzione() {
+
+  let nome = document.getElementById("manutenzioneNome").value;
+  let luogo = document.getElementById("manutenzioneLuogo").value;
+  let note = document.getElementById("manutenzioneNote").value;
+
+  if (!nome) return alert("Inserisci l'intervento");
+
+  manutenzioni.push({
+    nome,
+    luogo,
+    note
+  });
+
+  localStorage.setItem("manutenzioni", JSON.stringify(manutenzioni));
+
+  document.getElementById("manutenzioneNome").value = "";
+  document.getElementById("manutenzioneLuogo").value = "";
+  document.getElementById("manutenzioneNote").value = "";
+
+  aggiorna();
+}
+
+function salvaMateriale() {
+
+  let nome = document.getElementById("materialeNome").value;
+  let quantita = document.getElementById("materialeQuantita").value;
+  let movimento = document.getElementById("movimento").value;
+
+  if (!nome || !quantita) return alert("Inserisci materiale e quantità");
+
+  materiali.push({
+    nome,
+    quantita,
+    movimento
+  });
+
+  localStorage.setItem("materiali", JSON.stringify(materiali));
+
+  document.getElementById("materialeNome").value = "";
+  document.getElementById("materialeQuantita").value = "";
+
+  aggiorna();
+}
+
+function salvaFattura() {
+
+  let fornitore = document.getElementById("fatturaFornitore").value;
+  let numero = document.getElementById("fatturaNumero").value;
+  let importo = document.getElementById("fatturaImporto").value;
+
+  if (!fornitore || !importo)
+    return alert("Inserisci fornitore e importo");
+
+  fatture.push({
+    fornitore,
+    numero,
+    importo
+  });
+
+  localStorage.setItem("fatture", JSON.stringify(fatture));
+
+  document.getElementById("fatturaFornitore").value = "";
+  document.getElementById("fatturaNumero").value = "";
+  document.getElementById("fatturaImporto").value = "";
+
+  aggiorna();
+}
+
+function aggiorna() {
+
+  document.getElementById("lavori").textContent = lavori.length;
+  document.getElementById("manutenzioni").textContent = manutenzioni.length;
+  document.getElementById("materiali").textContent = materiali.length;
+  document.getElementById("fatture").textContent = fatture.length;
+
+  document.getElementById("listaLavori").innerHTML =
+    lavori.map(x =>
+      `<div class="item">
+        <strong>${x.nome}</strong><br>
+        ${x.luogo || ""}<br>
+        Operai: ${x.operai || "-"}<br>
+        ${x.note || ""}
+      </div>`
+    ).join("");
+
+  document.getElementById("listaManutenzioni").innerHTML =
+    manutenzioni.map(x =>
+      `<div class="item">
+        <strong>${x.nome}</strong><br>
+        ${x.luogo || ""}<br>
+        ${x.note || ""}
+      </div>`
+    ).join("");
+
+  document.getElementById("listaMateriali").innerHTML =
+    materiali.map(x =>
+      `<div class="item">
+        <strong>${x.nome}</strong><br>
+        ${x.movimento === "entrata" ? "Entrata" : "Uscita"}: ${x.quantita}
+      </div>`
+    ).join("");
+
+  document.getElementById("listaFatture").innerHTML =
+    fatture.map(x =>
+      `<div class="item">
+        <strong>${x.fornitore}</strong><br>
+        Fattura: ${x.numero || "-"}<br>
+        € ${x.importo}
+      </div>`
+    ).join("");
+}
+
+aggiorna();
+
+</script>
+
+</body>
+</html>
