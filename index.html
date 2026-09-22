@@ -10,287 +10,326 @@
 <link rel="apple-touch-icon" href="IMG_1571.png">
 
 <style>
+
 *{
-  box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#f3f5f7;
-  color:#111;
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:#f3f5f7;
+color:#111;
 }
 
 header{
-  background:white;
-  padding:25px 20px 20px;
-  text-align:center;
-  border-bottom:1px solid #ddd;
+background:white;
+padding:25px 20px 20px;
+text-align:center;
+border-bottom:1px solid #ddd;
 }
 
 .logo{
-  width:100%;
-  max-width:300px;
-  max-height:130px;
-  object-fit:contain;
+width:100%;
+max-width:300px;
+max-height:130px;
+object-fit:contain;
 }
 
 header p{
-  margin:10px 0 0;
-  color:#555;
-  font-size:18px;
+margin:10px 0 0;
+color:#555;
+font-size:18px;
 }
 
 main{
-  max-width:750px;
-  margin:auto;
-  padding:20px;
+max-width:750px;
+margin:auto;
+padding:20px;
 }
 
 h2{
-  font-size:30px;
-  margin:28px 0 15px;
-}
-
-h3{
-  font-size:23px;
-  margin:25px 0 12px;
-}
-
-.summary{
-  background:#172f4d;
-  color:white;
-  border-radius:28px;
-  padding:28px;
-  margin-bottom:35px;
-}
-
-.summary-title{
-  font-size:19px;
-  font-weight:600;
-  text-transform:uppercase;
-}
-
-.summary-number{
-  font-size:70px;
-  font-weight:700;
-  line-height:1;
-  margin:10px 0;
-}
-
-.summary-text{
-  font-size:19px;
-  color:#d8e0e8;
-}
-
-.section{
-  margin-top:35px;
+font-size:30px;
+margin:28px 0 15px;
 }
 
 .group-title{
-  font-size:25px;
-  font-weight:700;
-  margin:28px 0 12px;
+font-size:25px;
+font-weight:700;
+margin:28px 0 12px;
 }
 
+
+/* RIQUADRO LAVORI DA FARE */
+
+.summary{
+background:#555555;
+color:white;
+border-radius:28px;
+padding:28px;
+margin-bottom:35px;
+}
+
+.summary-title{
+font-size:19px;
+font-weight:600;
+text-transform:uppercase;
+}
+
+.summary-number{
+font-size:70px;
+font-weight:700;
+line-height:1;
+margin:10px 0;
+}
+
+.summary-text{
+font-size:19px;
+color:#eeeeee;
+}
+
+
+/* LAVORI NELLA HOME */
+
 .store-card{
-  background:white;
-  border-radius:20px;
-  padding:20px;
-  margin:12px 0;
-  box-shadow:0 3px 12px rgba(0,0,0,.06);
+background:white;
+border-radius:20px;
+padding:20px;
+margin:12px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.06);
+cursor:pointer;
 }
 
 .store-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
 }
 
 .store-name{
-  font-size:22px;
-  font-weight:700;
+font-size:22px;
+font-weight:700;
 }
 
 .store-count{
-  background:#e8edf2;
-  color:#172f4d;
-  min-width:42px;
-  height:42px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
+background:#e8edf2;
+color:#555555;
+min-width:42px;
+height:42px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
 }
 
 .task-list{
-  margin-top:15px;
+margin-top:15px;
 }
 
 .task-row{
-  padding:10px 0;
-  border-top:1px solid #eee;
-  font-size:17px;
+padding:10px 0;
+border-top:1px solid #eee;
+font-size:17px;
 }
 
 .task-row:first-child{
-  border-top:0;
+border-top:0;
 }
 
 .task-row strong{
-  display:block;
+display:block;
+}
+
+
+/* NOME PUNTO VENDITA IN ROSSO */
+
+.work-store-name{
+color:#c62828;
+font-size:23px;
+font-weight:800;
+margin-bottom:15px;
 }
 
 .task-note{
-  color:#666;
-  font-size:14px;
-  margin-top:4px;
-}
-
-.store-open{
-  margin-top:15px;
-  width:100%;
-  border:0;
-  background:#172f4d;
-  color:white;
-  border-radius:11px;
-  padding:12px;
-  font-size:16px;
-}
-
-.empty{
-  background:white;
-  border-radius:18px;
-  padding:20px;
-  color:#666;
-  text-align:center;
+color:#666;
+font-size:14px;
+margin-top:4px;
 }
 
 .hidden{
-  display:none;
+display:none;
 }
 
+.empty{
+background:white;
+border-radius:18px;
+padding:20px;
+color:#666;
+text-align:center;
+}
+
+
+/* PAGINA PUNTO VENDITA */
+
 .back{
-  border:0;
-  background:none;
-  padding:5px 0 15px;
-  color:#172f4d;
-  font-size:17px;
+border:0;
+background:none;
+padding:5px 0 15px;
+color:#555555;
+font-size:17px;
 }
 
 .form-card{
-  background:white;
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 3px 12px rgba(0,0,0,.06);
+background:white;
+border-radius:20px;
+padding:20px;
+box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 input,
 textarea{
-  width:100%;
-  border:1px solid #d5dbe1;
-  border-radius:11px;
-  padding:14px;
-  font-size:16px;
-  margin:7px 0 12px;
-  font-family:inherit;
+width:100%;
+border:1px solid #d5dbe1;
+border-radius:11px;
+padding:14px;
+font-size:16px;
+margin:7px 0 12px;
+font-family:inherit;
 }
 
 .primary{
-  width:100%;
-  border:0;
-  border-radius:11px;
-  padding:14px;
-  background:#172f4d;
-  color:white;
-  font-size:17px;
-  font-weight:600;
+width:100%;
+border:0;
+border-radius:11px;
+padding:14px;
+background:#555555;
+color:white;
+font-size:17px;
+font-weight:600;
 }
 
 .work{
-  background:white;
-  border-radius:18px;
-  padding:17px;
-  margin:12px 0;
-  box-shadow:0 3px 12px rgba(0,0,0,.06);
+background:white;
+border-radius:18px;
+padding:17px;
+margin:12px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 .work.done{
-  opacity:.5;
+opacity:.5;
 }
 
 .work.done .work-title{
-  text-decoration:line-through;
+text-decoration:line-through;
 }
 
 .work-title{
-  font-size:18px;
-  font-weight:700;
+font-size:18px;
+font-weight:700;
 }
 
 .work-note{
-  margin:8px 0;
-  color:#666;
+margin:8px 0;
+color:#666;
 }
 
 .work-buttons{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
+display:flex;
+gap:8px;
+margin-top:12px;
 }
 
 .work-buttons button{
-  flex:1;
-  border:0;
-  border-radius:9px;
-  padding:10px;
-  font-size:14px;
-  background:#e8edf2;
+flex:1;
+border:0;
+border-radius:9px;
+padding:10px;
+font-size:14px;
+background:#e8edf2;
 }
 
 .back-home{
-  margin-top:25px;
-  width:100%;
-  border:0;
-  background:#e8edf2;
-  border-radius:11px;
-  padding:13px;
-  font-size:16px;
+margin-top:25px;
+width:100%;
+border:0;
+background:#e8edf2;
+border-radius:11px;
+padding:13px;
+font-size:16px;
 }
+
+
+/* PUNTI VENDITA */
+
+.point-card{
+background:white;
+border-radius:20px;
+padding:22px;
+margin:12px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.06);
+display:flex;
+align-items:center;
+justify-content:space-between;
+cursor:pointer;
+}
+
+.point-name{
+font-size:22px;
+font-weight:700;
+}
+
+.point-arrow{
+font-size:30px;
+color:#666;
+}
+
 
 @media(max-width:500px){
-  main{
-    padding:16px;
-  }
 
-  h2{
-    font-size:28px;
-  }
-
-  .summary-number{
-    font-size:62px;
-  }
+main{
+padding:16px;
 }
+
+h2{
+font-size:28px;
+}
+
+.summary-number{
+font-size:62px;
+}
+
+}
+
 </style>
 </head>
 
+
 <body>
+
 
 <header>
 
-<img class="logo" src="IMG_1571.png" alt="EDISERVICE">
+<img
+class="logo"
+src="IMG_1571.png"
+alt="EDISERVICE"
+>
 
 <p>Gestione manutenzioni</p>
 
 </header>
 
+
 <main>
+
 
 <!-- HOME -->
 
 <div id="home">
+
 
 <div class="summary">
 
@@ -298,7 +337,10 @@ textarea{
 Lavori da fare
 </div>
 
-<div class="summary-number" id="totaleLavori">
+<div
+class="summary-number"
+id="totaleLavori"
+>
 0
 </div>
 
@@ -317,6 +359,7 @@ lavori aperti in tutti i punti vendita
 <div class="section">
 
 <h2>Punti vendita</h2>
+
 
 <div class="group-title">
 PIM
@@ -338,21 +381,30 @@ IPERFAMILY
 
 <div id="iperfamily"></div>
 
-</div>
 
 </div>
 
+</div>
 
-<!-- NEGOZIO -->
 
-<div id="negozio" class="hidden">
 
-<button class="back" onclick="tornaHome()">
+<!-- PAGINA NEGOZIO -->
+
+<div
+id="negozio"
+class="hidden"
+>
+
+<button
+class="back"
+onclick="tornaHome()"
+>
 ← Torna ai punti vendita
 </button>
 
-<h2 id="titoloNegozio">
-</h2>
+
+<h2 id="titoloNegozio"></h2>
+
 
 <div class="form-card">
 
@@ -368,7 +420,11 @@ rows="3"
 placeholder="Note (facoltative)"
 ></textarea>
 
-<button class="primary" onclick="aggiungiLavoro()">
+
+<button
+class="primary"
+onclick="aggiungiLavoro()"
+>
 + Aggiungi lavoro
 </button>
 
@@ -379,18 +435,25 @@ placeholder="Note (facoltative)"
 
 <div id="listaLavori"></div>
 
-<button class="back-home" onclick="tornaHome()">
+
+<button
+class="back-home"
+onclick="tornaHome()"
+>
 Torna alla schermata principale
 </button>
+
 
 </div>
 
 </main>
 
 
+
 <script>
 
-const puntiVendita = {
+
+const puntiVendita={
 
 PIM:[
 "Torresina",
@@ -441,7 +504,7 @@ let negozioAttuale="";
 function caricaDati(){
 
 return JSON.parse(
-localStorage.getItem("ediservice_lavori") || "{}"
+localStorage.getItem("ediservice_lavori")||"{}"
 );
 
 }
@@ -457,32 +520,15 @@ JSON.stringify(dati)
 }
 
 
-function tuttiINegozi(){
-
-let lista=[];
-
-for(const gruppo in puntiVendita){
-
-puntiVendita[gruppo].forEach(nome=>{
-
-lista.push(nome);
-
-});
-
-}
-
-return lista;
-
-}
-
-
 function contaAperti(nome){
 
 const dati=caricaDati();
 
-const lavori=dati[nome] || [];
+const lavori=dati[nome]||[];
 
-return lavori.filter(lavoro=>!lavoro.completato).length;
+return lavori.filter(
+lavoro=>!lavoro.completato
+).length;
 
 }
 
@@ -500,42 +546,50 @@ creaGruppo("IPERFAMILY","iperfamily");
 
 function creaGruppo(gruppo,id){
 
-const contenitore=document.getElementById(id);
+const contenitore=
+document.getElementById(id);
 
 contenitore.innerHTML="";
 
+
 puntiVendita[gruppo].forEach(nome=>{
-
-const card=document.createElement("div");
-
-card.className="store-card";
 
 const aperti=contaAperti(nome);
 
+
+const card=
+document.createElement("div");
+
+card.className="point-card";
+
+
+card.onclick=()=>{
+
+apriNegozio(nome);
+
+};
+
+
 card.innerHTML=`
 
-<div class="store-head">
-
-<div class="store-name">
+<div class="point-name">
 ${nome}
 </div>
+
+<div class="store-head">
 
 <div class="store-count">
 ${aperti}
 </div>
 
+<div class="point-arrow">
+›
 </div>
 
-<button
-class="store-open"
-onclick="apriNegozio('${nome.replace(/'/g,"\\'")}')"
->
-
-Apri punto vendita
-
-</button>
+</div>
 
 `;
+
 
 contenitore.appendChild(card);
 
@@ -544,26 +598,55 @@ contenitore.appendChild(card);
 }
 
 
+
+function tuttiINegozi(){
+
+let lista=[];
+
+
+for(const gruppo in puntiVendita){
+
+puntiVendita[gruppo]
+.forEach(nome=>{
+
+lista.push(nome);
+
+});
+
+}
+
+
+return lista;
+
+}
+
+
+
 function aggiornaHome(){
 
 const dati=caricaDati();
 
 let totale=0;
 
+
 for(const nome in dati){
 
-const lavori=dati[nome] || [];
+const lavori=dati[nome]||[];
 
-totale += lavori.filter(
+totale+=lavori.filter(
 lavoro=>!lavoro.completato
 ).length;
 
 }
 
-document.getElementById("totaleLavori").textContent=totale;
+
+document.getElementById(
+"totaleLavori"
+).textContent=totale;
 
 
-const contenitore=document.getElementById("lavoriHome");
+const contenitore=
+document.getElementById("lavoriHome");
 
 contenitore.innerHTML="";
 
@@ -573,38 +656,41 @@ let trovati=false;
 
 tuttiINegozi().forEach(nome=>{
 
-const lavori=(dati[nome] || [])
-.filter(lavoro=>!lavoro.completato);
+const lavori=(dati[nome]||[])
+.filter(
+lavoro=>!lavoro.completato
+);
 
 
 if(lavori.length===0){
+
 return;
+
 }
 
 
 trovati=true;
 
 
-const card=document.createElement("div");
+const card=
+document.createElement("div");
 
 card.className="store-card";
 
 
+card.onclick=()=>{
+
+apriNegozio(nome);
+
+};
+
+
 let html=`
 
-<div class="store-head">
-
-<div class="store-name">
+<div class="work-store-name">
 ${nome}
 </div>
 
-<div class="store-count">
-${lavori.length}
-</div>
-
-</div>
-
-<div class="task-list">
 `;
 
 
@@ -618,31 +704,21 @@ html+=`
 ${lavoro.testo}
 </strong>
 
-${lavoro.note
-? `<div class="task-note">${lavoro.note}</div>`
-: ""}
+${
+lavoro.note
+?
+`<div class="task-note">
+${lavoro.note}
+</div>`
+:
+""
+}
 
 </div>
 
 `;
 
 });
-
-
-html+=`
-
-</div>
-
-<button
-class="store-open"
-onclick="apriNegozio('${nome.replace(/'/g,"\\'")}')"
->
-
-Apri ${nome}
-
-</button>
-
-`;
 
 
 card.innerHTML=html;
@@ -670,23 +746,37 @@ creaPuntiVendita();
 }
 
 
+
 function apriNegozio(nome){
 
 negozioAttuale=nome;
 
+
 document.getElementById("home")
 .classList.add("hidden");
+
 
 document.getElementById("negozio")
 .classList.remove("hidden");
 
-document.getElementById("titoloNegozio")
-.textContent=nome;
 
-document.getElementById("nuovoLavoro").value="";
-document.getElementById("noteLavoro").value="";
+document.getElementById(
+"titoloNegozio"
+).textContent=nome;
+
+
+document.getElementById(
+"nuovoLavoro"
+).value="";
+
+
+document.getElementById(
+"noteLavoro"
+).value="";
+
 
 mostraLavori();
+
 
 window.scrollTo({
 top:0,
@@ -694,6 +784,7 @@ behavior:"smooth"
 });
 
 }
+
 
 
 function tornaHome(){
@@ -701,10 +792,13 @@ function tornaHome(){
 document.getElementById("negozio")
 .classList.add("hidden");
 
+
 document.getElementById("home")
 .classList.remove("hidden");
 
+
 aggiornaHome();
+
 
 window.scrollTo({
 top:0,
@@ -714,22 +808,26 @@ behavior:"smooth"
 }
 
 
+
 function aggiungiLavoro(){
 
-const lavoro=document
-.getElementById("nuovoLavoro")
-.value
-.trim();
+const lavoro=
+document.getElementById(
+"nuovoLavoro"
+).value.trim();
 
-const note=document
-.getElementById("noteLavoro")
-.value
-.trim();
+
+const note=
+document.getElementById(
+"noteLavoro"
+).value.trim();
 
 
 if(!lavoro){
 
-alert("Scrivi prima il lavoro da fare.");
+alert(
+"Scrivi prima il lavoro da fare."
+);
 
 return;
 
@@ -760,9 +858,14 @@ completato:false
 salvaDati(dati);
 
 
-document.getElementById("nuovoLavoro").value="";
+document.getElementById(
+"nuovoLavoro"
+).value="";
 
-document.getElementById("noteLavoro").value="";
+
+document.getElementById(
+"noteLavoro"
+).value="";
 
 
 mostraLavori();
@@ -770,13 +873,20 @@ mostraLavori();
 }
 
 
+
 function mostraLavori(){
 
-const lista=document.getElementById("listaLavori");
+const lista=
+document.getElementById(
+"listaLavori"
+);
+
 
 const dati=caricaDati();
 
-const lavori=dati[negozioAttuale] || [];
+
+const lavori=
+dati[negozioAttuale]||[];
 
 
 lista.innerHTML="";
@@ -797,13 +907,23 @@ return;
 }
 
 
-lavori.forEach((lavoro,indice)=>{
+lavori.forEach(
+(lavoro,indice)=>{
 
-const div=document.createElement("div");
+
+const div=
+document.createElement("div");
+
 
 div.className=
 "work"+
-(lavoro.completato ? " done" : "");
+(
+lavoro.completato
+?
+" done"
+:
+""
+);
 
 
 div.innerHTML=`
@@ -812,29 +932,35 @@ div.innerHTML=`
 ${lavoro.testo}
 </div>
 
-${lavoro.note
-? `<div class="work-note">${lavoro.note}</div>`
-: ""}
+${
+lavoro.note
+?
+`<div class="work-note">
+${lavoro.note}
+</div>`
+:
+""
+}
 
 <div class="work-buttons">
 
 <button
 onclick="completaLavoro(${indice})"
 >
-
-${lavoro.completato
-? "Da rifare"
-: "Completato"}
-
+${
+lavoro.completato
+?
+"Da rifare"
+:
+"Completato"
+}
 </button>
 
 
 <button
 onclick="eliminaLavoro(${indice})"
 >
-
 Elimina
-
 </button>
 
 </div>
@@ -849,37 +975,52 @@ lista.appendChild(div);
 }
 
 
+
 function completaLavoro(indice){
 
 const dati=caricaDati();
 
-dati[negozioAttuale][indice].completato=
-!dati[negozioAttuale][indice].completato;
+
+dati[negozioAttuale][indice]
+.completato=
+!dati[negozioAttuale][indice]
+.completato;
+
 
 salvaDati(dati);
+
 
 mostraLavori();
 
 }
+
 
 
 function eliminaLavoro(indice){
 
 const dati=caricaDati();
 
-if(!confirm("Vuoi eliminare questo lavoro?")){
+
+if(!confirm(
+"Vuoi eliminare questo lavoro?"
+)){
 
 return;
 
 }
 
-dati[negozioAttuale].splice(indice,1);
+
+dati[negozioAttuale]
+.splice(indice,1);
+
 
 salvaDati(dati);
+
 
 mostraLavori();
 
 }
+
 
 
 aggiornaHome();
