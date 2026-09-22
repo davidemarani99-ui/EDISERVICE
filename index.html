@@ -10,7 +10,6 @@
 <link rel="apple-touch-icon" href="IMG_1571.png">
 
 <style>
-
 *{
   box-sizing:border-box;
 }
@@ -18,254 +17,262 @@
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#f3f4f5;
+  background:#f3f5f7;
   color:#111;
 }
 
 header{
   background:white;
   padding:25px 20px 20px;
-  border-bottom:1px solid #e5e5e5;
+  text-align:center;
+  border-bottom:1px solid #ddd;
 }
 
 .logo{
   width:100%;
-  max-width:360px;
-  display:block;
-  margin:0 auto 8px;
+  max-width:300px;
+  max-height:130px;
+  object-fit:contain;
 }
 
 header p{
-  text-align:center;
-  margin:0;
+  margin:10px 0 0;
   color:#555;
-  font-size:17px;
+  font-size:18px;
 }
 
 main{
   max-width:750px;
   margin:auto;
-  padding:18px;
+  padding:20px;
+}
+
+h2{
+  font-size:30px;
+  margin:28px 0 15px;
+}
+
+h3{
+  font-size:23px;
+  margin:25px 0 12px;
+}
+
+.summary{
+  background:#172f4d;
+  color:white;
+  border-radius:28px;
+  padding:28px;
+  margin-bottom:35px;
+}
+
+.summary-title{
+  font-size:19px;
+  font-weight:600;
+  text-transform:uppercase;
+}
+
+.summary-number{
+  font-size:70px;
+  font-weight:700;
+  line-height:1;
+  margin:10px 0;
+}
+
+.summary-text{
+  font-size:19px;
+  color:#d8e0e8;
+}
+
+.section{
+  margin-top:35px;
+}
+
+.group-title{
+  font-size:25px;
+  font-weight:700;
+  margin:28px 0 12px;
+}
+
+.store-card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  margin:12px 0;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.store-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.store-name{
+  font-size:22px;
+  font-weight:700;
+}
+
+.store-count{
+  background:#e8edf2;
+  color:#172f4d;
+  min-width:42px;
+  height:42px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+
+.task-list{
+  margin-top:15px;
+}
+
+.task-row{
+  padding:10px 0;
+  border-top:1px solid #eee;
+  font-size:17px;
+}
+
+.task-row:first-child{
+  border-top:0;
+}
+
+.task-row strong{
+  display:block;
+}
+
+.task-note{
+  color:#666;
+  font-size:14px;
+  margin-top:4px;
+}
+
+.store-open{
+  margin-top:15px;
+  width:100%;
+  border:0;
+  background:#172f4d;
+  color:white;
+  border-radius:11px;
+  padding:12px;
+  font-size:16px;
+}
+
+.empty{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  color:#666;
+  text-align:center;
 }
 
 .hidden{
   display:none;
 }
 
-/* RIEPILOGO */
-
-.summary{
-  background:#102a43;
-  color:white;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:20px;
-}
-
-.summary-title{
-  font-size:18px;
-  font-weight:600;
-  margin-bottom:8px;
-}
-
-.summary-number{
-  font-size:42px;
-  font-weight:700;
-  line-height:1;
-}
-
-.summary-text{
-  margin-top:6px;
-  opacity:.8;
-}
-
-/* LAVORI HOME */
-
-.job-home{
-  background:white;
-  border-radius:15px;
-  padding:16px;
-  margin:10px 0;
-  box-shadow:0 2px 8px #0000000d;
-  cursor:pointer;
-}
-
-.job-home-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-.job-home-store{
-  font-size:18px;
-  font-weight:700;
-}
-
-.job-home-work{
-  margin-top:7px;
-  font-size:16px;
-}
-
-.job-home-note{
-  margin-top:5px;
-  color:#666;
-  font-size:14px;
-}
-
-.badge{
-  background:#102a43;
-  color:white;
-  border-radius:20px;
-  padding:6px 10px;
-  font-size:13px;
-  white-space:nowrap;
-}
-
-/* TITOLI */
-
-h2{
-  margin:25px 0 12px;
-}
-
-/* PUNTI VENDITA */
-
-.group-title{
-  font-size:20px;
-  font-weight:700;
-  margin-top:28px;
-}
-
-.store{
-  background:white;
-  border-radius:15px;
-  padding:18px;
-  margin:10px 0;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  cursor:pointer;
-  box-shadow:0 2px 8px #0000000d;
-}
-
-.store-name{
-  font-size:17px;
-  font-weight:600;
-}
-
-.store-right{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.store-count{
-  background:#e9eef3;
-  color:#102a43;
-  border-radius:20px;
-  padding:5px 9px;
-  font-size:13px;
-  font-weight:600;
-}
-
-.arrow{
-  font-size:25px;
-  color:#666;
-}
-
-/* PAGINA NEGOZIO */
-
 .back{
   border:0;
   background:none;
-  color:#102a43;
-  font-size:16px;
   padding:5px 0 15px;
+  color:#172f4d;
+  font-size:17px;
 }
 
-.shop-title{
-  font-size:28px;
-  margin:5px 0 20px;
-}
-
-.card{
+.form-card{
   background:white;
-  border-radius:17px;
-  padding:18px;
-  box-shadow:0 2px 10px #0000000d;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
-input,textarea{
+input,
+textarea{
   width:100%;
-  padding:13px;
-  border:1px solid #d5d9de;
-  border-radius:10px;
+  border:1px solid #d5dbe1;
+  border-radius:11px;
+  padding:14px;
   font-size:16px;
-  margin:5px 0 10px;
+  margin:7px 0 12px;
   font-family:inherit;
 }
 
-button.primary{
+.primary{
   width:100%;
   border:0;
   border-radius:11px;
   padding:14px;
-  background:#102a43;
+  background:#172f4d;
   color:white;
-  font-size:16px;
+  font-size:17px;
   font-weight:600;
 }
 
-/* LAVORI */
-
 .work{
   background:white;
-  border-radius:14px;
-  padding:15px;
-  margin:10px 0;
-  box-shadow:0 2px 8px #0000000d;
+  border-radius:18px;
+  padding:17px;
+  margin:12px 0;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 .work.done{
-  opacity:.55;
+  opacity:.5;
 }
 
-.work.done strong{
+.work.done .work-title{
   text-decoration:line-through;
 }
 
+.work-title{
+  font-size:18px;
+  font-weight:700;
+}
+
 .work-note{
-  color:#666;
   margin:8px 0;
+  color:#666;
 }
 
 .work-buttons{
   display:flex;
   gap:8px;
-  flex-wrap:wrap;
+  margin-top:12px;
 }
 
-.work button{
+.work-buttons button{
+  flex:1;
   border:0;
-  border-radius:8px;
-  padding:9px 12px;
-  background:#e8edf2;
-  color:#172033;
+  border-radius:9px;
+  padding:10px;
   font-size:14px;
+  background:#e8edf2;
 }
 
-.empty{
-  background:white;
-  border-radius:14px;
-  padding:20px;
-  color:#666;
-  text-align:center;
+.back-home{
+  margin-top:25px;
+  width:100%;
+  border:0;
+  background:#e8edf2;
+  border-radius:11px;
+  padding:13px;
+  font-size:16px;
 }
 
-.section-space{
-  margin-top:30px;
-}
+@media(max-width:500px){
+  main{
+    padding:16px;
+  }
 
+  h2{
+    font-size:28px;
+  }
+
+  .summary-number{
+    font-size:62px;
+  }
+}
 </style>
 </head>
 
@@ -273,7 +280,7 @@ button.primary{
 
 <header>
 
-<img class="logo" src="IMG_1571.png" alt="DRA EDISERVICE">
+<img class="logo" src="IMG_1571.png" alt="EDISERVICE">
 
 <p>Gestione manutenzioni</p>
 
@@ -285,93 +292,96 @@ button.primary{
 
 <div id="home">
 
-  <div class="summary">
+<div class="summary">
 
-    <div class="summary-title">
-      LAVORI DA FARE
-    </div>
+<div class="summary-title">
+Lavori da fare
+</div>
 
-    <div class="summary-number" id="totaleLavori">
-      0
-    </div>
+<div class="summary-number" id="totaleLavori">
+0
+</div>
 
-    <div class="summary-text">
-      lavori aperti in tutti i punti vendita
-    </div>
-
-  </div>
-
-
-  <h2>Lavori da fare</h2>
-
-  <div id="lavoriHome"></div>
-
-
-  <div class="section-space">
-
-    <h2>Punti vendita</h2>
-
-    <div class="group-title">
-      PIM
-    </div>
-
-    <div id="pim"></div>
-
-
-    <div class="group-title">
-      AGORÀ
-    </div>
-
-    <div id="agora"></div>
-
-
-    <div class="group-title">
-      IPERFAMILY
-    </div>
-
-    <div id="iperfamily"></div>
-
-  </div>
+<div class="summary-text">
+lavori aperti in tutti i punti vendita
+</div>
 
 </div>
 
 
-<!-- PAGINA NEGOZIO -->
+<h2>Lavori da fare</h2>
+
+<div id="lavoriHome"></div>
+
+
+<div class="section">
+
+<h2>Punti vendita</h2>
+
+<div class="group-title">
+PIM
+</div>
+
+<div id="pim"></div>
+
+
+<div class="group-title">
+AGORÀ
+</div>
+
+<div id="agora"></div>
+
+
+<div class="group-title">
+IPERFAMILY
+</div>
+
+<div id="iperfamily"></div>
+
+</div>
+
+</div>
+
+
+<!-- NEGOZIO -->
 
 <div id="negozio" class="hidden">
 
-  <button class="back" onclick="home()">
-    ← Torna alla home
-  </button>
+<button class="back" onclick="tornaHome()">
+← Torna ai punti vendita
+</button>
 
-  <h1 class="shop-title" id="titoloNegozio"></h1>
+<h2 id="titoloNegozio">
+</h2>
 
-  <div class="card">
+<div class="form-card">
 
-    <input
-      id="nuovoLavoro"
-      placeholder="Scrivi il lavoro da fare..."
-    >
+<input
+id="nuovoLavoro"
+type="text"
+placeholder="Scrivi il lavoro da fare..."
+>
 
-    <textarea
-      id="noteLavoro"
-      rows="3"
-      placeholder="Note (facoltative)"
-    ></textarea>
+<textarea
+id="noteLavoro"
+rows="3"
+placeholder="Note (facoltative)"
+></textarea>
 
-    <button
-      class="primary"
-      onclick="aggiungiLavoro()"
-    >
-      + Aggiungi lavoro
-    </button>
+<button class="primary" onclick="aggiungiLavoro()">
++ Aggiungi lavoro
+</button>
 
-  </div>
+</div>
 
 
-  <h2>Lavori</h2>
+<h2>Lavori</h2>
 
-  <div id="listaLavori"></div>
+<div id="listaLavori"></div>
+
+<button class="back-home" onclick="tornaHome()">
+Torna alla schermata principale
+</button>
 
 </div>
 
@@ -382,505 +392,495 @@ button.primary{
 
 const puntiVendita = {
 
-  PIM: [
-    "Torresina",
-    "Fontanile",
-    "Torrevecchia 313",
-    "Pietro Maffi",
-    "Pineta Sacchetti",
-    "Trionfale",
-    "Igea",
-    "Piedicavallo",
-    "Mazzini",
-    "Bravetta",
-    "Cassia",
-    "Flaminia",
-    "Zambarelli",
-    "Parioli",
-    "Newton",
-    "Biolchini",
-    "Oderisi",
-    "Tripoli",
-    "Labaro",
-    "San Paolo",
-    "Malafede",
-    "Cinecittà",
-    "Casal Palocco",
-    "Guidonia",
-    "Nepi"
-  ],
+PIM:[
+"Torresina",
+"Fontanile",
+"Torrevecchia 313",
+"Pietro Maffi",
+"Pineta Sacchetti",
+"Trionfale",
+"Igea",
+"Piedicavallo",
+"Mazzini",
+"Bravetta",
+"Cassia",
+"Flaminia",
+"Zambarelli",
+"Parioli",
+"Newton",
+"Biolchini",
+"Oderisi",
+"Tripoli",
+"Labaro",
+"San Paolo",
+"Malafede",
+"Cinecittà",
+"Casal Palocco",
+"Guidonia",
+"Nepi"
+],
 
-  "AGORÀ": [
-    "Taverna",
-    "Boccea",
-    "Gregorio",
-    "San Basilio",
-    "Laurentina"
-  ],
+"AGORÀ":[
+"Taverna",
+"Boccea",
+"Gregorio",
+"San Basilio",
+"Laurentina"
+],
 
-  IPERFAMILY: [
-    "Iperfamily"
-  ]
+"IPERFAMILY":[
+"Iperfamily"
+]
 
 };
 
 
-let negozioAttuale = "";
+let negozioAttuale="";
 
 
-/* DATI */
+function caricaDati(){
 
-function dati(){
-
-  return JSON.parse(
-    localStorage.getItem("ediservice_lavori") || "{}"
-  );
+return JSON.parse(
+localStorage.getItem("ediservice_lavori") || "{}"
+);
 
 }
 
 
-function salva(d){
+function salvaDati(dati){
 
-  localStorage.setItem(
-    "ediservice_lavori",
-    JSON.stringify(d)
-  );
-
-}
-
-
-/* CONTA LAVORI APERTI */
-
-function contaLavori(nome){
-
-  const d = dati();
-
-  const lavori = d[nome] || [];
-
-  return lavori.filter(
-    lavoro => !lavoro.completato
-  ).length;
+localStorage.setItem(
+"ediservice_lavori",
+JSON.stringify(dati)
+);
 
 }
 
 
-/* CREA PUNTI VENDITA */
+function tuttiINegozi(){
+
+let lista=[];
+
+for(const gruppo in puntiVendita){
+
+puntiVendita[gruppo].forEach(nome=>{
+
+lista.push(nome);
+
+});
+
+}
+
+return lista;
+
+}
+
+
+function contaAperti(nome){
+
+const dati=caricaDati();
+
+const lavori=dati[nome] || [];
+
+return lavori.filter(lavoro=>!lavoro.completato).length;
+
+}
+
 
 function creaPuntiVendita(){
 
-  for(const gruppo in puntiVendita){
+creaGruppo("PIM","pim");
 
-    const id =
-      gruppo === "PIM"
-        ? "pim"
-        : gruppo === "AGORÀ"
-          ? "agora"
-          : "iperfamily";
+creaGruppo("AGORÀ","agora");
 
-
-    const contenitore =
-      document.getElementById(id);
-
-
-    contenitore.innerHTML = "";
-
-
-    puntiVendita[gruppo].forEach(nome => {
-
-      const div =
-        document.createElement("div");
-
-      div.className = "store";
-
-
-      const numero =
-        contaLavori(nome);
-
-
-      div.innerHTML = `
-
-        <div class="store-name">
-          ${nome}
-        </div>
-
-        <div class="store-right">
-
-          ${
-            numero > 0
-              ? `<span class="store-count">
-                   ${numero}
-                 </span>`
-              : ""
-          }
-
-          <span class="arrow">›</span>
-
-        </div>
-
-      `;
-
-
-      div.onclick = () =>
-        apriNegozio(nome);
-
-
-      contenitore.appendChild(div);
-
-    });
-
-  }
+creaGruppo("IPERFAMILY","iperfamily");
 
 }
 
 
-/* CREA RIEPILOGO HOME */
+function creaGruppo(gruppo,id){
+
+const contenitore=document.getElementById(id);
+
+contenitore.innerHTML="";
+
+puntiVendita[gruppo].forEach(nome=>{
+
+const card=document.createElement("div");
+
+card.className="store-card";
+
+const aperti=contaAperti(nome);
+
+card.innerHTML=`
+
+<div class="store-head">
+
+<div class="store-name">
+${nome}
+</div>
+
+<div class="store-count">
+${aperti}
+</div>
+
+</div>
+
+<button
+class="store-open"
+onclick="apriNegozio('${nome.replace(/'/g,"\\'")}')"
+>
+
+Apri punto vendita
+
+</button>
+
+`;
+
+contenitore.appendChild(card);
+
+});
+
+}
+
 
 function aggiornaHome(){
 
-  const d = dati();
+const dati=caricaDati();
 
-  let totale = 0;
+let totale=0;
 
-  const lavoriHome =
-    document.getElementById("lavoriHome");
+for(const nome in dati){
 
+const lavori=dati[nome] || [];
 
-  lavoriHome.innerHTML = "";
+totale += lavori.filter(
+lavoro=>!lavoro.completato
+).length;
 
+}
 
-  for(const negozio in d){
-
-    const lavori = d[negozio] || [];
-
-
-    lavori.forEach(lavoro => {
-
-      if(lavoro.completato)
-        return;
+document.getElementById("totaleLavori").textContent=totale;
 
 
-      totale++;
+const contenitore=document.getElementById("lavoriHome");
+
+contenitore.innerHTML="";
 
 
-      const div =
-        document.createElement("div");
+let trovati=false;
 
 
-      div.className =
-        "job-home";
+tuttiINegozi().forEach(nome=>{
+
+const lavori=(dati[nome] || [])
+.filter(lavoro=>!lavoro.completato);
 
 
-      div.onclick = () =>
-        apriNegozio(negozio);
+if(lavori.length===0){
+return;
+}
 
 
-      div.innerHTML = `
-
-        <div class="job-home-top">
-
-          <div class="job-home-store">
-            ${negozio}
-          </div>
-
-          <div class="badge">
-            DA FARE
-          </div>
-
-        </div>
-
-        <div class="job-home-work">
-          ${lavoro.testo}
-        </div>
-
-        ${
-          lavoro.note
-            ? `<div class="job-home-note">
-                 ${lavoro.note}
-               </div>`
-            : ""
-        }
-
-      `;
+trovati=true;
 
 
-      lavoriHome.appendChild(div);
+const card=document.createElement("div");
 
-    });
-
-  }
+card.className="store-card";
 
 
-  document.getElementById(
-    "totaleLavori"
-  ).textContent = totale;
+let html=`
+
+<div class="store-head">
+
+<div class="store-name">
+${nome}
+</div>
+
+<div class="store-count">
+${lavori.length}
+</div>
+
+</div>
+
+<div class="task-list">
+`;
 
 
-  if(totale === 0){
+lavori.forEach(lavoro=>{
 
-    lavoriHome.innerHTML =
-      '<div class="empty">Nessun lavoro da fare.</div>';
+html+=`
 
-  }
+<div class="task-row">
+
+<strong>
+${lavoro.testo}
+</strong>
+
+${lavoro.note
+? `<div class="task-note">${lavoro.note}</div>`
+: ""}
+
+</div>
+
+`;
+
+});
 
 
-  creaPuntiVendita();
+html+=`
+
+</div>
+
+<button
+class="store-open"
+onclick="apriNegozio('${nome.replace(/'/g,"\\'")}')"
+>
+
+Apri ${nome}
+
+</button>
+
+`;
+
+
+card.innerHTML=html;
+
+contenitore.appendChild(card);
+
+});
+
+
+if(!trovati){
+
+contenitore.innerHTML=`
+
+<div class="empty">
+Nessun lavoro da fare.
+</div>
+
+`;
 
 }
 
 
-/* APRI NEGOZIO */
+creaPuntiVendita();
+
+}
+
 
 function apriNegozio(nome){
 
-  negozioAttuale = nome;
+negozioAttuale=nome;
 
+document.getElementById("home")
+.classList.add("hidden");
 
-  document
-    .getElementById("home")
-    .classList
-    .add("hidden");
+document.getElementById("negozio")
+.classList.remove("hidden");
 
+document.getElementById("titoloNegozio")
+.textContent=nome;
 
-  document
-    .getElementById("negozio")
-    .classList
-    .remove("hidden");
+document.getElementById("nuovoLavoro").value="";
+document.getElementById("noteLavoro").value="";
 
+mostraLavori();
 
-  document.getElementById(
-    "titoloNegozio"
-  ).textContent = nome;
-
-
-  document.getElementById(
-    "nuovoLavoro"
-  ).value = "";
-
-
-  document.getElementById(
-    "noteLavoro"
-  ).value = "";
-
-
-  mostraLavori();
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 
-/* TORNA HOME */
+function tornaHome(){
 
-function home(){
+document.getElementById("negozio")
+.classList.add("hidden");
 
-  document
-    .getElementById("negozio")
-    .classList
-    .add("hidden");
+document.getElementById("home")
+.classList.remove("hidden");
 
+aggiornaHome();
 
-  document
-    .getElementById("home")
-    .classList
-    .remove("hidden");
-
-
-  aggiornaHome();
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
-
-/* AGGIUNGI LAVORO */
 
 function aggiungiLavoro(){
 
-  const lavoro =
-    document
-      .getElementById("nuovoLavoro")
-      .value
-      .trim();
+const lavoro=document
+.getElementById("nuovoLavoro")
+.value
+.trim();
+
+const note=document
+.getElementById("noteLavoro")
+.value
+.trim();
 
 
-  const note =
-    document
-      .getElementById("noteLavoro")
-      .value
-      .trim();
+if(!lavoro){
 
+alert("Scrivi prima il lavoro da fare.");
 
-  if(!lavoro){
-
-    alert(
-      "Scrivi prima il lavoro da fare."
-    );
-
-    return;
-
-  }
-
-
-  const d = dati();
-
-
-  if(!d[negozioAttuale])
-    d[negozioAttuale] = [];
-
-
-  d[negozioAttuale].push({
-
-    testo: lavoro,
-
-    note: note,
-
-    completato: false
-
-  });
-
-
-  salva(d);
-
-
-  document.getElementById(
-    "nuovoLavoro"
-  ).value = "";
-
-
-  document.getElementById(
-    "noteLavoro"
-  ).value = "";
-
-
-  mostraLavori();
+return;
 
 }
 
 
-/* MOSTRA LAVORI */
+const dati=caricaDati();
+
+
+if(!dati[negozioAttuale]){
+
+dati[negozioAttuale]=[];
+
+}
+
+
+dati[negozioAttuale].push({
+
+testo:lavoro,
+
+note:note,
+
+completato:false
+
+});
+
+
+salvaDati(dati);
+
+
+document.getElementById("nuovoLavoro").value="";
+
+document.getElementById("noteLavoro").value="";
+
+
+mostraLavori();
+
+}
+
 
 function mostraLavori(){
 
-  const lista =
-    document.getElementById(
-      "listaLavori"
-    );
+const lista=document.getElementById("listaLavori");
+
+const dati=caricaDati();
+
+const lavori=dati[negozioAttuale] || [];
 
 
-  const d = dati();
+lista.innerHTML="";
 
 
-  lista.innerHTML = "";
+if(lavori.length===0){
 
+lista.innerHTML=`
 
-  const lavori =
-    d[negozioAttuale] || [];
+<div class="empty">
+Nessun lavoro inserito per questo punto vendita.
+</div>
 
+`;
 
-  if(lavori.length === 0){
-
-    lista.innerHTML =
-      '<div class="empty">Nessun lavoro inserito.</div>';
-
-    return;
-
-  }
-
-
-  lavori.forEach((lavoro, indice) => {
-
-    const div =
-      document.createElement("div");
-
-
-    div.className =
-      "work" +
-      (lavoro.completato
-        ? " done"
-        : "");
-
-
-    div.innerHTML = `
-
-      <strong>
-        ${lavoro.testo}
-      </strong>
-
-      ${
-        lavoro.note
-          ? `<div class="work-note">
-               ${lavoro.note}
-             </div>`
-          : ""
-      }
-
-      <div class="work-buttons">
-
-        <button
-          onclick="completaLavoro(${indice})"
-        >
-          ${
-            lavoro.completato
-              ? "Da rifare"
-              : "Completato"
-          }
-        </button>
-
-        <button
-          onclick="eliminaLavoro(${indice})"
-        >
-          Elimina
-        </button>
-
-      </div>
-
-    `;
-
-
-    lista.appendChild(div);
-
-  });
+return;
 
 }
 
 
-/* COMPLETA */
+lavori.forEach((lavoro,indice)=>{
+
+const div=document.createElement("div");
+
+div.className=
+"work"+
+(lavoro.completato ? " done" : "");
+
+
+div.innerHTML=`
+
+<div class="work-title">
+${lavoro.testo}
+</div>
+
+${lavoro.note
+? `<div class="work-note">${lavoro.note}</div>`
+: ""}
+
+<div class="work-buttons">
+
+<button
+onclick="completaLavoro(${indice})"
+>
+
+${lavoro.completato
+? "Da rifare"
+: "Completato"}
+
+</button>
+
+
+<button
+onclick="eliminaLavoro(${indice})"
+>
+
+Elimina
+
+</button>
+
+</div>
+
+`;
+
+
+lista.appendChild(div);
+
+});
+
+}
+
 
 function completaLavoro(indice){
 
-  const d = dati();
+const dati=caricaDati();
 
+dati[negozioAttuale][indice].completato=
+!dati[negozioAttuale][indice].completato;
 
-  d[negozioAttuale][indice]
-    .completato =
-      !d[negozioAttuale][indice]
-        .completato;
+salvaDati(dati);
 
-
-  salva(d);
-
-
-  mostraLavori();
+mostraLavori();
 
 }
 
-
-/* ELIMINA */
 
 function eliminaLavoro(indice){
 
-  const d = dati();
+const dati=caricaDati();
 
+if(!confirm("Vuoi eliminare questo lavoro?")){
 
-  d[negozioAttuale]
-    .splice(indice,1);
-
-
-  salva(d);
-
-
-  mostraLavori();
+return;
 
 }
 
+dati[negozioAttuale].splice(indice,1);
 
-/* AVVIO */
+salvaDati(dati);
+
+mostraLavori();
+
+}
+
 
 aggiornaHome();
 
