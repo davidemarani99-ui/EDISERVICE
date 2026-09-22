@@ -1,979 +1,442 @@
 <!DOCTYPE html>
-<html lang="it"><script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-  import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-  const firebaseConfig = {
-    // CONFIGURAZIONE FIREBASE
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  signInAnonymously(auth);
-</script>
+<html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EDISERVICE</title>
 
-<link rel="icon" type="image/png" href="IMG_1571.png">
-<link rel="apple-touch-icon" href="IMG_1571.png">
-
 <style>
-
-*{
-box-sizing:border-box;
-}
-
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-background:#f3f5f7;
-color:#111;
-}
-
-header{
-background:white;
-padding:25px 20px 20px;
-text-align:center;
-border-bottom:1px solid #ddd;
-}
-
-.logo{
-width:100%;
-max-width:300px;
-max-height:130px;
-object-fit:contain;
-}
-
-header p{
-margin:10px 0 0;
-color:#555;
-font-size:18px;
-}
-
-main{
-max-width:750px;
-margin:auto;
-padding:20px;
-}
-
-h2{
-font-size:30px;
-margin:28px 0 15px;
-}
-
-.group-title{
-font-size:25px;
-font-weight:700;
-margin:28px 0 12px;
-}
-
-
-/* RIQUADRO LAVORI DA FARE */
-
-.summary{
-background:#555555;
-color:white;
-border-radius:28px;
-padding:28px;
-margin-bottom:35px;
-}
-
-.summary-title{
-font-size:19px;
-font-weight:600;
-text-transform:uppercase;
-}
-
-.summary-number{
-font-size:70px;
-font-weight:700;
-line-height:1;
-margin:10px 0;
-}
-
-.summary-text{
-font-size:19px;
-color:#eeeeee;
-}
-
-
-/* LAVORI NELLA HOME */
-
-.store-card{
-background:white;
-border-radius:20px;
-padding:20px;
-margin:12px 0;
-box-shadow:0 3px 12px rgba(0,0,0,.06);
-cursor:pointer;
-}
-
-.store-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-}
-
-.store-name{
-font-size:22px;
-font-weight:700;
-}
-
-.store-count{
-background:#e8edf2;
-color:#555555;
-min-width:42px;
-height:42px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:700;
-}
-
-.task-list{
-margin-top:15px;
-}
-
-.task-row{
-padding:10px 0;
-border-top:1px solid #eee;
-font-size:17px;
-}
-
-.task-row:first-child{
-border-top:0;
-}
-
-.task-row strong{
-display:block;
-}
-
-
-/* NOME PUNTO VENDITA IN ROSSO */
-
-.work-store-name{
-color:#c62828;
-font-size:23px;
-font-weight:800;
-margin-bottom:15px;
-}
-
-.task-note{
-color:#666;
-font-size:14px;
-margin-top:4px;
-}
-
-.hidden{
-display:none;
-}
-
-.empty{
-background:white;
-border-radius:18px;
-padding:20px;
-color:#666;
-text-align:center;
-}
-
-
-/* PAGINA PUNTO VENDITA */
-
-.back{
-border:0;
-background:none;
-padding:5px 0 15px;
-color:#555555;
-font-size:17px;
-}
-
-.form-card{
-background:white;
-border-radius:20px;
-padding:20px;
-box-shadow:0 3px 12px rgba(0,0,0,.06);
-}
-
-input,
-textarea{
-width:100%;
-border:1px solid #d5dbe1;
-border-radius:11px;
-padding:14px;
-font-size:16px;
-margin:7px 0 12px;
-font-family:inherit;
-}
-
-.primary{
-width:100%;
-border:0;
-border-radius:11px;
-padding:14px;
-background:#555555;
-color:white;
-font-size:17px;
-font-weight:600;
-}
-
-.work{
-background:white;
-border-radius:18px;
-padding:17px;
-margin:12px 0;
-box-shadow:0 3px 12px rgba(0,0,0,.06);
-}
-
-.work.done{
-opacity:.5;
-}
-
-.work.done .work-title{
-text-decoration:line-through;
-}
-
-.work-title{
-font-size:18px;
-font-weight:700;
-}
-
-.work-note{
-margin:8px 0;
-color:#666;
-}
-
-.work-buttons{
-display:flex;
-gap:8px;
-margin-top:12px;
-}
-
-.work-buttons button{
-flex:1;
-border:0;
-border-radius:9px;
-padding:10px;
-font-size:14px;
-background:#e8edf2;
-}
-
-.back-home{
-margin-top:25px;
-width:100%;
-border:0;
-background:#e8edf2;
-border-radius:11px;
-padding:13px;
-font-size:16px;
-}
-
-
-/* PUNTI VENDITA */
-
-.point-card{
-background:white;
-border-radius:20px;
-padding:22px;
-margin:12px 0;
-box-shadow:0 3px 12px rgba(0,0,0,.06);
-display:flex;
-align-items:center;
-justify-content:space-between;
-cursor:pointer;
-}
-
-.point-name{
-font-size:22px;
-font-weight:700;
-}
-
-.point-arrow{
-font-size:30px;
-color:#666;
-}
-
-
-@media(max-width:500px){
-
-main{
-padding:16px;
-}
-
-h2{
-font-size:28px;
-}
-
-.summary-number{
-font-size:62px;
-}
-
-}
-
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f3f5f7;color:#111}
+header{background:#fff;padding:25px 20px 20px;text-align:center;border-bottom:1px solid #ddd}
+.logo{width:100%;max-width:300px;max-height:130px;object-fit:contain}
+header p{margin:10px 0;color:#555;font-size:18px}
+main{max-width:750px;margin:auto;padding:20px}
+h2{font-size:30px;margin:28px 0 15px}
+.group-title{font-size:25px;font-weight:700;margin:28px 0 12px}
+.summary{background:#555;color:#fff;border-radius:28px;padding:28px;margin-bottom:35px}
+.summary-title{font-size:19px;font-weight:600;text-transform:uppercase}
+.summary-number{font-size:70px;font-weight:700;margin:10px 0}
+.summary-text{font-size:19px;color:#eee}
+.store-card,.form-card,.work,.point-card,.empty{background:#fff;border-radius:20px;padding:20px;margin:12px 0;box-shadow:0 3px 12px #00000010}
+.store-card,.point-card{cursor:pointer}
+.point-card{display:flex;align-items:center;justify-content:space-between}
+.point-name{font-size:22px;font-weight:700}
+.point-arrow{font-size:30px;color:#666}
+.store-count{background:#e8edf2;min-width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700}
+.work-store-name{color:#c62828;font-size:23px;font-weight:800;margin-bottom:15px}
+.task-row{padding:10px 0;border-top:1px solid #eee;font-size:17px}
+.task-note,.work-note{color:#666;font-size:14px;margin-top:5px}
+.hidden{display:none}
+.empty{text-align:center;color:#666}
+.back{border:0;background:none;padding:5px 0 15px;color:#555;font-size:17px}
+input,textarea{width:100%;border:1px solid #d5dbe1;border-radius:11px;padding:14px;font-size:16px;margin:7px 0 12px;font-family:inherit}
+.primary{width:100%;border:0;border-radius:11px;padding:14px;background:#555;color:white;font-size:17px;font-weight:600}
+.work.done{opacity:.5}
+.work.done .work-title{text-decoration:line-through}
+.work-title{font-size:18px;font-weight:700}
+.work-buttons{display:flex;gap:8px;margin-top:12px}
+.work-buttons button{flex:1;border:0;border-radius:9px;padding:10px;background:#e8edf2}
+.back-home{width:100%;border:0;background:#e8edf2;border-radius:11px;padding:13px;font-size:16px}
+.status{text-align:center;font-size:13px;color:#777}
 </style>
 </head>
 
-
 <body>
 
-
 <header>
-
-<img
-class="logo"
-src="IMG_1571.png"
-alt="EDISERVICE"
->
-
+<img class="logo" src="IMG_1571.png" alt="EDISERVICE">
 <p>Gestione manutenzioni</p>
-
+<div class="status" id="status">Connessione Firebase...</div>
 </header>
-
 
 <main>
 
-
-<!-- HOME -->
-
 <div id="home">
 
-
 <div class="summary">
-
-<div class="summary-title">
-Lavori da fare
+<div class="summary-title">Lavori da fare</div>
+<div class="summary-number" id="totale">0</div>
+<div class="summary-text">lavori aperti in tutti i punti vendita</div>
 </div>
-
-<div
-class="summary-number"
-id="totaleLavori"
->
-0
-</div>
-
-<div class="summary-text">
-lavori aperti in tutti i punti vendita
-</div>
-
-</div>
-
 
 <h2>Lavori da fare</h2>
-
-<div id="lavoriHome"></div>
-
-
-<div class="section">
+<div id="homeLavori"></div>
 
 <h2>Punti vendita</h2>
 
-
-<div class="group-title">
-PIM
-</div>
-
+<div class="group-title">PIM</div>
 <div id="pim"></div>
 
-
-<div class="group-title">
-AGORÀ
-</div>
-
+<div class="group-title">AGORÀ</div>
 <div id="agora"></div>
 
-
-<div class="group-title">
-IPERFAMILY
-</div>
-
+<div class="group-title">IPERFAMILY</div>
 <div id="iperfamily"></div>
 
-
-</div>
-
 </div>
 
 
+<div id="negozio" class="hidden">
 
-<!-- PAGINA NEGOZIO -->
+<button class="back" onclick="home()">← Torna ai punti vendita</button>
 
-<div
-id="negozio"
-class="hidden"
->
-
-<button
-class="back"
-onclick="tornaHome()"
->
-← Torna ai punti vendita
-</button>
-
-
-<h2 id="titoloNegozio"></h2>
-
+<h2 id="titolo"></h2>
 
 <div class="form-card">
 
-<input
-id="nuovoLavoro"
-type="text"
-placeholder="Scrivi il lavoro da fare..."
->
+<input id="lavoro" placeholder="Scrivi il lavoro da fare...">
 
-<textarea
-id="noteLavoro"
-rows="3"
-placeholder="Note (facoltative)"
-></textarea>
+<textarea id="note" rows="3" placeholder="Note (facoltative)"></textarea>
 
-
-<button
-class="primary"
-onclick="aggiungiLavoro()"
->
-+ Aggiungi lavoro
-</button>
+<button class="primary" onclick="aggiungi()">+ Aggiungi lavoro</button>
 
 </div>
 
-
 <h2>Lavori</h2>
 
-<div id="listaLavori"></div>
+<div id="lista"></div>
 
-
-<button
-class="back-home"
-onclick="tornaHome()"
->
-Torna alla schermata principale
-</button>
-
+<button class="back-home" onclick="home()">Torna alla schermata principale</button>
 
 </div>
 
 </main>
 
 
+<script type="module">
 
-<script>
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+getAuth,
+signInAnonymously,
+onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+query,
+where,
+onSnapshot,
+doc,
+updateDoc,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-const puntiVendita={
+const firebaseConfig={
+
+apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+
+authDomain:"ediservice-bb88c.firebaseapp.com",
+
+projectId:"ediservice-bb88c",
+
+storageBucket:"ediservice-bb88c.firebasestorage.app",
+
+messagingSenderId:"420418885149",
+
+appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
+
+measurementId:"G-BM489YWSY4"
+
+};
+
+
+const app=initializeApp(firebaseConfig);
+
+const auth=getAuth(app);
+
+const db=getFirestore(app);
+
+
+const punti={
 
 PIM:[
-"Torresina",
-"Fontanile",
-"Torrevecchia 313",
-"Pietro Maffi",
-"Pineta Sacchetti",
-"Trionfale",
-"Igea",
-"Piedicavallo",
-"Mazzini",
-"Bravetta",
-"Cassia",
-"Flaminia",
-"Zambarelli",
-"Parioli",
-"Newton",
-"Biolchini",
-"Oderisi",
-"Tripoli",
-"Labaro",
-"San Paolo",
-"Malafede",
-"Cinecittà",
-"Casal Palocco",
-"Guidonia",
-"Nepi"
+"Torresina","Fontanile","Torrevecchia 313",
+"Pietro Maffi","Pineta Sacchetti","Trionfale",
+"Igea","Piedicavallo","Mazzini","Bravetta",
+"Cassia","Flaminia","Zambarelli","Parioli",
+"Newton","Biolchini","Oderisi","Tripoli",
+"Labaro","San Paolo","Malafede","Cinecittà",
+"Casal Palocco","Guidonia","Nepi"
 ],
 
-"AGORÀ":[
-"Taverna",
-"Boccea",
-"Gregorio",
-"San Basilio",
-"Laurentina"
+AGORA:[
+"Taverna","Boccea","Gregorio","San Basilio","Laurentina"
 ],
 
-"IPERFAMILY":[
+IPERFAMILY:[
 "Iperfamily"
 ]
 
 };
 
 
-let negozioAttuale="";
+let lavori=[];
+
+let negozio="";
+
+let utente=null;
 
 
-function caricaDati(){
+function safe(x){
 
-return JSON.parse(
-localStorage.getItem("ediservice_lavori")||"{}"
-);
+const d=document.createElement("div");
 
-}
+d.textContent=x||"";
 
-
-function salvaDati(dati){
-
-localStorage.setItem(
-"ediservice_lavori",
-JSON.stringify(dati)
-);
+return d.innerHTML;
 
 }
 
 
-function contaAperti(nome){
+function conta(nome){
 
-const dati=caricaDati();
-
-const lavori=dati[nome]||[];
-
-return lavori.filter(
-lavoro=>!lavoro.completato
+return lavori.filter(x=>
+x.punto===nome &&
+x.attivo &&
+!x.completato
 ).length;
 
 }
 
 
-function creaPuntiVendita(){
+function gruppi(){
 
-creaGruppo("PIM","pim");
+crea("PIM","pim");
 
-creaGruppo("AGORÀ","agora");
+crea("AGORA","agora");
 
-creaGruppo("IPERFAMILY","iperfamily");
+crea("IPERFAMILY","iperfamily");
 
 }
 
 
-function creaGruppo(gruppo,id){
+function crea(gruppo,id){
 
-const contenitore=
-document.getElementById(id);
+const box=document.getElementById(id);
 
-contenitore.innerHTML="";
+box.innerHTML="";
 
+punti[gruppo].forEach(nome=>{
 
-puntiVendita[gruppo].forEach(nome=>{
+const div=document.createElement("div");
 
-const aperti=contaAperti(nome);
+div.className="point-card";
 
+div.onclick=()=>apri(nome);
 
-const card=
-document.createElement("div");
+div.innerHTML=`
 
-card.className="point-card";
+<div class="point-name">${safe(nome)}</div>
 
+<div>
 
-card.onclick=()=>{
+<span class="store-count">
+${conta(nome)}
+</span>
 
-apriNegozio(nome);
-
-};
-
-
-card.innerHTML=`
-
-<div class="point-name">
-${nome}
-</div>
-
-<div class="store-head">
-
-<div class="store-count">
-${aperti}
-</div>
-
-<div class="point-arrow">
-›
-</div>
+<span class="point-arrow">›</span>
 
 </div>
 
 `;
 
-
-contenitore.appendChild(card);
-
-});
-
-}
-
-
-
-function tuttiINegozi(){
-
-let lista=[];
-
-
-for(const gruppo in puntiVendita){
-
-puntiVendita[gruppo]
-.forEach(nome=>{
-
-lista.push(nome);
+box.appendChild(div);
 
 });
 
 }
 
 
-return lista;
+function aggiorna(){
 
-}
+const aperti=lavori.filter(x=>x.attivo&&!x.completato);
 
+document.getElementById("totale").textContent=aperti.length;
 
+const box=document.getElementById("homeLavori");
 
-function aggiornaHome(){
+box.innerHTML="";
 
-const dati=caricaDati();
+if(!aperti.length){
 
-let totale=0;
+box.innerHTML='<div class="empty">Nessun lavoro da fare.</div>';
 
+}else{
 
-for(const nome in dati){
+Object.values(punti).flat().forEach(nome=>{
 
-const lavori=dati[nome]||[];
+const ls=aperti.filter(x=>x.punto===nome);
 
-totale+=lavori.filter(
-lavoro=>!lavoro.completato
-).length;
+if(!ls.length)return;
 
-}
-
-
-document.getElementById(
-"totaleLavori"
-).textContent=totale;
-
-
-const contenitore=
-document.getElementById("lavoriHome");
-
-contenitore.innerHTML="";
-
-
-let trovati=false;
-
-
-tuttiINegozi().forEach(nome=>{
-
-const lavori=(dati[nome]||[])
-.filter(
-lavoro=>!lavoro.completato
-);
-
-
-if(lavori.length===0){
-
-return;
-
-}
-
-
-trovati=true;
-
-
-const card=
-document.createElement("div");
+const card=document.createElement("div");
 
 card.className="store-card";
 
+card.onclick=()=>apri(nome);
 
-card.onclick=()=>{
+let html=`<div class="work-store-name">${safe(nome)}</div>`;
 
-apriNegozio(nome);
-
-};
-
-
-let html=`
-
-<div class="work-store-name">
-${nome}
-</div>
-
-`;
-
-
-lavori.forEach(lavoro=>{
+ls.forEach(x=>{
 
 html+=`
 
 <div class="task-row">
 
-<strong>
-${lavoro.testo}
-</strong>
+<strong>${safe(x.testo)}</strong>
 
-${
-lavoro.note
-?
-`<div class="task-note">
-${lavoro.note}
-</div>`
-:
-""
-}
+${x.note?
+`<div class="task-note">${safe(x.note)}</div>`:""}
 
-</div>
-
-`;
+</div>`;
 
 });
-
 
 card.innerHTML=html;
 
-contenitore.appendChild(card);
+box.appendChild(card);
 
 });
 
+}
 
-if(!trovati){
-
-contenitore.innerHTML=`
-
-<div class="empty">
-Nessun lavoro da fare.
-</div>
-
-`;
+gruppi();
 
 }
 
 
-creaPuntiVendita();
+function apri(nome){
+
+negozio=nome;
+
+document.getElementById("home").classList.add("hidden");
+
+document.getElementById("negozio").classList.remove("hidden");
+
+document.getElementById("titolo").textContent=nome;
+
+document.getElementById("lavoro").value="";
+
+document.getElementById("note").value="";
+
+mostra();
+
+window.scrollTo(0,0);
 
 }
 
 
+function home(){
 
-function apriNegozio(nome){
+document.getElementById("negozio").classList.add("hidden");
 
-negozioAttuale=nome;
+document.getElementById("home").classList.remove("hidden");
 
+aggiorna();
 
-document.getElementById("home")
-.classList.add("hidden");
-
-
-document.getElementById("negozio")
-.classList.remove("hidden");
-
-
-document.getElementById(
-"titoloNegozio"
-).textContent=nome;
-
-
-document.getElementById(
-"nuovoLavoro"
-).value="";
-
-
-document.getElementById(
-"noteLavoro"
-).value="";
-
-
-mostraLavori();
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+window.scrollTo(0,0);
 
 }
 
 
+async function aggiungi(){
 
-function tornaHome(){
+const testo=document.getElementById("lavoro").value.trim();
 
-document.getElementById("negozio")
-.classList.add("hidden");
+const note=document.getElementById("note").value.trim();
 
+if(!testo){
 
-document.getElementById("home")
-.classList.remove("hidden");
-
-
-aggiornaHome();
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-
-function aggiungiLavoro(){
-
-const lavoro=
-document.getElementById(
-"nuovoLavoro"
-).value.trim();
-
-
-const note=
-document.getElementById(
-"noteLavoro"
-).value.trim();
-
-
-if(!lavoro){
-
-alert(
-"Scrivi prima il lavoro da fare."
-);
+alert("Scrivi prima il lavoro da fare.");
 
 return;
 
 }
 
+if(!utente){
 
-const dati=caricaDati();
+alert("Firebase non è ancora connesso.");
 
-
-if(!dati[negozioAttuale]){
-
-dati[negozioAttuale]=[];
+return;
 
 }
 
+await addDoc(collection(db,"lavori"),{
 
-dati[negozioAttuale].push({
+punto:negozio,
 
-testo:lavoro,
+testo:testo,
 
 note:note,
 
-completato:false
+completato:false,
+
+attivo:true,
+
+creatoDa:utente.uid,
+
+creatoIl:serverTimestamp()
 
 });
 
+document.getElementById("lavoro").value="";
 
-salvaDati(dati);
-
-
-document.getElementById(
-"nuovoLavoro"
-).value="";
-
-
-document.getElementById(
-"noteLavoro"
-).value="";
-
-
-mostraLavori();
+document.getElementById("note").value="";
 
 }
 
 
+function mostra(){
 
-function mostraLavori(){
+const box=document.getElementById("lista");
 
-const lista=
-document.getElementById(
-"listaLavori"
+const ls=lavori.filter(x=>
+x.punto===negozio &&
+x.attivo
 );
 
+box.innerHTML="";
 
-const dati=caricaDati();
+if(!ls.length){
 
-
-const lavori=
-dati[negozioAttuale]||[];
-
-
-lista.innerHTML="";
-
-
-if(lavori.length===0){
-
-lista.innerHTML=`
-
-<div class="empty">
-Nessun lavoro inserito per questo punto vendita.
-</div>
-
-`;
+box.innerHTML=
+'<div class="empty">Nessun lavoro inserito per questo punto vendita.</div>';
 
 return;
 
 }
 
+ls.forEach(x=>{
 
-lavori.forEach(
-(lavoro,indice)=>{
+const div=document.createElement("div");
 
-
-const div=
-document.createElement("div");
-
-
-div.className=
-"work"+
-(
-lavoro.completato
-?
-" done"
-:
-""
-);
-
+div.className="work"+(x.completato?" done":"");
 
 div.innerHTML=`
 
 <div class="work-title">
-${lavoro.testo}
+${safe(x.testo)}
 </div>
 
-${
-lavoro.note
-?
-`<div class="work-note">
-${lavoro.note}
-</div>`
-:
-""
-}
+${x.note?
+`<div class="work-note">${safe(x.note)}</div>`:""}
 
 <div class="work-buttons">
 
-<button
-onclick="completaLavoro(${indice})"
->
-${
-lavoro.completato
-?
-"Da rifare"
-:
-"Completato"
-}
+<button onclick="completa('${x.id}')">
+${x.completato?"Da rifare":"Completato"}
 </button>
 
-
-<button
-onclick="eliminaLavoro(${indice})"
->
+<button onclick="elimina('${x.id}')">
 Elimina
 </button>
 
@@ -981,63 +444,102 @@ Elimina
 
 `;
 
-
-lista.appendChild(div);
+box.appendChild(div);
 
 });
 
 }
 
 
+window.completa=async function(id){
 
-function completaLavoro(indice){
+const x=lavori.find(y=>y.id===id);
 
-const dati=caricaDati();
+if(!x)return;
+
+await updateDoc(
+
+doc(db,"lavori",id),
+
+{completato:!x.completato}
+
+);
+
+};
 
 
-dati[negozioAttuale][indice]
-.completato=
-!dati[negozioAttuale][indice]
-.completato;
+window.elimina=async function(id){
+
+if(!confirm("Vuoi eliminare questo lavoro?"))return;
+
+await updateDoc(
+
+doc(db,"lavori",id),
+
+{attivo:false}
+
+);
+
+};
 
 
-salvaDati(dati);
+onAuthStateChanged(auth,user=>{
 
+if(user){
 
-mostraLavori();
+utente=user;
+
+document.getElementById("status").textContent=
+"Connesso a Firebase";
+
+const q=query(
+
+collection(db,"lavori"),
+
+where("attivo","==",true)
+
+);
+
+onSnapshot(q,snap=>{
+
+lavori=snap.docs.map(d=>({
+
+id:d.id,
+
+...d.data()
+
+}));
+
+aggiorna();
+
+if(!document
+.getElementById("negozio")
+.classList.contains("hidden")){
+
+mostra();
 
 }
 
-
-
-function eliminaLavoro(indice){
-
-const dati=caricaDati();
-
-
-if(!confirm(
-"Vuoi eliminare questo lavoro?"
-)){
-
-return;
+});
 
 }
 
-
-dati[negozioAttuale]
-.splice(indice,1);
+});
 
 
-salvaDati(dati);
+signInAnonymously(auth)
+
+.catch(e=>{
+
+console.error(e);
+
+document.getElementById("status").textContent=
+"Errore Firebase";
+
+});
 
 
-mostraLavori();
-
-}
-
-
-
-aggiornaHome();
+aggiorna();
 
 </script>
 
