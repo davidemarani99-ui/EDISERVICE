@@ -1,1921 +1,2204 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>EDISERVICE</title>
 
-<link
-rel="icon"
-type="image/png"
-href="ediservice-icon.png"
->
-
-<link
-rel="apple-touch-icon"
-href="ediservice-icon.png"
->
+<link rel="icon" type="image/png" href="ediservice-icon.png">
+<link rel="apple-touch-icon" href="ediservice-icon.png">
 
 <style>
 
 *{
-box-sizing:border-box
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-background:#f3f5f7;
-color:#111
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:#f5f5f7;
+  color:#222;
 }
 
-header{
-background:#fff;
-padding:25px 20px 20px;
-text-align:center;
-border-bottom:1px solid #ddd
+button,
+input,
+textarea{
+  font-family:inherit;
 }
 
-.logo{
-width:100%;
-max-width:300px;
-max-height:130px;
-object-fit:contain
+.container{
+  max-width:850px;
+  margin:auto;
+  padding:20px;
 }
 
-header p{
-margin:10px 0;
-color:#555;
-font-size:18px
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  text-align:center;
+  padding:15px 0 5px;
 }
 
-main{
-max-width:750px;
-margin:auto;
-padding:20px
+.header img{
+  width:180px;
+  max-width:70%;
+  height:auto;
+  display:block;
+  margin:0 auto 8px;
 }
 
-h2{
-font-size:30px;
-margin:28px 0 15px
+.header h1{
+  margin:0;
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.subtitle{
+  margin-top:4px;
+  color:#777;
+  font-size:15px;
+}
+
+.firebase-status{
+  margin-top:12px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.status-ok{
+  color:#2e7d32;
+}
+
+.status-error{
+  color:#c62828;
+}
+
+/* =========================
+   PAGINE
+========================= */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* =========================
+   RIEPILOGO
+========================= */
+
+.summary,
+.urgent-folder,
+.completed-folder{
+  min-height:190px;
+  border-radius:28px;
+  padding:28px;
+  margin:25px 0;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:.15s;
+}
+
+.summary:active,
+.urgent-folder:active,
+.completed-folder:active{
+  transform:scale(.98);
+}
+
+/* LAVORI DA FARE */
+
+.summary{
+  background:#555;
+  color:white;
+}
+
+/* LAVORI URGENTI */
+
+.urgent-folder{
+  background:#ffebee;
+  border:2px solid #e53935;
+  color:#b71c1c;
+}
+
+/* LAVORI COMPLETATI */
+
+.completed-folder{
+  background:#e8f5e9;
+  border:2px solid #43a047;
+  color:#1b5e20;
+}
+
+.folder-text{
+  flex:1;
+}
+
+.folder-title{
+  font-size:25px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.folder-number{
+  font-size:55px;
+  line-height:1;
+  font-weight:900;
+}
+
+.folder-description{
+  font-size:14px;
+  margin-top:8px;
+  opacity:.85;
+}
+
+.folder-arrow{
+  font-size:38px;
+  font-weight:300;
+  margin-left:15px;
+}
+
+/* =========================
+   TITOLI SEZIONI
+========================= */
+
+.section-title{
+  font-size:23px;
+  font-weight:800;
+  margin:35px 0 15px;
 }
 
 .group-title{
-font-size:25px;
-font-weight:700;
-margin:28px 0 12px
+  font-size:18px;
+  font-weight:800;
+  margin:30px 0 12px;
+  color:#333;
 }
-
-.summary{
-background:#555;
-color:#fff;
-border-radius:28px;
-padding:28px;
-margin-bottom:20px
-}
-
-.summary-title{
-font-size:19px;
-font-weight:600;
-text-transform:uppercase
-}
-
-.summary-number{
-font-size:70px;
-font-weight:700;
-margin:10px 0
-}
-
-.summary-text{
-font-size:19px;
-color:#eee
-}
-
-.store-card,
-.form-card,
-.work,
-.point-card,
-.empty{
-background:#fff;
-border-radius:20px;
-padding:20px;
-margin:12px 0;
-box-shadow:0 3px 12px #00000010
-}
-
-.store-card,
-.point-card{
-cursor:pointer
-}
-
-.point-card{
-display:flex;
-align-items:center;
-justify-content:space-between
-}
-
-.point-name{
-font-size:22px;
-font-weight:700
-}
-
-.point-arrow{
-font-size:30px;
-color:#666
-}
-
-.store-count{
-background:#e8edf2;
-min-width:42px;
-height:42px;
-border-radius:50%;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-font-weight:700
-}
-
-.work-store-name{
-color:#c62828;
-font-size:23px;
-font-weight:800;
-margin-bottom:15px
-}
-
-.task-row{
-padding:10px 0;
-border-top:1px solid #eee;
-font-size:17px
-}
-
-.task-note,
-.work-note{
-color:#666;
-font-size:14px;
-margin-top:5px
-}
-
-.hidden{
-display:none
-}
-
-.empty{
-text-align:center;
-color:#666
-}
-
-.back{
-border:0;
-background:none;
-padding:5px 0 15px;
-color:#555;
-font-size:17px;
-cursor:pointer
-}
-
-input,
-textarea{
-width:100%;
-border:1px solid #d5dbe1;
-border-radius:11px;
-padding:14px;
-font-size:16px;
-margin:7px 0 12px;
-font-family:inherit
-}
-
-.primary{
-width:100%;
-border:0;
-border-radius:11px;
-padding:14px;
-background:#555;
-color:white;
-font-size:17px;
-font-weight:600;
-cursor:pointer
-}
-
-.primary:active{
-transform:scale(.98)
-}
-
-.work.done{
-opacity:.7
-}
-
-.work.done .work-title{
-text-decoration:line-through
-}
-
-.work-title{
-font-size:18px;
-font-weight:700
-}
-
-.work-buttons{
-display:flex;
-gap:8px;
-margin-top:12px
-}
-
-.work-buttons button{
-flex:1;
-border:0;
-border-radius:9px;
-padding:10px;
-background:#e8edf2;
-cursor:pointer
-}
-
-.back-home{
-width:100%;
-border:0;
-background:#e8edf2;
-border-radius:11px;
-padding:13px;
-font-size:16px;
-cursor:pointer
-}
-
-.status{
-text-align:center;
-font-size:13px;
-color:#777
-}
-
-
-/* =========================
-   LAVORI COMPLETATI - HOME
-========================= */
-
-.completed-folder{
-background:#e8f5e9;
-border:2px solid #43a047;
-border-radius:20px;
-padding:20px;
-margin:25px 0;
-box-shadow:0 3px 12px #00000010;
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:space-between
-}
-
-.completed-folder-left{
-display:block
-}
-
-.completed-folder-title{
-font-size:21px;
-font-weight:700;
-color:#2e7d32
-}
-
-.completed-summary-number{
-font-size:52px;
-font-weight:800;
-color:#2e7d32;
-line-height:1;
-margin-top:10px;
-margin-bottom:6px
-}
-
-.completed-folder-subtitle{
-font-size:14px;
-color:#4f6f52;
-margin-top:4px
-}
-
-.completed-folder-arrow{
-font-size:30px;
-color:#2e7d32
-}
-
-
-/* =========================
-   PAGINA LAVORI COMPLETATI
-========================= */
-
-.completed-page{
-padding-top:5px
-}
-
-.completed-page-title{
-font-size:32px;
-font-weight:800;
-color:#2e7d32;
-margin:10px 0 30px
-}
-
-.completed-group-title{
-font-size:25px;
-font-weight:700;
-margin:28px 0 12px
-}
-
-.completed-store{
-background:#fff;
-border-radius:20px;
-padding:20px;
-margin:12px 0;
-box-shadow:0 3px 12px #00000010
-}
-
-.completed-store-name{
-color:#c62828;
-font-size:23px;
-font-weight:800;
-margin-bottom:12px
-}
-
-.completed-work{
-padding:12px 0;
-border-top:1px solid #eee;
-font-size:17px
-}
-
-.completed-work:first-of-type{
-border-top:0
-}
-
-.completed-check{
-color:#2e7d32;
-font-weight:800;
-margin-right:7px
-}
-
-.completed-note{
-color:#666;
-font-size:14px;
-margin-top:5px;
-margin-left:24px
-}
-
-.completed-buttons{
-display:flex;
-gap:8px;
-margin-top:10px;
-margin-left:24px
-}
-
-.completed-buttons button{
-border:0;
-border-radius:9px;
-padding:8px 12px;
-background:#e8edf2;
-cursor:pointer;
-font-size:14px
-}
-
-.completed-back{
-width:100%;
-border:0;
-background:#e8edf2;
-border-radius:11px;
-padding:13px;
-font-size:16px;
-cursor:pointer;
-margin-bottom:10px
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     INTESTAZIONE PRINCIPALE
-========================= -->
-
-<header id="mainHeader">
-
-<img
-class="logo"
-src="IMG_1571.png"
-alt="EDISERVICE"
->
-
-<p>
-Gestione manutenzioni
-</p>
-
-<div
-class="status"
-id="status"
->
-Connessione Firebase...
-</div>
-
-</header>
-
-
-<main>
-
-
-<!-- =========================
-     HOME
-========================= -->
-
-<div id="home">
-
-
-<div class="summary">
-
-<div class="summary-title">
-Lavori da fare
-</div>
-
-<div
-class="summary-number"
-id="totale"
->
-0
-</div>
-
-<div class="summary-text">
-lavori aperti in tutti i punti vendita
-</div>
-
-</div>
-
-
-<!-- =========================
-     LAVORI COMPLETATI
-========================= -->
-
-<div
-class="completed-folder"
-id="btnCompletati"
->
-
-<div class="completed-folder-left">
-
-<div class="completed-folder-title">
-Lavori completati
-</div>
-
-<div
-class="completed-summary-number"
-id="totaleCompletati"
->
-0
-</div>
-
-<div class="completed-folder-subtitle">
-lavori completati in tutti i punti vendita
-</div>
-
-</div>
-
-<div class="completed-folder-arrow">
-›
-</div>
-
-</div>
-
-
-<h2>
-Lavori da fare
-</h2>
-
-<div id="homeLavori"></div>
-
-
-<h2>
-Punti vendita
-</h2>
-
-
-<div class="group-title">
-PIM
-</div>
-
-<div id="pim"></div>
-
-
-<div class="group-title">
-AGORÀ
-</div>
-
-<div id="agora"></div>
-
-
-<div class="group-title">
-IPERFAMILY
-</div>
-
-<div id="iperfamily"></div>
-
-
-</div>
-
-
-<!-- =========================
-     PAGINA NEGOZIO
-========================= -->
-
-<div
-id="negozio"
-class="hidden"
->
-
-
-<button
-class="back"
-id="btnHome"
-type="button"
->
-← Torna ai punti vendita
-</button>
-
-
-<h2 id="titolo"></h2>
-
-
-<div class="form-card">
-
-<input
-id="lavoro"
-type="text"
-placeholder="Scrivi il lavoro da fare..."
->
-
-<textarea
-id="note"
-rows="3"
-placeholder="Note (facoltative)"
-></textarea>
-
-<button
-class="primary"
-id="btnAggiungi"
-type="button"
->
-+ Aggiungi lavoro
-</button>
-
-</div>
-
-
-<h2>
-Lavori
-</h2>
-
-<div id="lista"></div>
-
-
-<button
-class="back-home"
-id="btnHome2"
-type="button"
->
-Torna alla schermata principale
-</button>
-
-
-</div>
-
-
-<!-- =========================
-     PAGINA LAVORI COMPLETATI
-========================= -->
-
-<div
-id="completati"
-class="hidden completed-page"
->
-
-<h2 class="completed-page-title">
-Lavori completati
-</h2>
-
-<div id="listaCompletati"></div>
-
-<button
-class="completed-back"
-id="btnHomeCompletati"
-type="button"
->
-← Torna alla schermata principale
-</button>
-
-</div>
-
-
-</main>
-
-
-<script type="module">
-
-
-/* =========================
-   FIREBASE
-========================= */
-
-import {
-initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-
-import {
-getAuth,
-signInAnonymously,
-onAuthStateChanged
-}
-from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-
-import {
-getFirestore,
-collection,
-addDoc,
-query,
-where,
-onSnapshot,
-doc,
-updateDoc,
-serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-
-const firebaseConfig={
-
-apiKey:
-"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
-
-authDomain:
-"ediservice-bb88c.firebaseapp.com",
-
-projectId:
-"ediservice-bb88c",
-
-storageBucket:
-"ediservice-bb88c.firebasestorage.app",
-
-messagingSenderId:
-"420418885149",
-
-appId:
-"1:420418885149:web:2a07ba2ddfdafd31c798f4",
-
-measurementId:
-"G-BM489YWSY4"
-
-};
-
-
-const app =
-initializeApp(firebaseConfig);
-
-const auth =
-getAuth(app);
-
-const db =
-getFirestore(app);
-
 
 /* =========================
    PUNTI VENDITA
 ========================= */
 
-const punti = {
+.store-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
 
-PIM:[
+.store-button{
+  width:100%;
+  background:white;
+  border:1px solid #ddd;
+  border-radius:16px;
+  padding:17px 18px;
+  text-align:left;
+  font-size:17px;
+  font-weight:650;
+  cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
 
-"Torresina",
-"Fontanile",
-"Torrevecchia 313",
-"Pietro Maffi",
-"Pineta Sacchetti",
-"Trionfale",
-"Igea",
-"Piedicavallo",
-"Mazzini",
-"Bravetta",
-"Cassia",
-"Flaminia",
-"Zambarelli",
-"Parioli",
-"Newton",
-"Biolchini",
-"Oderisi",
-"Tripoli",
-"Labaro",
-"San Paolo",
-"Malafede",
-"Cinecittà",
-"Casal Palocco",
-"Guidonia",
-"Nepi"
+.store-button:active{
+  transform:scale(.98);
+}
 
-],
+/* =========================
+   LAVORI
+========================= */
 
-AGORA:[
+.job-card{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin:12px 0;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
 
-"Taverna",
-"Boccea",
-"Gregorio",
-"San Basilio",
-"Laurentina"
+.job-store{
+  color:#d32f2f;
+  font-weight:800;
+  font-size:14px;
+  margin-bottom:7px;
+}
 
-],
+.job-text{
+  font-size:17px;
+  font-weight:650;
+  line-height:1.35;
+}
 
-IPERFAMILY:[
+.job-note{
+  margin-top:7px;
+  color:#777;
+  font-size:14px;
+}
 
-"Iperfamily"
+.job-urgent{
+  display:inline-block;
+  background:#e53935;
+  color:white;
+  border-radius:8px;
+  padding:4px 8px;
+  font-size:11px;
+  font-weight:800;
+  margin-bottom:9px;
+}
 
-]
+.job-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px;
+}
+
+.btn{
+  border:none;
+  border-radius:11px;
+  padding:10px 13px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.btn-green{
+  background:#43a047;
+  color:white;
+}
+
+.btn-red{
+  background:#e53935;
+  color:white;
+}
+
+.btn-orange{
+  background:#ff9800;
+  color:white;
+}
+
+.btn-gray{
+  background:#eeeeee;
+  color:#333;
+}
+
+.btn-dark{
+  background:#555;
+  color:white;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  margin:20px 0;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.form-card h2{
+  margin-top:0;
+  font-size:21px;
+}
+
+label{
+  display:block;
+  font-weight:700;
+  margin:15px 0 7px;
+}
+
+input[type="text"],
+textarea{
+  width:100%;
+  border:1px solid #d5d5d5;
+  border-radius:12px;
+  padding:13px;
+  font-size:16px;
+  background:#fafafa;
+  outline:none;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+input[type="text"]:focus,
+textarea:focus{
+  border-color:#777;
+  background:white;
+}
+
+.urgent-check{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:15px 0;
+  font-weight:700;
+}
+
+.urgent-check input{
+  width:20px;
+  height:20px;
+}
+
+.add-button{
+  width:100%;
+  background:#222;
+  color:white;
+  border:none;
+  border-radius:13px;
+  padding:15px;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.add-button:disabled{
+  opacity:.5;
+}
+
+/* =========================
+   TOP BAR PAGINE
+========================= */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.back-button{
+  background:#e9e9e9;
+  border:none;
+  border-radius:12px;
+  padding:11px 15px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.page-title{
+  font-size:24px;
+  font-weight:850;
+  margin:0;
+}
+
+/* =========================
+   STORE PAGE
+========================= */
+
+.store-name{
+  color:#d32f2f;
+  font-size:27px;
+  font-weight:900;
+  margin-bottom:4px;
+}
+
+.store-category{
+  color:#777;
+  font-size:14px;
+  margin-bottom:20px;
+}
+
+/* =========================
+   COMPLETATI
+========================= */
+
+.completed-page-title{
+  color:#2e7d32;
+}
+
+.completed-job{
+  background:white;
+  border-radius:18px;
+  padding:17px;
+  margin:10px 0;
+  box-shadow:0 2px 7px rgba(0,0,0,.05);
+}
+
+.completed-job .job-store{
+  color:#d32f2f;
+}
+
+.completed-line{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+
+.completed-check{
+  color:#2e7d32;
+  font-size:22px;
+  font-weight:900;
+  line-height:1.2;
+}
+
+.completed-text{
+  font-size:16px;
+  font-weight:650;
+}
+
+.completed-note{
+  color:#777;
+  font-size:14px;
+  margin-top:6px;
+  margin-left:32px;
+}
+
+/* =========================
+   URGENTI
+========================= */
+
+.urgent-page-title{
+  color:#d32f2f;
+}
+
+.urgent-job{
+  border-left:5px solid #e53935;
+}
+
+.urgent-symbol{
+  color:#e53935;
+  font-size:21px;
+  font-weight:900;
+}
+
+/* =========================
+   MESSAGGI
+========================= */
+
+.empty{
+  background:white;
+  border-radius:17px;
+  padding:25px;
+  color:#777;
+  text-align:center;
+  margin:15px 0;
+}
+
+.loading{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+  .container{
+    padding:15px;
+  }
+
+  .summary,
+  .urgent-folder,
+  .completed-folder{
+    min-height:180px;
+    padding:24px;
+    border-radius:25px;
+  }
+
+  .folder-title{
+    font-size:22px;
+  }
+
+  .folder-number{
+    font-size:50px;
+  }
+
+  .folder-arrow{
+    font-size:32px;
+  }
+
+  .header img{
+    width:165px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<div id="homePage" class="page active">
+
+  <div class="header">
+
+    <img src="ediservice-icon.png" alt="EDISERVICE">
+
+    <h1>EDISERVICE</h1>
+
+    <div class="subtitle">
+      Gestione manutenzioni
+    </div>
+
+    <div id="firebaseStatus" class="firebase-status">
+      Connessione Firebase...
+    </div>
+
+  </div>
+
+
+  <!-- LAVORI DA FARE -->
+
+  <div class="summary" id="btnLavoriDaFare">
+
+    <div class="folder-text">
+
+      <div class="folder-title">
+        Lavori da fare
+      </div>
+
+      <div class="folder-number" id="totaleDaFare">
+        0
+      </div>
+
+      <div class="folder-description">
+        Lavori ancora da completare
+      </div>
+
+    </div>
+
+    <div class="folder-arrow">
+      →
+    </div>
+
+  </div>
+
+
+  <!-- LAVORI URGENTI -->
+
+  <div class="urgent-folder" id="btnUrgenti">
+
+    <div class="folder-text">
+
+      <div class="folder-title">
+        Lavori urgenti
+      </div>
+
+      <div class="folder-number" id="totaleUrgenti">
+        0
+      </div>
+
+      <div class="folder-description">
+        Interventi urgenti da completare
+      </div>
+
+    </div>
+
+    <div class="folder-arrow">
+      →
+    </div>
+
+  </div>
+
+
+  <!-- LAVORI COMPLETATI -->
+
+  <div class="completed-folder" id="btnCompletati">
+
+    <div class="folder-text">
+
+      <div class="folder-title">
+        Lavori completati
+      </div>
+
+      <div class="folder-number" id="totaleCompletati">
+        0
+      </div>
+
+      <div class="folder-description">
+        Lavori già completati
+      </div>
+
+    </div>
+
+    <div class="folder-arrow">
+      →
+    </div>
+
+  </div>
+
+
+  <!-- PUNTI VENDITA -->
+
+  <div class="section-title">
+    Punti vendita
+  </div>
+
+  <div id="puntiVendita"></div>
+
+
+  <!-- LAVORI DA FARE IN HOME -->
+
+  <div class="section-title">
+    Lavori da fare
+  </div>
+
+  <div id="lavoriHome">
+    <div class="loading">
+      Caricamento lavori...
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGINA PUNTO VENDITA
+===================================================== -->
+
+<div id="storePage" class="page">
+
+  <div class="topbar">
+
+    <button class="back-button" onclick="showHome()">
+      ← Indietro
+    </button>
+
+    <h2 class="page-title">
+      Punto vendita
+    </h2>
+
+  </div>
+
+  <div class="store-name" id="storePageName"></div>
+
+  <div class="store-category" id="storePageCategory"></div>
+
+
+  <!-- FORM AGGIUNTA -->
+
+  <div class="form-card">
+
+    <h2>
+      Aggiungi lavoro
+    </h2>
+
+    <label for="lavoroInput">
+      Lavoro
+    </label>
+
+    <input
+      id="lavoroInput"
+      type="text"
+      placeholder="Descrivi il lavoro da fare"
+    >
+
+    <label for="noteInput">
+      Note
+    </label>
+
+    <textarea
+      id="noteInput"
+      placeholder="Eventuali note..."
+    ></textarea>
+
+
+    <label class="urgent-check">
+
+      <input
+        type="checkbox"
+        id="urgenteInput"
+      >
+
+      <span>
+        Lavoro urgente
+      </span>
+
+    </label>
+
+
+    <button
+      class="add-button"
+      id="addWorkButton"
+      onclick="aggiungiLavoro()"
+    >
+      + Aggiungi lavoro
+    </button>
+
+  </div>
+
+
+  <div class="section-title">
+    Lavori del punto vendita
+  </div>
+
+  <div id="storeJobs">
+    <div class="loading">
+      Caricamento...
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGINA LAVORI URGENTI
+===================================================== -->
+
+<div id="urgentPage" class="page">
+
+  <div class="topbar">
+
+    <button class="back-button" onclick="showHome()">
+      ← Indietro
+    </button>
+
+    <h2 class="page-title urgent-page-title">
+      Lavori urgenti
+    </h2>
+
+  </div>
+
+  <div id="urgentJobs">
+    <div class="loading">
+      Caricamento...
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGINA LAVORI COMPLETATI
+===================================================== -->
+
+<div id="completedPage" class="page">
+
+  <div class="topbar">
+
+    <button class="back-button" onclick="showHome()">
+      ← Indietro
+    </button>
+
+    <h2 class="page-title completed-page-title">
+      Lavori completati
+    </h2>
+
+  </div>
+
+  <div id="completedJobs">
+    <div class="loading">
+      Caricamento...
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
+<script>
+
+/* =====================================================
+   CONFIGURAZIONE FIREBASE
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+
+  authDomain:"ediservice-bb88c.firebaseapp.com",
+
+  projectId:"ediservice-bb88c",
+
+  storageBucket:"ediservice-bb88c.firebasestorage.app",
+
+  messagingSenderId:"420418885149",
+
+  appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
+
+  measurementId:"G-BM489YWSY4"
 
 };
 
 
-/* =========================
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+const db = firebase.firestore();
+
+
+/* =====================================================
+   DATI PUNTI VENDITA
+===================================================== */
+
+const puntiVendita = {
+
+  PIM:[
+    "Torresina",
+    "Fontanile",
+    "Torrevecchia 313",
+    "Pietro Maffi",
+    "Pineta Sacchetti",
+    "Trionfale",
+    "Igea",
+    "Piedicavallo",
+    "Mazzini",
+    "Bravetta",
+    "Cassia",
+    "Flaminia",
+    "Zambarelli",
+    "Parioli",
+    "Newton",
+    "Biolchini",
+    "Oderisi",
+    "Tripoli",
+    "Labaro",
+    "San Paolo",
+    "Malafede",
+    "Cinecittà",
+    "Casal Palocco",
+    "Guidonia",
+    "Nepi"
+  ],
+
+  "AGORÀ":[
+    "Taverna",
+    "Boccea",
+    "Gregorio",
+    "San Basilio",
+    "Laurentina"
+  ],
+
+  "IPERFAMILY":[
+    "Iperfamily"
+  ]
+
+};
+
+
+/* =====================================================
    VARIABILI
-========================= */
+===================================================== */
 
 let lavori = [];
 
-let negozio = "";
+let puntoSelezionato = null;
 
-let utente = null;
+let categoriaSelezionata = null;
 
 
-/* =========================
-   SICUREZZA TESTO
-========================= */
+/* =====================================================
+   AVVIO FIREBASE
+===================================================== */
 
-function safe(x){
+auth.signInAnonymously()
 
-const d =
-document.createElement("div");
+.then(() => {
 
-d.textContent = x || "";
+  document.getElementById("firebaseStatus").textContent =
+    "● Firebase collegato";
 
-return d.innerHTML;
+  document.getElementById("firebaseStatus").className =
+    "firebase-status status-ok";
 
-}
-
-
-/* =========================
-   CONTA LAVORI APERTI
-========================= */
-
-function conta(nome){
-
-return lavori.filter(x =>
-
-x.punto === nome &&
-x.attivo &&
-!x.completato
-
-).length;
-
-}
-
-
-/* =========================
-   CREA GRUPPI
-========================= */
-
-function gruppi(){
-
-crea(
-"PIM",
-"pim"
-);
-
-crea(
-"AGORA",
-"agora"
-);
-
-crea(
-"IPERFAMILY",
-"iperfamily"
-);
-
-}
-
-
-/* =========================
-   CREA PUNTI VENDITA
-========================= */
-
-function crea(gruppo,id){
-
-const box =
-document.getElementById(id);
-
-box.innerHTML = "";
-
-
-punti[gruppo].forEach(nome => {
-
-const div =
-document.createElement("div");
-
-div.className =
-"point-card";
-
-
-div.addEventListener(
-"click",
-() => apri(nome)
-);
-
-
-div.innerHTML = `
-
-<div class="point-name">
-${safe(nome)}
-</div>
-
-<div>
-
-<span class="store-count">
-${conta(nome)}
-</span>
-
-<span class="point-arrow">
-›
-</span>
-
-</div>
-
-`;
-
-
-box.appendChild(div);
-
-});
-
-}
-
-
-/* =========================
-   AGGIORNA HOME
-========================= */
-
-function aggiorna(){
-
-const aperti =
-lavori.filter(
-x => x.attivo && !x.completato
-);
-
-const completati =
-lavori.filter(
-x => x.attivo && x.completato
-);
-
-
-document.getElementById(
-"totale"
-).textContent =
-aperti.length;
-
-
-document.getElementById(
-"totaleCompletati"
-).textContent =
-completati.length;
-
-
-const box =
-document.getElementById(
-"homeLavori"
-);
-
-
-box.innerHTML = "";
-
-
-if(!aperti.length){
-
-box.innerHTML =
-'<div class="empty">Nessun lavoro da fare.</div>';
-
-}else{
-
-Object.values(punti)
-.flat()
-.forEach(nome => {
-
-const ls =
-aperti.filter(
-x => x.punto === nome
-);
-
-
-if(!ls.length){
-
-return;
-
-}
-
-
-const card =
-document.createElement("div");
-
-
-card.className =
-"store-card";
-
-
-card.addEventListener(
-"click",
-() => apri(nome)
-);
-
-
-let html = `
-
-<div class="work-store-name">
-${safe(nome)}
-</div>
-
-`;
-
-
-ls.forEach(x => {
-
-html += `
-
-<div class="task-row">
-
-<strong>
-${safe(x.testo)}
-</strong>
-
-${
-x.note
-?
-`
-<div class="task-note">
-${safe(x.note)}
-</div>
-`
-:
-""
-}
-
-</div>
-
-`;
-
-});
-
-
-card.innerHTML =
-html;
-
-
-box.appendChild(card);
-
-});
-
-}
-
-
-gruppi();
-
-}
-
-
-/* =========================
-   APRI NEGOZIO
-========================= */
-
-function apri(nome){
-
-negozio = nome;
-
-
-document
-.getElementById("home")
-.classList
-.add("hidden");
-
-
-document
-.getElementById("completati")
-.classList
-.add("hidden");
-
-
-document
-.getElementById("negozio")
-.classList
-.remove("hidden");
-
-
-document
-.getElementById("mainHeader")
-.style
-.display = "";
-
-
-document
-.getElementById("titolo")
-.textContent =
-nome;
-
-
-document
-.getElementById("lavoro")
-.value = "";
-
-
-document
-.getElementById("note")
-.value = "";
-
-
-mostra();
-
-
-window.scrollTo(
-0,
-0
-);
-
-}
-
-
-/* =========================
-   TORNA HOME
-========================= */
-
-function home(){
-
-document
-.getElementById("negozio")
-.classList
-.add("hidden");
-
-
-document
-.getElementById("completati")
-.classList
-.add("hidden");
-
-
-document
-.getElementById("home")
-.classList
-.remove("hidden");
-
-
-document
-.getElementById("mainHeader")
-.style
-.display = "";
-
-
-aggiorna();
-
-
-window.scrollTo(
-0,
-0
-);
-
-}
-
-
-/* =========================
-   APRI COMPLETATI
-========================= */
-
-function apriCompletati(){
-
-document
-.getElementById("home")
-.classList
-.add("hidden");
-
-
-document
-.getElementById("negozio")
-.classList
-.add("hidden");
-
-
-document
-.getElementById("completati")
-.classList
-.remove("hidden");
-
-
-document
-.getElementById("mainHeader")
-.style
-.display = "none";
-
-
-mostraCompletati();
-
-
-window.scrollTo(
-0,
-0
-);
-
-}
-
-
-/* =========================
-   AGGIUNGI LAVORO
-========================= */
-
-async function aggiungi(){
-
-const input =
-document.getElementById(
-"lavoro"
-);
-
-const noteInput =
-document.getElementById(
-"note"
-);
-
-const testo =
-input.value.trim();
-
-const note =
-noteInput.value.trim();
-
-
-if(!testo){
-
-alert(
-"Scrivi prima il lavoro da fare."
-);
-
-return;
-
-}
-
-
-if(!negozio){
-
-alert(
-"Seleziona prima un punto vendita."
-);
-
-return;
-
-}
-
-
-if(!utente){
-
-alert(
-"Firebase non è ancora connesso."
-);
-
-return;
-
-}
-
-
-const bottone =
-document.getElementById(
-"btnAggiungi"
-);
-
-
-bottone.disabled = true;
-
-bottone.textContent =
-"Salvataggio...";
-
-
-try{
-
-await addDoc(
-
-collection(
-db,
-"lavori"
-),
-
-{
-
-punto:
-negozio,
-
-testo:
-testo,
-
-note:
-note,
-
-completato:
-false,
-
-attivo:
-true,
-
-creatoDa:
-utente.uid,
-
-creatoIl:
-serverTimestamp()
-
-}
-
-);
-
-
-input.value = "";
-
-noteInput.value = "";
-
-
-alert(
-"Lavoro aggiunto correttamente."
-);
-
-
-}catch(error){
-
-console.error(
-"ERRORE FIREBASE:",
-error
-);
-
-
-alert(
-"Errore durante il salvataggio:\n\n" +
-error.message
-);
-
-
-}finally{
-
-bottone.disabled = false;
-
-bottone.textContent =
-"+ Aggiungi lavoro";
-
-}
-
-}
-
-
-/* =========================
-   MOSTRA LAVORI
-========================= */
-
-function mostra(){
-
-const box =
-document.getElementById(
-"lista"
-);
-
-
-const ls =
-lavori.filter(x =>
-
-x.punto === negozio &&
-x.attivo
-
-);
-
-
-box.innerHTML = "";
-
-
-if(!ls.length){
-
-box.innerHTML = `
-<div class="empty">
-Nessun lavoro inserito per questo punto vendita.
-</div>
-`;
-
-return;
-
-}
-
-
-ls.forEach(x => {
-
-const div =
-document.createElement("div");
-
-
-div.className =
-"work" +
-(
-x.completato
-?
-" done"
-:
-""
-);
-
-
-div.innerHTML = `
-
-<div class="work-title">
-${safe(x.testo)}
-</div>
-
-${
-x.note
-?
-`
-<div class="work-note">
-${safe(x.note)}
-</div>
-`
-:
-""
-}
-
-<div class="work-buttons">
-
-<button
-type="button"
-class="btnCompleta"
->
-${
-x.completato
-?
-"Da rifare"
-:
-"Completato"
-}
-</button>
-
-<button
-type="button"
-class="btnElimina"
->
-Elimina
-</button>
-
-</div>
-
-`;
-
-
-div
-.querySelector(".btnCompleta")
-.addEventListener(
-"click",
-() => completa(x.id)
-);
-
-
-div
-.querySelector(".btnElimina")
-.addEventListener(
-"click",
-() => elimina(x.id)
-);
-
-
-box.appendChild(div);
-
-});
-
-}
-
-
-/* =========================
-   MOSTRA LAVORI COMPLETATI
-========================= */
-
-function mostraCompletati(){
-
-const box =
-document.getElementById(
-"listaCompletati"
-);
-
-
-box.innerHTML = "";
-
-
-const completati =
-lavori.filter(x =>
-
-x.attivo &&
-x.completato
-
-);
-
-
-if(!completati.length){
-
-box.innerHTML = `
-<div class="empty">
-Nessun lavoro completato.
-</div>
-`;
-
-return;
-
-}
-
-
-const gruppiOrdine = [
-
-{
-nome:"PIM",
-punti:punti.PIM
-},
-
-{
-nome:"AGORÀ",
-punti:punti.AGORA
-},
-
-{
-nome:"IPERFAMILY",
-punti:punti.IPERFAMILY
-}
-
-];
-
-
-gruppiOrdine.forEach(gruppo => {
-
-const lavoriGruppo =
-completati.filter(x =>
-
-gruppo.punti.includes(x.punto)
-
-);
-
-
-if(!lavoriGruppo.length){
-
-return;
-
-}
-
-
-const titolo =
-document.createElement("div");
-
-
-titolo.className =
-"completed-group-title";
-
-
-titolo.textContent =
-gruppo.nome;
-
-
-box.appendChild(titolo);
-
-
-gruppo.punti.forEach(nome => {
-
-const ls =
-lavoriGruppo.filter(
-x => x.punto === nome
-);
-
-
-if(!ls.length){
-
-return;
-
-}
-
-
-const card =
-document.createElement("div");
-
-
-card.className =
-"completed-store";
-
-
-let html = `
-
-<div class="completed-store-name">
-${safe(nome)}
-</div>
-
-`;
-
-
-ls.forEach(x => {
-
-html += `
-
-<div class="completed-work">
-
-<div>
-
-<span class="completed-check">
-✓
-</span>
-
-<strong>
-${safe(x.testo)}
-</strong>
-
-</div>
-
-${
-x.note
-?
-`
-<div class="completed-note">
-${safe(x.note)}
-</div>
-`
-:
-""
-}
-
-<div class="completed-buttons">
-
-<button
-type="button"
-class="btnRifare"
-data-id="${x.id}"
->
-Da rifare
-</button>
-
-<button
-type="button"
-class="btnEliminaCompletato"
-data-id="${x.id}"
->
-Elimina
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-
-card.innerHTML =
-html;
-
-
-card
-.querySelectorAll(".btnRifare")
-.forEach(button => {
-
-button.addEventListener(
-"click",
-() => completa(button.dataset.id)
-);
-
-});
-
-
-card
-.querySelectorAll(".btnEliminaCompletato")
-.forEach(button => {
-
-button.addEventListener(
-"click",
-() => elimina(button.dataset.id)
-);
-
-});
-
-
-box.appendChild(card);
-
-});
-
-});
-
-}
-
-
-/* =========================
-   COMPLETA / DA RIFARE
-========================= */
-
-async function completa(id){
-
-const x =
-lavori.find(
-y => y.id === id
-);
-
-
-if(!x){
-
-return;
-
-}
-
-
-try{
-
-await updateDoc(
-
-doc(
-db,
-"lavori",
-id
-),
-
-{
-
-completato:
-!x.completato
-
-}
-
-);
-
-
-}catch(error){
-
-console.error(error);
-
-
-alert(
-"Errore durante l'aggiornamento."
-);
-
-}
-
-}
-
-
-/* =========================
-   ELIMINA
-========================= */
-
-async function elimina(id){
-
-if(
-!confirm(
-"Vuoi eliminare questo lavoro?"
-)
-){
-
-return;
-
-}
-
-
-try{
-
-await updateDoc(
-
-doc(
-db,
-"lavori",
-id
-),
-
-{
-
-attivo:false
-
-}
-
-);
-
-
-}catch(error){
-
-console.error(error);
-
-
-alert(
-"Errore durante l'eliminazione."
-);
-
-}
-
-}
-
-
-/* =========================
-   PULSANTI
-========================= */
-
-document
-.getElementById("btnAggiungi")
-.addEventListener(
-"click",
-aggiungi
-);
-
-
-document
-.getElementById("btnHome")
-.addEventListener(
-"click",
-home
-);
-
-
-document
-.getElementById("btnHome2")
-.addEventListener(
-"click",
-home
-);
-
-
-document
-.getElementById("btnCompletati")
-.addEventListener(
-"click",
-apriCompletati
-);
-
-
-document
-.getElementById("btnHomeCompletati")
-.addEventListener(
-"click",
-home
-);
-
-
-/* =========================
-   FIREBASE AUTH
-========================= */
-
-onAuthStateChanged(
-auth,
-user => {
-
-if(user){
-
-utente = user;
-
-
-document
-.getElementById("status")
-.textContent =
-"Connesso a Firebase";
-
-
-const q =
-query(
-
-collection(
-db,
-"lavori"
-),
-
-where(
-"attivo",
-"==",
-true
-)
-
-);
-
-
-onSnapshot(
-
-q,
-
-snap => {
-
-lavori =
-snap.docs.map(
-d => ({
-
-id:d.id,
-
-...d.data()
+  ascoltaLavori();
 
 })
-);
 
+.catch((error) => {
 
-aggiorna();
+  console.error(error);
 
+  document.getElementById("firebaseStatus").textContent =
+    "● Errore connessione Firebase";
 
-if(
-!document
-.getElementById("negozio")
-.classList
-.contains("hidden")
-){
-
-mostra();
-
-}
-
-
-if(
-!document
-.getElementById("completati")
-.classList
-.contains("hidden")
-){
-
-mostraCompletati();
-
-}
-
-},
-
-
-error => {
-
-console.error(
-"ERRORE FIRESTORE:",
-error
-);
-
-
-document
-.getElementById("status")
-.textContent =
-"Errore Firestore";
-
-
-alert(
-"Errore Firestore:\n\n" +
-error.message
-);
-
-}
-
-);
-
-}
+  document.getElementById("firebaseStatus").className =
+    "firebase-status status-error";
 
 });
 
 
-/* =========================
-   ACCESSO ANONIMO
-========================= */
+/* =====================================================
+   PUNTI VENDITA
+===================================================== */
 
-signInAnonymously(
-auth
-)
+function creaPuntiVendita(){
 
-.catch(
-error => {
+  const contenitore =
+    document.getElementById("puntiVendita");
 
-console.error(
-"ERRORE AUTENTICAZIONE:",
-error
-);
+  contenitore.innerHTML = "";
+
+
+  Object.keys(puntiVendita).forEach(categoria => {
+
+    const gruppo =
+      document.createElement("div");
+
+    const titolo =
+      document.createElement("div");
+
+    titolo.className = "group-title";
+
+    titolo.textContent = categoria;
+
+    gruppo.appendChild(titolo);
+
+
+    const lista =
+      document.createElement("div");
+
+    lista.className = "store-list";
+
+
+    puntiVendita[categoria].forEach(punto => {
+
+      const button =
+        document.createElement("button");
+
+      button.className = "store-button";
+
+      button.textContent = punto;
+
+      button.onclick = () =>
+        apriPuntoVendita(punto,categoria);
+
+      lista.appendChild(button);
+
+    });
+
+
+    gruppo.appendChild(lista);
+
+    contenitore.appendChild(gruppo);
+
+  });
+
+}
+
+
+/* =====================================================
+   ASCOLTO LAVORI FIRESTORE
+===================================================== */
+
+function ascoltaLavori(){
+
+  db.collection("lavori")
+    .where("attivo","==",true)
+    .onSnapshot(
+
+      snapshot => {
+
+        lavori = [];
+
+        snapshot.forEach(doc => {
+
+          lavori.push({
+
+            id:doc.id,
+
+            ...doc.data()
+
+          });
+
+        });
+
+
+        aggiornaTutto();
+
+      },
+
+      error => {
+
+        console.error(
+          "Errore Firestore:",
+          error
+        );
+
+      }
+
+    );
+
+}
+
+
+/* =====================================================
+   AGGIORNA TUTTO
+===================================================== */
+
+function aggiornaTutto(){
+
+  const aperti =
+    lavori.filter(x =>
+      x.attivo === true &&
+      x.completato !== true
+    );
+
+
+  const urgenti =
+    lavori.filter(x =>
+      x.attivo === true &&
+      x.completato !== true &&
+      x.urgente === true
+    );
+
+
+  const completati =
+    lavori.filter(x =>
+      x.attivo === true &&
+      x.completato === true
+    );
+
+
+  document.getElementById(
+    "totaleDaFare"
+  ).textContent = aperti.length;
+
+
+  document.getElementById(
+    "totaleUrgenti"
+  ).textContent = urgenti.length;
+
+
+  document.getElementById(
+    "totaleCompletati"
+  ).textContent = completati.length;
+
+
+  renderHomeJobs(aperti);
+
+  renderUrgentJobs(urgenti);
+
+  renderCompletedJobs(completati);
+
+
+  if(puntoSelezionato){
+
+    renderStoreJobs(
+      puntoSelezionato
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   HOME - LAVORI DA FARE
+===================================================== */
+
+function renderHomeJobs(lista){
+
+  const contenitore =
+    document.getElementById("lavoriHome");
+
+  contenitore.innerHTML = "";
+
+
+  if(lista.length === 0){
+
+    contenitore.innerHTML =
+      `<div class="empty">
+        Nessun lavoro da fare.
+      </div>`;
+
+    return;
+
+  }
+
+
+  const gruppi = {};
+
+
+  lista.forEach(lavoro => {
+
+    if(!gruppi[lavoro.punto]){
+      gruppi[lavoro.punto] = [];
+    }
+
+    gruppi[lavoro.punto].push(lavoro);
+
+  });
+
+
+  Object.keys(puntiVendita).forEach(categoria => {
+
+    const puntiCategoria =
+      puntiVendita[categoria];
+
+
+    const esistono =
+      puntiCategoria.some(
+        punto => gruppi[punto]
+      );
+
+
+    if(!esistono) return;
+
+
+    const titolo =
+      document.createElement("div");
+
+    titolo.className = "group-title";
+
+    titolo.textContent = categoria;
+
+    contenitore.appendChild(titolo);
+
+
+    puntiCategoria.forEach(punto => {
+
+      if(!gruppi[punto]) return;
+
+
+      gruppi[punto].forEach(lavoro => {
+
+        contenitore.appendChild(
+          creaJobCard(lavoro)
+        );
+
+      });
+
+    });
+
+  });
+
+}
+
+
+/* =====================================================
+   CARD LAVORO
+===================================================== */
+
+function creaJobCard(lavoro){
+
+  const card =
+    document.createElement("div");
+
+  card.className = "job-card";
+
+
+  const store =
+    document.createElement("div");
+
+  store.className = "job-store";
+
+  store.textContent =
+    lavoro.punto || "";
+
+  card.appendChild(store);
+
+
+  if(lavoro.urgente === true &&
+     lavoro.completato !== true){
+
+    const badge =
+      document.createElement("div");
+
+    badge.className = "job-urgent";
+
+    badge.textContent = "URGENTE";
+
+    card.appendChild(badge);
+
+  }
+
+
+  const testo =
+    document.createElement("div");
+
+  testo.className = "job-text";
+
+  testo.textContent =
+    lavoro.testo || "";
+
+  card.appendChild(testo);
+
+
+  if(lavoro.note){
+
+    const note =
+      document.createElement("div");
+
+    note.className = "job-note";
+
+    note.textContent =
+      "Note: " + lavoro.note;
+
+    card.appendChild(note);
+
+  }
+
+
+  const actions =
+    document.createElement("div");
+
+  actions.className = "job-actions";
+
+
+  /* COMPLETATO */
+
+  const completo =
+    document.createElement("button");
+
+  completo.className =
+    "btn btn-green";
+
+  completo.textContent =
+    "Completato";
+
+  completo.onclick = () =>
+    completaLavoro(lavoro.id);
+
+  actions.appendChild(completo);
+
+
+  /* URGENTE */
+
+  const urgente =
+    document.createElement("button");
+
+  urgente.className =
+    "btn btn-orange";
+
+  urgente.textContent =
+    lavoro.urgente === true
+      ? "Togli urgente"
+      : "Rendi urgente";
+
+  urgente.onclick = () =>
+    cambiaUrgente(
+      lavoro.id,
+      lavoro.urgente === true
+    );
+
+  actions.appendChild(urgente);
+
+
+  /* ELIMINA */
+
+  const elimina =
+    document.createElement("button");
+
+  elimina.className =
+    "btn btn-red";
+
+  elimina.textContent =
+    "Elimina";
+
+  elimina.onclick = () =>
+    eliminaLavoro(lavoro.id);
+
+  actions.appendChild(elimina);
+
+
+  card.appendChild(actions);
+
+
+  return card;
+
+}
+
+
+/* =====================================================
+   APRI PUNTO VENDITA
+===================================================== */
+
+function apriPuntoVendita(
+  punto,
+  categoria
+){
+
+  puntoSelezionato = punto;
+
+  categoriaSelezionata = categoria;
+
+
+  document.getElementById(
+    "storePageName"
+  ).textContent = punto;
+
+
+  document.getElementById(
+    "storePageCategory"
+  ).textContent = categoria;
+
+
+  document.getElementById(
+    "lavoroInput"
+  ).value = "";
+
+
+  document.getElementById(
+    "noteInput"
+  ).value = "";
+
+
+  document.getElementById(
+    "urgenteInput"
+  ).checked = false;
+
+
+  renderStoreJobs(punto);
+
+
+  mostraPagina("storePage");
+
+}
+
+
+/* =====================================================
+   LAVORI DEL PUNTO VENDITA
+===================================================== */
+
+function renderStoreJobs(punto){
+
+  const contenitore =
+    document.getElementById("storeJobs");
+
+  contenitore.innerHTML = "";
+
+
+  const lista =
+    lavori.filter(x =>
+      x.attivo === true &&
+      x.punto === punto
+    );
+
+
+  if(lista.length === 0){
+
+    contenitore.innerHTML =
+      `<div class="empty">
+        Nessun lavoro inserito.
+      </div>`;
+
+    return;
+
+  }
+
+
+  const aperti =
+    lista.filter(x =>
+      x.completato !== true
+    );
+
+
+  const completati =
+    lista.filter(x =>
+      x.completato === true
+    );
+
+
+  if(aperti.length){
+
+    const titolo =
+      document.createElement("div");
+
+    titolo.className = "group-title";
+
+    titolo.textContent =
+      "Da fare";
+
+    contenitore.appendChild(titolo);
+
+
+    aperti.forEach(lavoro => {
+
+      contenitore.appendChild(
+        creaJobCard(lavoro)
+      );
+
+    });
+
+  }
+
+
+  if(completati.length){
+
+    const titolo =
+      document.createElement("div");
+
+    titolo.className = "group-title";
+
+    titolo.textContent =
+      "Completati";
+
+    contenitore.appendChild(titolo);
+
+
+    completati.forEach(lavoro => {
+
+      contenitore.appendChild(
+        creaCompletedJobCard(lavoro)
+      );
+
+    });
+
+  }
+
+}
+
+
+/* =====================================================
+   AGGIUNGI LAVORO
+===================================================== */
+
+function aggiungiLavoro(){
+
+  const input =
+    document.getElementById(
+      "lavoroInput"
+    );
+
+  const note =
+    document.getElementById(
+      "noteInput"
+    );
+
+  const urgente =
+    document.getElementById(
+      "urgenteInput"
+    );
+
+
+  const testo =
+    input.value.trim();
+
+
+  if(!testo){
+
+    alert(
+      "Inserisci il lavoro da fare."
+    );
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  if(!puntoSelezionato){
+
+    alert(
+      "Seleziona prima un punto vendita."
+    );
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      "addWorkButton"
+    );
+
+  button.disabled = true;
+
+  button.textContent =
+    "Salvataggio...";
+
+
+  db.collection("lavori")
+    .add({
+
+      punto:puntoSelezionato,
+
+      testo:testo,
+
+      note:note.value.trim(),
+
+      completato:false,
+
+      attivo:true,
+
+      urgente:urgente.checked,
+
+      creatoDa:
+        auth.currentUser
+          ? auth.currentUser.uid
+          : "",
+
+      creatoIl:
+        firebase.firestore.FieldValue.serverTimestamp()
+
+    })
+
+    .then(() => {
+
+      input.value = "";
+
+      note.value = "";
+
+      urgente.checked = false;
+
+    })
+
+    .catch(error => {
+
+      console.error(error);
+
+      alert(
+        "Errore durante il salvataggio."
+      );
+
+    })
+
+    .finally(() => {
+
+      button.disabled = false;
+
+      button.textContent =
+        "+ Aggiungi lavoro";
+
+    });
+
+}
+
+
+/* =====================================================
+   COMPLETA LAVORO
+===================================================== */
+
+function completaLavoro(id){
+
+  db.collection("lavori")
+    .doc(id)
+    .update({
+
+      completato:true
+
+    })
+
+    .catch(error => {
+
+      console.error(error);
+
+      alert(
+        "Errore durante l'aggiornamento."
+      );
+
+    });
+
+}
+
+
+/* =====================================================
+   DA RIFARE
+===================================================== */
+
+function daRifare(id){
+
+  db.collection("lavori")
+    .doc(id)
+    .update({
+
+      completato:false
+
+    })
+
+    .catch(error => {
+
+      console.error(error);
+
+      alert(
+        "Errore durante l'aggiornamento."
+      );
+
+    });
+
+}
+
+
+/* =====================================================
+   CAMBIA URGENZA
+===================================================== */
+
+function cambiaUrgente(
+  id,
+  attualmenteUrgente
+){
+
+  db.collection("lavori")
+    .doc(id)
+    .update({
+
+      urgente:!attualmenteUrgente
+
+    })
+
+    .catch(error => {
+
+      console.error(error);
+
+      alert(
+        "Errore durante l'aggiornamento."
+      );
+
+    });
+
+}
+
+
+/* =====================================================
+   ELIMINA
+===================================================== */
+
+function eliminaLavoro(id){
+
+  const conferma =
+    confirm(
+      "Vuoi eliminare definitivamente questo lavoro dalla lista?"
+    );
+
+
+  if(!conferma) return;
+
+
+  db.collection("lavori")
+    .doc(id)
+    .update({
+
+      attivo:false
+
+    })
+
+    .catch(error => {
+
+      console.error(error);
+
+      alert(
+        "Errore durante l'eliminazione."
+      );
+
+    });
+
+}
+
+
+/* =====================================================
+   LAVORI URGENTI
+===================================================== */
+
+function renderUrgentJobs(lista){
+
+  const contenitore =
+    document.getElementById(
+      "urgentJobs"
+    );
+
+  contenitore.innerHTML = "";
+
+
+  if(lista.length === 0){
+
+    contenitore.innerHTML =
+      `<div class="empty">
+        Nessun lavoro urgente.
+      </div>`;
+
+    return;
+
+  }
+
+
+  Object.keys(puntiVendita).forEach(categoria => {
+
+    const puntiCategoria =
+      puntiVendita[categoria];
+
+
+    const gruppo =
+      lista.filter(lavoro =>
+        puntiCategoria.includes(
+          lavoro.punto
+        )
+      );
+
+
+    if(!gruppo.length) return;
+
+
+    const titolo =
+      document.createElement("div");
+
+    titolo.className = "group-title";
+
+    titolo.textContent =
+      categoria;
+
+    contenitore.appendChild(titolo);
+
+
+    puntiCategoria.forEach(punto => {
+
+      gruppo
+        .filter(lavoro =>
+          lavoro.punto === punto
+        )
+        .forEach(lavoro => {
+
+          contenitore.appendChild(
+            creaUrgentJobCard(lavoro)
+          );
+
+        });
+
+    });
+
+  });
+
+}
+
+
+/* =====================================================
+   CARD URGENTE
+===================================================== */
+
+function creaUrgentJobCard(lavoro){
+
+  const card =
+    document.createElement("div");
+
+  card.className =
+    "job-card urgent-job";
+
+
+  const store =
+    document.createElement("div");
+
+  store.className =
+    "job-store";
+
+  store.textContent =
+    lavoro.punto;
+
+  card.appendChild(store);
+
+
+  const badge =
+    document.createElement("div");
+
+  badge.className =
+    "job-urgent";
+
+  badge.textContent =
+    "URGENTE";
+
+  card.appendChild(badge);
+
+
+  const testo =
+    document.createElement("div");
+
+  testo.className =
+    "job-text";
+
+  testo.textContent =
+    lavoro.testo;
+
+  card.appendChild(testo);
+
+
+  if(lavoro.note){
+
+    const note =
+      document.createElement("div");
+
+    note.className =
+      "job-note";
+
+    note.textContent =
+      "Note: " + lavoro.note;
+
+    card.appendChild(note);
+
+  }
+
+
+  const actions =
+    document.createElement("div");
+
+  actions.className =
+    "job-actions";
+
+
+  const completo =
+    document.createElement("button");
+
+  completo.className =
+    "btn btn-green";
+
+  completo.textContent =
+    "Completato";
+
+  completo.onclick = () =>
+    completaLavoro(lavoro.id);
+
+  actions.appendChild(completo);
+
+
+  const togli =
+    document.createElement("button");
+
+  togli.className =
+    "btn btn-orange";
+
+  togli.textContent =
+    "Togli urgente";
+
+  togli.onclick = () =>
+    cambiaUrgente(
+      lavoro.id,
+      true
+    );
+
+  actions.appendChild(togli);
+
+
+  const elimina =
+    document.createElement("button");
+
+  elimina.className =
+    "btn btn-red";
+
+  elimina.textContent =
+    "Elimina";
+
+  elimina.onclick = () =>
+    eliminaLavoro(lavoro.id);
+
+  actions.appendChild(elimina);
+
+
+  card.appendChild(actions);
+
+
+  return card;
+
+}
+
+
+/* =====================================================
+   LAVORI COMPLETATI
+===================================================== */
+
+function renderCompletedJobs(lista){
+
+  const contenitore =
+    document.getElementById(
+      "completedJobs"
+    );
+
+  contenitore.innerHTML = "";
+
+
+  if(lista.length === 0){
+
+    contenitore.innerHTML =
+      `<div class="empty">
+        Nessun lavoro completato.
+      </div>`;
+
+    return;
+
+  }
+
+
+  Object.keys(puntiVendita).forEach(categoria => {
+
+    const puntiCategoria =
+      puntiVendita[categoria];
+
+
+    const gruppo =
+      lista.filter(lavoro =>
+        puntiCategoria.includes(
+          lavoro.punto
+        )
+      );
+
+
+    if(!gruppo.length) return;
+
+
+    const titolo =
+      document.createElement("div");
+
+    titolo.className =
+      "group-title";
+
+    titolo.textContent =
+      categoria;
+
+    contenitore.appendChild(titolo);
+
+
+    puntiCategoria.forEach(punto => {
+
+      gruppo
+        .filter(lavoro =>
+          lavoro.punto === punto
+        )
+        .forEach(lavoro => {
+
+          contenitore.appendChild(
+            creaCompletedJobCard(lavoro)
+          );
+
+        });
+
+    });
+
+  });
+
+}
+
+
+/* =====================================================
+   CARD COMPLETATO
+===================================================== */
+
+function creaCompletedJobCard(lavoro){
+
+  const card =
+    document.createElement("div");
+
+  card.className =
+    "completed-job";
+
+
+  const store =
+    document.createElement("div");
+
+  store.className =
+    "job-store";
+
+  store.textContent =
+    lavoro.punto;
+
+  card.appendChild(store);
+
+
+  const line =
+    document.createElement("div");
+
+  line.className =
+    "completed-line";
+
+
+  const check =
+    document.createElement("div");
+
+  check.className =
+    "completed-check";
+
+  check.textContent =
+    "✓";
+
+
+  const testo =
+    document.createElement("div");
+
+  testo.className =
+    "completed-text";
+
+  testo.textContent =
+    lavoro.testo;
+
+
+  line.appendChild(check);
+
+  line.appendChild(testo);
+
+  card.appendChild(line);
+
+
+  if(lavoro.note){
+
+    const note =
+      document.createElement("div");
+
+    note.className =
+      "completed-note";
+
+    note.textContent =
+      "Note: " + lavoro.note;
+
+    card.appendChild(note);
+
+  }
+
+
+  const actions =
+    document.createElement("div");
+
+  actions.className =
+    "job-actions";
+
+
+  const rifare =
+    document.createElement("button");
+
+  rifare.className =
+    "btn btn-orange";
+
+  rifare.textContent =
+    "Da rifare";
+
+  rifare.onclick = () =>
+    daRifare(lavoro.id);
+
+  actions.appendChild(rifare);
+
+
+  const elimina =
+    document.createElement("button");
+
+  elimina.className =
+    "btn btn-red";
+
+  elimina.textContent =
+    "Elimina";
+
+  elimina.onclick = () =>
+    eliminaLavoro(lavoro.id);
+
+  actions.appendChild(elimina);
+
+
+  card.appendChild(actions);
+
+
+  return card;
+
+}
+
+
+/* =====================================================
+   NAVIGAZIONE
+===================================================== */
+
+function mostraPagina(id){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(page => {
+
+      page.classList.remove(
+        "active"
+      );
+
+    });
+
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+
+}
+
+
+function showHome(){
+
+  puntoSelezionato = null;
+
+  categoriaSelezionata = null;
+
+  mostraPagina(
+    "homePage"
+  );
+
+}
+
+
+/* =====================================================
+   CLICK RIEPILOGO
+===================================================== */
+
+document
+  .getElementById("btnLavoriDaFare")
+  .addEventListener(
+    "click",
+    () => {
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+    }
+  );
 
 
 document
-.getElementById("status")
-.textContent =
-"Errore Firebase";
+  .getElementById("btnUrgenti")
+  .addEventListener(
+    "click",
+    () => {
+
+      mostraPagina(
+        "urgentPage"
+      );
+
+    }
+  );
 
 
-alert(
-"Firebase non riesce a collegarsi.\n\n" +
-error.message
-);
+document
+  .getElementById("btnCompletati")
+  .addEventListener(
+    "click",
+    () => {
 
-}
-);
+      mostraPagina(
+        "completedPage"
+      );
+
+    }
+  );
 
 
-/* =========================
-   AVVIO
-========================= */
+/* =====================================================
+   AVVIO INTERFACCIA
+===================================================== */
 
-aggiorna();
+creaPuntiVendita();
 
 </script>
 
 </body>
-
 </html>
