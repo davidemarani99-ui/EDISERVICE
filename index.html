@@ -11,31 +11,25 @@
 
 <title>EDISERVICE</title>
 
-<link
-  rel="icon"
-  type="image/png"
-  href="ediservice-icon.png"
->
-
-<link
-  rel="apple-touch-icon"
-  href="ediservice-icon.png"
->
+<link rel="icon" type="image/png" href="ediservice-icon.png">
+<link rel="apple-touch-icon" href="ediservice-icon.png">
 
 <style>
 
-/* ================================================= */
-/* BASE */
-/* ================================================= */
+/* =========================================================
+   BASE
+========================================================= */
 
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
 
+html,
 body{
   margin:0;
-  background:#f5f5f7;
+  padding:0;
+  background:#fff;
   color:#222;
   font-family:
     -apple-system,
@@ -59,13 +53,14 @@ textarea{
 }
 
 
-/* ================================================= */
-/* HEADER */
-/* ================================================= */
+/* =========================================================
+   HEADER / LOGO
+========================================================= */
 
 .header{
   text-align:center;
   padding:10px 0 5px;
+  background:#fff;
 }
 
 .header img{
@@ -75,7 +70,14 @@ textarea{
   height:auto;
   margin:0 auto 10px;
   background:#fff;
+  border:0;
+  box-shadow:none;
 }
+
+
+/* =========================================================
+   FIREBASE
+========================================================= */
 
 .firebase-status{
   margin-top:8px;
@@ -92,9 +94,9 @@ textarea{
 }
 
 
-/* ================================================= */
-/* PAGINE */
-/* ================================================= */
+/* =========================================================
+   PAGINE
+========================================================= */
 
 .page{
   display:none;
@@ -105,22 +107,31 @@ textarea{
 }
 
 
-/* ================================================= */
-/* HOME */
-/* ================================================= */
+/* =========================================================
+   HOME
+========================================================= */
 
 .summary,
 .urgent-folder,
 .completed-folder{
+
   min-height:190px;
+
   border-radius:28px;
+
   padding:28px;
+
   margin:25px 0;
-  box-shadow:0 3px 12px rgba(0,0,0,.07);
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.07);
+
   cursor:pointer;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   transition:.15s;
@@ -177,9 +188,9 @@ textarea{
 }
 
 
-/* ================================================= */
-/* TITOLI */
-/* ================================================= */
+/* =========================================================
+   TITOLI
+========================================================= */
 
 .section-title{
   font-size:23px;
@@ -188,17 +199,44 @@ textarea{
   color:#d32f2f;
 }
 
+
+/* =========================================================
+   CATEGORIE
+   PIM / AGORÀ / IPERFAMILY
+========================================================= */
+
 .group-title{
+
+  display:block;
+
+  width:100%;
+
+  padding:11px 15px;
+
+  margin:28px 0 12px;
+
+  background:#f2f2f2;
+
+  border-left:6px solid #d32f2f;
+
+  border-radius:12px;
+
+  color:#222;
+
   font-size:18px;
-  font-weight:800;
-  margin:30px 0 12px;
-  color:#d32f2f;
+
+  font-weight:900;
+
+  letter-spacing:.2px;
+
+  box-shadow:
+    0 2px 7px rgba(0,0,0,.06);
 }
 
 
-/* ================================================= */
-/* PUNTI VENDITA */
-/* ================================================= */
+/* =========================================================
+   PUNTI VENDITA
+========================================================= */
 
 .store-list{
   display:flex;
@@ -207,21 +245,34 @@ textarea{
 }
 
 .store-button{
+
   width:100%;
+
   background:#fff;
+
   color:#222;
+
   border:1px solid #ddd;
+
   border-radius:16px;
+
   padding:17px 18px;
+
   text-align:left;
+
   font-size:17px;
+
   font-weight:650;
+
   cursor:pointer;
 
-  box-shadow:0 2px 6px rgba(0,0,0,.04);
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.04);
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 }
 
@@ -233,82 +284,120 @@ textarea{
   color:#222;
 }
 
+
+/* =========================================================
+   NUMERO LAVORI
+========================================================= */
+
 .store-count{
+
   min-width:34px;
+
   height:34px;
+
   padding:0 10px;
+
   border-radius:17px;
 
-  background:#eee;
+  background:#f1f1f1;
+
   color:#d32f2f;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
-  font-size:15px;
-  font-weight:400;
+  font-size:16px;
+
+  font-weight:900;
 
   margin-left:12px;
 }
 
 
-/* ================================================= */
-/* TOPBAR */
-/* ================================================= */
+/* =========================================================
+   TOPBAR
+========================================================= */
 
 .topbar{
+
   display:flex;
+
   align-items:center;
+
   gap:10px;
+
   margin-bottom:20px;
 }
 
 .back-button{
+
   background:#e9e9e9;
+
   color:#222;
+
   border:0;
+
   border-radius:12px;
+
   padding:11px 15px;
+
   font-weight:700;
+
   cursor:pointer;
 }
 
 .page-title{
+
   font-size:24px;
+
   font-weight:850;
+
   margin:0;
 }
 
 
-/* ================================================= */
-/* STORE */
-/* ================================================= */
+/* =========================================================
+   STORE
+========================================================= */
 
 .store-name{
+
   color:#d32f2f;
+
   font-size:27px;
+
   font-weight:900;
 }
 
 .store-category{
+
   color:#777;
+
   font-size:14px;
+
   margin-bottom:20px;
 }
 
 
-/* ================================================= */
-/* FORM */
-/* ================================================= */
+/* =========================================================
+   FORM
+========================================================= */
 
 .form-card{
+
   background:#fff;
+
   border-radius:20px;
+
   padding:20px;
+
   margin:20px 0;
 
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.06);
 }
 
 .form-card h2{
@@ -316,16 +405,23 @@ textarea{
 }
 
 label{
+
   display:block;
+
   font-weight:700;
+
   margin:15px 0 7px;
 }
 
 input[type="text"],
 textarea{
+
   width:100%;
+
   border:1px solid #d5d5d5;
+
   border-radius:12px;
+
   padding:13px;
 
   font-size:16px;
@@ -336,61 +432,63 @@ textarea{
 }
 
 textarea{
+
   min-height:90px;
+
   resize:vertical;
 }
 
 .urgent-check{
+
   display:flex;
+
   align-items:center;
+
   gap:10px;
+
   margin:15px 0;
 }
 
 .urgent-check input{
+
   width:20px;
+
   height:20px;
 }
 
 .add-button{
+
   width:100%;
 
   background:#222;
+
   color:#fff;
 
   border:0;
+
   border-radius:13px;
 
   padding:15px;
 
   font-size:17px;
+
   font-weight:800;
 
   cursor:pointer;
 }
 
 
-/* ================================================= */
-/* NUOVA STRUTTURA LAVORI DA FARE */
-/* ================================================= */
-
-/*
-   Un solo contenitore per ogni punto vendita.
-   Esempio:
-
-   TORRESINA       4
-
-   • Lavoro 1   [Completato] [Urgente] [Elimina]
-   • Lavoro 2   [Completato] [Urgente] [Elimina]
-   • Lavoro 3   [Completato] [Urgente] [Elimina]
-   • Lavoro 4   [Completato] [Urgente] [Elimina]
-*/
+/* =========================================================
+   LAVORI DA FARE - GRUPPO PUNTO VENDITA
+========================================================= */
 
 .todo-store-group{
-  background:#fff;
-  border-radius:22px;
 
-  margin:18px 0;
+  background:#fff;
+
+  border-radius:20px;
+
+  margin:17px 0;
 
   overflow:hidden;
 
@@ -399,14 +497,17 @@ textarea{
 }
 
 
-/* TESTATA DEL PUNTO VENDITA */
+/* TESTATA PUNTO VENDITA */
 
 .todo-store-header{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
-  padding:17px 18px;
+  padding:16px 18px;
 
   background:#fafafa;
 
@@ -414,36 +515,47 @@ textarea{
 }
 
 .todo-store-name{
+
   color:#d32f2f;
 
   font-size:21px;
+
   font-weight:900;
 }
 
 .todo-store-count{
+
   min-width:32px;
+
   height:32px;
 
   padding:0 9px;
 
   border-radius:16px;
 
-  background:#d32f2f;
-  color:#fff;
+  background:#f1f1f1;
+
+  color:#d32f2f;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   font-size:14px;
-  font-weight:800;
+
+  font-weight:900;
 }
 
 
-/* SINGOLO LAVORO DENTRO IL GRUPPO */
+/* =========================================================
+   SINGOLO LAVORO
+========================================================= */
 
 .todo-job-row{
-  padding:14px 14px;
+
+  padding:14px;
 
   border-bottom:1px solid #eeeeee;
 }
@@ -452,56 +564,70 @@ textarea{
   border-bottom:0;
 }
 
-
-/* RIGA DEL TESTO */
-
 .todo-job-main{
+
   display:flex;
+
   align-items:flex-start;
 
   gap:10px;
 }
 
 .todo-job-dot{
+
   width:9px;
+
   height:9px;
 
   min-width:9px;
 
+  margin-top:7px;
+
   border-radius:50%;
 
   background:#d32f2f;
-
-  margin-top:7px;
 }
 
 .todo-job-content{
+
   flex:1;
+
   min-width:0;
 }
 
 .todo-job-text{
-  font-size:17px;
-  font-weight:650;
+
+  font-size:16px;
+
+  font-weight:700;
+
   line-height:1.35;
+
+  word-break:break-word;
 }
 
 .todo-job-note{
+
   margin-top:5px;
 
   color:#777;
 
   font-size:13px;
+
   line-height:1.35;
 }
 
 
-/* BADGE URGENTE */
+/* =========================================================
+   URGENTE
+========================================================= */
 
 .todo-job-urgent{
+
   display:inline-block;
 
   background:#e53935;
+
   color:#fff;
 
   border-radius:7px;
@@ -509,21 +635,24 @@ textarea{
   padding:3px 7px;
 
   font-size:10px;
+
   font-weight:800;
 
   margin-top:7px;
 }
 
 
-/* ================================================= */
-/* PULSANTI PICCOLI PER OGNI SINGOLO LAVORO */
-/* ================================================= */
+/* =========================================================
+   PULSANTI SINGOLO LAVORO
+========================================================= */
 
 .todo-job-actions{
+
   display:flex;
+
   flex-wrap:wrap;
 
-  gap:6px;
+  gap:5px;
 
   margin-top:11px;
 
@@ -531,13 +660,15 @@ textarea{
 }
 
 .todo-btn{
+
   border:0;
 
   border-radius:8px;
 
   padding:7px 9px;
 
-  font-size:12px;
+  font-size:11px;
+
   line-height:1;
 
   font-weight:700;
@@ -548,17 +679,23 @@ textarea{
 }
 
 .todo-btn-green{
+
   background:#43a047;
+
   color:#fff;
 }
 
 .todo-btn-orange{
+
   background:#ff9800;
+
   color:#fff;
 }
 
 .todo-btn-red{
+
   background:#e53935;
+
   color:#fff;
 }
 
@@ -567,11 +704,12 @@ textarea{
 }
 
 
-/* ================================================= */
-/* JOB GENERICI */
-/* ================================================= */
+/* =========================================================
+   CARD LAVORO GENERICA
+========================================================= */
 
 .job-card{
+
   background:#fff;
 
   border-radius:18px;
@@ -585,31 +723,40 @@ textarea{
 }
 
 .job-store{
+
   color:#d32f2f;
 
   font-weight:800;
+
   font-size:14px;
 
   margin-bottom:7px;
 }
 
 .job-text{
+
   font-size:17px;
+
   font-weight:650;
+
   line-height:1.35;
 }
 
 .job-note{
+
   margin-top:7px;
 
   color:#777;
+
   font-size:14px;
 }
 
 .job-urgent{
+
   display:inline-block;
 
   background:#e53935;
+
   color:#fff;
 
   border-radius:8px;
@@ -617,13 +764,16 @@ textarea{
   padding:4px 8px;
 
   font-size:11px;
+
   font-weight:800;
 
   margin-bottom:9px;
 }
 
 .job-actions{
+
   display:flex;
+
   flex-wrap:wrap;
 
   gap:8px;
@@ -632,6 +782,7 @@ textarea{
 }
 
 .btn{
+
   border:0;
 
   border-radius:11px;
@@ -639,36 +790,44 @@ textarea{
   padding:10px 13px;
 
   font-size:14px;
+
   font-weight:700;
 
   cursor:pointer;
 }
 
 .btn-green{
+
   background:#43a047;
+
   color:#fff;
 }
 
 .btn-red{
+
   background:#e53935;
+
   color:#fff;
 }
 
 .btn-orange{
+
   background:#ff9800;
+
   color:#fff;
 }
 
 
-/* ================================================= */
-/* COMPLETATI */
-/* ================================================= */
+/* =========================================================
+   COMPLETATI
+========================================================= */
 
 .completed-page-title{
   color:#2e7d32;
 }
 
 .completed-job{
+
   background:#fff;
 
   border-radius:18px;
@@ -682,6 +841,7 @@ textarea{
 }
 
 .completed-line{
+
   display:flex;
 
   gap:10px;
@@ -690,30 +850,36 @@ textarea{
 }
 
 .completed-check{
+
   color:#2e7d32;
 
   font-size:22px;
+
   font-weight:900;
 }
 
 .completed-text{
+
   font-size:16px;
+
   font-weight:650;
 }
 
 .completed-note{
+
   color:#777;
 
   font-size:14px;
 
   margin-top:6px;
+
   margin-left:32px;
 }
 
 
-/* ================================================= */
-/* URGENTI */
-/* ================================================= */
+/* =========================================================
+   URGENTI
+========================================================= */
 
 .urgent-page-title{
   color:#d32f2f;
@@ -724,11 +890,12 @@ textarea{
 }
 
 
-/* ================================================= */
-/* MESSAGGI */
-/* ================================================= */
+/* =========================================================
+   MESSAGGI
+========================================================= */
 
 .empty{
+
   background:#fff;
 
   border-radius:17px;
@@ -743,6 +910,7 @@ textarea{
 }
 
 .loading{
+
   text-align:center;
 
   padding:30px;
@@ -751,9 +919,9 @@ textarea{
 }
 
 
-/* ================================================= */
-/* MOBILE */
-/* ================================================= */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:600px){
 
@@ -762,14 +930,18 @@ textarea{
   }
 
   .header img{
+
     width:230px;
+
     max-width:85%;
   }
 
   .summary,
   .urgent-folder,
   .completed-folder{
+
     min-height:180px;
+
     padding:24px;
   }
 
@@ -781,11 +953,35 @@ textarea{
     font-size:50px;
   }
 
-  /* GRUPPI PIÙ ADATTI AL TELEFONO */
+  .group-title{
+
+    font-size:17px;
+
+    padding:11px 14px;
+
+    margin-top:24px;
+  }
+
+  .store-button{
+
+    padding:16px;
+
+    font-size:16px;
+  }
+
+  .store-count{
+
+    min-width:32px;
+
+    height:32px;
+
+    font-size:15px;
+
+    font-weight:900;
+  }
 
   .todo-store-group{
-    border-radius:19px;
-    margin:15px 0;
+    border-radius:18px;
   }
 
   .todo-store-header{
@@ -804,29 +1000,25 @@ textarea{
     font-size:16px;
   }
 
-  .todo-job-actions{
-    margin-left:19px;
-    gap:5px;
-  }
-
   .todo-btn{
     padding:7px 8px;
     font-size:11px;
-    border-radius:7px;
   }
 
 }
 
 
-/* ================================================= */
-/* TELEFONI MOLTO STRETTI */
-/* ================================================= */
+/* =========================================================
+   SCHERMI PICCOLI
+========================================================= */
 
 @media(max-width:380px){
 
   .todo-btn{
-    font-size:10px;
+
     padding:6px 7px;
+
+    font-size:10px;
   }
 
   .todo-job-text{
@@ -844,9 +1036,9 @@ textarea{
 <div class="container">
 
 
-<!-- ================================================= -->
-<!-- HOME -->
-<!-- ================================================= -->
+<!-- =====================================================
+     HOME
+===================================================== -->
 
 <div id="homePage" class="page active">
 
@@ -866,8 +1058,6 @@ textarea{
 
   </div>
 
-
-  <!-- LAVORI DA FARE -->
 
   <div
     class="summary"
@@ -900,8 +1090,6 @@ textarea{
   </div>
 
 
-  <!-- URGENTI -->
-
   <div
     class="urgent-folder"
     id="btnUrgenti"
@@ -932,8 +1120,6 @@ textarea{
 
   </div>
 
-
-  <!-- COMPLETATI -->
 
   <div
     class="completed-folder"
@@ -966,8 +1152,6 @@ textarea{
   </div>
 
 
-  <!-- PUNTI VENDITA -->
-
   <div class="section-title">
     Punti vendita
   </div>
@@ -978,9 +1162,9 @@ textarea{
 
 
 
-<!-- ================================================= -->
-<!-- PAGINA LAVORI DA FARE -->
-<!-- ================================================= -->
+<!-- =====================================================
+     PAGINA LAVORI DA FARE
+===================================================== -->
 
 <div id="todoPage" class="page">
 
@@ -1011,9 +1195,9 @@ textarea{
 
 
 
-<!-- ================================================= -->
-<!-- PAGINA PUNTO VENDITA -->
-<!-- ================================================= -->
+<!-- =====================================================
+     PAGINA PUNTO VENDITA
+===================================================== -->
 
 <div id="storePage" class="page">
 
@@ -1043,8 +1227,6 @@ textarea{
     id="storePageCategory"
   ></div>
 
-
-  <!-- FORM -->
 
   <div class="form-card">
 
@@ -1108,9 +1290,9 @@ textarea{
 
 
 
-<!-- ================================================= -->
-<!-- PAGINA URGENTI -->
-<!-- ================================================= -->
+<!-- =====================================================
+     PAGINA URGENTI
+===================================================== -->
 
 <div id="urgentPage" class="page">
 
@@ -1135,9 +1317,9 @@ textarea{
 
 
 
-<!-- ================================================= -->
-<!-- PAGINA COMPLETATI -->
-<!-- ================================================= -->
+<!-- =====================================================
+     PAGINA COMPLETATI
+===================================================== -->
 
 <div id="completedPage" class="page">
 
@@ -1165,9 +1347,9 @@ textarea{
 
 
 
-<!-- ================================================= -->
-<!-- FIREBASE -->
-<!-- ================================================= -->
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -1178,9 +1360,9 @@ textarea{
 
 <script>
 
-/* ================================================= */
-/* FIREBASE CONFIG */
-/* ================================================= */
+/* =========================================================
+   CONFIG FIREBASE
+========================================================= */
 
 const firebaseConfig={
 
@@ -1200,19 +1382,16 @@ const firebaseConfig={
 
 };
 
-
 firebase.initializeApp(firebaseConfig);
-
 
 const auth=firebase.auth();
 
 const db=firebase.firestore();
 
 
-
-/* ================================================= */
-/* PUNTI VENDITA */
-/* ================================================= */
+/* =========================================================
+   PUNTI VENDITA
+========================================================= */
 
 const puntiVendita={
 
@@ -1246,7 +1425,6 @@ const puntiVendita={
 
   ],
 
-
   "AGORÀ":[
 
     "Taverna",
@@ -1256,7 +1434,6 @@ const puntiVendita={
     "Laurentina"
 
   ],
-
 
   "IPERFAMILY":[
 
@@ -1272,15 +1449,16 @@ let lavori=[];
 let puntoSelezionato=null;
 
 
-
-/* ================================================= */
-/* STATO FIREBASE */
-/* ================================================= */
+/* =========================================================
+   FIREBASE STATUS
+========================================================= */
 
 function firebaseOk(){
 
   const status=
-    document.getElementById("firebaseStatus");
+    document.getElementById(
+      "firebaseStatus"
+    );
 
   status.textContent=
     "● Firebase collegato";
@@ -1293,10 +1471,15 @@ function firebaseOk(){
 
 function firebaseErrore(error){
 
-  console.error("Firebase:",error);
+  console.error(
+    "Firebase:",
+    error
+  );
 
   const status=
-    document.getElementById("firebaseStatus");
+    document.getElementById(
+      "firebaseStatus"
+    );
 
   status.textContent=
     "● Errore Firebase";
@@ -1307,10 +1490,9 @@ function firebaseErrore(error){
 }
 
 
-
-/* ================================================= */
-/* LOGIN */
-/* ================================================= */
+/* =========================================================
+   LOGIN
+========================================================= */
 
 auth.signInAnonymously()
 
@@ -1329,20 +1511,22 @@ auth.signInAnonymously()
 });
 
 
-
-/* ================================================= */
-/* CREA PUNTI VENDITA */
-/* ================================================= */
+/* =========================================================
+   CREA PUNTI VENDITA
+========================================================= */
 
 function creaPuntiVendita(){
 
   const contenitore=
-    document.getElementById("puntiVendita");
+    document.getElementById(
+      "puntiVendita"
+    );
 
   contenitore.innerHTML="";
 
 
-  Object.keys(puntiVendita).forEach(categoria=>{
+  Object.keys(puntiVendita)
+  .forEach(categoria=>{
 
     const gruppo=
       document.createElement("div");
@@ -1351,50 +1535,65 @@ function creaPuntiVendita(){
     const titolo=
       document.createElement("div");
 
-    titolo.className="group-title";
+    titolo.className=
+      "group-title";
 
-    titolo.textContent=categoria;
+    titolo.textContent=
+      categoria;
 
 
-    gruppo.appendChild(titolo);
+    gruppo.appendChild(
+      titolo
+    );
 
 
     const lista=
       document.createElement("div");
 
-    lista.className="store-list";
+    lista.className=
+      "store-list";
 
 
-    puntiVendita[categoria].forEach(punto=>{
+    puntiVendita[categoria]
+    .forEach(punto=>{
 
       const button=
         document.createElement("button");
 
-      button.className="store-button";
+      button.className=
+        "store-button";
 
 
       const nome=
         document.createElement("span");
 
-      nome.className="store-name-text";
+      nome.className=
+        "store-name-text";
 
-      nome.textContent=punto;
+      nome.textContent=
+        punto;
 
 
       const numero=
         document.createElement("span");
 
-      numero.className="store-count";
+      numero.className=
+        "store-count";
 
       numero.id=
         "count-"+encodeURIComponent(punto);
 
-      numero.textContent="0";
+      numero.textContent=
+        "0";
 
 
-      button.appendChild(nome);
+      button.appendChild(
+        nome
+      );
 
-      button.appendChild(numero);
+      button.appendChild(
+        numero
+      );
 
 
       button.onclick=()=>{
@@ -1407,30 +1606,39 @@ function creaPuntiVendita(){
       };
 
 
-      lista.appendChild(button);
+      lista.appendChild(
+        button
+      );
 
     });
 
 
-    gruppo.appendChild(lista);
+    gruppo.appendChild(
+      lista
+    );
 
-    contenitore.appendChild(gruppo);
+    contenitore.appendChild(
+      gruppo
+    );
 
   });
 
 }
 
 
-
-/* ================================================= */
-/* FIRESTORE */
-/* ================================================= */
+/* =========================================================
+   ASCOLTA LAVORI FIRESTORE
+========================================================= */
 
 function ascoltaLavori(){
 
   db.collection("lavori")
 
-  .where("attivo","==",true)
+  .where(
+    "attivo",
+    "==",
+    true
+  )
 
   .onSnapshot(
 
@@ -1456,7 +1664,6 @@ function ascoltaLavori(){
 
     },
 
-
     error=>{
 
       console.error(
@@ -1464,7 +1671,9 @@ function ascoltaLavori(){
         error
       );
 
-      firebaseErrore(error);
+      firebaseErrore(
+        error
+      );
 
     }
 
@@ -1473,10 +1682,9 @@ function ascoltaLavori(){
 }
 
 
-
-/* ================================================= */
-/* AGGIORNA TUTTO */
-/* ================================================= */
+/* =========================================================
+   AGGIORNA TUTTO
+========================================================= */
 
 function aggiornaTutto(){
 
@@ -1529,11 +1737,19 @@ function aggiornaTutto(){
   aggiornaNumeriPuntiVendita();
 
 
-  renderTodoJobs(daFare);
+  renderTodoJobs(
+    daFare
+  );
 
-  renderUrgentJobs(urgenti);
 
-  renderCompletedJobs(completati);
+  renderUrgentJobs(
+    urgenti
+  );
+
+
+  renderCompletedJobs(
+    completati
+  );
 
 
   if(puntoSelezionato){
@@ -1547,19 +1763,19 @@ function aggiornaTutto(){
 }
 
 
-
-/* ================================================= */
-/* NUMERI PUNTI VENDITA */
-/* ================================================= */
+/* =========================================================
+   NUMERI PUNTI VENDITA
+========================================================= */
 
 function aggiornaNumeriPuntiVendita(){
 
-  Object.keys(puntiVendita).forEach(categoria=>{
+  Object.keys(puntiVendita)
+  .forEach(categoria=>{
 
-    puntiVendita[categoria].forEach(punto=>{
+    puntiVendita[categoria]
+    .forEach(punto=>{
 
       const numero=
-
         lavori.filter(x=>
 
           x.attivo===true &&
@@ -1570,7 +1786,6 @@ function aggiornaNumeriPuntiVendita(){
 
 
       const elemento=
-
         document.getElementById(
           "count-"+encodeURIComponent(punto)
         );
@@ -1590,10 +1805,9 @@ function aggiornaNumeriPuntiVendita(){
 }
 
 
-
-/* ================================================= */
-/* NAVIGAZIONE */
-/* ================================================= */
+/* =========================================================
+   NAVIGAZIONE
+========================================================= */
 
 function mostraPagina(id){
 
@@ -1618,7 +1832,10 @@ function mostraPagina(id){
       "active"
     );
 
-    window.scrollTo(0,0);
+    window.scrollTo(
+      0,
+      0
+    );
 
   }
 
@@ -1634,35 +1851,10 @@ function showHome(){
 }
 
 
-
-/* ================================================= */
-/* LAVORI DA FARE */
-/* ================================================= */
-/*
-   QUI È CAMBIATO IL SISTEMA.
-
-   Prima:
-   Torresina
-   lavoro 1
-
-   Torresina
-   lavoro 2
-
-   Torresina
-   lavoro 3
-
-   Adesso:
-   TORRESINA  3
-   ----------------
-   lavoro 1
-   [Completato] [Urgente] [Elimina]
-
-   lavoro 2
-   [Completato] [Urgente] [Elimina]
-
-   lavoro 3
-   [Completato] [Urgente] [Elimina]
-*/
+/* =========================================================
+   LAVORI DA FARE
+   RAGGRUPPATI PER PUNTO VENDITA
+========================================================= */
 
 function renderTodoJobs(lista){
 
@@ -1693,7 +1885,7 @@ function renderTodoJobs(lista){
       puntiVendita[categoria];
 
 
-    const gruppoCategoria=
+    const lavoriCategoria=
       lista.filter(lavoro=>
         punti.includes(
           lavoro.punto
@@ -1701,14 +1893,12 @@ function renderTodoJobs(lista){
       );
 
 
-    if(!gruppoCategoria.length){
+    if(!lavoriCategoria.length){
 
       return;
 
     }
 
-
-    /* TITOLO CATEGORIA */
 
     const titolo=
       document.createElement("div");
@@ -1724,12 +1914,10 @@ function renderTodoJobs(lista){
     );
 
 
-    /* OGNI PUNTO VENDITA UNA SOLA VOLTA */
-
     punti.forEach(punto=>{
 
       const lavoriPunto=
-        gruppoCategoria.filter(
+        lavoriCategoria.filter(
           lavoro=>
             lavoro.punto===punto
         );
@@ -1742,16 +1930,12 @@ function renderTodoJobs(lista){
       }
 
 
-      /* CONTENITORE DEL PUNTO VENDITA */
-
       const gruppo=
         document.createElement("div");
 
       gruppo.className=
         "todo-store-group";
 
-
-      /* TESTATA */
 
       const header=
         document.createElement("div");
@@ -1780,24 +1964,26 @@ function renderTodoJobs(lista){
         lavoriPunto.length;
 
 
-      header.appendChild(nome);
+      header.appendChild(
+        nome
+      );
 
-      header.appendChild(numero);
+      header.appendChild(
+        numero
+      );
 
-      gruppo.appendChild(header);
 
+      gruppo.appendChild(
+        header
+      );
 
-      /* SINGOLI LAVORI */
 
       lavoriPunto.forEach(lavoro=>{
 
-        const riga=
+        gruppo.appendChild(
           creaTodoJobRow(
             lavoro
-          );
-
-        gruppo.appendChild(
-          riga
+          )
         );
 
       });
@@ -1814,10 +2000,9 @@ function renderTodoJobs(lista){
 }
 
 
-
-/* ================================================= */
-/* SINGOLO LAVORO NEL GRUPPO */
-/* ================================================= */
+/* =========================================================
+   SINGOLO LAVORO
+========================================================= */
 
 function creaTodoJobRow(lavoro){
 
@@ -1828,16 +2013,12 @@ function creaTodoJobRow(lavoro){
     "todo-job-row";
 
 
-  /* PARTE PRINCIPALE */
-
   const main=
     document.createElement("div");
 
   main.className=
     "todo-job-main";
 
-
-  /* PALLINO ROSSO */
 
   const pallino=
     document.createElement("div");
@@ -1846,16 +2027,12 @@ function creaTodoJobRow(lavoro){
     "todo-job-dot";
 
 
-  /* CONTENUTO */
-
   const contenuto=
     document.createElement("div");
 
   contenuto.className=
     "todo-job-content";
 
-
-  /* TESTO */
 
   const testo=
     document.createElement("div");
@@ -1871,8 +2048,6 @@ function creaTodoJobRow(lavoro){
     testo
   );
 
-
-  /* NOTE */
 
   if(lavoro.note){
 
@@ -1893,22 +2068,20 @@ function creaTodoJobRow(lavoro){
   }
 
 
-  /* URGENTE */
-
   if(lavoro.urgente===true){
 
-    const urgente=
+    const badge=
       document.createElement("div");
 
-    urgente.className=
+    badge.className=
       "todo-job-urgent";
 
-    urgente.textContent=
+    badge.textContent=
       "URGENTE";
 
 
     contenuto.appendChild(
-      urgente
+      badge
     );
 
   }
@@ -1928,18 +2101,12 @@ function creaTodoJobRow(lavoro){
   );
 
 
-  /* ================================================= */
-  /* PULSANTI DEL SINGOLO LAVORO */
-  /* ================================================= */
-
   const actions=
     document.createElement("div");
 
   actions.className=
     "todo-job-actions";
 
-
-  /* COMPLETATO */
 
   const completo=
     document.createElement("button");
@@ -1950,7 +2117,6 @@ function creaTodoJobRow(lavoro){
   completo.textContent=
     "Completato";
 
-
   completo.onclick=()=>{
 
     completaLavoro(
@@ -1960,19 +2126,11 @@ function creaTodoJobRow(lavoro){
   };
 
 
-  actions.appendChild(
-    completo
-  );
-
-
-  /* URGENTE */
-
   const urgente=
     document.createElement("button");
 
   urgente.className=
     "todo-btn todo-btn-orange";
-
 
   urgente.textContent=
 
@@ -1984,22 +2142,12 @@ function creaTodoJobRow(lavoro){
   urgente.onclick=()=>{
 
     cambiaUrgente(
-
       lavoro.id,
-
       lavoro.urgente===true
-
     );
 
   };
 
-
-  actions.appendChild(
-    urgente
-  );
-
-
-  /* ELIMINA */
 
   const elimina=
     document.createElement("button");
@@ -2010,7 +2158,6 @@ function creaTodoJobRow(lavoro){
   elimina.textContent=
     "Elimina";
 
-
   elimina.onclick=()=>{
 
     eliminaLavoro(
@@ -2019,6 +2166,14 @@ function creaTodoJobRow(lavoro){
 
   };
 
+
+  actions.appendChild(
+    completo
+  );
+
+  actions.appendChild(
+    urgente
+  );
 
   actions.appendChild(
     elimina
@@ -2035,10 +2190,9 @@ function creaTodoJobRow(lavoro){
 }
 
 
-
-/* ================================================= */
-/* PUNTO VENDITA */
-/* ================================================= */
+/* =========================================================
+   PUNTO VENDITA
+========================================================= */
 
 function apriPuntoVendita(
   punto,
@@ -2088,10 +2242,9 @@ function apriPuntoVendita(
 }
 
 
-
-/* ================================================= */
-/* LAVORI PUNTO VENDITA */
-/* ================================================= */
+/* =========================================================
+   LAVORI DEL PUNTO VENDITA
+========================================================= */
 
 function renderStoreJobs(punto){
 
@@ -2127,11 +2280,9 @@ function renderStoreJobs(punto){
   lista.forEach(lavoro=>{
 
     contenitore.appendChild(
-
       creaJobCard(
         lavoro
       )
-
     );
 
   });
@@ -2139,10 +2290,9 @@ function renderStoreJobs(punto){
 }
 
 
-
-/* ================================================= */
-/* CARD LAVORO GENERICA */
-/* ================================================= */
+/* =========================================================
+   CARD LAVORO
+========================================================= */
 
 function creaJobCard(lavoro){
 
@@ -2228,8 +2378,6 @@ function creaJobCard(lavoro){
     "job-actions";
 
 
-  /* COMPLETATO */
-
   const completo=
     document.createElement("button");
 
@@ -2238,7 +2386,6 @@ function creaJobCard(lavoro){
 
   completo.textContent=
     "Completato";
-
 
   completo.onclick=()=>{
 
@@ -2249,48 +2396,28 @@ function creaJobCard(lavoro){
   };
 
 
-  actions.appendChild(
-    completo
-  );
-
-
-  /* URGENTE */
-
   const urgente=
     document.createElement("button");
 
   urgente.className=
     "btn btn-orange";
 
-
   urgente.textContent=
 
     lavoro.urgente===true
-
       ? "Togli urgente"
-
       : "Rendi urgente";
 
 
   urgente.onclick=()=>{
 
     cambiaUrgente(
-
       lavoro.id,
-
       lavoro.urgente===true
-
     );
 
   };
 
-
-  actions.appendChild(
-    urgente
-  );
-
-
-  /* ELIMINA */
 
   const elimina=
     document.createElement("button");
@@ -2301,7 +2428,6 @@ function creaJobCard(lavoro){
   elimina.textContent=
     "Elimina";
 
-
   elimina.onclick=()=>{
 
     eliminaLavoro(
@@ -2310,6 +2436,14 @@ function creaJobCard(lavoro){
 
   };
 
+
+  actions.appendChild(
+    completo
+  );
+
+  actions.appendChild(
+    urgente
+  );
 
   actions.appendChild(
     elimina
@@ -2326,10 +2460,9 @@ function creaJobCard(lavoro){
 }
 
 
-
-/* ================================================= */
-/* AGGIUNGI LAVORO */
-/* ================================================= */
+/* =========================================================
+   AGGIUNGI LAVORO
+========================================================= */
 
 function aggiungiLavoro(){
 
@@ -2345,18 +2478,15 @@ function aggiungiLavoro(){
       "lavoroInput"
     );
 
-
   const noteInput=
     document.getElementById(
       "noteInput"
     );
 
-
   const urgenteInput=
     document.getElementById(
       "urgenteInput"
     );
-
 
   const button=
     document.getElementById(
@@ -2367,10 +2497,8 @@ function aggiungiLavoro(){
   const testo=
     lavoroInput.value.trim();
 
-
   const note=
     noteInput.value.trim();
-
 
   const urgente=
     urgenteInput.checked;
@@ -2412,18 +2540,12 @@ function aggiungiLavoro(){
 
       urgente:urgente,
 
-
       creatoDa:
-
         auth.currentUser
-
           ? auth.currentUser.uid
-
           : "",
 
-
       creatoIl:
-
         firebase.firestore
           .FieldValue
           .serverTimestamp()
@@ -2438,7 +2560,6 @@ function aggiungiLavoro(){
 
       urgenteInput.checked=false;
 
-
       button.disabled=false;
 
       button.textContent=
@@ -2452,17 +2573,14 @@ function aggiungiLavoro(){
         error
       );
 
-
       alert(
         "Errore nel salvataggio del lavoro."
       );
-
 
       button.disabled=false;
 
       button.textContent=
         "+ Aggiungi lavoro";
-
 
       firebaseErrore(
         error
@@ -2491,11 +2609,9 @@ function aggiungiLavoro(){
         error
       );
 
-
       firebaseErrore(
         error
       );
-
 
       button.disabled=false;
 
@@ -2509,10 +2625,9 @@ function aggiungiLavoro(){
 }
 
 
-
-/* ================================================= */
-/* COMPLETA */
-/* ================================================= */
+/* =========================================================
+   COMPLETA
+========================================================= */
 
 function completaLavoro(id){
 
@@ -2530,7 +2645,6 @@ function completaLavoro(id){
       error
     );
 
-
     alert(
       "Errore nel completare il lavoro."
     );
@@ -2540,10 +2654,9 @@ function completaLavoro(id){
 }
 
 
-
-/* ================================================= */
-/* DA RIFARE */
-/* ================================================= */
+/* =========================================================
+   DA RIFARE
+========================================================= */
 
 function daRifare(id){
 
@@ -2561,7 +2674,6 @@ function daRifare(id){
       error
     );
 
-
     alert(
       "Errore nel modificare il lavoro."
     );
@@ -2571,10 +2683,9 @@ function daRifare(id){
 }
 
 
-
-/* ================================================= */
-/* URGENZA */
-/* ================================================= */
+/* =========================================================
+   URGENZA
+========================================================= */
 
 function cambiaUrgente(
   id,
@@ -2595,7 +2706,6 @@ function cambiaUrgente(
       error
     );
 
-
     alert(
       "Errore nella modifica dell'urgenza."
     );
@@ -2605,10 +2715,9 @@ function cambiaUrgente(
 }
 
 
-
-/* ================================================= */
-/* ELIMINA */
-/* ================================================= */
+/* =========================================================
+   ELIMINA
+========================================================= */
 
 function eliminaLavoro(id){
 
@@ -2635,7 +2744,6 @@ function eliminaLavoro(id){
       error
     );
 
-
     alert(
       "Errore nell'eliminazione."
     );
@@ -2645,10 +2753,9 @@ function eliminaLavoro(id){
 }
 
 
-
-/* ================================================= */
-/* URGENTI */
-/* ================================================= */
+/* =========================================================
+   LAVORI URGENTI
+========================================================= */
 
 function renderUrgentJobs(lista){
 
@@ -2681,11 +2788,9 @@ function renderUrgentJobs(lista){
 
     const gruppo=
       lista.filter(lavoro=>
-
         punti.includes(
           lavoro.punto
         )
-
       );
 
 
@@ -2705,7 +2810,6 @@ function renderUrgentJobs(lista){
     titolo.textContent=
       categoria;
 
-
     contenitore.appendChild(
       titolo
     );
@@ -2714,11 +2818,9 @@ function renderUrgentJobs(lista){
     punti.forEach(punto=>{
 
       gruppo
-
       .filter(lavoro=>
         lavoro.punto===punto
       )
-
       .forEach(lavoro=>{
 
         const card=
@@ -2726,11 +2828,9 @@ function renderUrgentJobs(lista){
             lavoro
           );
 
-
         card.classList.add(
           "urgent-job"
         );
-
 
         contenitore.appendChild(
           card
@@ -2745,10 +2845,9 @@ function renderUrgentJobs(lista){
 }
 
 
-
-/* ================================================= */
-/* COMPLETATI */
-/* ================================================= */
+/* =========================================================
+   LAVORI COMPLETATI
+========================================================= */
 
 function renderCompletedJobs(lista){
 
@@ -2781,11 +2880,9 @@ function renderCompletedJobs(lista){
 
     const gruppo=
       lista.filter(lavoro=>
-
         punti.includes(
           lavoro.punto
         )
-
       );
 
 
@@ -2805,7 +2902,6 @@ function renderCompletedJobs(lista){
     titolo.textContent=
       categoria;
 
-
     contenitore.appendChild(
       titolo
     );
@@ -2814,13 +2910,10 @@ function renderCompletedJobs(lista){
     punti.forEach(punto=>{
 
       gruppo
-
       .filter(lavoro=>
         lavoro.punto===punto
       )
-
       .forEach(lavoro=>{
-
 
         const card=
           document.createElement("div");
@@ -2919,8 +3012,6 @@ function renderCompletedJobs(lista){
           "job-actions";
 
 
-        /* DA RIFARE */
-
         const rifare=
           document.createElement("button");
 
@@ -2929,7 +3020,6 @@ function renderCompletedJobs(lista){
 
         rifare.textContent=
           "Da rifare";
-
 
         rifare.onclick=()=>{
 
@@ -2940,8 +3030,6 @@ function renderCompletedJobs(lista){
         };
 
 
-        /* ELIMINA */
-
         const elimina=
           document.createElement("button");
 
@@ -2950,7 +3038,6 @@ function renderCompletedJobs(lista){
 
         elimina.textContent=
           "Elimina";
-
 
         elimina.onclick=()=>{
 
@@ -2988,10 +3075,9 @@ function renderCompletedJobs(lista){
 }
 
 
-
-/* ================================================= */
-/* HOME BUTTONS */
-/* ================================================= */
+/* =========================================================
+   HOME
+========================================================= */
 
 document
   .getElementById(
@@ -3000,11 +3086,9 @@ document
   .addEventListener(
     "click",
     ()=>{
-
       mostraPagina(
         "todoPage"
       );
-
     }
   );
 
@@ -3016,11 +3100,9 @@ document
   .addEventListener(
     "click",
     ()=>{
-
       mostraPagina(
         "urgentPage"
       );
-
     }
   );
 
@@ -3032,19 +3114,16 @@ document
   .addEventListener(
     "click",
     ()=>{
-
       mostraPagina(
         "completedPage"
       );
-
     }
   );
 
 
-
-/* ================================================= */
-/* AVVIO */
-/* ================================================= */
+/* =========================================================
+   AVVIO
+========================================================= */
 
 creaPuntiVendita();
 
