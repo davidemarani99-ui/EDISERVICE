@@ -4,10 +4,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>EDISERVICE</title>
 
@@ -16,9 +13,9 @@
 
 <style>
 
-/* =========================================================
+/* =========================
    BASE
-========================================================= */
+========================= */
 
 *{
   box-sizing:border-box;
@@ -53,9 +50,9 @@ textarea{
 }
 
 
-/* =========================================================
-   HEADER / LOGO
-========================================================= */
+/* =========================
+   HEADER
+========================= */
 
 .header{
   text-align:center;
@@ -70,14 +67,12 @@ textarea{
   height:auto;
   margin:0 auto 10px;
   background:#fff;
-  border:0;
-  box-shadow:none;
 }
 
 
-/* =========================================================
-   FIREBASE
-========================================================= */
+/* =========================
+   FIREBASE STATUS
+========================= */
 
 .firebase-status{
   margin-top:8px;
@@ -94,9 +89,9 @@ textarea{
 }
 
 
-/* =========================================================
+/* =========================
    PAGINE
-========================================================= */
+========================= */
 
 .page{
   display:none;
@@ -107,33 +102,22 @@ textarea{
 }
 
 
-/* =========================================================
+/* =========================
    HOME
-========================================================= */
+========================= */
 
 .summary,
 .urgent-folder,
 .completed-folder{
-
   min-height:190px;
-
   border-radius:28px;
-
   padding:28px;
-
   margin:25px 0;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.07);
-
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
   cursor:pointer;
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   transition:.15s;
 }
 
@@ -188,9 +172,9 @@ textarea{
 }
 
 
-/* =========================================================
+/* =========================
    TITOLI
-========================================================= */
+========================= */
 
 .section-title{
   font-size:23px;
@@ -200,43 +184,28 @@ textarea{
 }
 
 
-/* =========================================================
+/* =========================
    CATEGORIE
-   PIM / AGORÀ / IPERFAMILY
-========================================================= */
+========================= */
 
 .group-title{
-
   display:block;
-
   width:100%;
-
   padding:11px 15px;
-
   margin:28px 0 12px;
-
   background:#f2f2f2;
-
   border-left:6px solid #d32f2f;
-
   border-radius:12px;
-
   color:#222;
-
   font-size:18px;
-
   font-weight:900;
-
-  letter-spacing:.2px;
-
-  box-shadow:
-    0 2px 7px rgba(0,0,0,.06);
+  box-shadow:0 2px 7px rgba(0,0,0,.06);
 }
 
 
-/* =========================================================
+/* =========================
    PUNTI VENDITA
-========================================================= */
+========================= */
 
 .store-list{
   display:flex;
@@ -245,34 +214,19 @@ textarea{
 }
 
 .store-button{
-
   width:100%;
-
   background:#fff;
-
   color:#222;
-
   border:1px solid #ddd;
-
   border-radius:16px;
-
   padding:17px 18px;
-
   text-align:left;
-
   font-size:17px;
-
   font-weight:650;
-
   cursor:pointer;
-
-  box-shadow:
-    0 2px 6px rgba(0,0,0,.04);
-
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 }
 
@@ -285,119 +239,129 @@ textarea{
 }
 
 
-/* =========================================================
-   NUMERO LAVORI
-========================================================= */
+/* =========================
+   NUMERI LAVORI
+========================= */
 
 .store-count{
-
   min-width:34px;
-
   height:34px;
-
   padding:0 10px;
-
   border-radius:17px;
-
   background:#f1f1f1;
-
   color:#d32f2f;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   font-size:16px;
-
   font-weight:900;
-
   margin-left:12px;
 }
 
 
-/* =========================================================
+/* =========================
    TOPBAR
-========================================================= */
+========================= */
 
 .topbar{
-
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
   margin-bottom:20px;
 }
 
 .back-button{
-
   background:#e9e9e9;
-
   color:#222;
-
   border:0;
-
   border-radius:12px;
-
   padding:11px 15px;
-
   font-weight:700;
-
   cursor:pointer;
 }
 
 .page-title{
-
   font-size:24px;
-
   font-weight:850;
-
   margin:0;
 }
 
 
-/* =========================================================
-   STORE
-========================================================= */
+/* =========================
+   RICERCA
+========================= */
+
+.search-box{
+  position:relative;
+  margin:15px 0 20px;
+}
+
+.search-box input{
+  width:100%;
+  height:52px;
+  padding:0 48px 0 17px;
+  border:1px solid #ddd;
+  border-radius:15px;
+  background:#f7f7f7;
+  font-size:16px;
+  outline:none;
+  box-shadow:0 2px 7px rgba(0,0,0,.05);
+}
+
+.search-box input:focus{
+  border-color:#d32f2f;
+  background:#fff;
+}
+
+.search-box button{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  width:31px;
+  height:31px;
+  border:0;
+  border-radius:50%;
+  background:#ddd;
+  color:#555;
+  font-size:22px;
+  line-height:29px;
+  display:none;
+  cursor:pointer;
+}
+
+.search-box button:active{
+  transform:translateY(-50%) scale(.92);
+}
+
+
+/* =========================
+   PUNTO VENDITA
+========================= */
 
 .store-name{
-
   color:#d32f2f;
-
   font-size:27px;
-
   font-weight:900;
 }
 
 .store-category{
-
   color:#777;
-
   font-size:14px;
-
   margin-bottom:20px;
 }
 
 
-/* =========================================================
+/* =========================
    FORM
-========================================================= */
+========================= */
 
 .form-card{
-
   background:#fff;
-
   border-radius:20px;
-
   padding:20px;
-
   margin:20px 0;
-
-  box-shadow:
-    0 2px 8px rgba(0,0,0,.06);
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
 .form-card h2{
@@ -405,158 +369,100 @@ textarea{
 }
 
 label{
-
   display:block;
-
   font-weight:700;
-
   margin:15px 0 7px;
 }
 
 input[type="text"],
 textarea{
-
   width:100%;
-
   border:1px solid #d5d5d5;
-
   border-radius:12px;
-
   padding:13px;
-
   font-size:16px;
-
   background:#fafafa;
-
   outline:none;
 }
 
 textarea{
-
   min-height:90px;
-
   resize:vertical;
 }
 
 .urgent-check{
-
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
   margin:15px 0;
 }
 
 .urgent-check input{
-
   width:20px;
-
   height:20px;
 }
 
 .add-button{
-
   width:100%;
-
   background:#222;
-
   color:#fff;
-
   border:0;
-
   border-radius:13px;
-
   padding:15px;
-
   font-size:17px;
-
   font-weight:800;
-
   cursor:pointer;
 }
 
 
-/* =========================================================
-   LAVORI DA FARE - GRUPPO PUNTO VENDITA
-========================================================= */
+/* =========================
+   LAVORI DA FARE
+========================= */
 
 .todo-store-group{
-
   background:#fff;
-
   border-radius:20px;
-
   margin:17px 0;
-
   overflow:hidden;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.07);
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-
-/* TESTATA PUNTO VENDITA */
-
 .todo-store-header{
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   padding:16px 18px;
-
   background:#fafafa;
-
   border-bottom:1px solid #e8e8e8;
 }
 
 .todo-store-name{
-
   color:#d32f2f;
-
   font-size:21px;
-
   font-weight:900;
 }
 
 .todo-store-count{
-
   min-width:32px;
-
   height:32px;
-
   padding:0 9px;
-
   border-radius:16px;
-
   background:#f1f1f1;
-
   color:#d32f2f;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   font-size:14px;
-
   font-weight:900;
 }
 
 
-/* =========================================================
+/* =========================
    SINGOLO LAVORO
-========================================================= */
+========================= */
 
 .todo-job-row{
-
   padding:14px;
-
   border-bottom:1px solid #eeeeee;
 }
 
@@ -565,137 +471,86 @@ textarea{
 }
 
 .todo-job-main{
-
   display:flex;
-
   align-items:flex-start;
-
   gap:10px;
 }
 
 .todo-job-dot{
-
   width:9px;
-
   height:9px;
-
   min-width:9px;
-
   margin-top:7px;
-
   border-radius:50%;
-
   background:#d32f2f;
 }
 
 .todo-job-content{
-
   flex:1;
-
   min-width:0;
 }
 
 .todo-job-text{
-
   font-size:16px;
-
   font-weight:700;
-
   line-height:1.35;
-
   word-break:break-word;
 }
 
 .todo-job-note{
-
   margin-top:5px;
-
   color:#777;
-
   font-size:13px;
-
   line-height:1.35;
 }
 
-
-/* =========================================================
-   URGENTE
-========================================================= */
-
 .todo-job-urgent{
-
   display:inline-block;
-
   background:#e53935;
-
   color:#fff;
-
   border-radius:7px;
-
   padding:3px 7px;
-
   font-size:10px;
-
   font-weight:800;
-
   margin-top:7px;
 }
 
 
-/* =========================================================
-   PULSANTI SINGOLO LAVORO
-========================================================= */
+/* =========================
+   PULSANTI LAVORO
+========================= */
 
 .todo-job-actions{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:5px;
-
   margin-top:11px;
-
   margin-left:19px;
 }
 
 .todo-btn{
-
   border:0;
-
   border-radius:8px;
-
   padding:7px 9px;
-
   font-size:11px;
-
   line-height:1;
-
   font-weight:700;
-
   cursor:pointer;
-
   white-space:nowrap;
 }
 
 .todo-btn-green{
-
   background:#43a047;
-
   color:#fff;
 }
 
 .todo-btn-orange{
-
   background:#ff9800;
-
   color:#fff;
 }
 
 .todo-btn-red{
-
   background:#e53935;
-
   color:#fff;
 }
 
@@ -704,182 +559,124 @@ textarea{
 }
 
 
-/* =========================================================
-   CARD LAVORO GENERICA
-========================================================= */
+/* =========================
+   CARD LAVORO
+========================= */
 
 .job-card{
-
   background:#fff;
-
   border-radius:18px;
-
   padding:18px;
-
   margin:12px 0;
-
-  box-shadow:
-    0 2px 8px rgba(0,0,0,.06);
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
 .job-store{
-
   color:#d32f2f;
-
   font-weight:800;
-
   font-size:14px;
-
   margin-bottom:7px;
 }
 
 .job-text{
-
   font-size:17px;
-
   font-weight:650;
-
   line-height:1.35;
 }
 
 .job-note{
-
   margin-top:7px;
-
   color:#777;
-
   font-size:14px;
 }
 
 .job-urgent{
-
   display:inline-block;
-
   background:#e53935;
-
   color:#fff;
-
   border-radius:8px;
-
   padding:4px 8px;
-
   font-size:11px;
-
   font-weight:800;
-
   margin-bottom:9px;
 }
 
 .job-actions{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:8px;
-
   margin-top:15px;
 }
 
 .btn{
-
   border:0;
-
   border-radius:11px;
-
   padding:10px 13px;
-
   font-size:14px;
-
   font-weight:700;
-
   cursor:pointer;
 }
 
 .btn-green{
-
   background:#43a047;
-
   color:#fff;
 }
 
 .btn-red{
-
   background:#e53935;
-
   color:#fff;
 }
 
 .btn-orange{
-
   background:#ff9800;
-
   color:#fff;
 }
 
 
-/* =========================================================
+/* =========================
    COMPLETATI
-========================================================= */
+========================= */
 
 .completed-page-title{
   color:#2e7d32;
 }
 
 .completed-job{
-
   background:#fff;
-
   border-radius:18px;
-
   padding:17px;
-
   margin:10px 0;
-
-  box-shadow:
-    0 2px 7px rgba(0,0,0,.05);
+  box-shadow:0 2px 7px rgba(0,0,0,.05);
 }
 
 .completed-line{
-
   display:flex;
-
   gap:10px;
-
   align-items:flex-start;
 }
 
 .completed-check{
-
   color:#2e7d32;
-
   font-size:22px;
-
   font-weight:900;
 }
 
 .completed-text{
-
   font-size:16px;
-
   font-weight:650;
 }
 
 .completed-note{
-
   color:#777;
-
   font-size:14px;
-
   margin-top:6px;
-
   margin-left:32px;
 }
 
 
-/* =========================================================
+/* =========================
    URGENTI
-========================================================= */
+========================= */
 
 .urgent-page-title{
   color:#d32f2f;
@@ -890,38 +687,29 @@ textarea{
 }
 
 
-/* =========================================================
+/* =========================
    MESSAGGI
-========================================================= */
+========================= */
 
 .empty{
-
   background:#fff;
-
   border-radius:17px;
-
   padding:25px;
-
   color:#777;
-
   text-align:center;
-
   margin:15px 0;
 }
 
 .loading{
-
   text-align:center;
-
   padding:30px;
-
   color:#777;
 }
 
 
-/* =========================================================
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
 @media(max-width:600px){
 
@@ -930,18 +718,14 @@ textarea{
   }
 
   .header img{
-
     width:230px;
-
     max-width:85%;
   }
 
   .summary,
   .urgent-folder,
   .completed-folder{
-
     min-height:180px;
-
     padding:24px;
   }
 
@@ -954,29 +738,20 @@ textarea{
   }
 
   .group-title{
-
     font-size:17px;
-
     padding:11px 14px;
-
     margin-top:24px;
   }
 
   .store-button{
-
     padding:16px;
-
     font-size:16px;
   }
 
   .store-count{
-
     min-width:32px;
-
     height:32px;
-
     font-size:15px;
-
     font-weight:900;
   }
 
@@ -1007,17 +782,10 @@ textarea{
 
 }
 
-
-/* =========================================================
-   SCHERMI PICCOLI
-========================================================= */
-
 @media(max-width:380px){
 
   .todo-btn{
-
     padding:6px 7px;
-
     font-size:10px;
   }
 
@@ -1036,9 +804,9 @@ textarea{
 <div class="container">
 
 
-<!-- =====================================================
+<!-- =========================
      HOME
-===================================================== -->
+========================= -->
 
 <div id="homePage" class="page active">
 
@@ -1046,7 +814,7 @@ textarea{
 
     <img
       src="ediservice-icon.png"
-      alt="DAR EDISERVICE THE SOLUTION"
+      alt="EDISERVICE"
     >
 
     <div
@@ -1161,10 +929,9 @@ textarea{
 </div>
 
 
-
-<!-- =====================================================
-     PAGINA LAVORI DA FARE
-===================================================== -->
+<!-- =========================
+     LAVORI DA FARE
+========================= -->
 
 <div id="todoPage" class="page">
 
@@ -1183,6 +950,29 @@ textarea{
 
   </div>
 
+
+  <!-- RICERCA -->
+
+  <div class="search-box">
+
+    <input
+      type="text"
+      id="searchLavori"
+      placeholder="🔎 Cerca punto vendita o lavoro..."
+      oninput="filtraLavori()"
+    >
+
+    <button
+      type="button"
+      id="clearSearch"
+      onclick="cancellaRicerca()"
+    >
+      ×
+    </button>
+
+  </div>
+
+
   <div id="todoJobs">
 
     <div class="loading">
@@ -1194,10 +984,9 @@ textarea{
 </div>
 
 
-
-<!-- =====================================================
-     PAGINA PUNTO VENDITA
-===================================================== -->
+<!-- =========================
+     PUNTO VENDITA
+========================= -->
 
 <div id="storePage" class="page">
 
@@ -1289,10 +1078,9 @@ textarea{
 </div>
 
 
-
-<!-- =====================================================
-     PAGINA URGENTI
-===================================================== -->
+<!-- =========================
+     URGENTI
+========================= -->
 
 <div id="urgentPage" class="page">
 
@@ -1316,10 +1104,9 @@ textarea{
 </div>
 
 
-
-<!-- =====================================================
-     PAGINA COMPLETATI
-===================================================== -->
+<!-- =========================
+     COMPLETATI
+========================= -->
 
 <div id="completedPage" class="page">
 
@@ -1346,10 +1133,9 @@ textarea{
 </div>
 
 
-
-<!-- =====================================================
+<!-- =========================
      FIREBASE
-===================================================== -->
+========================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -1360,9 +1146,9 @@ textarea{
 
 <script>
 
-/* =========================================================
-   CONFIG FIREBASE
-========================================================= */
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig={
 
@@ -1382,16 +1168,21 @@ const firebaseConfig={
 
 };
 
-firebase.initializeApp(firebaseConfig);
 
-const auth=firebase.auth();
+firebase.initializeApp(
+  firebaseConfig
+);
 
-const db=firebase.firestore();
+const auth =
+  firebase.auth();
+
+const db =
+  firebase.firestore();
 
 
-/* =========================================================
+/* =========================
    PUNTI VENDITA
-========================================================= */
+========================= */
 
 const puntiVendita={
 
@@ -1448,22 +1239,24 @@ let lavori=[];
 
 let puntoSelezionato=null;
 
+let ricercaLavori="";
 
-/* =========================================================
+
+/* =========================
    FIREBASE STATUS
-========================================================= */
+========================= */
 
 function firebaseOk(){
 
-  const status=
+  const status =
     document.getElementById(
       "firebaseStatus"
     );
 
-  status.textContent=
+  status.textContent =
     "● Firebase collegato";
 
-  status.className=
+  status.className =
     "firebase-status status-ok";
 
 }
@@ -1476,23 +1269,23 @@ function firebaseErrore(error){
     error
   );
 
-  const status=
+  const status =
     document.getElementById(
       "firebaseStatus"
     );
 
-  status.textContent=
+  status.textContent =
     "● Errore Firebase";
 
-  status.className=
+  status.className =
     "firebase-status status-error";
 
 }
 
 
-/* =========================================================
+/* =========================
    LOGIN
-========================================================= */
+========================= */
 
 auth.signInAnonymously()
 
@@ -1506,18 +1299,20 @@ auth.signInAnonymously()
 
 .catch(error=>{
 
-  firebaseErrore(error);
+  firebaseErrore(
+    error
+  );
 
 });
 
 
-/* =========================================================
+/* =========================
    CREA PUNTI VENDITA
-========================================================= */
+========================= */
 
 function creaPuntiVendita(){
 
-  const contenitore=
+  const contenitore =
     document.getElementById(
       "puntiVendita"
     );
@@ -1525,20 +1320,26 @@ function creaPuntiVendita(){
   contenitore.innerHTML="";
 
 
-  Object.keys(puntiVendita)
+  Object.keys(
+    puntiVendita
+  )
   .forEach(categoria=>{
 
-    const gruppo=
-      document.createElement("div");
+    const gruppo =
+      document.createElement(
+        "div"
+      );
 
 
-    const titolo=
-      document.createElement("div");
+    const titolo =
+      document.createElement(
+        "div"
+      );
 
-    titolo.className=
+    titolo.className =
       "group-title";
 
-    titolo.textContent=
+    titolo.textContent =
       categoria;
 
 
@@ -1547,43 +1348,54 @@ function creaPuntiVendita(){
     );
 
 
-    const lista=
-      document.createElement("div");
+    const lista =
+      document.createElement(
+        "div"
+      );
 
-    lista.className=
+    lista.className =
       "store-list";
 
 
     puntiVendita[categoria]
     .forEach(punto=>{
 
-      const button=
-        document.createElement("button");
+      const button =
+        document.createElement(
+          "button"
+        );
 
-      button.className=
+      button.className =
         "store-button";
 
 
-      const nome=
-        document.createElement("span");
+      const nome =
+        document.createElement(
+          "span"
+        );
 
-      nome.className=
+      nome.className =
         "store-name-text";
 
-      nome.textContent=
+      nome.textContent =
         punto;
 
 
-      const numero=
-        document.createElement("span");
+      const numero =
+        document.createElement(
+          "span"
+        );
 
-      numero.className=
+      numero.className =
         "store-count";
 
-      numero.id=
-        "count-"+encodeURIComponent(punto);
+      numero.id =
+        "count-" +
+        encodeURIComponent(
+          punto
+        );
 
-      numero.textContent=
+      numero.textContent =
         "0";
 
 
@@ -1626,9 +1438,9 @@ function creaPuntiVendita(){
 }
 
 
-/* =========================================================
-   ASCOLTA LAVORI FIRESTORE
-========================================================= */
+/* =========================
+   ASCOLTA FIRESTORE
+========================= */
 
 function ascoltaLavori(){
 
@@ -1647,17 +1459,19 @@ function ascoltaLavori(){
       lavori=[];
 
 
-      snapshot.forEach(doc=>{
+      snapshot.forEach(
+        doc=>{
 
-        lavori.push({
+          lavori.push({
 
-          id:doc.id,
+            id:doc.id,
 
-          ...doc.data()
+            ...doc.data()
 
-        });
+          });
 
-      });
+        }
+      );
 
 
       aggiornaTutto();
@@ -1682,55 +1496,52 @@ function ascoltaLavori(){
 }
 
 
-/* =========================================================
+/* =========================
    AGGIORNA TUTTO
-========================================================= */
+========================= */
 
 function aggiornaTutto(){
 
-  const daFare=
-    lavori.filter(x=>
-
-      x.attivo===true &&
-      x.completato!==true
-
+  const daFare =
+    lavori.filter(
+      x =>
+        x.attivo===true &&
+        x.completato!==true
     );
 
 
-  const urgenti=
-    lavori.filter(x=>
-
-      x.attivo===true &&
-      x.completato!==true &&
-      x.urgente===true
-
+  const urgenti =
+    lavori.filter(
+      x =>
+        x.attivo===true &&
+        x.completato!==true &&
+        x.urgente===true
     );
 
 
-  const completati=
-    lavori.filter(x=>
-
-      x.attivo===true &&
-      x.completato===true
-
+  const completati =
+    lavori.filter(
+      x =>
+        x.attivo===true &&
+        x.completato===true
     );
 
 
   document.getElementById(
     "totaleDaFare"
-  ).textContent=
+  ).textContent =
     daFare.length;
 
 
   document.getElementById(
     "totaleUrgenti"
-  ).textContent=
+  ).textContent =
     urgenti.length;
 
 
   document.getElementById(
     "totaleCompletati"
-  ).textContent=
+  ).textContent =
     completati.length;
 
 
@@ -1763,37 +1574,41 @@ function aggiornaTutto(){
 }
 
 
-/* =========================================================
+/* =========================
    NUMERI PUNTI VENDITA
-========================================================= */
+========================= */
 
 function aggiornaNumeriPuntiVendita(){
 
-  Object.keys(puntiVendita)
+  Object.keys(
+    puntiVendita
+  )
   .forEach(categoria=>{
 
     puntiVendita[categoria]
     .forEach(punto=>{
 
-      const numero=
-        lavori.filter(x=>
-
-          x.attivo===true &&
-          x.punto===punto &&
-          x.completato!==true
-
+      const numero =
+        lavori.filter(
+          x =>
+            x.attivo===true &&
+            x.punto===punto &&
+            x.completato!==true
         ).length;
 
 
-      const elemento=
+      const elemento =
         document.getElementById(
-          "count-"+encodeURIComponent(punto)
+          "count-" +
+          encodeURIComponent(
+            punto
+          )
         );
 
 
       if(elemento){
 
-        elemento.textContent=
+        elemento.textContent =
           numero;
 
       }
@@ -1805,14 +1620,16 @@ function aggiornaNumeriPuntiVendita(){
 }
 
 
-/* =========================================================
+/* =========================
    NAVIGAZIONE
-========================================================= */
+========================= */
 
 function mostraPagina(id){
 
   document
-    .querySelectorAll(".page")
+    .querySelectorAll(
+      ".page"
+    )
     .forEach(page=>{
 
       page.classList.remove(
@@ -1822,8 +1639,10 @@ function mostraPagina(id){
     });
 
 
-  const pagina=
-    document.getElementById(id);
+  const pagina =
+    document.getElementById(
+      id
+    );
 
 
   if(pagina){
@@ -1851,14 +1670,163 @@ function showHome(){
 }
 
 
-/* =========================================================
+/* =========================
+   FILTRO RICERCA
+========================= */
+
+function filtraLavori(){
+
+  const input =
+    document.getElementById(
+      "searchLavori"
+    );
+
+  const clear =
+    document.getElementById(
+      "clearSearch"
+    );
+
+
+  ricercaLavori =
+    input.value
+      .trim()
+      .toLowerCase();
+
+
+  if(ricercaLavori){
+
+    clear.style.display =
+      "block";
+
+  }else{
+
+    clear.style.display =
+      "none";
+
+  }
+
+
+  const lista =
+    lavori.filter(
+      lavoro => {
+
+        if(
+          lavoro.attivo !== true ||
+          lavoro.completato === true
+        ){
+
+          return false;
+
+        }
+
+
+        if(!ricercaLavori){
+
+          return true;
+
+        }
+
+
+        const punto =
+          (
+            lavoro.punto ||
+            ""
+          ).toLowerCase();
+
+
+        const testo =
+          (
+            lavoro.testo ||
+            ""
+          ).toLowerCase();
+
+
+        const note =
+          (
+            lavoro.note ||
+            ""
+          ).toLowerCase();
+
+
+        return (
+
+          punto.includes(
+            ricercaLavori
+          )
+
+          ||
+
+          testo.includes(
+            ricercaLavori
+          )
+
+          ||
+
+          note.includes(
+            ricercaLavori
+          )
+
+        );
+
+      }
+    );
+
+
+  renderTodoJobs(
+    lista
+  );
+
+}
+
+
+/* =========================
+   CANCELLA RICERCA
+========================= */
+
+function cancellaRicerca(){
+
+  const input =
+    document.getElementById(
+      "searchLavori"
+    );
+
+  const clear =
+    document.getElementById(
+      "clearSearch"
+    );
+
+
+  input.value="";
+
+  ricercaLavori="";
+
+  clear.style.display =
+    "none";
+
+
+  const lista =
+    lavori.filter(
+      lavoro =>
+        lavoro.attivo===true &&
+        lavoro.completato!==true
+    );
+
+
+  renderTodoJobs(
+    lista
+  );
+
+}
+
+
+/* =========================
    LAVORI DA FARE
-   RAGGRUPPATI PER PUNTO VENDITA
-========================================================= */
+   RAGGRUPPATI
+========================= */
 
 function renderTodoJobs(lista){
 
-  const contenitore=
+  const contenitore =
     document.getElementById(
       "todoJobs"
     );
@@ -1868,28 +1836,43 @@ function renderTodoJobs(lista){
 
   if(lista.length===0){
 
-    contenitore.innerHTML=
-      `<div class="empty">
-        Nessun lavoro da fare.
-      </div>`;
+    if(ricercaLavori){
+
+      contenitore.innerHTML =
+        `<div class="empty">
+          Nessun lavoro trovato per
+          "<strong>${escapeHtml(ricercaLavori)}</strong>"
+        </div>`;
+
+    }else{
+
+      contenitore.innerHTML =
+        `<div class="empty">
+          Nessun lavoro da fare.
+        </div>`;
+
+    }
 
     return;
 
   }
 
 
-  Object.keys(puntiVendita)
+  Object.keys(
+    puntiVendita
+  )
   .forEach(categoria=>{
 
-    const punti=
+    const punti =
       puntiVendita[categoria];
 
 
-    const lavoriCategoria=
-      lista.filter(lavoro=>
-        punti.includes(
-          lavoro.punto
-        )
+    const lavoriCategoria =
+      lista.filter(
+        lavoro =>
+          punti.includes(
+            lavoro.punto
+          )
       );
 
 
@@ -1900,14 +1883,17 @@ function renderTodoJobs(lista){
     }
 
 
-    const titolo=
-      document.createElement("div");
+    const titolo =
+      document.createElement(
+        "div"
+      );
 
-    titolo.className=
+    titolo.className =
       "group-title";
 
-    titolo.textContent=
+    titolo.textContent =
       categoria;
+
 
     contenitore.appendChild(
       titolo
@@ -1916,9 +1902,9 @@ function renderTodoJobs(lista){
 
     punti.forEach(punto=>{
 
-      const lavoriPunto=
+      const lavoriPunto =
         lavoriCategoria.filter(
-          lavoro=>
+          lavoro =>
             lavoro.punto===punto
         );
 
@@ -1930,37 +1916,45 @@ function renderTodoJobs(lista){
       }
 
 
-      const gruppo=
-        document.createElement("div");
+      const gruppo =
+        document.createElement(
+          "div"
+        );
 
-      gruppo.className=
+      gruppo.className =
         "todo-store-group";
 
 
-      const header=
-        document.createElement("div");
+      const header =
+        document.createElement(
+          "div"
+        );
 
-      header.className=
+      header.className =
         "todo-store-header";
 
 
-      const nome=
-        document.createElement("div");
+      const nome =
+        document.createElement(
+          "div"
+        );
 
-      nome.className=
+      nome.className =
         "todo-store-name";
 
-      nome.textContent=
+      nome.textContent =
         punto;
 
 
-      const numero=
-        document.createElement("div");
+      const numero =
+        document.createElement(
+          "div"
+        );
 
-      numero.className=
+      numero.className =
         "todo-store-count";
 
-      numero.textContent=
+      numero.textContent =
         lavoriPunto.length;
 
 
@@ -1978,15 +1972,17 @@ function renderTodoJobs(lista){
       );
 
 
-      lavoriPunto.forEach(lavoro=>{
+      lavoriPunto.forEach(
+        lavoro=>{
 
-        gruppo.appendChild(
-          creaTodoJobRow(
-            lavoro
-          )
-        );
+          gruppo.appendChild(
+            creaTodoJobRow(
+              lavoro
+            )
+          );
 
-      });
+        }
+      );
 
 
       contenitore.appendChild(
@@ -2000,47 +1996,76 @@ function renderTodoJobs(lista){
 }
 
 
-/* =========================================================
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(text){
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+  div.textContent =
+    text;
+
+  return div.innerHTML;
+
+}
+
+
+/* =========================
    SINGOLO LAVORO
-========================================================= */
+========================= */
 
 function creaTodoJobRow(lavoro){
 
-  const riga=
-    document.createElement("div");
+  const riga =
+    document.createElement(
+      "div"
+    );
 
-  riga.className=
+  riga.className =
     "todo-job-row";
 
 
-  const main=
-    document.createElement("div");
+  const main =
+    document.createElement(
+      "div"
+    );
 
-  main.className=
+  main.className =
     "todo-job-main";
 
 
-  const pallino=
-    document.createElement("div");
+  const pallino =
+    document.createElement(
+      "div"
+    );
 
-  pallino.className=
+  pallino.className =
     "todo-job-dot";
 
 
-  const contenuto=
-    document.createElement("div");
+  const contenuto =
+    document.createElement(
+      "div"
+    );
 
-  contenuto.className=
+  contenuto.className =
     "todo-job-content";
 
 
-  const testo=
-    document.createElement("div");
+  const testo =
+    document.createElement(
+      "div"
+    );
 
-  testo.className=
+  testo.className =
     "todo-job-text";
 
-  testo.textContent=
+  testo.textContent =
     lavoro.testo || "";
 
 
@@ -2051,14 +2076,17 @@ function creaTodoJobRow(lavoro){
 
   if(lavoro.note){
 
-    const note=
-      document.createElement("div");
+    const note =
+      document.createElement(
+        "div"
+      );
 
-    note.className=
+    note.className =
       "todo-job-note";
 
-    note.textContent=
-      "Note: "+lavoro.note;
+    note.textContent =
+      "Note: " +
+      lavoro.note;
 
 
     contenuto.appendChild(
@@ -2070,13 +2098,15 @@ function creaTodoJobRow(lavoro){
 
   if(lavoro.urgente===true){
 
-    const badge=
-      document.createElement("div");
+    const badge =
+      document.createElement(
+        "div"
+      );
 
-    badge.className=
+    badge.className =
       "todo-job-urgent";
 
-    badge.textContent=
+    badge.textContent =
       "URGENTE";
 
 
@@ -2101,21 +2131,26 @@ function creaTodoJobRow(lavoro){
   );
 
 
-  const actions=
-    document.createElement("div");
+  const actions =
+    document.createElement(
+      "div"
+    );
 
-  actions.className=
+  actions.className =
     "todo-job-actions";
 
 
-  const completo=
-    document.createElement("button");
+  const completo =
+    document.createElement(
+      "button"
+    );
 
-  completo.className=
+  completo.className =
     "todo-btn todo-btn-green";
 
-  completo.textContent=
+  completo.textContent =
     "Completato";
+
 
   completo.onclick=()=>{
 
@@ -2126,14 +2161,15 @@ function creaTodoJobRow(lavoro){
   };
 
 
-  const urgente=
-    document.createElement("button");
+  const urgente =
+    document.createElement(
+      "button"
+    );
 
-  urgente.className=
+  urgente.className =
     "todo-btn todo-btn-orange";
 
-  urgente.textContent=
-
+  urgente.textContent =
     lavoro.urgente===true
       ? "Togli urgente"
       : "Urgente";
@@ -2149,14 +2185,17 @@ function creaTodoJobRow(lavoro){
   };
 
 
-  const elimina=
-    document.createElement("button");
+  const elimina =
+    document.createElement(
+      "button"
+    );
 
-  elimina.className=
+  elimina.className =
     "todo-btn todo-btn-red";
 
-  elimina.textContent=
+  elimina.textContent =
     "Elimina";
+
 
   elimina.onclick=()=>{
 
@@ -2190,28 +2229,28 @@ function creaTodoJobRow(lavoro){
 }
 
 
-/* =========================================================
+/* =========================
    PUNTO VENDITA
-========================================================= */
+========================= */
 
 function apriPuntoVendita(
   punto,
   categoria
 ){
 
-  puntoSelezionato=
+  puntoSelezionato =
     punto;
 
 
   document.getElementById(
     "storePageName"
-  ).textContent=
+  ).textContent =
     punto;
 
 
   document.getElementById(
     "storePageCategory"
-  ).textContent=
+  ).textContent =
     categoria;
 
 
@@ -2242,13 +2281,13 @@ function apriPuntoVendita(
 }
 
 
-/* =========================================================
-   LAVORI DEL PUNTO VENDITA
-========================================================= */
+/* =========================
+   LAVORI PUNTO VENDITA
+========================= */
 
 function renderStoreJobs(punto){
 
-  const contenitore=
+  const contenitore =
     document.getElementById(
       "storeJobs"
     );
@@ -2256,18 +2295,17 @@ function renderStoreJobs(punto){
   contenitore.innerHTML="";
 
 
-  const lista=
-    lavori.filter(x=>
-
-      x.attivo===true &&
-      x.punto===punto
-
+  const lista =
+    lavori.filter(
+      x =>
+        x.attivo===true &&
+        x.punto===punto
     );
 
 
   if(lista.length===0){
 
-    contenitore.innerHTML=
+    contenitore.innerHTML =
       `<div class="empty">
         Nessun lavoro
       </div>`;
@@ -2277,39 +2315,45 @@ function renderStoreJobs(punto){
   }
 
 
-  lista.forEach(lavoro=>{
+  lista.forEach(
+    lavoro=>{
 
-    contenitore.appendChild(
-      creaJobCard(
-        lavoro
-      )
-    );
+      contenitore.appendChild(
+        creaJobCard(
+          lavoro
+        )
+      );
 
-  });
+    }
+  );
 
 }
 
 
-/* =========================================================
+/* =========================
    CARD LAVORO
-========================================================= */
+========================= */
 
 function creaJobCard(lavoro){
 
-  const card=
-    document.createElement("div");
+  const card =
+    document.createElement(
+      "div"
+    );
 
-  card.className=
+  card.className =
     "job-card";
 
 
-  const store=
-    document.createElement("div");
+  const store =
+    document.createElement(
+      "div"
+    );
 
-  store.className=
+  store.className =
     "job-store";
 
-  store.textContent=
+  store.textContent =
     lavoro.punto || "";
 
 
@@ -2320,13 +2364,15 @@ function creaJobCard(lavoro){
 
   if(lavoro.urgente===true){
 
-    const badge=
-      document.createElement("div");
+    const badge =
+      document.createElement(
+        "div"
+      );
 
-    badge.className=
+    badge.className =
       "job-urgent";
 
-    badge.textContent=
+    badge.textContent =
       "URGENTE";
 
 
@@ -2337,13 +2383,15 @@ function creaJobCard(lavoro){
   }
 
 
-  const testo=
-    document.createElement("div");
+  const testo =
+    document.createElement(
+      "div"
+    );
 
-  testo.className=
+  testo.className =
     "job-text";
 
-  testo.textContent=
+  testo.textContent =
     lavoro.testo || "";
 
 
@@ -2354,14 +2402,17 @@ function creaJobCard(lavoro){
 
   if(lavoro.note){
 
-    const note=
-      document.createElement("div");
+    const note =
+      document.createElement(
+        "div"
+      );
 
-    note.className=
+    note.className =
       "job-note";
 
-    note.textContent=
-      "Note: "+lavoro.note;
+    note.textContent =
+      "Note: " +
+      lavoro.note;
 
 
     card.appendChild(
@@ -2371,21 +2422,26 @@ function creaJobCard(lavoro){
   }
 
 
-  const actions=
-    document.createElement("div");
+  const actions =
+    document.createElement(
+      "div"
+    );
 
-  actions.className=
+  actions.className =
     "job-actions";
 
 
-  const completo=
-    document.createElement("button");
+  const completo =
+    document.createElement(
+      "button"
+    );
 
-  completo.className=
+  completo.className =
     "btn btn-green";
 
-  completo.textContent=
+  completo.textContent =
     "Completato";
+
 
   completo.onclick=()=>{
 
@@ -2396,14 +2452,15 @@ function creaJobCard(lavoro){
   };
 
 
-  const urgente=
-    document.createElement("button");
+  const urgente =
+    document.createElement(
+      "button"
+    );
 
-  urgente.className=
+  urgente.className =
     "btn btn-orange";
 
-  urgente.textContent=
-
+  urgente.textContent =
     lavoro.urgente===true
       ? "Togli urgente"
       : "Rendi urgente";
@@ -2419,14 +2476,17 @@ function creaJobCard(lavoro){
   };
 
 
-  const elimina=
-    document.createElement("button");
+  const elimina =
+    document.createElement(
+      "button"
+    );
 
-  elimina.className=
+  elimina.className =
     "btn btn-red";
 
-  elimina.textContent=
+  elimina.textContent =
     "Elimina";
+
 
   elimina.onclick=()=>{
 
@@ -2460,9 +2520,9 @@ function creaJobCard(lavoro){
 }
 
 
-/* =========================================================
+/* =========================
    AGGIUNGI LAVORO
-========================================================= */
+========================= */
 
 function aggiungiLavoro(){
 
@@ -2473,34 +2533,34 @@ function aggiungiLavoro(){
   }
 
 
-  const lavoroInput=
+  const lavoroInput =
     document.getElementById(
       "lavoroInput"
     );
 
-  const noteInput=
+  const noteInput =
     document.getElementById(
       "noteInput"
     );
 
-  const urgenteInput=
+  const urgenteInput =
     document.getElementById(
       "urgenteInput"
     );
 
-  const button=
+  const button =
     document.getElementById(
       "addWorkButton"
     );
 
 
-  const testo=
+  const testo =
     lavoroInput.value.trim();
 
-  const note=
+  const note =
     noteInput.value.trim();
 
-  const urgente=
+  const urgente =
     urgenteInput.checked;
 
 
@@ -2519,7 +2579,7 @@ function aggiungiLavoro(){
 
   button.disabled=true;
 
-  button.textContent=
+  button.textContent =
     "Salvataggio...";
 
 
@@ -2562,7 +2622,7 @@ function aggiungiLavoro(){
 
       button.disabled=false;
 
-      button.textContent=
+      button.textContent =
         "+ Aggiungi lavoro";
 
     })
@@ -2579,7 +2639,7 @@ function aggiungiLavoro(){
 
       button.disabled=false;
 
-      button.textContent=
+      button.textContent =
         "+ Aggiungi lavoro";
 
       firebaseErrore(
@@ -2615,7 +2675,7 @@ function aggiungiLavoro(){
 
       button.disabled=false;
 
-      button.textContent=
+      button.textContent =
         "+ Aggiungi lavoro";
 
     });
@@ -2625,9 +2685,9 @@ function aggiungiLavoro(){
 }
 
 
-/* =========================================================
+/* =========================
    COMPLETA
-========================================================= */
+========================= */
 
 function completaLavoro(id){
 
@@ -2654,9 +2714,9 @@ function completaLavoro(id){
 }
 
 
-/* =========================================================
+/* =========================
    DA RIFARE
-========================================================= */
+========================= */
 
 function daRifare(id){
 
@@ -2683,9 +2743,9 @@ function daRifare(id){
 }
 
 
-/* =========================================================
+/* =========================
    URGENZA
-========================================================= */
+========================= */
 
 function cambiaUrgente(
   id,
@@ -2715,9 +2775,9 @@ function cambiaUrgente(
 }
 
 
-/* =========================================================
+/* =========================
    ELIMINA
-========================================================= */
+========================= */
 
 function eliminaLavoro(id){
 
@@ -2753,13 +2813,13 @@ function eliminaLavoro(id){
 }
 
 
-/* =========================================================
-   LAVORI URGENTI
-========================================================= */
+/* =========================
+   URGENTI
+========================= */
 
 function renderUrgentJobs(lista){
 
-  const contenitore=
+  const contenitore =
     document.getElementById(
       "urgentJobs"
     );
@@ -2769,7 +2829,7 @@ function renderUrgentJobs(lista){
 
   if(lista.length===0){
 
-    contenitore.innerHTML=
+    contenitore.innerHTML =
       `<div class="empty">
         Nessun lavoro urgente.
       </div>`;
@@ -2779,18 +2839,21 @@ function renderUrgentJobs(lista){
   }
 
 
-  Object.keys(puntiVendita)
+  Object.keys(
+    puntiVendita
+  )
   .forEach(categoria=>{
 
-    const punti=
+    const punti =
       puntiVendita[categoria];
 
 
-    const gruppo=
-      lista.filter(lavoro=>
-        punti.includes(
-          lavoro.punto
-        )
+    const gruppo =
+      lista.filter(
+        lavoro =>
+          punti.includes(
+            lavoro.punto
+          )
       );
 
 
@@ -2801,14 +2864,17 @@ function renderUrgentJobs(lista){
     }
 
 
-    const titolo=
-      document.createElement("div");
+    const titolo =
+      document.createElement(
+        "div"
+      );
 
-    titolo.className=
+    titolo.className =
       "group-title";
 
-    titolo.textContent=
+    titolo.textContent =
       categoria;
+
 
     contenitore.appendChild(
       titolo
@@ -2818,12 +2884,13 @@ function renderUrgentJobs(lista){
     punti.forEach(punto=>{
 
       gruppo
-      .filter(lavoro=>
-        lavoro.punto===punto
+      .filter(
+        lavoro =>
+          lavoro.punto===punto
       )
       .forEach(lavoro=>{
 
-        const card=
+        const card =
           creaJobCard(
             lavoro
           );
@@ -2845,13 +2912,13 @@ function renderUrgentJobs(lista){
 }
 
 
-/* =========================================================
-   LAVORI COMPLETATI
-========================================================= */
+/* =========================
+   COMPLETATI
+========================= */
 
 function renderCompletedJobs(lista){
 
-  const contenitore=
+  const contenitore =
     document.getElementById(
       "completedJobs"
     );
@@ -2861,7 +2928,7 @@ function renderCompletedJobs(lista){
 
   if(lista.length===0){
 
-    contenitore.innerHTML=
+    contenitore.innerHTML =
       `<div class="empty">
         Nessun lavoro completato.
       </div>`;
@@ -2871,18 +2938,21 @@ function renderCompletedJobs(lista){
   }
 
 
-  Object.keys(puntiVendita)
+  Object.keys(
+    puntiVendita
+  )
   .forEach(categoria=>{
 
-    const punti=
+    const punti =
       puntiVendita[categoria];
 
 
-    const gruppo=
-      lista.filter(lavoro=>
-        punti.includes(
-          lavoro.punto
-        )
+    const gruppo =
+      lista.filter(
+        lavoro =>
+          punti.includes(
+            lavoro.punto
+          )
       );
 
 
@@ -2893,14 +2963,17 @@ function renderCompletedJobs(lista){
     }
 
 
-    const titolo=
-      document.createElement("div");
+    const titolo =
+      document.createElement(
+        "div"
+      );
 
-    titolo.className=
+    titolo.className =
       "group-title";
 
-    titolo.textContent=
+    titolo.textContent =
       categoria;
+
 
     contenitore.appendChild(
       titolo
@@ -2910,56 +2983,69 @@ function renderCompletedJobs(lista){
     punti.forEach(punto=>{
 
       gruppo
-      .filter(lavoro=>
-        lavoro.punto===punto
+      .filter(
+        lavoro =>
+          lavoro.punto===punto
       )
       .forEach(lavoro=>{
 
-        const card=
-          document.createElement("div");
+        const card =
+          document.createElement(
+            "div"
+          );
 
-        card.className=
+        card.className =
           "completed-job";
 
 
-        const linea=
-          document.createElement("div");
+        const linea =
+          document.createElement(
+            "div"
+          );
 
-        linea.className=
+        linea.className =
           "completed-line";
 
 
-        const check=
-          document.createElement("div");
+        const check =
+          document.createElement(
+            "div"
+          );
 
-        check.className=
+        check.className =
           "completed-check";
 
-        check.textContent=
+        check.textContent =
           "✓";
 
 
-        const testo=
-          document.createElement("div");
+        const testo =
+          document.createElement(
+            "div"
+          );
 
 
-        const store=
-          document.createElement("div");
+        const store =
+          document.createElement(
+            "div"
+          );
 
-        store.className=
+        store.className =
           "job-store";
 
-        store.textContent=
+        store.textContent =
           lavoro.punto;
 
 
-        const descrizione=
-          document.createElement("div");
+        const descrizione =
+          document.createElement(
+            "div"
+          );
 
-        descrizione.className=
+        descrizione.className =
           "completed-text";
 
-        descrizione.textContent=
+        descrizione.textContent =
           lavoro.testo || "";
 
 
@@ -2988,14 +3074,17 @@ function renderCompletedJobs(lista){
 
         if(lavoro.note){
 
-          const note=
-            document.createElement("div");
+          const note =
+            document.createElement(
+              "div"
+            );
 
-          note.className=
+          note.className =
             "completed-note";
 
-          note.textContent=
-            "Note: "+lavoro.note;
+          note.textContent =
+            "Note: " +
+            lavoro.note;
 
 
           card.appendChild(
@@ -3005,21 +3094,26 @@ function renderCompletedJobs(lista){
         }
 
 
-        const actions=
-          document.createElement("div");
+        const actions =
+          document.createElement(
+            "div"
+          );
 
-        actions.className=
+        actions.className =
           "job-actions";
 
 
-        const rifare=
-          document.createElement("button");
+        const rifare =
+          document.createElement(
+            "button"
+          );
 
-        rifare.className=
+        rifare.className =
           "btn btn-orange";
 
-        rifare.textContent=
+        rifare.textContent =
           "Da rifare";
+
 
         rifare.onclick=()=>{
 
@@ -3030,14 +3124,17 @@ function renderCompletedJobs(lista){
         };
 
 
-        const elimina=
-          document.createElement("button");
+        const elimina =
+          document.createElement(
+            "button"
+          );
 
-        elimina.className=
+        elimina.className =
           "btn btn-red";
 
-        elimina.textContent=
+        elimina.textContent =
           "Elimina";
+
 
         elimina.onclick=()=>{
 
@@ -3075,9 +3172,9 @@ function renderCompletedJobs(lista){
 }
 
 
-/* =========================================================
-   HOME
-========================================================= */
+/* =========================
+   PULSANTI HOME
+========================= */
 
 document
   .getElementById(
@@ -3121,9 +3218,9 @@ document
   );
 
 
-/* =========================================================
+/* =========================
    AVVIO
-========================================================= */
+========================= */
 
 creaPuntiVendita();
 
