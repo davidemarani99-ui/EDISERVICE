@@ -279,6 +279,15 @@ font-weight:700;
 color:#2e7d32
 }
 
+.completed-summary-number{
+font-size:52px;
+font-weight:800;
+color:#2e7d32;
+line-height:1;
+margin-top:10px;
+margin-bottom:6px
+}
+
 .completed-folder-subtitle{
 font-size:14px;
 color:#4f6f52;
@@ -456,8 +465,15 @@ id="btnCompletati"
 Lavori completati
 </div>
 
+<div
+class="completed-summary-number"
+id="totaleCompletati"
+>
+0
+</div>
+
 <div class="completed-folder-subtitle">
-Visualizza tutti i lavori terminati
+lavori completati in tutti i punti vendita
 </div>
 
 </div>
@@ -573,8 +589,6 @@ Torna alla schermata principale
 
 <!-- =========================
      PAGINA LAVORI COMPLETATI
-     SENZA LOGO
-     SENZA HEADER
 ========================= -->
 
 <div
@@ -865,11 +879,22 @@ lavori.filter(
 x => x.attivo && !x.completato
 );
 
+const completati =
+lavori.filter(
+x => x.attivo && x.completato
+);
+
 
 document.getElementById(
 "totale"
 ).textContent =
 aperti.length;
+
+
+document.getElementById(
+"totaleCompletati"
+).textContent =
+completati.length;
 
 
 const box =
@@ -1097,11 +1122,6 @@ document
 .classList
 .remove("hidden");
 
-
-/*
-Nascondiamo completamente
-logo e intestazione.
-*/
 
 document
 .getElementById("mainHeader")
@@ -1338,7 +1358,6 @@ ${safe(x.note)}
 <button
 type="button"
 class="btnCompleta"
-data-id="${x.id}"
 >
 ${
 x.completato
@@ -1352,7 +1371,6 @@ x.completato
 <button
 type="button"
 class="btnElimina"
-data-id="${x.id}"
 >
 Elimina
 </button>
@@ -1362,25 +1380,17 @@ Elimina
 `;
 
 
-const btnCompleta =
-div.querySelector(
-".btnCompleta"
-);
-
-
-const btnElimina =
-div.querySelector(
-".btnElimina"
-);
-
-
-btnCompleta.addEventListener(
+div
+.querySelector(".btnCompleta")
+.addEventListener(
 "click",
 () => completa(x.id)
 );
 
 
-btnElimina.addEventListener(
+div
+.querySelector(".btnElimina")
+.addEventListener(
 "click",
 () => elimina(x.id)
 );
@@ -1575,13 +1585,9 @@ card.innerHTML =
 html;
 
 
-const pulsantiRifare =
-card.querySelectorAll(
-".btnRifare"
-);
-
-
-pulsantiRifare.forEach(button => {
+card
+.querySelectorAll(".btnRifare")
+.forEach(button => {
 
 button.addEventListener(
 "click",
@@ -1591,13 +1597,9 @@ button.addEventListener(
 });
 
 
-const pulsantiElimina =
-card.querySelectorAll(
-".btnEliminaCompletato"
-);
-
-
-pulsantiElimina.forEach(button => {
+card
+.querySelectorAll(".btnEliminaCompletato")
+.forEach(button => {
 
 button.addEventListener(
 "click",
