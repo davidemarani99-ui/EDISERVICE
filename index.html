@@ -23,7 +23,6 @@ rel="apple-touch-icon"
 href="ediservice-icon.png"
 >
 
-
 <style>
 
 *{
@@ -103,8 +102,7 @@ color:#eee
 .form-card,
 .work,
 .point-card,
-.empty,
-.completed-card{
+.empty{
 background:#fff;
 border-radius:20px;
 padding:20px;
@@ -255,11 +253,12 @@ color:#777
 
 
 /* =========================
-   PULSANTE LAVORI COMPLETATI
+   LAVORI COMPLETATI - HOME
 ========================= */
 
 .completed-folder{
-background:#fff;
+background:#e8f5e9;
+border:2px solid #43a047;
 border-radius:20px;
 padding:20px;
 margin:25px 0;
@@ -271,35 +270,41 @@ justify-content:space-between
 }
 
 .completed-folder-left{
-display:flex;
-align-items:center;
-gap:14px
-}
-
-.completed-folder-icon{
-font-size:34px
+display:block
 }
 
 .completed-folder-title{
 font-size:21px;
-font-weight:700
+font-weight:700;
+color:#2e7d32
 }
 
 .completed-folder-subtitle{
 font-size:14px;
-color:#777;
-margin-top:3px
+color:#4f6f52;
+margin-top:4px
 }
 
 .completed-folder-arrow{
 font-size:30px;
-color:#777
+color:#2e7d32
 }
 
 
 /* =========================
    PAGINA LAVORI COMPLETATI
 ========================= */
+
+.completed-page{
+padding-top:5px
+}
+
+.completed-page-title{
+font-size:32px;
+font-weight:800;
+color:#2e7d32;
+margin:10px 0 30px
+}
 
 .completed-group-title{
 font-size:25px;
@@ -323,7 +328,7 @@ margin-bottom:12px
 }
 
 .completed-work{
-padding:10px 0;
+padding:12px 0;
 border-top:1px solid #eee;
 font-size:17px
 }
@@ -333,7 +338,8 @@ border-top:0
 }
 
 .completed-check{
-font-weight:700;
+color:#2e7d32;
+font-weight:800;
 margin-right:7px
 }
 
@@ -360,6 +366,17 @@ cursor:pointer;
 font-size:14px
 }
 
+.completed-back{
+width:100%;
+border:0;
+background:#e8edf2;
+border-radius:11px;
+padding:13px;
+font-size:16px;
+cursor:pointer;
+margin-bottom:10px
+}
+
 </style>
 
 </head>
@@ -368,7 +385,11 @@ font-size:14px
 <body>
 
 
-<header>
+<!-- =========================
+     INTESTAZIONE PRINCIPALE
+========================= -->
+
+<header id="mainHeader">
 
 <img
 class="logo"
@@ -421,7 +442,7 @@ lavori aperti in tutti i punti vendita
 
 
 <!-- =========================
-     CARTELLA LAVORI COMPLETATI
+     LAVORI COMPLETATI
 ========================= -->
 
 <div
@@ -431,20 +452,12 @@ id="btnCompletati"
 
 <div class="completed-folder-left">
 
-<div class="completed-folder-icon">
-📁
-</div>
-
-<div>
-
 <div class="completed-folder-title">
 Lavori completati
 </div>
 
 <div class="completed-folder-subtitle">
 Visualizza tutti i lavori terminati
-</div>
-
 </div>
 
 </div>
@@ -516,20 +529,17 @@ type="button"
 
 <div class="form-card">
 
-
 <input
 id="lavoro"
 type="text"
 placeholder="Scrivi il lavoro da fare..."
 >
 
-
 <textarea
 id="note"
 rows="3"
 placeholder="Note (facoltative)"
 ></textarea>
-
 
 <button
 class="primary"
@@ -538,7 +548,6 @@ type="button"
 >
 + Aggiungi lavoro
 </button>
-
 
 </div>
 
@@ -564,39 +573,28 @@ Torna alla schermata principale
 
 <!-- =========================
      PAGINA LAVORI COMPLETATI
+     SENZA LOGO
+     SENZA HEADER
 ========================= -->
 
 <div
 id="completati"
-class="hidden"
+class="hidden completed-page"
 >
 
+<h2 class="completed-page-title">
+Lavori completati
+</h2>
+
+<div id="listaCompletati"></div>
 
 <button
-class="back"
+class="completed-back"
 id="btnHomeCompletati"
 type="button"
 >
 ← Torna alla schermata principale
 </button>
-
-
-<h2>
-Lavori completati
-</h2>
-
-
-<div id="listaCompletati"></div>
-
-
-<button
-class="back-home"
-id="btnHomeCompletati2"
-type="button"
->
-Torna alla schermata principale
-</button>
-
 
 </div>
 
@@ -668,13 +666,13 @@ measurementId:
 };
 
 
-const app=
+const app =
 initializeApp(firebaseConfig);
 
-const auth=
+const auth =
 getAuth(app);
 
-const db=
+const db =
 getFirestore(app);
 
 
@@ -682,7 +680,7 @@ getFirestore(app);
    PUNTI VENDITA
 ========================= */
 
-const punti={
+const punti = {
 
 PIM:[
 
@@ -737,11 +735,11 @@ IPERFAMILY:[
    VARIABILI
 ========================= */
 
-let lavori=[];
+let lavori = [];
 
-let negozio="";
+let negozio = "";
 
-let utente=null;
+let utente = null;
 
 
 /* =========================
@@ -750,10 +748,10 @@ let utente=null;
 
 function safe(x){
 
-const d=
+const d =
 document.createElement("div");
 
-d.textContent=x || "";
+d.textContent = x || "";
 
 return d.innerHTML;
 
@@ -766,9 +764,9 @@ return d.innerHTML;
 
 function conta(nome){
 
-return lavori.filter(x=>
+return lavori.filter(x =>
 
-x.punto===nome &&
+x.punto === nome &&
 x.attivo &&
 !x.completato
 
@@ -807,30 +805,28 @@ crea(
 
 function crea(gruppo,id){
 
-const box=
+const box =
 document.getElementById(id);
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
-punti[gruppo].forEach(nome=>{
+punti[gruppo].forEach(nome => {
 
-
-const div=
+const div =
 document.createElement("div");
 
-
-div.className=
+div.className =
 "point-card";
 
 
 div.addEventListener(
 "click",
-()=>apri(nome)
+() => apri(nome)
 );
 
 
-div.innerHTML=`
+div.innerHTML = `
 
 <div class="point-name">
 ${safe(nome)}
@@ -864,64 +860,66 @@ box.appendChild(div);
 
 function aggiorna(){
 
-const aperti=
+const aperti =
 lavori.filter(
-x=>x.attivo&&!x.completato
+x => x.attivo && !x.completato
 );
 
 
 document.getElementById(
 "totale"
-).textContent=
+).textContent =
 aperti.length;
 
 
-const box=
+const box =
 document.getElementById(
 "homeLavori"
 );
 
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
 if(!aperti.length){
 
-box.innerHTML=
+box.innerHTML =
 '<div class="empty">Nessun lavoro da fare.</div>';
 
 }else{
 
-
 Object.values(punti)
 .flat()
-.forEach(nome=>{
+.forEach(nome => {
 
-
-const ls=
+const ls =
 aperti.filter(
-x=>x.punto===nome
+x => x.punto === nome
 );
 
 
-if(!ls.length)return;
+if(!ls.length){
+
+return;
+
+}
 
 
-const card=
+const card =
 document.createElement("div");
 
 
-card.className=
+card.className =
 "store-card";
 
 
 card.addEventListener(
 "click",
-()=>apri(nome)
+() => apri(nome)
 );
 
 
-let html=`
+let html = `
 
 <div class="work-store-name">
 ${safe(nome)}
@@ -930,10 +928,9 @@ ${safe(nome)}
 `;
 
 
-ls.forEach(x=>{
+ls.forEach(x => {
 
-
-html+=`
+html += `
 
 <div class="task-row">
 
@@ -960,7 +957,8 @@ ${safe(x.note)}
 });
 
 
-card.innerHTML=html;
+card.innerHTML =
+html;
 
 
 box.appendChild(card);
@@ -981,7 +979,7 @@ gruppi();
 
 function apri(nome){
 
-negozio=nome;
+negozio = nome;
 
 
 document
@@ -1003,19 +1001,25 @@ document
 
 
 document
+.getElementById("mainHeader")
+.style
+.display = "";
+
+
+document
 .getElementById("titolo")
-.textContent=
+.textContent =
 nome;
 
 
 document
 .getElementById("lavoro")
-.value="";
+.value = "";
 
 
 document
 .getElementById("note")
-.value="";
+.value = "";
 
 
 mostra();
@@ -1053,6 +1057,12 @@ document
 .remove("hidden");
 
 
+document
+.getElementById("mainHeader")
+.style
+.display = "";
+
+
 aggiorna();
 
 
@@ -1065,7 +1075,7 @@ window.scrollTo(
 
 
 /* =========================
-   APRI LAVORI COMPLETATI
+   APRI COMPLETATI
 ========================= */
 
 function apriCompletati(){
@@ -1088,6 +1098,17 @@ document
 .remove("hidden");
 
 
+/*
+Nascondiamo completamente
+logo e intestazione.
+*/
+
+document
+.getElementById("mainHeader")
+.style
+.display = "none";
+
+
 mostraCompletati();
 
 
@@ -1105,24 +1126,20 @@ window.scrollTo(
 
 async function aggiungi(){
 
-
-const input=
+const input =
 document.getElementById(
 "lavoro"
 );
 
-
-const noteInput=
+const noteInput =
 document.getElementById(
 "note"
 );
 
-
-const testo=
+const testo =
 input.value.trim();
 
-
-const note=
+const note =
 noteInput.value.trim();
 
 
@@ -1159,20 +1176,19 @@ return;
 }
 
 
-const bottone=
+const bottone =
 document.getElementById(
 "btnAggiungi"
 );
 
 
-bottone.disabled=true;
+bottone.disabled = true;
 
-bottone.textContent=
+bottone.textContent =
 "Salvataggio...";
 
 
 try{
-
 
 await addDoc(
 
@@ -1209,9 +1225,9 @@ serverTimestamp()
 );
 
 
-input.value="";
+input.value = "";
 
-noteInput.value="";
+noteInput.value = "";
 
 
 alert(
@@ -1221,7 +1237,6 @@ alert(
 
 }catch(error){
 
-
 console.error(
 "ERRORE FIREBASE:",
 error
@@ -1229,17 +1244,16 @@ error
 
 
 alert(
-"Errore durante il salvataggio:\n\n"+
+"Errore durante il salvataggio:\n\n" +
 error.message
 );
 
 
 }finally{
 
+bottone.disabled = false;
 
-bottone.disabled=false;
-
-bottone.textContent=
+bottone.textContent =
 "+ Aggiungi lavoro";
 
 }
@@ -1248,33 +1262,32 @@ bottone.textContent=
 
 
 /* =========================
-   MOSTRA LAVORI DEL NEGOZIO
+   MOSTRA LAVORI
 ========================= */
 
 function mostra(){
 
-const box=
+const box =
 document.getElementById(
 "lista"
 );
 
 
-const ls=
-lavori.filter(x=>
+const ls =
+lavori.filter(x =>
 
-x.punto===negozio &&
+x.punto === negozio &&
 x.attivo
 
 );
 
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
 if(!ls.length){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 Nessun lavoro inserito per questo punto vendita.
 </div>
@@ -1285,15 +1298,14 @@ return;
 }
 
 
-ls.forEach(x=>{
+ls.forEach(x => {
 
-
-const div=
+const div =
 document.createElement("div");
 
 
-div.className=
-"work"+
+div.className =
+"work" +
 (
 x.completato
 ?
@@ -1303,7 +1315,7 @@ x.completato
 );
 
 
-div.innerHTML=`
+div.innerHTML = `
 
 <div class="work-title">
 ${safe(x.testo)}
@@ -1337,7 +1349,6 @@ x.completato
 }
 </button>
 
-
 <button
 type="button"
 class="btnElimina"
@@ -1351,13 +1362,13 @@ Elimina
 `;
 
 
-const btnCompleta=
+const btnCompleta =
 div.querySelector(
 ".btnCompleta"
 );
 
 
-const btnElimina=
+const btnElimina =
 div.querySelector(
 ".btnElimina"
 );
@@ -1365,17 +1376,13 @@ div.querySelector(
 
 btnCompleta.addEventListener(
 "click",
-()=>{
-completa(x.id)
-}
+() => completa(x.id)
 );
 
 
 btnElimina.addEventListener(
 "click",
-()=>{
-elimina(x.id)
-}
+() => elimina(x.id)
 );
 
 
@@ -1392,17 +1399,17 @@ box.appendChild(div);
 
 function mostraCompletati(){
 
-const box=
+const box =
 document.getElementById(
 "listaCompletati"
 );
 
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
-const completati=
-lavori.filter(x=>
+const completati =
+lavori.filter(x =>
 
 x.attivo &&
 x.completato
@@ -1412,8 +1419,7 @@ x.completato
 
 if(!completati.length){
 
-box.innerHTML=
-`
+box.innerHTML = `
 <div class="empty">
 Nessun lavoro completato.
 </div>
@@ -1424,14 +1430,7 @@ return;
 }
 
 
-/*
-   I gruppi vengono mostrati
-   nell'ordine PIM,
-   AGORÀ,
-   IPERFAMILY
-*/
-
-const gruppiOrdine=[
+const gruppiOrdine = [
 
 {
 nome:"PIM",
@@ -1451,11 +1450,10 @@ punti:punti.IPERFAMILY
 ];
 
 
-gruppiOrdine.forEach(gruppo=>{
+gruppiOrdine.forEach(gruppo => {
 
-
-const lavoriGruppo=
-completati.filter(x=>
+const lavoriGruppo =
+completati.filter(x =>
 
 gruppo.punti.includes(x.punto)
 
@@ -1469,27 +1467,26 @@ return;
 }
 
 
-const titolo=
+const titolo =
 document.createElement("div");
 
 
-titolo.className=
+titolo.className =
 "completed-group-title";
 
 
-titolo.textContent=
+titolo.textContent =
 gruppo.nome;
 
 
 box.appendChild(titolo);
 
 
-gruppo.punti.forEach(nome=>{
+gruppo.punti.forEach(nome => {
 
-
-const ls=
+const ls =
 lavoriGruppo.filter(
-x=>x.punto===nome
+x => x.punto === nome
 );
 
 
@@ -1500,15 +1497,15 @@ return;
 }
 
 
-const card=
+const card =
 document.createElement("div");
 
 
-card.className=
+card.className =
 "completed-store";
 
 
-let html=`
+let html = `
 
 <div class="completed-store-name">
 ${safe(nome)}
@@ -1517,10 +1514,9 @@ ${safe(nome)}
 `;
 
 
-ls.forEach(x=>{
+ls.forEach(x => {
 
-
-html+=`
+html += `
 
 <div class="completed-work">
 
@@ -1575,37 +1571,37 @@ Elimina
 });
 
 
-card.innerHTML=
+card.innerHTML =
 html;
 
 
-const pulsantiRifare=
+const pulsantiRifare =
 card.querySelectorAll(
 ".btnRifare"
 );
 
 
-pulsantiRifare.forEach(button=>{
+pulsantiRifare.forEach(button => {
 
 button.addEventListener(
 "click",
-()=>completa(button.dataset.id)
+() => completa(button.dataset.id)
 );
 
 });
 
 
-const pulsantiElimina=
+const pulsantiElimina =
 card.querySelectorAll(
 ".btnEliminaCompletato"
 );
 
 
-pulsantiElimina.forEach(button=>{
+pulsantiElimina.forEach(button => {
 
 button.addEventListener(
 "click",
-()=>elimina(button.dataset.id)
+() => elimina(button.dataset.id)
 );
 
 });
@@ -1626,18 +1622,20 @@ box.appendChild(card);
 
 async function completa(id){
 
-
-const x=
+const x =
 lavori.find(
-y=>y.id===id
+y => y.id === id
 );
 
 
-if(!x)return;
+if(!x){
+
+return;
+
+}
 
 
 try{
-
 
 await updateDoc(
 
@@ -1659,7 +1657,6 @@ completato:
 
 }catch(error){
 
-
 console.error(error);
 
 
@@ -1678,7 +1675,6 @@ alert(
 
 async function elimina(id){
 
-
 if(
 !confirm(
 "Vuoi eliminare questo lavoro?"
@@ -1691,7 +1687,6 @@ return;
 
 
 try{
-
 
 await updateDoc(
 
@@ -1712,7 +1707,6 @@ attivo:false
 
 }catch(error){
 
-
 console.error(error);
 
 
@@ -1726,7 +1720,7 @@ alert(
 
 
 /* =========================
-   COLLEGAMENTO PULSANTI
+   PULSANTI
 ========================= */
 
 document
@@ -1769,43 +1763,26 @@ home
 );
 
 
-document
-.getElementById("btnHomeCompletati2")
-.addEventListener(
-"click",
-home
-);
-
-
 /* =========================
    FIREBASE AUTH
 ========================= */
 
 onAuthStateChanged(
 auth,
-user=>{
-
+user => {
 
 if(user){
 
-
-utente=user;
+utente = user;
 
 
 document
 .getElementById("status")
-.textContent=
+.textContent =
 "Connesso a Firebase";
 
 
-/*
-   IMPORTANTE:
-   prendiamo tutti i lavori
-   attivi, compresi quelli
-   completati.
-*/
-
-const q=
+const q =
 query(
 
 collection(
@@ -1826,12 +1803,11 @@ onSnapshot(
 
 q,
 
-snap=>{
+snap => {
 
-
-lavori=
+lavori =
 snap.docs.map(
-d=>({
+d => ({
 
 id:d.id,
 
@@ -1870,8 +1846,7 @@ mostraCompletati();
 },
 
 
-error=>{
-
+error => {
 
 console.error(
 "ERRORE FIRESTORE:",
@@ -1881,12 +1856,12 @@ error
 
 document
 .getElementById("status")
-.textContent=
+.textContent =
 "Errore Firestore";
 
 
 alert(
-"Errore Firestore:\n\n"+
+"Errore Firestore:\n\n" +
 error.message
 );
 
@@ -1908,8 +1883,7 @@ auth
 )
 
 .catch(
-error=>{
-
+error => {
 
 console.error(
 "ERRORE AUTENTICAZIONE:",
@@ -1919,12 +1893,12 @@ error
 
 document
 .getElementById("status")
-.textContent=
+.textContent =
 "Errore Firebase";
 
 
 alert(
-"Firebase non riesce a collegarsi.\n\n"+
+"Firebase non riesce a collegarsi.\n\n" +
 error.message
 );
 
@@ -1937,7 +1911,6 @@ error.message
 ========================= */
 
 aggiorna();
-
 
 </script>
 
