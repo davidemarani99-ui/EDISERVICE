@@ -79,7 +79,7 @@ background:#555;
 color:#fff;
 border-radius:28px;
 padding:28px;
-margin-bottom:35px
+margin-bottom:20px
 }
 
 .summary-title{
@@ -103,7 +103,8 @@ color:#eee
 .form-card,
 .work,
 .point-card,
-.empty{
+.empty,
+.completed-card{
 background:#fff;
 border-radius:20px;
 padding:20px;
@@ -177,7 +178,8 @@ border:0;
 background:none;
 padding:5px 0 15px;
 color:#555;
-font-size:17px
+font-size:17px;
+cursor:pointer
 }
 
 input,
@@ -208,7 +210,7 @@ transform:scale(.98)
 }
 
 .work.done{
-opacity:.5
+opacity:.7
 }
 
 .work.done .work-title{
@@ -251,6 +253,113 @@ font-size:13px;
 color:#777
 }
 
+
+/* =========================
+   PULSANTE LAVORI COMPLETATI
+========================= */
+
+.completed-folder{
+background:#fff;
+border-radius:20px;
+padding:20px;
+margin:25px 0;
+box-shadow:0 3px 12px #00000010;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.completed-folder-left{
+display:flex;
+align-items:center;
+gap:14px
+}
+
+.completed-folder-icon{
+font-size:34px
+}
+
+.completed-folder-title{
+font-size:21px;
+font-weight:700
+}
+
+.completed-folder-subtitle{
+font-size:14px;
+color:#777;
+margin-top:3px
+}
+
+.completed-folder-arrow{
+font-size:30px;
+color:#777
+}
+
+
+/* =========================
+   PAGINA LAVORI COMPLETATI
+========================= */
+
+.completed-group-title{
+font-size:25px;
+font-weight:700;
+margin:28px 0 12px
+}
+
+.completed-store{
+background:#fff;
+border-radius:20px;
+padding:20px;
+margin:12px 0;
+box-shadow:0 3px 12px #00000010
+}
+
+.completed-store-name{
+color:#c62828;
+font-size:23px;
+font-weight:800;
+margin-bottom:12px
+}
+
+.completed-work{
+padding:10px 0;
+border-top:1px solid #eee;
+font-size:17px
+}
+
+.completed-work:first-of-type{
+border-top:0
+}
+
+.completed-check{
+font-weight:700;
+margin-right:7px
+}
+
+.completed-note{
+color:#666;
+font-size:14px;
+margin-top:5px;
+margin-left:24px
+}
+
+.completed-buttons{
+display:flex;
+gap:8px;
+margin-top:10px;
+margin-left:24px
+}
+
+.completed-buttons button{
+border:0;
+border-radius:9px;
+padding:8px 12px;
+background:#e8edf2;
+cursor:pointer;
+font-size:14px
+}
+
 </style>
 
 </head>
@@ -284,7 +393,9 @@ Connessione Firebase...
 <main>
 
 
-<!-- HOME -->
+<!-- =========================
+     HOME
+========================= -->
 
 <div id="home">
 
@@ -304,6 +415,42 @@ id="totale"
 
 <div class="summary-text">
 lavori aperti in tutti i punti vendita
+</div>
+
+</div>
+
+
+<!-- =========================
+     CARTELLA LAVORI COMPLETATI
+========================= -->
+
+<div
+class="completed-folder"
+id="btnCompletati"
+>
+
+<div class="completed-folder-left">
+
+<div class="completed-folder-icon">
+📁
+</div>
+
+<div>
+
+<div class="completed-folder-title">
+Lavori completati
+</div>
+
+<div class="completed-folder-subtitle">
+Visualizza tutti i lavori terminati
+</div>
+
+</div>
+
+</div>
+
+<div class="completed-folder-arrow">
+›
 </div>
 
 </div>
@@ -345,7 +492,9 @@ IPERFAMILY
 </div>
 
 
-<!-- PAGINA NEGOZIO -->
+<!-- =========================
+     PAGINA NEGOZIO
+========================= -->
 
 <div
 id="negozio"
@@ -404,6 +553,45 @@ Lavori
 <button
 class="back-home"
 id="btnHome2"
+type="button"
+>
+Torna alla schermata principale
+</button>
+
+
+</div>
+
+
+<!-- =========================
+     PAGINA LAVORI COMPLETATI
+========================= -->
+
+<div
+id="completati"
+class="hidden"
+>
+
+
+<button
+class="back"
+id="btnHomeCompletati"
+type="button"
+>
+← Torna alla schermata principale
+</button>
+
+
+<h2>
+Lavori completati
+</h2>
+
+
+<div id="listaCompletati"></div>
+
+
+<button
+class="back-home"
+id="btnHomeCompletati2"
 type="button"
 >
 Torna alla schermata principale
@@ -557,7 +745,7 @@ let utente=null;
 
 
 /* =========================
-   FUNZIONE SICUREZZA TESTO
+   SICUREZZA TESTO
 ========================= */
 
 function safe(x){
@@ -573,7 +761,7 @@ return d.innerHTML;
 
 
 /* =========================
-   CONTA LAVORI
+   CONTA LAVORI APERTI
 ========================= */
 
 function conta(nome){
@@ -803,6 +991,12 @@ document
 
 
 document
+.getElementById("completati")
+.classList
+.add("hidden");
+
+
+document
 .getElementById("negozio")
 .classList
 .remove("hidden");
@@ -836,7 +1030,7 @@ window.scrollTo(
 
 
 /* =========================
-   HOME
+   TORNA HOME
 ========================= */
 
 function home(){
@@ -848,12 +1042,53 @@ document
 
 
 document
+.getElementById("completati")
+.classList
+.add("hidden");
+
+
+document
 .getElementById("home")
 .classList
 .remove("hidden");
 
 
 aggiorna();
+
+
+window.scrollTo(
+0,
+0
+);
+
+}
+
+
+/* =========================
+   APRI LAVORI COMPLETATI
+========================= */
+
+function apriCompletati(){
+
+document
+.getElementById("home")
+.classList
+.add("hidden");
+
+
+document
+.getElementById("negozio")
+.classList
+.add("hidden");
+
+
+document
+.getElementById("completati")
+.classList
+.remove("hidden");
+
+
+mostraCompletati();
 
 
 window.scrollTo(
@@ -1013,7 +1248,7 @@ bottone.textContent=
 
 
 /* =========================
-   MOSTRA LAVORI
+   MOSTRA LAVORI DEL NEGOZIO
 ========================= */
 
 function mostra(){
@@ -1152,7 +1387,241 @@ box.appendChild(div);
 
 
 /* =========================
-   COMPLETA
+   MOSTRA LAVORI COMPLETATI
+========================= */
+
+function mostraCompletati(){
+
+const box=
+document.getElementById(
+"listaCompletati"
+);
+
+
+box.innerHTML="";
+
+
+const completati=
+lavori.filter(x=>
+
+x.attivo &&
+x.completato
+
+);
+
+
+if(!completati.length){
+
+box.innerHTML=
+`
+<div class="empty">
+Nessun lavoro completato.
+</div>
+`;
+
+return;
+
+}
+
+
+/*
+   I gruppi vengono mostrati
+   nell'ordine PIM,
+   AGORÀ,
+   IPERFAMILY
+*/
+
+const gruppiOrdine=[
+
+{
+nome:"PIM",
+punti:punti.PIM
+},
+
+{
+nome:"AGORÀ",
+punti:punti.AGORA
+},
+
+{
+nome:"IPERFAMILY",
+punti:punti.IPERFAMILY
+}
+
+];
+
+
+gruppiOrdine.forEach(gruppo=>{
+
+
+const lavoriGruppo=
+completati.filter(x=>
+
+gruppo.punti.includes(x.punto)
+
+);
+
+
+if(!lavoriGruppo.length){
+
+return;
+
+}
+
+
+const titolo=
+document.createElement("div");
+
+
+titolo.className=
+"completed-group-title";
+
+
+titolo.textContent=
+gruppo.nome;
+
+
+box.appendChild(titolo);
+
+
+gruppo.punti.forEach(nome=>{
+
+
+const ls=
+lavoriGruppo.filter(
+x=>x.punto===nome
+);
+
+
+if(!ls.length){
+
+return;
+
+}
+
+
+const card=
+document.createElement("div");
+
+
+card.className=
+"completed-store";
+
+
+let html=`
+
+<div class="completed-store-name">
+${safe(nome)}
+</div>
+
+`;
+
+
+ls.forEach(x=>{
+
+
+html+=`
+
+<div class="completed-work">
+
+<div>
+
+<span class="completed-check">
+✓
+</span>
+
+<strong>
+${safe(x.testo)}
+</strong>
+
+</div>
+
+${
+x.note
+?
+`
+<div class="completed-note">
+${safe(x.note)}
+</div>
+`
+:
+""
+}
+
+<div class="completed-buttons">
+
+<button
+type="button"
+class="btnRifare"
+data-id="${x.id}"
+>
+Da rifare
+</button>
+
+<button
+type="button"
+class="btnEliminaCompletato"
+data-id="${x.id}"
+>
+Elimina
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+card.innerHTML=
+html;
+
+
+const pulsantiRifare=
+card.querySelectorAll(
+".btnRifare"
+);
+
+
+pulsantiRifare.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>completa(button.dataset.id)
+);
+
+});
+
+
+const pulsantiElimina=
+card.querySelectorAll(
+".btnEliminaCompletato"
+);
+
+
+pulsantiElimina.forEach(button=>{
+
+button.addEventListener(
+"click",
+()=>elimina(button.dataset.id)
+);
+
+});
+
+
+box.appendChild(card);
+
+});
+
+});
+
+}
+
+
+/* =========================
+   COMPLETA / DA RIFARE
 ========================= */
 
 async function completa(id){
@@ -1284,6 +1753,30 @@ home
 );
 
 
+document
+.getElementById("btnCompletati")
+.addEventListener(
+"click",
+apriCompletati
+);
+
+
+document
+.getElementById("btnHomeCompletati")
+.addEventListener(
+"click",
+home
+);
+
+
+document
+.getElementById("btnHomeCompletati2")
+.addEventListener(
+"click",
+home
+);
+
+
 /* =========================
    FIREBASE AUTH
 ========================= */
@@ -1304,6 +1797,13 @@ document
 .textContent=
 "Connesso a Firebase";
 
+
+/*
+   IMPORTANTE:
+   prendiamo tutti i lavori
+   attivi, compresi quelli
+   completati.
+*/
 
 const q=
 query(
@@ -1352,6 +1852,18 @@ if(
 ){
 
 mostra();
+
+}
+
+
+if(
+!document
+.getElementById("completati")
+.classList
+.contains("hidden")
+){
+
+mostraCompletati();
 
 }
 
