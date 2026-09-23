@@ -47,7 +47,6 @@ button,input,textarea{
   height:auto;
   margin:0 auto 10px;
   background:#fff;
-  border-radius:0;
 }
 
 .firebase-status{
@@ -74,7 +73,7 @@ button,input,textarea{
   display:block;
 }
 
-/* CARDS HOME */
+/* HOME */
 
 .summary,
 .urgent-folder,
@@ -97,22 +96,16 @@ button,input,textarea{
   transform:scale(.98);
 }
 
-/* DA FARE */
-
 .summary{
   background:#555;
   color:#fff;
 }
-
-/* URGENTI */
 
 .urgent-folder{
   background:#ffebee;
   border:2px solid #e53935;
   color:#b71c1c;
 }
-
-/* COMPLETATI */
 
 .completed-folder{
   background:#e8f5e9;
@@ -479,7 +472,6 @@ HOME
 
   </div>
 
-
   <!-- LAVORI DA FARE -->
 
   <div
@@ -511,7 +503,6 @@ HOME
     </div>
 
   </div>
-
 
   <!-- LAVORI URGENTI -->
 
@@ -545,7 +536,6 @@ HOME
 
   </div>
 
-
   <!-- LAVORI COMPLETATI -->
 
   <div
@@ -577,7 +567,6 @@ HOME
     </div>
 
   </div>
-
 
   <!-- PUNTI VENDITA -->
 
@@ -651,7 +640,6 @@ PAGINA PUNTO VENDITA
     id="storePageCategory"
   ></div>
 
-
   <div class="form-card">
 
     <h2>
@@ -699,7 +687,6 @@ PAGINA PUNTO VENDITA
     </button>
 
   </div>
-
 
   <div class="section-title">
     Lavori del punto vendita
@@ -764,12 +751,12 @@ PAGINA COMPLETATI
 </div>
 
 
-<!-- FIREBASE -->
+<!-- =========================
+FIREBASE
+========================= -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 
@@ -779,7 +766,7 @@ PAGINA COMPLETATI
 FIREBASE
 ========================= */
 
-const firebaseConfig={
+const firebaseConfig = {
 
   apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
 
@@ -797,18 +784,19 @@ const firebaseConfig={
 
 };
 
+
 firebase.initializeApp(firebaseConfig);
 
-const auth=firebase.auth();
+const auth = firebase.auth();
 
-const db=firebase.firestore();
+const db = firebase.firestore();
 
 
 /* =========================
 PUNTI VENDITA
 ========================= */
 
-const puntiVendita={
+const puntiVendita = {
 
   PIM:[
     "Torresina",
@@ -853,29 +841,52 @@ const puntiVendita={
 };
 
 
-let lavori=[];
+let lavori = [];
 
-let puntoSelezionato=null;
+let puntoSelezionato = null;
 
 
 /* =========================
-LOGIN ANONIMO
+STATO FIREBASE
+========================= */
+
+function firebaseOk(){
+
+  const status =
+    document.getElementById("firebaseStatus");
+
+  status.textContent =
+    "● Firebase collegato";
+
+  status.className =
+    "firebase-status status-ok";
+}
+
+
+function firebaseErrore(error){
+
+  console.error("Firebase:",error);
+
+  const status =
+    document.getElementById("firebaseStatus");
+
+  status.textContent =
+    "● Errore Firebase";
+
+  status.className =
+    "firebase-status status-error";
+}
+
+
+/* =========================
+AUTENTICAZIONE
 ========================= */
 
 auth.signInAnonymously()
 
 .then(()=>{
 
-  const status=
-    document.getElementById(
-      "firebaseStatus"
-    );
-
-  status.textContent=
-    "● Firebase collegato";
-
-  status.className=
-    "firebase-status status-ok";
+  firebaseOk();
 
   ascoltaLavori();
 
@@ -883,74 +894,60 @@ auth.signInAnonymously()
 
 .catch(error=>{
 
-  console.error(error);
-
-  const status=
-    document.getElementById(
-      "firebaseStatus"
-    );
-
-  status.textContent=
-    "● Errore connessione Firebase";
-
-  status.className=
-    "firebase-status status-error";
+  firebaseErrore(error);
 
 });
 
 
 /* =========================
-PUNTI VENDITA
+CREA PUNTI VENDITA
 ========================= */
 
 function creaPuntiVendita(){
 
-  const contenitore=
-    document.getElementById(
-      "puntiVendita"
-    );
+  const contenitore =
+    document.getElementById("puntiVendita");
 
-  contenitore.innerHTML="";
+  contenitore.innerHTML = "";
 
 
-  Object.keys(puntiVendita)
-  .forEach(categoria=>{
+  Object.keys(puntiVendita).forEach(categoria=>{
 
-    const gruppo=
+    const gruppo =
       document.createElement("div");
 
-    const titolo=
+
+    const titolo =
       document.createElement("div");
 
-    titolo.className=
+    titolo.className =
       "group-title";
 
-    titolo.textContent=
+    titolo.textContent =
       categoria;
 
     gruppo.appendChild(titolo);
 
 
-    const lista=
+    const lista =
       document.createElement("div");
 
-    lista.className=
+    lista.className =
       "store-list";
 
 
-    puntiVendita[categoria]
-    .forEach(punto=>{
+    puntiVendita[categoria].forEach(punto=>{
 
-      const button=
+      const button =
         document.createElement("button");
 
-      button.className=
+      button.className =
         "store-button";
 
-      button.textContent=
+      button.textContent =
         punto;
 
-      button.onclick=()=>
+      button.onclick = () =>
         apriPuntoVendita(
           punto,
           categoria
@@ -977,80 +974,90 @@ FIRESTORE
 function ascoltaLavori(){
 
   db.collection("lavori")
-  .where("attivo","==",true)
-  .onSnapshot(snapshot=>{
+    .where("attivo","==",true)
+    .onSnapshot(
 
-    lavori=[];
+      snapshot=>{
 
-    snapshot.forEach(doc=>{
+        lavori = [];
 
-      lavori.push({
+        snapshot.forEach(doc=>{
 
-        id:doc.id,
+          const dati = doc.data();
 
-        ...doc.data()
+          lavori.push({
 
-      });
+            id:doc.id,
 
-    });
+            ...dati
 
-    aggiornaTutto();
+          });
 
-  },error=>{
+        });
 
-    console.error(
-      "Errore Firestore:",
-      error
+        aggiornaTutto();
+
+      },
+
+      error=>{
+
+        console.error(
+          "Errore Firestore:",
+          error
+        );
+
+        firebaseErrore(error);
+
+      }
+
     );
-
-  });
 
 }
 
 
 /* =========================
-AGGIORNA
+AGGIORNA TUTTO
 ========================= */
 
 function aggiornaTutto(){
 
-  const daFare=
+  const daFare =
     lavori.filter(x=>
-      x.attivo===true &&
-      x.completato!==true
+      x.attivo === true &&
+      x.completato !== true
     );
 
 
-  const urgenti=
+  const urgenti =
     lavori.filter(x=>
-      x.attivo===true &&
-      x.completato!==true &&
-      x.urgente===true
+      x.attivo === true &&
+      x.completato !== true &&
+      x.urgente === true
     );
 
 
-  const completati=
+  const completati =
     lavori.filter(x=>
-      x.attivo===true &&
-      x.completato===true
+      x.attivo === true &&
+      x.completato === true
     );
 
 
   document.getElementById(
     "totaleDaFare"
-  ).textContent=
+  ).textContent =
     daFare.length;
 
 
   document.getElementById(
     "totaleUrgenti"
-  ).textContent=
+  ).textContent =
     urgenti.length;
 
 
   document.getElementById(
     "totaleCompletati"
-  ).textContent=
+  ).textContent =
     completati.length;
 
 
@@ -1073,22 +1080,59 @@ function aggiornaTutto(){
 
 
 /* =========================
-PAGINA DA FARE
+PAGINA
+========================= */
+
+function mostraPagina(id){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(page=>{
+
+      page.classList.remove("active");
+
+    });
+
+
+  const pagina =
+    document.getElementById(id);
+
+  if(pagina){
+
+    pagina.classList.add("active");
+
+    window.scrollTo({
+      top:0,
+      behavior:"instant"
+    });
+
+  }
+
+}
+
+
+function showHome(){
+
+  mostraPagina("homePage");
+
+}
+
+
+/* =========================
+LAVORI DA FARE
 ========================= */
 
 function renderTodoJobs(lista){
 
-  const contenitore=
-    document.getElementById(
-      "todoJobs"
-    );
+  const contenitore =
+    document.getElementById("todoJobs");
 
-  contenitore.innerHTML="";
+  contenitore.innerHTML = "";
 
 
-  if(lista.length===0){
+  if(lista.length === 0){
 
-    contenitore.innerHTML=
+    contenitore.innerHTML =
       `<div class="empty">
         Nessun lavoro da fare.
       </div>`;
@@ -1099,50 +1143,54 @@ function renderTodoJobs(lista){
 
 
   Object.keys(puntiVendita)
-  .forEach(categoria=>{
+    .forEach(categoria=>{
 
-    const punti=
-      puntiVendita[categoria];
-
-
-    const gruppo=
-      lista.filter(lavoro=>
-        punti.includes(lavoro.punto)
-      );
+      const punti =
+        puntiVendita[categoria];
 
 
-    if(!gruppo.length) return;
-
-
-    const titolo=
-      document.createElement("div");
-
-    titolo.className=
-      "group-title";
-
-    titolo.textContent=
-      categoria;
-
-    contenitore.appendChild(titolo);
-
-
-    punti.forEach(punto=>{
-
-      gruppo
-      .filter(lavoro=>
-        lavoro.punto===punto
-      )
-      .forEach(lavoro=>{
-
-        contenitore.appendChild(
-          creaJobCard(lavoro)
+      const gruppo =
+        lista.filter(lavoro=>
+          punti.includes(lavoro.punto)
         );
+
+
+      if(gruppo.length === 0){
+
+        return;
+
+      }
+
+
+      const titolo =
+        document.createElement("div");
+
+      titolo.className =
+        "group-title";
+
+      titolo.textContent =
+        categoria;
+
+      contenitore.appendChild(titolo);
+
+
+      punti.forEach(punto=>{
+
+        gruppo
+          .filter(lavoro=>
+            lavoro.punto === punto
+          )
+          .forEach(lavoro=>{
+
+            contenitore.appendChild(
+              creaJobCard(lavoro)
+            );
+
+          });
 
       });
 
     });
-
-  });
 
 }
 
@@ -1153,34 +1201,34 @@ CARD LAVORO
 
 function creaJobCard(lavoro){
 
-  const card=
+  const card =
     document.createElement("div");
 
-  card.className=
+  card.className =
     "job-card";
 
 
-  const store=
+  const store =
     document.createElement("div");
 
-  store.className=
+  store.className =
     "job-store";
 
-  store.textContent=
-    lavoro.punto;
+  store.textContent =
+    lavoro.punto || "";
 
   card.appendChild(store);
 
 
-  if(lavoro.urgente===true){
+  if(lavoro.urgente === true){
 
-    const badge=
+    const badge =
       document.createElement("div");
 
-    badge.className=
+    badge.className =
       "job-urgent";
 
-    badge.textContent=
+    badge.textContent =
       "URGENTE";
 
     card.appendChild(badge);
@@ -1188,87 +1236,91 @@ function creaJobCard(lavoro){
   }
 
 
-  const testo=
+  const testo =
     document.createElement("div");
 
-  testo.className=
+  testo.className =
     "job-text";
 
-  testo.textContent=
-    lavoro.testo;
+  testo.textContent =
+    lavoro.testo || "";
 
   card.appendChild(testo);
 
 
   if(lavoro.note){
 
-    const note=
+    const note =
       document.createElement("div");
 
-    note.className=
+    note.className =
       "job-note";
 
-    note.textContent=
-      "Note: "+lavoro.note;
+    note.textContent =
+      "Note: " + lavoro.note;
 
     card.appendChild(note);
 
   }
 
 
-  const actions=
+  const actions =
     document.createElement("div");
 
-  actions.className=
+  actions.className =
     "job-actions";
 
 
-  const completo=
+  const completo =
     document.createElement("button");
 
-  completo.className=
+  completo.className =
     "btn btn-green";
 
-  completo.textContent=
+  completo.textContent =
     "Completato";
 
-  completo.onclick=()=>
-    completaLavoro(lavoro.id);
+  completo.onclick = () =>
+    completaLavoro(
+      lavoro.id
+    );
 
   actions.appendChild(completo);
 
 
-  const urgente=
+  const urgente =
     document.createElement("button");
 
-  urgente.className=
+  urgente.className =
     "btn btn-orange";
 
-  urgente.textContent=
-    lavoro.urgente===true
+  urgente.textContent =
+    lavoro.urgente === true
       ? "Togli urgente"
       : "Rendi urgente";
 
-  urgente.onclick=()=>
+  urgente.onclick = () =>
     cambiaUrgente(
       lavoro.id,
-      lavoro.urgente===true
+      lavoro.urgente === true
     );
 
   actions.appendChild(urgente);
 
 
-  const elimina=
+  const elimina =
     document.createElement("button");
 
-  elimina.className=
+  elimina.className =
     "btn btn-red";
 
-  elimina.textContent=
+  elimina.textContent =
     "Elimina";
 
-  elimina.onclick=()=>
-    eliminaLavoro(lavoro.id);
+  elimina.onclick = () =>
+    eliminaLavoro(
+      lavoro.id
+    );
 
   actions.appendChild(elimina);
 
@@ -1282,7 +1334,7 @@ function creaJobCard(lavoro){
 
 
 /* =========================
-STORE
+APRI PUNTO VENDITA
 ========================= */
 
 function apriPuntoVendita(
@@ -1290,32 +1342,35 @@ function apriPuntoVendita(
   categoria
 ){
 
-  puntoSelezionato=punto;
+  puntoSelezionato =
+    punto;
 
 
   document.getElementById(
     "storePageName"
-  ).textContent=punto;
+  ).textContent =
+    punto;
 
 
   document.getElementById(
     "storePageCategory"
-  ).textContent=categoria;
+  ).textContent =
+    categoria;
 
 
   document.getElementById(
     "lavoroInput"
-  ).value="";
+  ).value = "";
 
 
   document.getElementById(
     "noteInput"
-  ).value="";
+  ).value = "";
 
 
   document.getElementById(
     "urgenteInput"
-  ).checked=false;
+  ).checked = false;
 
 
   renderStoreJobs(punto);
@@ -1326,28 +1381,646 @@ function apriPuntoVendita(
 
 
 /* =========================
-STORE JOBS
+LAVORI DEL PUNTO VENDITA
 ========================= */
 
 function renderStoreJobs(punto){
 
-  const contenitore=
-    document.getElementById(
-      "storeJobs"
-    );
+  const contenitore =
+    document.getElementById("storeJobs");
 
-  contenitore.innerHTML="";
+  if(!contenitore){
+
+    return;
+
+  }
 
 
-  const lista=
+  contenitore.innerHTML = "";
+
+
+  const lista =
     lavori.filter(x=>
-      x.attivo===true &&
-      x.punto===punto
+      x.attivo === true &&
+      x.punto === punto
     );
 
 
-  if(lista.length===0){
+  if(lista.length === 0){
 
-    contenitore.innerHTML=
+    contenitore.innerHTML =
       `<div class="empty">
         Nessun lavoro
+      </div>`;
+
+    return;
+
+  }
+
+
+  lista.forEach(lavoro=>{
+
+    contenitore.appendChild(
+      creaJobCard(lavoro)
+    );
+
+  });
+
+}
+
+
+/* =========================
+AGGIUNGI LAVORO
+========================= */
+
+function aggiungiLavoro(){
+
+  if(!puntoSelezionato){
+
+    return;
+
+  }
+
+
+  const lavoroInput =
+    document.getElementById(
+      "lavoroInput"
+    );
+
+  const noteInput =
+    document.getElementById(
+      "noteInput"
+    );
+
+  const urgenteInput =
+    document.getElementById(
+      "urgenteInput"
+    );
+
+  const button =
+    document.getElementById(
+      "addWorkButton"
+    );
+
+
+  const testo =
+    lavoroInput.value.trim();
+
+  const note =
+    noteInput.value.trim();
+
+  const urgente =
+    urgenteInput.checked;
+
+
+  if(!testo){
+
+    alert(
+      "Inserisci il lavoro da fare."
+    );
+
+    lavoroInput.focus();
+
+    return;
+
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "Salvataggio...";
+
+
+  auth.currentUser
+    ? salvaLavoro()
+    : auth.signInAnonymously()
+        .then(()=>salvaLavoro())
+        .catch(error=>{
+          console.error(error);
+          firebaseErrore(error);
+          button.disabled=false;
+          button.textContent="+ Aggiungi lavoro";
+        });
+
+
+  function salvaLavoro(){
+
+    db.collection("lavori")
+      .add({
+
+        punto:puntoSelezionato,
+
+        testo:testo,
+
+        note:note,
+
+        completato:false,
+
+        attivo:true,
+
+        urgente:urgente,
+
+        creatoDa:
+          auth.currentUser
+            ? auth.currentUser.uid
+            : "",
+
+        creatoIl:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      })
+
+      .then(()=>{
+
+        lavoroInput.value = "";
+
+        noteInput.value = "";
+
+        urgenteInput.checked = false;
+
+        button.disabled = false;
+
+        button.textContent =
+          "+ Aggiungi lavoro";
+
+      })
+
+      .catch(error=>{
+
+        console.error(
+          "Errore aggiunta lavoro:",
+          error
+        );
+
+        alert(
+          "Errore nel salvataggio del lavoro."
+        );
+
+        button.disabled = false;
+
+        button.textContent =
+          "+ Aggiungi lavoro";
+
+        firebaseErrore(error);
+
+      });
+
+  }
+
+}
+
+
+/* =========================
+COMPLETA
+========================= */
+
+function completaLavoro(id){
+
+  db.collection("lavori")
+    .doc(id)
+    .update({
+
+      completato:true
+
+    })
+
+    .catch(error=>{
+
+      console.error(error);
+
+      alert(
+        "Errore nel completare il lavoro."
+      );
+
+    });
+
+}
+
+
+/* =========================
+DA RIFARE
+========================= */
+
+function daRifare(id){
+
+  db.collection("lavori")
+    .doc(id)
+    .update({
+
+      completato:false
+
+    })
+
+    .catch(error=>{
+
+      console.error(error);
+
+      alert(
+        "Errore nel modificare il lavoro."
+      );
+
+    });
+
+}
+
+
+/* =========================
+URGENTE
+========================= */
+
+function cambiaUrgente(
+  id,
+  giaUrgente
+){
+
+  db.collection("lavori")
+    .doc(id)
+    .update({
+
+      urgente:!giaUrgente
+
+    })
+
+    .catch(error=>{
+
+      console.error(error);
+
+      alert(
+        "Errore nella modifica dell'urgenza."
+      );
+
+    });
+
+}
+
+
+/* =========================
+ELIMINA
+========================= */
+
+function eliminaLavoro(id){
+
+  const conferma =
+    confirm(
+      "Vuoi eliminare questo lavoro?"
+    );
+
+
+  if(!conferma){
+
+    return;
+
+  }
+
+
+  db.collection("lavori")
+    .doc(id)
+    .update({
+
+      attivo:false
+
+    })
+
+    .catch(error=>{
+
+      console.error(error);
+
+      alert(
+        "Errore nell'eliminazione."
+      );
+
+    });
+
+}
+
+
+/* =========================
+LAVORI URGENTI
+========================= */
+
+function renderUrgentJobs(lista){
+
+  const contenitore =
+    document.getElementById(
+      "urgentJobs"
+    );
+
+  contenitore.innerHTML = "";
+
+
+  if(lista.length === 0){
+
+    contenitore.innerHTML =
+      `<div class="empty">
+        Nessun lavoro urgente.
+      </div>`;
+
+    return;
+
+  }
+
+
+  Object.keys(puntiVendita)
+    .forEach(categoria=>{
+
+      const punti =
+        puntiVendita[categoria];
+
+
+      const gruppo =
+        lista.filter(lavoro=>
+          punti.includes(lavoro.punto)
+        );
+
+
+      if(gruppo.length === 0){
+
+        return;
+
+      }
+
+
+      const titolo =
+        document.createElement("div");
+
+      titolo.className =
+        "group-title";
+
+      titolo.textContent =
+        categoria;
+
+      contenitore.appendChild(titolo);
+
+
+      punti.forEach(punto=>{
+
+        gruppo
+          .filter(lavoro=>
+            lavoro.punto === punto
+          )
+          .forEach(lavoro=>{
+
+            const card =
+              creaJobCard(lavoro);
+
+            card.classList.add(
+              "urgent-job"
+            );
+
+            contenitore.appendChild(
+              card
+            );
+
+          });
+
+      });
+
+    });
+
+}
+
+
+/* =========================
+LAVORI COMPLETATI
+========================= */
+
+function renderCompletedJobs(lista){
+
+  const contenitore =
+    document.getElementById(
+      "completedJobs"
+    );
+
+  contenitore.innerHTML = "";
+
+
+  if(lista.length === 0){
+
+    contenitore.innerHTML =
+      `<div class="empty">
+        Nessun lavoro completato.
+      </div>`;
+
+    return;
+
+  }
+
+
+  Object.keys(puntiVendita)
+    .forEach(categoria=>{
+
+      const punti =
+        puntiVendita[categoria];
+
+
+      const gruppo =
+        lista.filter(lavoro=>
+          punti.includes(lavoro.punto)
+        );
+
+
+      if(gruppo.length === 0){
+
+        return;
+
+      }
+
+
+      const titolo =
+        document.createElement("div");
+
+      titolo.className =
+        "group-title";
+
+      titolo.textContent =
+        categoria;
+
+      contenitore.appendChild(titolo);
+
+
+      punti.forEach(punto=>{
+
+        gruppo
+          .filter(lavoro=>
+            lavoro.punto === punto
+          )
+          .forEach(lavoro=>{
+
+            const card =
+              document.createElement("div");
+
+            card.className =
+              "completed-job";
+
+
+            const linea =
+              document.createElement("div");
+
+            linea.className =
+              "completed-line";
+
+
+            const check =
+              document.createElement("div");
+
+            check.className =
+              "completed-check";
+
+            check.textContent =
+              "✓";
+
+
+            const testo =
+              document.createElement("div");
+
+
+            const store =
+              document.createElement("div");
+
+            store.className =
+              "job-store";
+
+            store.textContent =
+              lavoro.punto;
+
+
+            const descrizione =
+              document.createElement("div");
+
+            descrizione.className =
+              "completed-text";
+
+            descrizione.textContent =
+              lavoro.testo || "";
+
+
+            testo.appendChild(store);
+
+            testo.appendChild(
+              descrizione
+            );
+
+
+            linea.appendChild(check);
+
+            linea.appendChild(testo);
+
+            card.appendChild(linea);
+
+
+            if(lavoro.note){
+
+              const note =
+                document.createElement("div");
+
+              note.className =
+                "completed-note";
+
+              note.textContent =
+                "Note: " + lavoro.note;
+
+              card.appendChild(note);
+
+            }
+
+
+            const actions =
+              document.createElement("div");
+
+            actions.className =
+              "job-actions";
+
+
+            const rifare =
+              document.createElement("button");
+
+            rifare.className =
+              "btn btn-orange";
+
+            rifare.textContent =
+              "Da rifare";
+
+            rifare.onclick = () =>
+              daRifare(
+                lavoro.id
+              );
+
+
+            const elimina =
+              document.createElement("button");
+
+            elimina.className =
+              "btn btn-red";
+
+            elimina.textContent =
+              "Elimina";
+
+            elimina.onclick = () =>
+              eliminaLavoro(
+                lavoro.id
+              );
+
+
+            actions.appendChild(rifare);
+
+            actions.appendChild(elimina);
+
+            card.appendChild(actions);
+
+
+            contenitore.appendChild(card);
+
+          });
+
+      });
+
+    });
+
+}
+
+
+/* =========================
+PULSANTI HOME
+========================= */
+
+document.getElementById(
+  "btnLavoriDaFare"
+).addEventListener(
+  "click",
+  ()=>{
+    mostraPagina("todoPage");
+  }
+);
+
+
+document.getElementById(
+  "btnUrgenti"
+).addEventListener(
+  "click",
+  ()=>{
+    mostraPagina("urgentPage");
+  }
+);
+
+
+document.getElementById(
+  "btnCompletati"
+).addEventListener(
+  "click",
+  ()=>{
+    mostraPagina("completedPage");
+  }
+);
+
+
+/* =========================
+AVVIO
+========================= */
+
+creaPuntiVendita();
+
+</script>
+
+</body>
+</html>
