@@ -362,8 +362,6 @@ opacity:.55;
 cursor:default
 }
 
-/* ================= FOTO AGGIUNTA ================= */
-
 .add-photo-box{
 margin-top:15px;
 padding:15px;
@@ -424,8 +422,6 @@ font-size:19px;
 font-weight:800;
 cursor:pointer
 }
-
-/* ================= LAVORI ================= */
 
 .todo-store-group,
 .completed-job{
@@ -714,8 +710,6 @@ color:#777
 .job-clickable{cursor:pointer}
 .job-clickable:active{opacity:.75}
 
-/* ================= SCHEDA LAVORO ================= */
-
 .photo-detail-card{
 background:#fff;
 border-radius:20px;
@@ -751,8 +745,6 @@ color:#777;
 font-size:14px;
 white-space:pre-wrap
 }
-
-/* ================= MODALITA' MODIFICA ================= */
 
 .photo-edit-bar{
 display:flex;
@@ -915,8 +907,6 @@ background:#f7f7f7;
 border-radius:13px;
 margin-top:12px
 }
-
-/* ================= FOTO MODALE ================= */
 
 .photo-modal{
 position:fixed;
@@ -1105,8 +1095,6 @@ font-size:36px
 
 <div class="container">
 
-<!-- ================= HOME ================= -->
-
 <div id="homePage" class="page active">
 
 <div class="header">
@@ -1151,9 +1139,6 @@ Connessione Firebase...
 
 </div>
 
-
-<!-- ================= TODO ================= -->
-
 <div id="todoPage" class="page">
 
 <div class="topbar">
@@ -1186,9 +1171,6 @@ onclick="cancellaRicerca()"
 
 </div>
 
-
-<!-- ================= PUNTO VENDITA ================= -->
-
 <div id="storePage" class="page">
 
 <div class="store-topbar">
@@ -1216,9 +1198,6 @@ onclick="toggleAddWorkForm()"
 <div class="store-name" id="storePageName"></div>
 <div class="store-category" id="storePageCategory"></div>
 
-
-<!-- ================= FORM AGGIUNTA ================= -->
-
 <div class="form-card add-work-form" id="addWorkForm">
 
 <h2>Aggiungi lavoro</h2>
@@ -1238,7 +1217,6 @@ id="noteInput"
 placeholder="Eventuali note..."
 ></textarea>
 
-
 <label class="urgent-check">
 
 <input
@@ -1249,9 +1227,6 @@ id="urgenteInput"
 <span>Lavoro urgente</span>
 
 </label>
-
-
-<!-- FOTO DEL NUOVO LAVORO -->
 
 <div class="add-photo-box">
 
@@ -1274,7 +1249,6 @@ class="add-photo-preview"
 
 </div>
 
-
 <button
 class="add-button"
 id="addWorkButton"
@@ -1286,7 +1260,6 @@ style="margin-top:15px"
 
 </div>
 
-
 <div class="section-title">
 Lavori del punto vendita
 </div>
@@ -1294,9 +1267,6 @@ Lavori del punto vendita
 <div id="storeJobs"></div>
 
 </div>
-
-
-<!-- ================= URGENTI ================= -->
 
 <div id="urgentPage" class="page">
 
@@ -1315,9 +1285,6 @@ Lavori urgenti
 <div id="urgentJobs"></div>
 
 </div>
-
-
-<!-- ================= COMPLETATI ================= -->
 
 <div id="completedPage" class="page">
 
@@ -1355,9 +1322,6 @@ Condividi elenco
 
 </div>
 
-
-<!-- ================= SCHEDA LAVORO ================= -->
-
 <div id="photoDetailPage" class="photo-detail-page">
 
 <div class="topbar">
@@ -1372,7 +1336,6 @@ onclick="chiudiSchedaLavoro()"
 <h2 class="page-title">Lavoro</h2>
 
 </div>
-
 
 <div class="photo-detail-card">
 
@@ -1396,9 +1359,6 @@ class="photo-detail-date"
 id="photoDetailCompleted"
 ></div>
 
-
-<!-- NOTE -->
-
 <div class="photo-notes-box">
 
 <label class="photo-notes-label">
@@ -1420,9 +1380,6 @@ placeholder="Scrivi qui le note del lavoro..."
 
 </div>
 
-
-<!-- PULSANTE MODIFICA -->
-
 <div class="photo-edit-bar">
 
 <button
@@ -1434,9 +1391,6 @@ Modifica
 </button>
 
 </div>
-
-
-<!-- AZIONI MODIFICA -->
 
 <div
 id="photoEditActions"
@@ -1458,9 +1412,6 @@ Annulla
 </button>
 
 </div>
-
-
-<!-- FOTO -->
 
 <div
 id="photoToolbar"
@@ -1484,9 +1435,6 @@ onclick="selezionaFoto()"
 
 </div>
 
-
-<!-- FOTO NUOVO LAVORO -->
-
 <input
 id="newPhotoInput"
 type="file"
@@ -1494,9 +1442,6 @@ accept="image/*"
 multiple
 hidden
 >
-
-
-<!-- FOTO SCHEDA -->
 
 <input
 id="photoInput"
@@ -1512,9 +1457,6 @@ type="file"
 accept="image/*"
 hidden
 >
-
-
-<!-- ================= MODALE FOTO ================= -->
 
 <div
 id="photoModal"
@@ -1565,11 +1507,13 @@ Elimina
 
 </div>
 
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- ================= PDF ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
 
@@ -1580,17 +1524,11 @@ Elimina
 const firebaseConfig={
 
 apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
-
 authDomain:"ediservice-bb88c.firebaseapp.com",
-
 projectId:"ediservice-bb88c",
-
 storageBucket:"ediservice-bb88c.firebasestorage.app",
-
 messagingSenderId:"420418885149",
-
 appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
-
 measurementId:"G-BM489YWSY4"
 
 };
@@ -1685,7 +1623,6 @@ let paginaPrecedenteScheda="todoPage";
 
 let modificaSchedaAttiva=false;
 
-/* FOTO SELEZIONATE NEL FORM NUOVO LAVORO */
 let fotoNuovoLavoro=[];
 
 const signedUrlCache=new Map();
@@ -1834,11 +1771,6 @@ id:doc.id,
 }));
 
 aggiornaTutto();
-
-/*
-   Se la scheda è aperta aggiorniamo
-   anche i dati della scheda.
-*/
 
 if(lavoroFotoAperto){
 
@@ -2479,37 +2411,22 @@ if(!auth.currentUser){
 await auth.signInAnonymously();
 }
 
-
-/* 1. CREIAMO IL LAVORO */
-
 const riferimento=await db.collection("lavori").add({
 
 punto:puntoSelezionato,
-
 testo,
-
 note,
-
 completato:false,
-
 attivo:true,
-
 urgente,
-
 creatoDa:auth.currentUser?
 auth.currentUser.uid:"",
-
 creatoIl:
 firebase.firestore.FieldValue.serverTimestamp(),
-
 completatoIl:null,
-
 foto:[]
 
 });
-
-
-/* 2. CARICHIAMO LE FOTO */
 
 const fotoCaricate=[];
 
@@ -2560,23 +2477,15 @@ photoError
 
 }
 
-
-/* 3. COLLEGHIAMO LE FOTO AL LAVORO */
-
 if(fotoCaricate.length){
 
 await db.collection("lavori")
 .doc(riferimento.id)
 .update({
-
 foto:fotoCaricate
-
 });
 
 }
-
-
-/* 4. RESET */
 
 lavoroInput.value="";
 noteInput.value="";
@@ -2595,24 +2504,6 @@ document.getElementById("addWorkToggle")
 
 button.disabled=false;
 button.textContent="+ Aggiungi lavoro";
-
-
-if(fotoCaricate.length){
-
-alert(
-fotoCaricate.length===fotoNuovoLavoro.length
-?"Lavoro aggiunto con le foto."
-:"Lavoro aggiunto. Alcune foto non sono state caricate."
-);
-
-}else{
-
-/*
-   Se l'utente non aveva foto,
-   nessun messaggio particolare.
-*/
-
-}
 
 }catch(error){
 
@@ -2880,117 +2771,526 @@ return gruppi;
 }
 
 
-function creaElencoCompletatiTesto(){
+/* ==================================================
+   CREA PDF LAVORI COMPLETATI
+================================================== */
+
+async function creaPDFCompletati(){
+
+if(!window.jspdf){
+
+alert("Sistema PDF non disponibile. Ricarica la pagina.");
+
+return null;
+
+}
+
+const {jsPDF}=window.jspdf;
+
+const pdf=new jsPDF({
+orientation:"portrait",
+unit:"mm",
+format:"a4"
+});
 
 const gruppi=listaCompletatiPerPunto();
 
-if(!gruppi.size)
-return "LAVORI COMPLETATI\n\nNessun lavoro completato.";
+const margine=15;
+const larghezzaPagina=210;
+const larghezza=180;
 
-let testo="LAVORI COMPLETATI\n\n";
+let y=20;
+let pagina=1;
+
+function footer(){
+
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(8);
+pdf.setTextColor(130,130,130);
+
+pdf.text(
+"EDISERVICE - Lavori completati",
+margine,
+288
+);
+
+pdf.text(
+"Pagina "+pagina,
+195,
+288,
+{align:"right"}
+);
+
+}
+
+function controllaSpazio(altezza){
+
+if(y+altezza>275){
+
+footer();
+
+pdf.addPage();
+
+pagina++;
+
+y=20;
+
+}
+
+}
+
+
+/* INTESTAZIONE */
+
+pdf.setFont("helvetica","bold");
+pdf.setFontSize(24);
+pdf.setTextColor(46,125,50);
+
+pdf.text(
+"EDISERVICE",
+margine,
+y
+);
+
+y+=9;
+
+pdf.setFontSize(16);
+pdf.setTextColor(35,35,35);
+
+pdf.text(
+"LAVORI COMPLETATI",
+margine,
+y
+);
+
+y+=7;
+
+const oggi=new Date();
+
+const data=
+String(oggi.getDate()).padStart(2,"0")+
+"/"+
+String(oggi.getMonth()+1).padStart(2,"0")+
+"/"+
+oggi.getFullYear()+
+" alle "+
+String(oggi.getHours()).padStart(2,"0")+
+":"+
+String(oggi.getMinutes()).padStart(2,"0");
+
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(9);
+pdf.setTextColor(110,110,110);
+
+pdf.text(
+"Elenco generato il "+data,
+margine,
+y
+);
+
+y+=8;
+
+pdf.setDrawColor(210,210,210);
+
+pdf.line(
+margine,
+y,
+larghezzaPagina-margine,
+y
+);
+
+y+=10;
+
+
+/* NESSUN LAVORO */
+
+if(!gruppi.size){
+
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(12);
+pdf.setTextColor(100,100,100);
+
+pdf.text(
+"Nessun lavoro completato.",
+margine,
+y
+);
+
+footer();
+
+return pdf;
+
+}
+
+
+/* PUNTI VENDITA */
 
 for(const [punto,jobs] of gruppi){
 
-testo+="Punto vendita: "+punto+"\n";
+controllaSpazio(20);
 
-jobs.forEach(job=>{
+pdf.setFillColor(232,245,233);
 
-testo+="- "+(job.testo||"").trim();
+pdf.roundedRect(
+margine,
+y-6,
+larghezza,
+11,
+3,
+3,
+"F"
+);
 
-if((job.note||"").trim())
-testo+=" — Note: "+job.note.trim();
+pdf.setFont("helvetica","bold");
+pdf.setFontSize(14);
+pdf.setTextColor(46,125,50);
+
+pdf.text(
+punto,
+margine+5,
+y+1
+);
+
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(9);
+pdf.setTextColor(80,80,80);
+
+pdf.text(
+jobs.length+
+(jobs.length===1?" lavoro":" lavori"),
+195,
+y+1,
+{align:"right"}
+);
+
+y+=13;
+
+
+/* LAVORI */
+
+jobs.forEach((job,index)=>{
+
+const testo=
+(job.testo||"").trim()||
+"Lavoro senza descrizione";
+
+const testoRighe=
+pdf.splitTextToSize(
+testo,
+larghezza-20
+);
+
+let altezza=
+10+
+testoRighe.length*5;
+
+let noteRighe=[];
+
+if((job.note||"").trim()){
+
+noteRighe=
+pdf.splitTextToSize(
+"Note: "+job.note.trim(),
+larghezza-20
+);
+
+altezza+=
+5+
+noteRighe.length*4;
+
+}
 
 if(job.creatoIl)
-testo+=" — Inserito: "+formatDataOra(job.creatoIl);
+altezza+=5;
 
 if(job.completatoIl)
-testo+=" — Completato: "+formatDataOra(job.completatoIl);
+altezza+=5;
 
-testo+="\n";
+altezza+=7;
+
+controllaSpazio(altezza);
+
+
+/* BOX */
+
+pdf.setDrawColor(225,225,225);
+
+pdf.roundedRect(
+margine,
+y-4,
+larghezza,
+altezza,
+3,
+3,
+"S"
+);
+
+
+/* NUMERO */
+
+pdf.setFillColor(46,125,50);
+
+pdf.circle(
+margine+7,
+y+3,
+3.2,
+"F"
+);
+
+pdf.setFont("helvetica","bold");
+pdf.setFontSize(8);
+pdf.setTextColor(255,255,255);
+
+pdf.text(
+String(index+1),
+margine+7,
+y+5.5,
+{align:"center"}
+);
+
+
+/* TESTO */
+
+let testoY=y+2;
+
+pdf.setFont("helvetica","bold");
+pdf.setFontSize(11);
+pdf.setTextColor(35,35,35);
+
+pdf.text(
+testoRighe,
+margine+13,
+testoY
+);
+
+testoY+=
+testoRighe.length*5+
+3;
+
+
+/* NOTE */
+
+if(noteRighe.length){
+
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(9);
+pdf.setTextColor(100,100,100);
+
+pdf.text(
+noteRighe,
+margine+13,
+testoY
+);
+
+testoY+=
+noteRighe.length*4+
+3;
+
+}
+
+
+/* DATE */
+
+pdf.setFont("helvetica","normal");
+pdf.setFontSize(8);
+pdf.setTextColor(120,120,120);
+
+if(job.creatoIl){
+
+pdf.text(
+"Inserito: "+
+formatDataOra(job.creatoIl),
+margine+13,
+testoY
+);
+
+testoY+=5;
+
+}
+
+if(job.completatoIl){
+
+pdf.text(
+"Completato: "+
+formatDataOra(job.completatoIl),
+margine+13,
+testoY
+);
+
+testoY+=5;
+
+}
+
+y+=altezza+6;
 
 });
 
-testo+="\n";
+y+=4;
 
 }
 
-return testo.trim();
+footer();
 
-}
-
-
-function salvaElencoCompletati(){
-
-const testo=creaElencoCompletatiTesto();
-
-const blob=new Blob(
-[testo],
-{type:"text/plain;charset=utf-8"}
-);
-
-const url=URL.createObjectURL(blob);
-
-const a=document.createElement("a");
-
-a.href=url;
-a.download="EDISERVICE-lavori-completati.txt";
-
-document.body.appendChild(a);
-a.click();
-a.remove();
-
-setTimeout(()=>{
-URL.revokeObjectURL(url);
-},1000);
+return pdf;
 
 }
 
 
-async function condividiElencoCompletati(){
+/* ==================================================
+   SALVA ELENCO PDF
+================================================== */
 
-const testo=creaElencoCompletatiTesto();
+async function salvaElencoCompletati(){
 
 try{
 
-if(navigator.share){
+const pdf=await creaPDFCompletati();
 
-await navigator.share({
-title:"EDISERVICE - Lavori completati",
-text:testo
-});
+if(!pdf)return;
 
-}else if(navigator.clipboard){
+const oggi=new Date();
 
-await navigator.clipboard.writeText(testo);
+const data=
+String(oggi.getDate()).padStart(2,"0")+
+"-"+
+String(oggi.getMonth()+1).padStart(2,"0")+
+"-"+
+oggi.getFullYear();
 
-alert("Elenco copiato negli appunti.");
-
-}else{
-
-prompt("Copia questo elenco:",testo);
-
-}
+pdf.save(
+"EDISERVICE-Lavori-completati-"+data+".pdf"
+);
 
 }catch(error){
 
-if(error&&error.name==="AbortError")
-return;
+console.error(
+"Errore PDF:",
+error
+);
+
+alert(
+"Errore nella creazione del PDF."
+);
+
+}
+
+}
+
+
+/* ==================================================
+   CONDIVIDI ELENCO PDF
+================================================== */
+
+async function condividiElencoCompletati(){
 
 try{
 
-await navigator.clipboard.writeText(testo);
-alert("Elenco copiato negli appunti.");
+const pdf=await creaPDFCompletati();
 
-}catch(e){
+if(!pdf)return;
 
-prompt("Copia questo elenco:",testo);
+const oggi=new Date();
+
+const data=
+String(oggi.getDate()).padStart(2,"0")+
+"-"+
+String(oggi.getMonth()+1).padStart(2,"0")+
+"-"+
+oggi.getFullYear();
+
+const nomeFile=
+"EDISERVICE-Lavori-completati-"+data+".pdf";
+
+const blob=pdf.output("blob");
+
+const file=new File(
+[blob],
+nomeFile,
+{
+type:"application/pdf"
+}
+);
+
+
+/* IPHONE / SAFARI */
+
+if(
+navigator.share &&
+navigator.canShare &&
+navigator.canShare({
+files:[file]
+})
+){
+
+await navigator.share({
+
+title:
+"EDISERVICE - Lavori completati",
+
+text:
+"Elenco lavori completati EDISERVICE",
+
+files:[file]
+
+});
+
+return;
+
+}
+
+
+/* FALLBACK */
+
+const url=
+URL.createObjectURL(blob);
+
+const link=
+document.createElement("a");
+
+link.href=url;
+
+link.download=nomeFile;
+
+document.body.appendChild(link);
+
+link.click();
+
+link.remove();
+
+setTimeout(()=>{
+
+URL.revokeObjectURL(url);
+
+},1000);
+
+}catch(error){
+
+if(
+error &&
+error.name==="AbortError"
+){
+
+return;
+
+}
+
+console.error(
+"Errore condivisione PDF:",
+error
+);
+
+alert(
+"Errore nella creazione del PDF."
+);
 
 }
 
 }
 
-}
 
+/* ==================================================
+   RENDER COMPLETATI
+================================================== */
 
 function renderCompletedJobs(lista){
 
@@ -3131,8 +3431,6 @@ if(!lavoro)return;
 lavoroFotoAperto=lavoro;
 
 paginaPrecedenteScheda=origine||"todoPage";
-
-/* SEMPRE VISUALIZZAZIONE ALL'APERTURA */
 
 modificaSchedaAttiva=false;
 
