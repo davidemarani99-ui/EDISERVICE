@@ -10,899 +10,920 @@
 
 <style>
 *{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent
 }
 
 html,body{
-  margin:0;
-  padding:0;
-  background:#fff;
-  color:#222;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
+margin:0;
+padding:0;
+background:#fff;
+color:#222;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
 }
 
 button,input,textarea{
-  font-family:inherit
+font-family:inherit
 }
 
 .container{
-  max-width:850px;
-  margin:auto;
-  padding:20px
+max-width:850px;
+margin:auto;
+padding:20px
 }
 
 .header{
-  text-align:center;
-  padding:10px 0 5px;
-  background:#fff
+text-align:center;
+padding:10px 0 5px;
+background:#fff
 }
 
 .header img{
-  display:block;
-  width:250px;
-  max-width:80%;
-  height:auto;
-  margin:0 auto 10px;
-  background:#fff
+display:block;
+width:250px;
+max-width:80%;
+height:auto;
+margin:0 auto 10px;
+background:#fff
 }
 
 .firebase-status{
-  margin-top:8px;
-  font-size:13px;
-  font-weight:600
+margin-top:8px;
+font-size:13px;
+font-weight:600
 }
 
 .status-ok{color:#2e7d32}
 .status-error{color:#c62828}
 
-.page{
-  display:none
-}
-
-.page.active{
-  display:block
-}
+.page{display:none}
+.page.active{display:block}
 
 .summary,
 .urgent-folder,
 .completed-folder{
-  min-height:190px;
-  border-radius:28px;
-  padding:28px;
-  margin:25px 0;
-  box-shadow:0 3px 12px rgba(0,0,0,.07);
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  transition:.15s
+min-height:190px;
+border-radius:28px;
+padding:28px;
+margin:25px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.07);
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:space-between;
+transition:.15s
 }
 
 .summary:active,
 .urgent-folder:active,
 .completed-folder:active{
-  transform:scale(.98)
+transform:scale(.98)
 }
 
 .summary{
-  background:#555;
-  color:#fff
+background:#555;
+color:#fff
 }
 
 .urgent-folder{
-  background:#ffebee;
-  border:2px solid #e53935;
-  color:#b71c1c
+background:#ffebee;
+border:2px solid #e53935;
+color:#b71c1c
 }
 
 .completed-folder{
-  background:#e8f5e9;
-  border:2px solid #43a047;
-  color:#1b5e20
+background:#e8f5e9;
+border:2px solid #43a047;
+color:#1b5e20
 }
 
-.folder-text{
-  flex:1
-}
+.folder-text{flex:1}
 
 .folder-title{
-  font-size:25px;
-  font-weight:800;
-  margin-bottom:12px
+font-size:25px;
+font-weight:800;
+margin-bottom:12px
 }
 
 .folder-number{
-  font-size:55px;
-  line-height:1;
-  font-weight:900
+font-size:55px;
+line-height:1;
+font-weight:900
 }
 
 .folder-description{
-  font-size:14px;
-  margin-top:8px;
-  opacity:.85
+font-size:14px;
+margin-top:8px;
+opacity:.85
 }
 
 .folder-arrow{
-  font-size:38px;
-  margin-left:15px
+font-size:38px;
+margin-left:15px
 }
 
 .section-title{
-  font-size:23px;
-  font-weight:800;
-  margin:35px 0 15px;
-  color:#d32f2f
+font-size:23px;
+font-weight:800;
+margin:35px 0 15px;
+color:#d32f2f
 }
 
 .group-title{
-  display:block;
-  width:100%;
-  padding:11px 15px;
-  margin:28px 0 12px;
-  background:#f2f2f2;
-  border-left:6px solid #d32f2f;
-  border-radius:12px;
-  color:#222;
-  font-size:18px;
-  font-weight:900;
-  box-shadow:0 2px 7px rgba(0,0,0,.06)
+display:block;
+width:100%;
+padding:11px 15px;
+margin:28px 0 12px;
+background:#f2f2f2;
+border-left:6px solid #d32f2f;
+border-radius:12px;
+color:#222;
+font-size:18px;
+font-weight:900;
+box-shadow:0 2px 7px rgba(0,0,0,.06)
 }
 
 .store-list{
-  display:flex;
-  flex-direction:column;
-  gap:10px
+display:flex;
+flex-direction:column;
+gap:10px
 }
 
 .store-button{
-  width:100%;
-  background:#fff;
-  color:#222;
-  border:1px solid #ddd;
-  border-radius:16px;
-  padding:17px 18px;
-  text-align:left;
-  font-size:17px;
-  font-weight:650;
-  cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,.04);
-  display:flex;
-  align-items:center;
-  justify-content:space-between
+width:100%;
+background:#fff;
+color:#222;
+border:1px solid #ddd;
+border-radius:16px;
+padding:17px 18px;
+text-align:left;
+font-size:17px;
+font-weight:650;
+cursor:pointer;
+box-shadow:0 2px 6px rgba(0,0,0,.04);
+display:flex;
+align-items:center;
+justify-content:space-between
 }
 
-.store-button:active{
-  transform:scale(.98)
-}
+.store-button:active{transform:scale(.98)}
 
-.store-name-text{
-  color:#222
-}
+.store-name-text{color:#222}
 
 .store-count{
-  min-width:34px;
-  height:34px;
-  padding:0 10px;
-  border-radius:17px;
-  background:#f1f1f1;
-  color:#d32f2f;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:16px;
-  font-weight:900;
-  margin-left:12px
+min-width:34px;
+height:34px;
+padding:0 10px;
+border-radius:17px;
+background:#f1f1f1;
+color:#d32f2f;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:16px;
+font-weight:900;
+margin-left:12px
 }
 
 .topbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:20px
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:20px
 }
 
 .back-button{
-  background:#e9e9e9;
-  color:#222;
-  border:0;
-  border-radius:12px;
-  padding:11px 15px;
-  font-weight:700;
-  cursor:pointer
+background:#e9e9e9;
+color:#222;
+border:0;
+border-radius:12px;
+padding:11px 15px;
+font-weight:700;
+cursor:pointer
 }
 
 .page-title{
-  font-size:24px;
-  font-weight:850;
-  margin:0
+font-size:24px;
+font-weight:850;
+margin:0
 }
 
 .search-box{
-  position:relative;
-  margin:15px 0 20px
+position:relative;
+margin:15px 0 20px
 }
 
 .search-box input{
-  width:100%;
-  height:52px;
-  padding:0 48px 0 17px;
-  border:1px solid #ddd;
-  border-radius:15px;
-  background:#f7f7f7;
-  font-size:16px;
-  outline:none;
-  box-shadow:0 2px 7px rgba(0,0,0,.05)
+width:100%;
+height:52px;
+padding:0 48px 0 17px;
+border:1px solid #ddd;
+border-radius:15px;
+background:#f7f7f7;
+font-size:16px;
+outline:none;
+box-shadow:0 2px 7px rgba(0,0,0,.05)
 }
 
 .search-box input:focus{
-  border-color:#d32f2f;
-  background:#fff
+border-color:#d32f2f;
+background:#fff
 }
 
 .search-box button{
-  position:absolute;
-  right:10px;
-  top:50%;
-  transform:translateY(-50%);
-  width:31px;
-  height:31px;
-  border:0;
-  border-radius:50%;
-  background:#ddd;
-  color:#555;
-  font-size:22px;
-  line-height:29px;
-  display:none;
-  cursor:pointer
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+width:31px;
+height:31px;
+border:0;
+border-radius:50%;
+background:#ddd;
+color:#555;
+font-size:22px;
+line-height:29px;
+display:none;
+cursor:pointer
 }
 
 .store-name{
-  color:#d32f2f;
-  font-size:27px;
-  font-weight:900
+color:#d32f2f;
+font-size:27px;
+font-weight:900
 }
 
 .store-category{
-  color:#777;
-  font-size:14px;
-  margin-bottom:20px
+color:#777;
+font-size:14px;
+margin-bottom:20px
 }
 
 .form-card{
-  background:#fff;
-  border-radius:20px;
-  padding:20px;
-  margin:20px 0;
-  box-shadow:0 2px 8px rgba(0,0,0,.06)
+background:#fff;
+border-radius:20px;
+padding:20px;
+margin:20px 0;
+box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
 
-.form-card h2{
-  margin-top:0
-}
+.form-card h2{margin-top:0}
 
 label{
-  display:block;
-  font-weight:700;
-  margin:15px 0 7px
+display:block;
+font-weight:700;
+margin:15px 0 7px
 }
 
 input[type="text"],
 textarea{
-  width:100%;
-  border:1px solid #d5d5d5;
-  border-radius:12px;
-  padding:13px;
-  font-size:16px;
-  background:#fafafa;
-  outline:none
+width:100%;
+border:1px solid #d5d5d5;
+border-radius:12px;
+padding:13px;
+font-size:16px;
+background:#fafafa;
+outline:none
 }
 
 textarea{
-  min-height:90px;
-  resize:vertical
+min-height:90px;
+resize:vertical
 }
 
 .urgent-check{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin:15px 0
+display:flex;
+align-items:center;
+gap:10px;
+margin:15px 0
 }
 
 .urgent-check input{
-  width:20px;
-  height:20px
+width:20px;
+height:20px
 }
 
 .add-button{
-  width:100%;
-  background:#222;
-  color:#fff;
-  border:0;
-  border-radius:13px;
-  padding:15px;
-  font-size:17px;
-  font-weight:800;
-  cursor:pointer
+width:100%;
+background:#222;
+color:#fff;
+border:0;
+border-radius:13px;
+padding:15px;
+font-size:17px;
+font-weight:800;
+cursor:pointer
 }
 
 .todo-store-group{
-  background:#fff;
-  border-radius:20px;
-  margin:17px 0;
-  overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.07)
+background:#fff;
+border-radius:20px;
+margin:17px 0;
+overflow:hidden;
+box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
 
 .todo-store-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:16px 18px;
-  background:#fafafa;
-  border-bottom:1px solid #e8e8e8
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 18px;
+background:#fafafa;
+border-bottom:1px solid #e8e8e8
 }
 
 .todo-store-name{
-  color:#d32f2f;
-  font-size:21px;
-  font-weight:900
+color:#d32f2f;
+font-size:21px;
+font-weight:900
 }
 
 .todo-store-count{
-  min-width:32px;
-  height:32px;
-  padding:0 9px;
-  border-radius:16px;
-  background:#f1f1f1;
-  color:#d32f2f;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  font-weight:900
+min-width:32px;
+height:32px;
+padding:0 9px;
+border-radius:16px;
+background:#f1f1f1;
+color:#d32f2f;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+font-weight:900
 }
 
 .todo-job-row{
-  padding:14px;
-  border-bottom:1px solid #eee
+padding:14px;
+border-bottom:1px solid #eee
 }
 
-.todo-job-row:last-child{
-  border-bottom:0
-}
+.todo-job-row:last-child{border-bottom:0}
 
 .todo-job-main{
-  display:flex;
-  align-items:center;
-  gap:10px
+display:flex;
+align-items:center;
+gap:10px
 }
 
 .todo-job-dot{
-  width:8px;
-  height:8px;
-  min-width:8px;
-  border-radius:50%;
-  background:#d32f2f
+width:8px;
+height:8px;
+min-width:8px;
+border-radius:50%;
+background:#d32f2f
 }
 
 .todo-job-content{
-  flex:1;
-  min-width:0
+flex:1;
+min-width:0
 }
 
 .todo-job-text{
-  font-size:16px;
-  font-weight:700;
-  line-height:1.35;
-  word-break:break-word
+font-size:16px;
+font-weight:700;
+line-height:1.35;
+word-break:break-word
 }
 
 .todo-job-note{
-  margin-top:5px;
-  color:#777;
-  font-size:13px;
-  line-height:1.35
+margin-top:5px;
+color:#777;
+font-size:13px;
+line-height:1.35
 }
 
 .todo-job-urgent{
-  display:inline-block;
-  background:#e53935;
-  color:#fff;
-  border-radius:7px;
-  padding:3px 7px;
-  font-size:10px;
-  font-weight:800;
-  margin-top:7px
+display:inline-block;
+background:#e53935;
+color:#fff;
+border-radius:7px;
+padding:3px 7px;
+font-size:10px;
+font-weight:800;
+margin-top:7px
 }
 
 .symbol-actions{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap:6px;
-  margin-left:8px
+display:flex;
+align-items:center;
+justify-content:flex-end;
+gap:6px;
+margin-left:8px
 }
 
 .symbol-btn{
-  width:32px;
-  height:32px;
-  min-width:32px;
-  border:0;
-  border-radius:9px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:17px;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 1px 3px rgba(0,0,0,.12)
+width:32px;
+height:32px;
+min-width:32px;
+border:0;
+border-radius:9px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:17px;
+font-weight:900;
+cursor:pointer;
+box-shadow:0 1px 3px rgba(0,0,0,.12)
 }
 
-.symbol-btn:active{
-  transform:scale(.88)
-}
+.symbol-btn:active{transform:scale(.88)}
 
 .symbol-complete{
-  background:#e8f5e9;
-  color:#2e7d32
+background:#e8f5e9;
+color:#2e7d32
 }
 
 .symbol-urgent{
-  background:#fff3e0;
-  color:#ef6c00
+background:#fff3e0;
+color:#ef6c00
 }
 
 .symbol-delete{
-  background:#ffebee;
-  color:#d32f2f
+background:#ffebee;
+color:#d32f2f
 }
 
 .symbol-redo{
-  background:#e3f2fd;
-  color:#1976d2
+background:#e3f2fd;
+color:#1976d2
 }
 
 .job-card{
-  background:#fff;
-  border-radius:18px;
-  padding:18px;
-  margin:12px 0;
-  box-shadow:0 2px 8px rgba(0,0,0,.06)
+background:#fff;
+border-radius:18px;
+padding:18px;
+margin:12px 0;
+box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
 
 .job-text{
-  font-size:17px;
-  font-weight:650;
-  line-height:1.35
+font-size:17px;
+font-weight:650;
+line-height:1.35
 }
 
 .job-note{
-  margin-top:7px;
-  color:#777;
-  font-size:14px
+margin-top:7px;
+color:#777;
+font-size:14px
 }
 
-.completed-page-title{
-  color:#2e7d32
-}
+.completed-page-title{color:#2e7d32}
 
 .completed-job{
-  background:#fff;
-  border-radius:20px;
-  margin:17px 0;
-  overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.07)
+background:#fff;
+border-radius:20px;
+margin:17px 0;
+overflow:hidden;
+box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
 
 .completed-store-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:16px 18px;
-  background:#fafafa;
-  border-bottom:1px solid #e8e8e8
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 18px;
+background:#fafafa;
+border-bottom:1px solid #e8e8e8
 }
 
 .completed-store-name{
-  color:#2e7d32;
-  font-size:21px;
-  font-weight:900
+color:#2e7d32;
+font-size:21px;
+font-weight:900
 }
 
 .completed-store-count{
-  min-width:32px;
-  height:32px;
-  padding:0 9px;
-  border-radius:16px;
-  background:#e8f5e9;
-  color:#2e7d32;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  font-weight:900
+min-width:32px;
+height:32px;
+padding:0 9px;
+border-radius:16px;
+background:#e8f5e9;
+color:#2e7d32;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+font-weight:900
 }
 
 .completed-job-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:14px;
-  border-bottom:1px solid #eee
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px;
+border-bottom:1px solid #eee
 }
 
-.completed-job-row:last-child{
-  border-bottom:0
-}
+.completed-job-row:last-child{border-bottom:0}
 
 .completed-check{
-  color:#2e7d32;
-  font-size:20px;
-  font-weight:900
+color:#2e7d32;
+font-size:20px;
+font-weight:900
 }
 
 .completed-job-content{
-  flex:1;
-  min-width:0
+flex:1;
+min-width:0
 }
 
 .completed-job-text{
-  font-size:16px;
-  font-weight:650;
-  line-height:1.35
+font-size:16px;
+font-weight:650;
+line-height:1.35
 }
 
 .completed-job-note{
-  color:#777;
-  font-size:13px;
-  margin-top:5px
+color:#777;
+font-size:13px;
+margin-top:5px
 }
 
-.urgent-page-title{
-  color:#d32f2f
-}
+.urgent-page-title{color:#d32f2f}
 
 .urgent-store-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:16px 18px;
-  background:#fff5f5;
-  border-bottom:1px solid #f3d1d1
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 18px;
+background:#fff5f5;
+border-bottom:1px solid #f3d1d1
 }
 
 .urgent-store-name{
-  color:#d32f2f;
-  font-size:21px;
-  font-weight:900
+color:#d32f2f;
+font-size:21px;
+font-weight:900
 }
 
 .urgent-store-count{
-  min-width:32px;
-  height:32px;
-  padding:0 9px;
-  border-radius:16px;
-  background:#ffebee;
-  color:#d32f2f;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  font-weight:900
+min-width:32px;
+height:32px;
+padding:0 9px;
+border-radius:16px;
+background:#ffebee;
+color:#d32f2f;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+font-weight:900
 }
 
 .urgent-job-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:14px;
-  border-bottom:1px solid #eee
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px;
+border-bottom:1px solid #eee
 }
 
-.urgent-job-row:last-child{
-  border-bottom:0
-}
+.urgent-job-row:last-child{border-bottom:0}
 
 .urgent-job-dot{
-  width:8px;
-  height:8px;
-  min-width:8px;
-  border-radius:50%;
-  background:#e53935
+width:8px;
+height:8px;
+min-width:8px;
+border-radius:50%;
+background:#e53935
 }
 
 .urgent-job-content{
-  flex:1;
-  min-width:0
+flex:1;
+min-width:0
 }
 
 .urgent-job-text{
-  font-size:16px;
-  font-weight:700;
-  line-height:1.35
+font-size:16px;
+font-weight:700;
+line-height:1.35
 }
 
 .urgent-job-note{
-  color:#777;
-  font-size:13px;
-  margin-top:5px
+color:#777;
+font-size:13px;
+margin-top:5px
 }
 
 .empty{
-  background:#fff;
-  border-radius:17px;
-  padding:25px;
-  color:#777;
-  text-align:center;
-  margin:15px 0
+background:#fff;
+border-radius:17px;
+padding:25px;
+color:#777;
+text-align:center;
+margin:15px 0
 }
 
 .loading{
-  text-align:center;
-  padding:30px;
-  color:#777
+text-align:center;
+padding:30px;
+color:#777
 }
 
-/* FOTO */
-.job-clickable{
-  cursor:pointer
-}
+/* =========================
+   FOTO / SCHEDA
+========================= */
 
-.job-clickable:active{
-  opacity:.75
-}
+.job-clickable{cursor:pointer}
 
-.photo-detail-page{
-  display:none
-}
+.job-clickable:active{opacity:.75}
 
-.photo-detail-page.active{
-  display:block
-}
+.photo-detail-page{display:none}
+
+.photo-detail-page.active{display:block}
 
 .photo-detail-card{
-  background:#fff;
-  border-radius:20px;
-  padding:20px;
-  margin:12px 0;
-  box-shadow:0 3px 12px rgba(0,0,0,.07)
+background:#fff;
+border-radius:20px;
+padding:20px;
+margin:12px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
 
 .photo-detail-store{
-  color:#d32f2f;
-  font-size:14px;
-  font-weight:800;
-  margin-bottom:7px
+color:#d32f2f;
+font-size:14px;
+font-weight:800;
+margin-bottom:7px
 }
 
 .photo-detail-title{
-  font-size:21px;
-  font-weight:800;
-  line-height:1.35;
-  white-space:pre-wrap
-}
-
-.photo-detail-note{
-  margin-top:8px;
-  color:#777;
-  font-size:14px;
-  white-space:pre-wrap
+font-size:21px;
+font-weight:800;
+line-height:1.35;
+white-space:pre-wrap
 }
 
 .photo-notes-box{
-  margin-top:18px
+margin-top:18px
 }
 
 .photo-notes-label{
-  display:block;
-  font-size:16px;
-  font-weight:800;
-  margin:0 0 8px;
-  color:#222
+font-size:15px;
+font-weight:800;
+margin:0 0 7px
 }
 
 .photo-notes-input{
-  width:100%;
-  min-height:120px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  padding:13px;
-  font-size:16px;
-  background:#fafafa;
-  outline:none;
-  resize:vertical
-}
-
-.photo-notes-input:focus{
-  border-color:#222;
-  background:#fff
+width:100%;
+min-height:100px;
+border:1px solid #d5d5d5;
+border-radius:12px;
+padding:13px;
+font-size:16px;
+background:#fafafa;
+outline:none;
+resize:vertical
 }
 
 .photo-save-notes{
-  width:100%;
-  margin-top:8px;
-  border:0;
-  border-radius:12px;
-  background:#e9e9e9;
-  color:#222;
-  padding:12px;
-  font-weight:800;
-  cursor:pointer
+width:100%;
+margin-top:8px;
+border:0;
+border-radius:11px;
+padding:12px;
+background:#e3f2fd;
+color:#1976d2;
+font-weight:800;
+cursor:pointer
 }
 
 .photo-toolbar{
-  display:flex;
-  gap:10px;
-  margin:18px 0 10px
+display:flex;
+gap:10px;
+margin:18px 0 10px
 }
 
 .photo-add-button{
-  flex:1;
-  border:0;
-  border-radius:12px;
-  background:#222;
-  color:#fff;
-  padding:13px;
-  font-weight:800;
-  cursor:pointer
+flex:1;
+border:0;
+border-radius:12px;
+background:#222;
+color:#fff;
+padding:13px;
+font-weight:800;
+cursor:pointer
 }
 
+.photo-add-button:active{transform:scale(.98)}
+
 .photo-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:12px
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:12px
 }
 
 .photo-thumb{
-  position:relative;
-  aspect-ratio:1;
-  border-radius:13px;
-  overflow:hidden;
-  background:#f2f2f2;
-  box-shadow:0 2px 7px rgba(0,0,0,.08);
-  cursor:pointer
+position:relative;
+aspect-ratio:1;
+border-radius:13px;
+overflow:hidden;
+background:#f2f2f2;
+box-shadow:0 2px 7px rgba(0,0,0,.08);
+cursor:pointer
 }
 
 .photo-thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block
+width:100%;
+height:100%;
+object-fit:cover;
+display:block
 }
 
 .photo-thumb-delete{
-  position:absolute;
-  right:6px;
-  top:6px;
-  width:30px;
-  height:30px;
-  border:0;
-  border-radius:50%;
-  background:rgba(0,0,0,.68);
-  color:#fff;
-  font-size:20px;
-  line-height:30px;
-  cursor:pointer
+position:absolute;
+right:6px;
+top:6px;
+width:30px;
+height:30px;
+border:0;
+border-radius:50%;
+background:rgba(0,0,0,.68);
+color:#fff;
+font-size:20px;
+line-height:30px;
+cursor:pointer
 }
 
 .photo-empty{
-  padding:28px 15px;
-  text-align:center;
-  color:#777;
-  background:#f7f7f7;
-  border-radius:13px;
-  margin-top:12px
+padding:28px 15px;
+text-align:center;
+color:#777;
+background:#f7f7f7;
+border-radius:13px;
+margin-top:12px
 }
 
 .photo-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.88);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:9999
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.88);
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px;
+z-index:1000
 }
 
-.photo-modal.active{
-  display:flex
-}
+.photo-modal.active{display:flex}
 
 .photo-modal-content{
-  position:relative;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center
-}
-
-.photo-modal img{
-  max-width:100%;
-  max-height:85vh;
-  object-fit:contain;
-  border-radius:10px
+position:relative;
+width:100%;
+max-width:900px;
+max-height:92vh;
+background:#fff;
+border-radius:18px;
+padding:12px;
+overflow:auto
 }
 
 .photo-modal-close{
-  position:absolute;
-  right:0;
-  top:0;
-  width:42px;
-  height:42px;
-  border:0;
-  border-radius:50%;
-  background:#fff;
-  color:#222;
-  font-size:27px;
-  font-weight:800;
-  cursor:pointer
+position:absolute;
+right:10px;
+top:10px;
+width:38px;
+height:38px;
+border:0;
+border-radius:50%;
+background:#eee;
+font-size:23px;
+font-weight:800;
+z-index:2
+}
+
+.photo-modal-image{
+display:block;
+width:100%;
+max-height:78vh;
+object-fit:contain;
+border-radius:12px;
+background:#111
 }
 
 .photo-modal-actions{
-  position:absolute;
-  bottom:10px;
-  left:0;
-  right:0;
-  display:flex;
-  justify-content:center;
-  gap:10px
+display:flex;
+gap:8px;
+margin-top:10px
 }
 
 .photo-modal-actions button{
-  border:0;
-  border-radius:12px;
-  padding:12px 15px;
-  font-weight:800;
-  cursor:pointer
+flex:1;
+border:0;
+border-radius:10px;
+padding:10px;
+font-weight:800
 }
 
-.photo-replace{
-  background:#fff;
-  color:#222
+.replace-photo{
+background:#e3f2fd;
+color:#1976d2
 }
 
-.photo-delete{
-  background:#e53935;
-  color:#fff
-}
-
-.hidden-file{
-  display:none
+.delete-photo{
+background:#ffebee;
+color:#d32f2f
 }
 
 @media(max-width:600px){
 
-.container{
-  padding:14px
+.container{padding:15px}
+
+.header img{
+width:230px;
+max-width:85%
 }
 
 .summary,
 .urgent-folder,
 .completed-folder{
-  min-height:155px;
-  padding:22px
+min-height:180px;
+padding:24px
 }
 
-.folder-title{
-  font-size:22px
+.folder-title{font-size:22px}
+
+.folder-number{font-size:50px}
+
+.group-title{
+font-size:17px;
+padding:11px 14px;
+margin-top:24px
 }
 
-.folder-number{
-  font-size:46px
+.store-button{
+padding:16px;
+font-size:16px
+}
+
+.store-count{
+min-width:32px;
+height:32px;
+font-size:15px
+}
+
+.todo-store-group,
+.completed-job{
+border-radius:18px
+}
+
+.todo-store-header,
+.completed-store-header,
+.urgent-store-header{
+padding:15px
+}
+
+.todo-store-name,
+.completed-store-name,
+.urgent-store-name{
+font-size:19px
+}
+
+.todo-job-row,
+.completed-job-row,
+.urgent-job-row{
+padding:13px
+}
+
+.todo-job-text,
+.completed-job-text,
+.urgent-job-text{
+font-size:15px
+}
+
+.symbol-actions{gap:4px}
+
+.symbol-btn{
+width:30px;
+height:30px;
+min-width:30px;
+font-size:16px;
+border-radius:8px
 }
 
 .photo-grid{
-  grid-template-columns:repeat(2,1fr)
+grid-template-columns:repeat(3,1fr)
 }
 
 }
-</style>
+
+@media(max-width:380px){
+
+.symbol-btn{
+width:28px;
+height:28px;
+min-width:28px;
+font-size:15px
+}
+
+.symbol-actions{
+gap:3px;
+margin-left:5px
+}
+
+}
 </style>
 </head>
 
@@ -915,91 +936,45 @@ textarea{
 
 <div class="header">
 <img src="ediservice-icon.png" alt="EDISERVICE">
-
 <div id="firebaseStatus" class="firebase-status">
 Connessione Firebase...
 </div>
 </div>
 
-
 <div class="summary" id="btnLavoriDaFare">
-
 <div class="folder-text">
-
-<div class="folder-title">
-Lavori da fare
-</div>
-
-<div class="folder-number" id="totaleDaFare">
-0
-</div>
-
+<div class="folder-title">Lavori da fare</div>
+<div class="folder-number" id="totaleDaFare">0</div>
 <div class="folder-description">
 Lavori ancora da completare
 </div>
-
 </div>
-
-<div class="folder-arrow">
-→
+<div class="folder-arrow">→</div>
 </div>
-
-</div>
-
 
 <div class="urgent-folder" id="btnUrgenti">
-
 <div class="folder-text">
-
-<div class="folder-title">
-Lavori urgenti
-</div>
-
-<div class="folder-number" id="totaleUrgenti">
-0
-</div>
-
+<div class="folder-title">Lavori urgenti</div>
+<div class="folder-number" id="totaleUrgenti">0</div>
 <div class="folder-description">
 Interventi urgenti da completare
 </div>
-
 </div>
-
-<div class="folder-arrow">
-→
+<div class="folder-arrow">→</div>
 </div>
-
-</div>
-
 
 <div class="completed-folder" id="btnCompletati">
-
 <div class="folder-text">
-
-<div class="folder-title">
-Lavori completati
-</div>
-
-<div class="folder-number" id="totaleCompletati">
-0
-</div>
-
+<div class="folder-title">Lavori completati</div>
+<div class="folder-number" id="totaleCompletati">0</div>
 <div class="folder-description">
 Lavori già completati
 </div>
-
+</div>
+<div class="folder-arrow">→</div>
 </div>
 
-<div class="folder-arrow">
-→
-</div>
-
-</div>
-
-
-<div class="section-title">
-Punti vendita
-</div>
+<div class="section-title">Punti vendita</div>
 
 <div id="puntiVendita"></div>
 
@@ -1010,46 +985,22 @@ Punti vendita
 <div id="todoPage" class="page">
 
 <div class="topbar">
-
-<button
-class="back-button"
-onclick="showHome()">
-
-← Indietro
-
-</button>
-
-<h2 class="page-title">
-Lavori da fare
-</h2>
-
+<button class="back-button" onclick="showHome()">← Indietro</button>
+<h2 class="page-title">Lavori da fare</h2>
 </div>
 
-
 <div class="search-box">
-
 <input
 type="text"
 id="searchLavori"
 placeholder="Cerca punto vendita o lavoro..."
-oninput="filtraLavori()">
+oninput="filtraLavori">
 
-<button
-type="button"
-id="clearSearch">
-
-×
-</button>
-
+<button type="button" id="clearSearch">×</button>
 </div>
-
 
 <div id="todoJobs">
-
-<div class="loading">
-Caricamento...
-</div>
-
+<div class="loading">Caricamento...</div>
 </div>
 
 </div>
@@ -1059,73 +1010,37 @@ Caricamento...
 <div id="storePage" class="page">
 
 <div class="topbar">
-
-<button
-class="back-button"
-onclick="showHome()">
-
-← Indietro
-
-</button>
-
-<h2 class="page-title">
-Punto vendita
-</h2>
-
+<button class="back-button" onclick="showHome()">← Indietro</button>
+<h2 class="page-title">Punto vendita</h2>
 </div>
 
-
-<div
-class="store-name"
-id="storePageName">
-</div>
-
-
-<div
-class="store-category"
-id="storePageCategory">
-</div>
-
+<div class="store-name" id="storePageName"></div>
+<div class="store-category" id="storePageCategory"></div>
 
 <div class="form-card">
 
-<h2>
-Aggiungi lavoro
-</h2>
+<h2>Aggiungi lavoro</h2>
 
-
-<label>
-Lavoro
-</label>
+<label>Lavoro</label>
 
 <input
 id="lavoroInput"
 type="text"
 placeholder="Descrivi il lavoro da fare">
 
-
-<label>
-Note
-</label>
+<label>Note</label>
 
 <textarea
 id="noteInput"
-placeholder="Eventuali note...">
-</textarea>
-
+placeholder="Eventuali note..."></textarea>
 
 <label class="urgent-check">
 
-<input
-type="checkbox"
-id="urgenteInput">
+<input type="checkbox" id="urgenteInput">
 
-<span>
-Lavoro urgente
-</span>
+<span>Lavoro urgente</span>
 
 </label>
-
 
 <button
 class="add-button"
@@ -1138,11 +1053,7 @@ onclick="aggiungiLavoro()">
 
 </div>
 
-
-<div class="section-title">
-Lavori del punto vendita
-</div>
-
+<div class="section-title">Lavori del punto vendita</div>
 
 <div id="storeJobs"></div>
 
@@ -1154,20 +1065,13 @@ Lavori del punto vendita
 
 <div class="topbar">
 
-<button
-class="back-button"
-onclick="showHome()">
-
-← Indietro
-
-</button>
+<button class="back-button" onclick="showHome()">← Indietro</button>
 
 <h2 class="page-title urgent-page-title">
 Lavori urgenti
 </h2>
 
 </div>
-
 
 <div id="urgentJobs"></div>
 
@@ -1179,13 +1083,7 @@ Lavori urgenti
 
 <div class="topbar">
 
-<button
-class="back-button"
-onclick="showHome()">
-
-← Indietro
-
-</button>
+<button class="back-button" onclick="showHome()">← Indietro</button>
 
 <h2 class="page-title completed-page-title">
 Lavori completati
@@ -1193,33 +1091,25 @@ Lavori completati
 
 </div>
 
-
 <div id="completedJobs"></div>
 
 </div>
 
 
-<!-- DETTAGLIO SINGOLO LAVORO -->
-<div
-id="photoDetailPage"
-class="photo-detail-page">
+<!-- DETTAGLIO LAVORO -->
+<div id="photoDetailPage" class="photo-detail-page">
 
 <div class="topbar">
 
 <button
 class="back-button"
 onclick="chiudiSchedaLavoro()">
-
 ← Indietro
-
 </button>
 
-<h2 class="page-title">
-Lavoro
-</h2>
+<h2 class="page-title">Lavoro</h2>
 
 </div>
-
 
 <div class="photo-detail-card">
 
@@ -1228,14 +1118,11 @@ class="photo-detail-store"
 id="photoDetailStore">
 </div>
 
-
 <div
 class="photo-detail-title"
 id="photoDetailTitle">
 </div>
 
-
-<!-- NOTE DEL LAVORO -->
 <div class="photo-notes-box">
 
 <label class="photo-notes-label">
@@ -1245,33 +1132,25 @@ Note
 <textarea
 id="photoDetailNoteInput"
 class="photo-notes-input"
-placeholder="Scrivi qui le note del lavoro...">
-</textarea>
+placeholder="Scrivi qui le note del lavoro..."></textarea>
 
 <button
 class="photo-save-notes"
 onclick="salvaNoteLavoro()">
-
 Salva note
-
 </button>
 
 </div>
 
-
-<!-- FOTO -->
 <div class="photo-toolbar">
 
 <button
 class="photo-add-button"
 onclick="selezionaFoto()">
-
 + Aggiungi foto
-
 </button>
 
 </div>
-
 
 <div
 id="photoGrid"
@@ -1285,214 +1164,110 @@ class="photo-grid">
 </div>
 
 
-<!-- INPUT FOTO -->
 <input
 id="photoInput"
-class="hidden-file"
 type="file"
 accept="image/*"
-multiple>
-
+multiple
+hidden>
 
 <input
 id="replacePhotoInput"
-class="hidden-file"
 type="file"
-accept="image/*">
+accept="image/*"
+hidden>
 
 
-<!-- MODALE FOTO GRANDE -->
+<!-- MODALE FOTO -->
 <div
 id="photoModal"
 class="photo-modal"
 onclick="chiudiFotoGrande(event)">
 
-<div class="photo-modal-content">
+<div
+class="photo-modal-content"
+onclick="event.stopPropagation()">
 
 <button
 class="photo-modal-close"
 onclick="chiudiFotoGrande()">
-
 ×
-
 </button>
-
 
 <img
 id="photoModalImage"
-src=""
+class="photo-modal-image"
 alt="Foto lavoro">
-
 
 <div class="photo-modal-actions">
 
 <button
-class="photo-replace"
+class="replace-photo"
 onclick="sostituisciFotoCorrente()">
-
-Sostituisci foto
-
+Sostituisci
 </button>
-
 
 <button
-class="photo-delete"
+class="delete-photo"
 onclick="eliminaFotoCorrente()">
-
-Elimina foto
-
+Elimina
 </button>
 
 </div>
 
 </div>
-
 </div>
 
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
 const firebaseConfig={
-
-apiKey:
-"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
-
-authDomain:
-"ediservice-bb88c.firebaseapp.com",
-
-projectId:
-"ediservice-bb88c",
-
-storageBucket:
-"ediservice-bb88c.firebasestorage.app",
-
-messagingSenderId:
-"420418885149",
-
-appId:
-"1:420418885149:web:2a07ba2ddfdafd31c798f4",
-
-measurementId:
-"G-BM489YWSY4"
-
+apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+authDomain:"ediservice-bb88c.firebaseapp.com",
+projectId:"ediservice-bb88c",
+storageBucket:"ediservice-bb88c.firebasestorage.app",
+messagingSenderId:"420418885149",
+appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
+measurementId:"G-BM489YWSY4"
 };
 
+firebase.initializeApp(firebaseConfig);
 
-firebase.initializeApp(
-firebaseConfig
-);
-
-
-const auth=
-firebase.auth();
-
-
-const db=
-firebase.firestore();
+const auth=firebase.auth();
+const db=firebase.firestore();
 
 
 /* =========================
    SUPABASE
 ========================= */
 
-const SUPABASE_URL=
-"https://ncfznorfwniqykuxymxd.supabase.co";
+const SUPABASE_URL="https://ncfznorfwniqykuxymxd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
+const SUPABASE_BUCKET="foto-lavori";
 
+let supabaseClient=null;
 
-const SUPABASE_PUBLISHABLE_KEY=
-"sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
+try{
 
+if(window.supabase){
 
-const SUPABASE_BUCKET=
-"foto-lavori";
-
-
-const supabaseClient=
-window.supabase.createClient(
+supabaseClient=window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
 
-
-let lavori=[];
-
-let puntoSelezionato=null;
-
-let ricercaLavori="";
-
-
-let fotoCorrente=null;
-
-const signedUrlCache=
-new Map();
-
-
-/* =========================
-   FIREBASE
-========================= */
-
-function firebaseOk(){
-
-const status=
-document.getElementById(
-"firebaseStatus"
-);
-
-status.textContent=
-"● Firebase collegato";
-
-status.className=
-"firebase-status status-ok";
-
 }
 
+}catch(error){
 
-function firebaseErrore(error){
-
-console.error(
-"Firebase:",
-error
-);
-
-const status=
-document.getElementById(
-"firebaseStatus"
-);
-
-status.textContent=
-"● Errore Firebase";
-
-status.className=
-"firebase-status status-error";
+console.error("Supabase:",error);
 
 }
-
-
-auth.signInAnonymously()
-
-.then(()=>{
-
-firebaseOk();
-
-ascoltaLavori();
-
-})
-
-.catch(
-firebaseErrore
-);
 
 
 /* =========================
@@ -1502,7 +1277,6 @@ firebaseErrore
 const puntiVendita={
 
 PIM:[
-
 "Torresina",
 "Fontanile",
 "Torrevecchia 313",
@@ -1528,139 +1302,122 @@ PIM:[
 "Casal Palocco",
 "Guidonia",
 "Nepi"
-
 ],
 
 "AGORÀ":[
-
 "Taverna",
 "Boccea",
 "Gregorio",
 "San Basilio",
 "Laurentina"
-
 ],
 
 "IPERFAMILY":[
-
 "Iperfamily"
-
 ]
 
 };
 
 
+let lavori=[];
+let puntoSelezionato=null;
+let ricercaLavori="";
+let lavoroFotoAperto=null;
+let fotoCorrente=null;
+let paginaPrimaScheda="todoPage";
+
+const signedUrlCache=new Map();
+
+
 /* =========================
-   CREA PUNTI VENDITA
+   FIREBASE
+========================= */
+
+function firebaseOk(){
+
+const s=document.getElementById("firebaseStatus");
+
+s.textContent="● Firebase collegato";
+s.className="firebase-status status-ok";
+
+}
+
+function firebaseErrore(error){
+
+console.error("Firebase:",error);
+
+const s=document.getElementById("firebaseStatus");
+
+s.textContent="● Errore Firebase";
+s.className="firebase-status status-error";
+
+}
+
+
+auth.signInAnonymously()
+.then(()=>{
+
+firebaseOk();
+ascoltaLavori();
+
+})
+.catch(firebaseErrore);
+
+
+/* =========================
+   PUNTI VENDITA
 ========================= */
 
 function creaPuntiVendita(){
 
-const container=
-document.getElementById(
-"puntiVendita"
-);
+const c=document.getElementById("puntiVendita");
 
-container.innerHTML="";
+c.innerHTML="";
 
+Object.keys(puntiVendita).forEach(categoria=>{
 
-Object.keys(
-puntiVendita
-).forEach(
-categoria=>{
+const gruppo=document.createElement("div");
 
-const titolo=
-document.createElement(
-"div"
-);
+const titolo=document.createElement("div");
 
-titolo.className=
-"group-title";
+titolo.className="group-title";
+titolo.textContent=categoria;
 
-titolo.textContent=
-categoria;
+gruppo.appendChild(titolo);
 
-container.appendChild(
-titolo
-);
+const lista=document.createElement("div");
 
+lista.className="store-list";
 
-const lista=
-document.createElement(
-"div"
-);
+puntiVendita[categoria].forEach(punto=>{
 
-lista.className=
-"store-list";
+const b=document.createElement("button");
 
+b.className="store-button";
 
-puntiVendita[
-categoria
-].forEach(
-punto=>{
+const n=document.createElement("span");
 
-const button=
-document.createElement(
-"button"
-);
+n.className="store-name-text";
+n.textContent=punto;
 
-button.className=
-"store-button";
+const num=document.createElement("span");
 
+num.className="store-count";
+num.id="count-"+encodeURIComponent(punto);
+num.textContent="0";
 
-const nome=
-document.createElement(
-"span"
-);
+b.append(n,num);
 
-nome.className=
-"store-name-text";
+b.onclick=()=>{
+apriPuntoVendita(punto,categoria);
+};
 
-nome.textContent=
-punto;
-
-
-const numero=
-document.createElement(
-"span"
-);
-
-numero.className=
-"store-count";
-
-numero.id=
-"count-"+
-encodeURIComponent(
-punto
-);
-
-numero.textContent=
-"0";
-
-
-button.append(
-nome,
-numero
-);
-
-
-button.onclick=()=>
-apriPuntoVendita(
-punto,
-categoria
-);
-
-
-lista.appendChild(
-button
-);
+lista.appendChild(b);
 
 });
 
-
-container.appendChild(
-lista
-);
+gruppo.appendChild(lista);
+c.appendChild(gruppo);
 
 });
 
@@ -1668,119 +1425,76 @@ lista
 
 
 /* =========================
-   ASCOLTA LAVORI
+   FIREBASE
 ========================= */
 
 function ascoltaLavori(){
 
 db.collection("lavori")
-.where(
-"attivo",
-"==",
-true
-)
-.onSnapshot(
+.where("attivo","==",true)
+.onSnapshot(snapshot=>{
 
-snapshot=>{
-
-lavori=
-snapshot.docs.map(
-doc=>({
-
+lavori=snapshot.docs.map(doc=>({
 id:doc.id,
 ...doc.data()
-
-})
-);
-
+}));
 
 aggiornaTutto();
 
-},
-
-error=>{
-
-firebaseErrore(
-error
-);
-
-}
-
-);
+},firebaseErrore);
 
 }
 
 
 /* =========================
-   AGGIORNA TUTTO
+   AGGIORNA
 ========================= */
 
 function aggiornaTutto(){
 
-const daFare=
-lavori.filter(
-lavoro=>
-lavoro.completato!==true
+const daFare=lavori.filter(
+x=>x.attivo===true && x.completato!==true
 );
 
-
-const urgenti=
-daFare.filter(
-lavoro=>
-lavoro.urgente===true
+const urgenti=daFare.filter(
+x=>x.urgente===true
 );
 
-
-const completati=
-lavori.filter(
-lavoro=>
-lavoro.completato===true
+const completati=lavori.filter(
+x=>x.attivo===true && x.completato===true
 );
 
-
-document.getElementById(
-"totaleDaFare"
-).textContent=
-daFare.length;
-
-
-document.getElementById(
-"totaleUrgenti"
-).textContent=
-urgenti.length;
-
-
-document.getElementById(
-"totaleCompletati"
-).textContent=
-completati.length;
-
+document.getElementById("totaleDaFare").textContent=daFare.length;
+document.getElementById("totaleUrgenti").textContent=urgenti.length;
+document.getElementById("totaleCompletati").textContent=completati.length;
 
 aggiornaNumeriPuntiVendita();
 
+renderTodoJobs(daFare);
+renderUrgentJobs(urgenti);
+renderCompletedJobs(completati);
 
-renderTodoJobs(
-daFare
+if(puntoSelezionato){
+renderStoreJobs(puntoSelezionato);
+}
+
+if(lavoroFotoAperto){
+
+const aggiornato=lavori.find(
+x=>x.id===lavoroFotoAperto.id
 );
 
+if(aggiornato){
 
-renderUrgentJobs(
-urgenti
-);
+lavoroFotoAperto=aggiornato;
 
+const note=document.getElementById("photoDetailNoteInput");
 
-renderCompletedJobs(
-completati
-);
+if(note && document.activeElement!==note){
+note.value=aggiornato.note||"";
+}
 
-
-if(
-puntoSelezionato
-){
-
-renderStoreJobs(
-puntoSelezionato
-);
+}
 
 }
 
@@ -1788,44 +1502,26 @@ puntoSelezionato
 
 
 /* =========================
-   NUMERI PUNTI VENDITA
+   NUMERI PUNTI
 ========================= */
 
 function aggiornaNumeriPuntiVendita(){
 
-Object.keys(
-puntiVendita
-).forEach(
-categoria=>{
+Object.keys(puntiVendita).forEach(cat=>{
 
-puntiVendita[
-categoria
-].forEach(
-punto=>{
+puntiVendita[cat].forEach(punto=>{
 
-const numero=
-lavori.filter(
-lavoro=>
-lavoro.punto===punto &&
-lavoro.completato!==true
+const n=lavori.filter(
+x=>x.attivo===true &&
+x.punto===punto &&
+x.completato!==true
 ).length;
 
-
-const elemento=
-document.getElementById(
-"count-"+
-encodeURIComponent(
-punto
-)
+const e=document.getElementById(
+"count-"+encodeURIComponent(punto)
 );
 
-
-if(elemento){
-
-elemento.textContent=
-numero;
-
-}
+if(e)e.textContent=n;
 
 });
 
@@ -1835,57 +1531,44 @@ numero;
 
 
 /* =========================
-   MOSTRA PAGINA
+   PAGINE
 ========================= */
 
 function mostraPagina(id){
 
 document
-.querySelectorAll(
-".page"
-)
-.forEach(
-pagina=>
-pagina.classList.remove(
-"active"
-)
-);
+.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
+const photoPage=document.getElementById("photoDetailPage");
 
-const pagina=
-document.getElementById(
-id
-);
+if(photoPage)photoPage.classList.remove("active");
 
+const p=document.getElementById(id);
 
-if(pagina){
+if(p){
 
-pagina.classList.add(
-"active"
-);
+p.classList.add("active");
+window.scrollTo(0,0);
 
-window.scrollTo(
-0,
-0
-);
+}
+
+if(id==="photoDetailPage"){
+
+photoPage.classList.add("active");
+window.scrollTo(0,0);
 
 }
 
 }
 
-
-/* =========================
-   HOME
-========================= */
 
 function showHome(){
 
-puntoSelezionato=
-null;
+lavoroFotoAperto=null;
+fotoCorrente=null;
 
-mostraPagina(
-"homePage"
-);
+mostraPagina("homePage");
 
 }
 
@@ -1896,78 +1579,32 @@ mostraPagina(
 
 function filtraLavori(){
 
-const input=
-document.getElementById(
-"searchLavori"
-);
+const input=document.getElementById("searchLavori");
+const clear=document.getElementById("clearSearch");
 
-const clear=
-document.getElementById(
-"clearSearch"
-);
+ricercaLavori=input.value.trim().toLowerCase();
 
-
-ricercaLavori=
-input.value
-.trim()
-.toLowerCase();
-
-
-clear.style.display=
-ricercaLavori
-?
-"block"
-:
-"none";
-
-
-const lista=
-lavori.filter(
-lavoro=>{
-
-if(
-lavoro.completato===true
-)
-return false;
-
-
-if(
-!ricercaLavori
-)
-return true;
-
-
-return(
-
-(lavoro.punto||"")
-.toLowerCase()
-.includes(
-ricercaLavori
-)
-
-||
-
-(lavoro.testo||"")
-.toLowerCase()
-.includes(
-ricercaLavori
-)
-
-||
-
-(lavoro.note||"")
-.toLowerCase()
-.includes(
-ricercaLavori
-)
-
-);
-
-});
-
+clear.style.display=ricercaLavori?"block":"none";
 
 renderTodoJobs(
-lista
+
+lavori.filter(x=>{
+
+if(
+x.attivo!==true ||
+x.completato===true
+)return false;
+
+if(!ricercaLavori)return true;
+
+return(
+(x.punto||"").toLowerCase().includes(ricercaLavori) ||
+(x.testo||"").toLowerCase().includes(ricercaLavori) ||
+(x.note||"").toLowerCase().includes(ricercaLavori)
+);
+
+})
+
 );
 
 }
@@ -1975,178 +1612,95 @@ lista
 
 function cancellaRicerca(){
 
-document.getElementById(
-"searchLavori"
-).value="";
-
-
+document.getElementById("searchLavori").value="";
 ricercaLavori="";
 
-
-document.getElementById(
-"clearSearch"
-).style.display=
-"none";
-
+document.getElementById("clearSearch").style.display="none";
 
 renderTodoJobs(
 lavori.filter(
-lavoro=>
-lavoro.completato!==true
+x=>x.attivo===true &&
+x.completato!==true
 )
 );
 
-}function renderTodoJobs(lista){
+}
 
-const container=
-document.getElementById(
-"todoJobs"
-);
 
-container.innerHTML="";
+/* =========================
+   LAVORI DA FARE
+========================= */
 
+function renderTodoJobs(lista){
+
+const c=document.getElementById("todoJobs");
+
+c.innerHTML="";
 
 if(!lista.length){
 
-container.innerHTML=
-`
-<div class="empty">
-${
+c.innerHTML=
+`<div class="empty">${
 ricercaLavori
-?
-"Nessun lavoro trovato."
-:
-"Nessun lavoro da fare."
-}
-</div>
-`;
+?"Nessun lavoro trovato."
+:"Nessun lavoro da fare."
+}</div>`;
 
 return;
 
 }
 
+Object.keys(puntiVendita).forEach(cat=>{
 
-Object.keys(
-puntiVendita
-).forEach(
-categoria=>{
+const punti=puntiVendita[cat];
 
-const punti=
-puntiVendita[
-categoria
-];
-
-const lavoriCategoria=
-lista.filter(
-lavoro=>
-punti.includes(
-lavoro.punto
-)
+const catJobs=lista.filter(
+x=>punti.includes(x.punto)
 );
 
+if(!catJobs.length)return;
 
-if(!lavoriCategoria.length)
-return;
+const t=document.createElement("div");
 
+t.className="group-title";
+t.textContent=cat;
 
-const titolo=
-document.createElement(
-"div"
+c.appendChild(t);
+
+punti.forEach(punto=>{
+
+const jobs=catJobs.filter(
+x=>x.punto===punto
 );
 
-titolo.className=
-"group-title";
+if(!jobs.length)return;
 
-titolo.textContent=
-categoria;
+const g=document.createElement("div");
 
-container.appendChild(
-titolo
-);
+g.className="todo-store-group";
 
+const h=document.createElement("div");
 
-punti.forEach(
-punto=>{
+h.className="todo-store-header";
 
-const lavoriPunto=
-lavoriCategoria.filter(
-lavoro=>
-lavoro.punto===punto
-);
+const n=document.createElement("div");
 
+n.className="todo-store-name";
+n.textContent=punto;
 
-if(!lavoriPunto.length)
-return;
+const num=document.createElement("div");
 
+num.className="todo-store-count";
+num.textContent=jobs.length;
 
-const gruppo=
-document.createElement(
-"div"
-);
+h.append(n,num);
+g.appendChild(h);
 
-gruppo.className=
-"todo-store-group";
-
-
-const header=
-document.createElement(
-"div"
-);
-
-header.className=
-"todo-store-header";
-
-
-const nome=
-document.createElement(
-"div"
-);
-
-nome.className=
-"todo-store-name";
-
-nome.textContent=
-punto;
-
-
-const numero=
-document.createElement(
-"div"
-);
-
-numero.className=
-"todo-store-count";
-
-numero.textContent=
-lavoriPunto.length;
-
-
-header.append(
-nome,
-numero
-);
-
-
-gruppo.appendChild(
-header
-);
-
-
-lavoriPunto.forEach(
-lavoro=>{
-
-gruppo.appendChild(
-creaTodoJobRow(
-lavoro
-)
-);
-
+jobs.forEach(job=>{
+g.appendChild(creaTodoJobRow(job));
 });
 
-
-container.appendChild(
-gruppo
-);
+c.appendChild(g);
 
 });
 
@@ -2161,549 +1715,245 @@ gruppo
 
 function creaTodoJobRow(lavoro){
 
-const row=
-document.createElement(
-"div"
-);
+const r=document.createElement("div");
+r.className="todo-job-row";
 
-row.className=
-"todo-job-row";
+const main=document.createElement("div");
+main.className="todo-job-main job-clickable";
 
+const dot=document.createElement("div");
+dot.className="todo-job-dot";
 
-const main=
-document.createElement(
-"div"
-);
+const content=document.createElement("div");
+content.className="todo-job-content";
 
-main.className=
-"todo-job-main";
+const text=document.createElement("div");
+text.className="todo-job-text";
+text.textContent=lavoro.testo||"";
 
-
-const dot=
-document.createElement(
-"div"
-);
-
-dot.className=
-"todo-job-dot";
-
-
-const content=
-document.createElement(
-"div"
-);
-
-content.className=
-"todo-job-content";
-
-
-const testo=
-document.createElement(
-"div"
-);
-
-testo.className=
-"todo-job-text";
-
-testo.textContent=
-lavoro.testo||"";
-
-
-content.appendChild(
-testo
-);
-
+content.appendChild(text);
 
 if(lavoro.note){
 
-const nota=
-document.createElement(
-"div"
-);
+const note=document.createElement("div");
 
-nota.className=
-"todo-job-note";
+note.className="todo-job-note";
+note.textContent="Note: "+lavoro.note;
 
-nota.textContent=
-"Note: "+lavoro.note;
-
-content.appendChild(
-nota
-);
+content.appendChild(note);
 
 }
 
+if(lavoro.urgente===true){
 
-if(lavoro.urgente){
+const badge=document.createElement("div");
 
-const urgente=
-document.createElement(
-"div"
-);
+badge.className="todo-job-urgent";
+badge.textContent="URGENTE";
 
-urgente.className=
-"todo-job-urgent";
-
-urgente.textContent=
-"URGENTE";
-
-content.appendChild(
-urgente
-);
+content.appendChild(badge);
 
 }
 
-
-main.append(
-dot,
-content
-);
-
-
-/*
-   CLIC SUL LAVORO:
-   apre la scheda con
-   Note + Foto
-*/
-
-main.classList.add(
-"job-clickable"
-);
+main.append(dot,content);
 
 main.onclick=()=>{
+apriSchedaLavoro(lavoro.id);
+};
 
-apriSchedaLavoro(
-lavoro.id
-);
+r.appendChild(main);
+
+const actions=document.createElement("div");
+actions.className="symbol-actions";
+
+
+const complete=document.createElement("button");
+
+complete.className="symbol-btn symbol-complete";
+complete.title="Completato";
+complete.textContent="✓";
+
+complete.onclick=e=>{
+
+e.stopPropagation();
+completaLavoro(lavoro.id);
 
 };
 
 
-row.appendChild(
-main
-);
+const urgent=document.createElement("button");
 
+urgent.className="symbol-btn symbol-urgent";
+urgent.title=lavoro.urgente?"Togli urgente":"Segna urgente";
+urgent.textContent="!";
 
-/* =========================
-   PULSANTI
-========================= */
+urgent.onclick=e=>{
 
-const actions=
-document.createElement(
-"div"
-);
-
-actions.className=
-"symbol-actions";
-
-
-const completato=
-document.createElement(
-"button"
-);
-
-completato.className=
-"symbol-btn symbol-complete";
-
-completato.textContent=
-"✓";
-
-completato.title=
-"Completato";
-
-
-completato.onclick=
-event=>{
-
-event.stopPropagation();
-
-completaLavoro(
-lavoro.id
-);
-
-};
-
-
-const urgente=
-document.createElement(
-"button"
-);
-
-urgente.className=
-"symbol-btn symbol-urgent";
-
-urgente.textContent=
-"!";
-
-urgente.title=
-lavoro.urgente
-?
-"Togli urgente"
-:
-"Rendi urgente";
-
-
-urgente.onclick=
-event=>{
-
-event.stopPropagation();
-
+e.stopPropagation();
 cambiaUrgente(
 lavoro.id,
-lavoro.urgente!==true
+lavoro.urgente===true
 );
 
 };
 
 
-const elimina=
-document.createElement(
-"button"
-);
+const del=document.createElement("button");
 
-elimina.className=
-"symbol-btn symbol-delete";
+del.className="symbol-btn symbol-delete";
+del.title="Elimina";
+del.textContent="×";
 
-elimina.textContent=
-"×";
+del.onclick=e=>{
 
-elimina.title=
-"Elimina";
-
-
-elimina.onclick=
-event=>{
-
-event.stopPropagation();
-
-eliminaLavoro(
-lavoro.id
-);
+e.stopPropagation();
+eliminaLavoro(lavoro.id);
 
 };
 
+actions.append(complete,urgent,del);
 
-actions.append(
-completato,
-urgente,
-elimina
-);
+r.appendChild(actions);
 
-
-row.appendChild(
-actions
-);
-
-
-return row;
+return r;
 
 }
 
 
 /* =========================
-   APRI PUNTO VENDITA
+   PUNTO VENDITA
 ========================= */
 
-function apriPuntoVendita(
-punto,
-categoria
-){
+function apriPuntoVendita(punto,categoria){
 
-puntoSelezionato=
-punto;
+puntoSelezionato=punto;
 
+document.getElementById("storePageName").textContent=punto;
+document.getElementById("storePageCategory").textContent=categoria;
 
-document.getElementById(
-"storePageName"
-).textContent=
-punto;
+document.getElementById("lavoroInput").value="";
+document.getElementById("noteInput").value="";
+document.getElementById("urgenteInput").checked=false;
 
+renderStoreJobs(punto);
 
-document.getElementById(
-"storePageCategory"
-).textContent=
-categoria;
-
-
-document.getElementById(
-"lavoroInput"
-).value="";
-
-
-document.getElementById(
-"noteInput"
-).value="";
-
-
-document.getElementById(
-"urgenteInput"
-).checked=
-false;
-
-
-mostraPagina(
-"storePage"
-);
-
-
-renderStoreJobs(
-punto
-);
+mostraPagina("storePage");
 
 }
 
-
-/* =========================
-   LAVORI PUNTO VENDITA
-========================= */
 
 function renderStoreJobs(punto){
 
-const container=
-document.getElementById(
-"storeJobs"
+const c=document.getElementById("storeJobs");
+
+c.innerHTML="";
+
+const lista=lavori.filter(
+x=>x.attivo===true &&
+x.punto===punto
 );
-
-container.innerHTML="";
-
-
-const lista=
-lavori.filter(
-lavoro=>
-lavoro.punto===punto
-);
-
 
 if(!lista.length){
 
-container.innerHTML=
-`
-<div class="empty">
-Nessun lavoro.
-</div>
-`;
+c.innerHTML='<div class="empty">Nessun lavoro</div>';
 
 return;
 
 }
 
-
-lista.forEach(
-lavoro=>{
-
-container.appendChild(
-creaStoreJobCard(
-lavoro
-)
-);
-
+lista.forEach(job=>{
+c.appendChild(creaStoreJobCard(job));
 });
 
 }
 
 
 /* =========================
-   CARD LAVORO
+   CARD PUNTO VENDITA
 ========================= */
 
 function creaStoreJobCard(lavoro){
 
-const card=
-document.createElement(
-"div"
-);
+const card=document.createElement("div");
 
-card.className=
-"job-card";
-
-
-/*
-   CLIC SUL LAVORO
-*/
-
-card.classList.add(
-"job-clickable"
-);
+card.className="job-card job-clickable";
 
 card.onclick=()=>{
-
-apriSchedaLavoro(
-lavoro.id
-);
-
+apriSchedaLavoro(lavoro.id);
 };
 
+const text=document.createElement("div");
 
-const testo=
-document.createElement(
-"div"
-);
+text.className="job-text";
+text.textContent=lavoro.testo||"";
 
-testo.className=
-"job-text";
-
-testo.textContent=
-lavoro.testo||"";
-
-
-card.appendChild(
-testo
-);
-
+card.appendChild(text);
 
 if(lavoro.note){
 
-const nota=
-document.createElement(
-"div"
-);
+const note=document.createElement("div");
 
-nota.className=
-"job-note";
+note.className="job-note";
+note.textContent="Note: "+lavoro.note;
 
-nota.textContent=
-"Note: "+lavoro.note;
-
-card.appendChild(
-nota
-);
+card.appendChild(note);
 
 }
 
+const actions=document.createElement("div");
 
-if(lavoro.urgente){
-
-const badge=
-document.createElement(
-"div"
-);
-
-badge.className=
-"todo-job-urgent";
-
-badge.textContent=
-"URGENTE";
-
-card.appendChild(
-badge
-);
-
-}
+actions.className="symbol-actions";
+actions.style.marginTop="12px";
 
 
-/* =========================
-   PULSANTI
-========================= */
+const complete=document.createElement("button");
 
-const actions=
-document.createElement(
-"div"
-);
+complete.className="symbol-btn symbol-complete";
+complete.title="Completato";
+complete.textContent="✓";
 
-actions.className=
-"symbol-actions";
+complete.onclick=e=>{
 
-actions.style.marginTop=
-"12px";
-
-
-const completato=
-document.createElement(
-"button"
-);
-
-completato.className=
-"symbol-btn symbol-complete";
-
-completato.textContent=
-"✓";
-
-completato.title=
-"Completato";
-
-
-completato.onclick=
-event=>{
-
-event.stopPropagation();
-
-completaLavoro(
-lavoro.id
-);
+e.stopPropagation();
+completaLavoro(lavoro.id);
 
 };
 
 
-const urgente=
-document.createElement(
-"button"
-);
+const urgent=document.createElement("button");
 
-urgente.className=
-"symbol-btn symbol-urgent";
+urgent.className="symbol-btn symbol-urgent";
+urgent.title=lavoro.urgente?"Togli urgente":"Segna urgente";
+urgent.textContent="!";
 
-urgente.textContent=
-"!";
+urgent.onclick=e=>{
 
-urgente.title=
-lavoro.urgente
-?
-"Togli urgente"
-:
-"Rendi urgente";
-
-
-urgente.onclick=
-event=>{
-
-event.stopPropagation();
+e.stopPropagation();
 
 cambiaUrgente(
 lavoro.id,
-lavoro.urgente!==true
+lavoro.urgente===true
 );
 
 };
 
 
-const elimina=
-document.createElement(
-"button"
-);
+const del=document.createElement("button");
 
-elimina.className=
-"symbol-btn symbol-delete";
+del.className="symbol-btn symbol-delete";
+del.title="Elimina";
+del.textContent="×";
 
-elimina.textContent=
-"×";
+del.onclick=e=>{
 
-elimina.title=
-"Elimina";
-
-
-elimina.onclick=
-event=>{
-
-event.stopPropagation();
-
-eliminaLavoro(
-lavoro.id
-);
+e.stopPropagation();
+eliminaLavoro(lavoro.id);
 
 };
 
+actions.append(complete,urgent,del);
 
-actions.append(
-completato,
-urgente,
-elimina
-);
-
-
-card.appendChild(
-actions
-);
-
+card.appendChild(actions);
 
 return card;
 
@@ -2716,312 +1966,159 @@ return card;
 
 function aggiungiLavoro(){
 
-if(!puntoSelezionato)
-return;
+if(!puntoSelezionato)return;
 
+const lavoroInput=document.getElementById("lavoroInput");
+const noteInput=document.getElementById("noteInput");
+const urgentInput=document.getElementById("urgenteInput");
+const button=document.getElementById("addWorkButton");
 
-const testo=
-document.getElementById(
-"lavoroInput"
-).value.trim();
-
-
-const note=
-document.getElementById(
-"noteInput"
-).value.trim();
-
-
-const urgente=
-document.getElementById(
-"urgenteInput"
-).checked;
-
+const testo=lavoroInput.value.trim();
+const note=noteInput.value.trim();
+const urgente=urgentInput.checked;
 
 if(!testo){
 
-alert(
-"Inserisci il lavoro."
-);
-
+alert("Inserisci il lavoro da fare.");
+lavoroInput.focus();
 return;
 
 }
 
+button.disabled=true;
+button.textContent="Salvataggio...";
 
-const button=
-document.getElementById(
-"addWorkButton"
-);
+const salva=()=>{
 
-
-button.disabled=
-true;
-
-button.textContent=
-"Salvataggio...";
-
-
-db.collection("lavori")
+return db.collection("lavori")
 .add({
 
-punto:
-puntoSelezionato,
-
-testo:
-testo,
-
-note:
-note,
-
-completato:
-false,
-
-attivo:
-true,
-
-urgente:
-urgente,
-
-foto:
-[],
+punto:puntoSelezionato,
+testo:testo,
+note:note,
+completato:false,
+attivo:true,
+urgente:urgente,
 
 creatoDa:
 auth.currentUser
-?
-auth.currentUser.uid
-:
-"",
+?auth.currentUser.uid
+:"",
 
 creatoIl:
-firebase.firestore
-.FieldValue
-.serverTimestamp()
+firebase.firestore.FieldValue.serverTimestamp(),
+
+foto:[]
 
 })
-
 
 .then(()=>{
 
-document.getElementById(
-"lavoroInput"
-).value="";
+lavoroInput.value="";
+noteInput.value="";
+urgentInput.checked=false;
 
-
-document.getElementById(
-"noteInput"
-).value="";
-
-
-document.getElementById(
-"urgenteInput"
-).checked=
-false;
-
-
-button.disabled=
-false;
-
-button.textContent=
-"+ Aggiungi lavoro";
+button.disabled=false;
+button.textContent="+ Aggiungi lavoro";
 
 })
 
-
 .catch(error=>{
 
-console.error(
-error
-);
+console.error(error);
 
+alert("Errore nel salvataggio del lavoro.");
 
-alert(
-"Errore nell'aggiunta del lavoro."
-);
-
-
-button.disabled=
-false;
-
-button.textContent=
-"+ Aggiungi lavoro";
+button.disabled=false;
+button.textContent="+ Aggiungi lavoro";
 
 });
+
+};
+
+if(auth.currentUser)salva();
+else auth.signInAnonymously().then(salva);
 
 }
 
 
 /* =========================
-   COMPLETA
+   AZIONI
 ========================= */
 
 function completaLavoro(id){
 
 db.collection("lavori")
 .doc(id)
-.update({
+.update({completato:true})
+.catch(()=>{
 
-completato:
-true
-
-})
-.catch(error=>{
-
-console.error(
-error
-);
-
-alert(
-"Errore."
-);
+alert("Errore nel completare il lavoro.");
 
 });
 
 }
 
-
-/* =========================
-   DA RIFARE
-========================= */
 
 function daRifare(id){
 
 db.collection("lavori")
 .doc(id)
-.update({
+.update({completato:false})
+.catch(()=>{
 
-completato:
-false
-
-})
-.catch(error=>{
-
-console.error(
-error
-);
-
-alert(
-"Errore."
-);
+alert("Errore nel modificare il lavoro.");
 
 });
 
 }
 
 
-/* =========================
-   URGENTE
-========================= */
-
-function cambiaUrgente(
-id,
-valore
-){
+function cambiaUrgente(id,giaUrgente){
 
 db.collection("lavori")
 .doc(id)
-.update({
+.update({urgente:!giaUrgente})
+.catch(()=>{
 
-urgente:
-valore
-
-})
-.catch(error=>{
-
-console.error(
-error
-);
-
-alert(
-"Errore."
-);
+alert("Errore nella modifica dell'urgenza.");
 
 });
 
 }
 
 
-/* =========================
-   ELIMINA LAVORO
-========================= */
-
 async function eliminaLavoro(id){
 
-if(
-!confirm(
-"Vuoi eliminare questo lavoro?"
-)
-)
-return;
+if(!confirm("Vuoi eliminare questo lavoro?"))return;
 
-
-const lavoro=
-lavori.find(
-x=>x.id===id
-);
-
+const lavoro=lavori.find(x=>x.id===id);
 
 try{
 
-/*
-   Prima eliminiamo
-   le foto da Supabase
-*/
-
 if(
+supabaseClient &&
 lavoro &&
-Array.isArray(
-lavoro.foto
-) &&
+Array.isArray(lavoro.foto) &&
 lavoro.foto.length
 ){
 
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
-.remove(
-lavoro.foto
-);
-
-
-lavoro.foto.forEach(
-path=>
-signedUrlCache.delete(
-path
-)
-);
+.from(SUPABASE_BUCKET)
+.remove(lavoro.foto);
 
 }
 
-
-/*
-   Poi disattiviamo
-   il lavoro in Firebase
-*/
-
-await db.collection(
-"lavori"
-)
+await db.collection("lavori")
 .doc(id)
-.update({
-
-attivo:
-false
-
-});
-
+.update({attivo:false});
 
 }catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
-alert(
-"Errore nell'eliminazione."
-);
+alert("Errore nell'eliminazione.");
 
 }
 
@@ -3029,335 +2126,162 @@ alert(
 
 
 /* =========================
-   LAVORI URGENTI
+   URGENTI
 ========================= */
 
 function renderUrgentJobs(lista){
 
-const container=
-document.getElementById(
-"urgentJobs"
-);
+const c=document.getElementById("urgentJobs");
 
-container.innerHTML="";
-
+c.innerHTML="";
 
 if(!lista.length){
 
-container.innerHTML=
-`
-<div class="empty">
-Nessun lavoro urgente.
-</div>
-`;
+c.innerHTML=
+'<div class="empty">Nessun lavoro urgente.</div>';
 
 return;
 
 }
 
+Object.keys(puntiVendita).forEach(cat=>{
 
-Object.keys(
-puntiVendita
-).forEach(
-categoria=>{
+const punti=puntiVendita[cat];
 
-const punti=
-puntiVendita[
-categoria
-];
-
-const lavoriCategoria=
-lista.filter(
-lavoro=>
-punti.includes(
-lavoro.punto
-)
+const catJobs=lista.filter(
+x=>punti.includes(x.punto)
 );
 
+if(!catJobs.length)return;
 
-if(!lavoriCategoria.length)
-return;
+const t=document.createElement("div");
 
+t.className="group-title";
+t.textContent=cat;
 
-const titolo=
-document.createElement(
-"div"
+c.appendChild(t);
+
+punti.forEach(punto=>{
+
+const jobs=catJobs.filter(
+x=>x.punto===punto
 );
 
-titolo.className=
-"group-title";
+if(!jobs.length)return;
 
-titolo.textContent=
-categoria;
+const g=document.createElement("div");
 
-container.appendChild(
-titolo
-);
+g.className="todo-store-group";
 
+const h=document.createElement("div");
 
-punti.forEach(
-punto=>{
+h.className="urgent-store-header";
 
-const lavoriPunto=
-lavoriCategoria.filter(
-lavoro=>
-lavoro.punto===punto
-);
+const n=document.createElement("div");
 
+n.className="urgent-store-name";
+n.textContent=punto;
 
-if(!lavoriPunto.length)
-return;
+const num=document.createElement("div");
 
+num.className="urgent-store-count";
+num.textContent=jobs.length;
 
-const gruppo=
-document.createElement(
-"div"
-);
+h.append(n,num);
 
-gruppo.className=
-"completed-job";
+g.appendChild(h);
 
+jobs.forEach(job=>{
 
-const header=
-document.createElement(
-"div"
-);
+const r=document.createElement("div");
 
-header.className=
-"urgent-store-header";
+r.className="urgent-job-row job-clickable";
 
-
-const nome=
-document.createElement(
-"div"
-);
-
-nome.className=
-"urgent-store-name";
-
-nome.textContent=
-punto;
-
-
-const numero=
-document.createElement(
-"div"
-);
-
-numero.className=
-"urgent-store-count";
-
-numero.textContent=
-lavoriPunto.length;
-
-
-header.append(
-nome,
-numero
-);
-
-
-gruppo.appendChild(
-header
-);
-
-
-lavoriPunto.forEach(
-lavoro=>{
-
-const row=
-document.createElement(
-"div"
-);
-
-row.className=
-"urgent-job-row";
-
-
-row.onclick=()=>{
-
-apriSchedaLavoro(
-lavoro.id
-);
-
+r.onclick=()=>{
+apriSchedaLavoro(job.id);
 };
 
+const dot=document.createElement("div");
 
-row.classList.add(
-"job-clickable"
-);
+dot.className="urgent-job-dot";
 
+const content=document.createElement("div");
 
-const dot=
-document.createElement(
-"div"
-);
+content.className="urgent-job-content";
 
-dot.className=
-"urgent-job-dot";
+const text=document.createElement("div");
 
+text.className="urgent-job-text";
+text.textContent=job.testo||"";
 
-const content=
-document.createElement(
-"div"
-);
+content.appendChild(text);
 
-content.className=
-"urgent-job-content";
+if(job.note){
 
+const note=document.createElement("div");
 
-const testo=
-document.createElement(
-"div"
-);
+note.className="urgent-job-note";
+note.textContent="Note: "+job.note;
 
-testo.className=
-"urgent-job-text";
-
-testo.textContent=
-lavoro.testo||"";
-
-
-content.appendChild(
-testo
-);
-
-
-if(lavoro.note){
-
-const nota=
-document.createElement(
-"div"
-);
-
-nota.className=
-"urgent-job-note";
-
-nota.textContent=
-"Note: "+lavoro.note;
-
-content.appendChild(
-nota
-);
+content.appendChild(note);
 
 }
 
+const actions=document.createElement("div");
 
-const actions=
-document.createElement(
-"div"
-);
-
-actions.className=
-"symbol-actions";
+actions.className="symbol-actions";
 
 
-const completato=
-document.createElement(
-"button"
-);
+const complete=document.createElement("button");
 
-completato.className=
-"symbol-btn symbol-complete";
+complete.className="symbol-btn symbol-complete";
+complete.textContent="✓";
+complete.title="Completato";
 
-completato.textContent=
-"✓";
+complete.onclick=e=>{
 
-completato.title=
-"Completato";
-
-
-completato.onclick=
-event=>{
-
-event.stopPropagation();
-
-completaLavoro(
-lavoro.id
-);
+e.stopPropagation();
+completaLavoro(job.id);
 
 };
 
 
-const urgente=
-document.createElement(
-"button"
-);
+const urgent=document.createElement("button");
 
-urgente.className=
-"symbol-btn symbol-urgent";
+urgent.className="symbol-btn symbol-urgent";
+urgent.textContent="!";
+urgent.title="Togli urgente";
 
-urgente.textContent=
-"!";
+urgent.onclick=e=>{
 
-urgente.title=
-"Togli urgente";
-
-
-urgente.onclick=
-event=>{
-
-event.stopPropagation();
-
-cambiaUrgente(
-lavoro.id,
-false
-);
+e.stopPropagation();
+cambiaUrgente(job.id,true);
 
 };
 
 
-const elimina=
-document.createElement(
-"button"
-);
+const del=document.createElement("button");
 
-elimina.className=
-"symbol-btn symbol-delete";
+del.className="symbol-btn symbol-delete";
+del.textContent="×";
+del.title="Elimina";
 
-elimina.textContent=
-"×";
+del.onclick=e=>{
 
-elimina.title=
-"Elimina";
-
-
-elimina.onclick=
-event=>{
-
-event.stopPropagation();
-
-eliminaLavoro(
-lavoro.id
-);
+e.stopPropagation();
+eliminaLavoro(job.id);
 
 };
 
+actions.append(complete,urgent,del);
 
-actions.append(
-completato,
-urgente,
-elimina
-);
+r.append(dot,content,actions);
 
-
-row.append(
-dot,
-content,
-actions
-);
-
-
-gruppo.appendChild(
-row
-);
+g.appendChild(r);
 
 });
 
-
-container.appendChild(
-gruppo
-);
+c.appendChild(g);
 
 });
 
@@ -3367,25 +2291,340 @@ gruppo
 
 
 /* =========================
-   LAVORI COMPLETATI
+   COMPLETATI
 ========================= */
 
 function renderCompletedJobs(lista){
 
-const container=
-document.getElementById(
-"completedJobs"
-);
+const c=document.getElementById("completedJobs");
 
-container.innerHTML="";
-
+c.innerHTML="";
 
 if(!lista.length){
 
-container.innerHTML=
-`
-<div class="empty">
-Nessun lavoro completato.
+c.innerHTML=
+'<div class="empty">Nessun lavoro completato.</div>';
+
+return;
+
+}
+
+Object.keys(puntiVendita).forEach(cat=>{
+
+const punti=puntiVendita[cat];
+
+const catJobs=lista.filter(
+x=>punti.includes(x.punto)
+);
+
+if(!catJobs.length)return;
+
+const t=document.createElement("div");
+
+t.className="group-title";
+t.textContent=cat;
+
+c.appendChild(t);
+
+punti.forEach(punto=>{
+
+const jobs=catJobs.filter(
+x=>x.punto===punto
+);
+
+if(!jobs.length)return;
+
+const g=document.createElement("div");
+
+g.className="completed-job";
+
+const h=document.createElement("div");
+
+h.className="completed-store-header";
+
+const n=document.createElement("div");
+
+n.className="completed-store-name";
+n.textContent=punto;
+
+const num=document.createElement("div");
+
+num.className="completed-store-count";
+num.textContent=jobs.length;
+
+h.append(n,num);
+
+g.appendChild(h);
+
+jobs.forEach(job=>{
+
+const r=document.createElement("div");
+
+r.className="completed-job-row job-clickable";
+
+r.onclick=()=>{
+apriSchedaLavoro(job.id);
+};
+
+const check=document.createElement("div");
+
+check.className="completed-check";
+check.textContent="✓";
+
+const content=document.createElement("div");
+
+content.className="completed-job-content";
+
+const text=document.createElement("div");
+
+text.className="completed-job-text";
+text.textContent=job.testo||"";
+
+content.appendChild(text);
+
+if(job.note){
+
+const note=document.createElement("div");
+
+note.className="completed-job-note";
+note.textContent="Note: "+job.note;
+
+content.appendChild(note);
+
+}
+
+const actions=document.createElement("div");
+
+actions.className="symbol-actions";
+
+
+const redo=document.createElement("button");
+
+redo.className="symbol-btn symbol-redo";
+redo.title="Da rifare";
+redo.textContent="↻";
+
+redo.onclick=e=>{
+
+e.stopPropagation();
+daRifare(job.id);
+
+};
+
+
+const del=document.createElement("button");
+
+del.className="symbol-btn symbol-delete";
+del.title="Elimina";
+del.textContent="×";
+
+del.onclick=e=>{
+
+e.stopPropagation();
+eliminaLavoro(job.id);
+
+};
+
+actions.append(redo,del);
+
+r.append(check,content,actions);
+
+g.appendChild(r);
+
+});
+
+c.appendChild(g);
+
+});
+
+});
+
+}
+
+
+/* =====================================================
+   SCHEDA LAVORO
+===================================================== */
+
+function fotoPaths(lavoro){
+
+return Array.isArray(lavoro.foto)
+?lavoro.foto
+:[];
+
+}
+
+
+function apriSchedaLavoro(id){
+
+const lavoro=lavori.find(x=>x.id===id);
+
+if(!lavoro){
+
+alert("Lavoro non trovato.");
+return;
+
+}
+
+const pagina=document.querySelector(
+".page.active"
+);
+
+if(pagina){
+paginaPrimaScheda=pagina.id;
+}else{
+paginaPrimaScheda="todoPage";
+}
+
+lavoroFotoAperto=lavoro;
+
+document.getElementById(
+"photoDetailStore"
+).textContent=lavoro.punto||"";
+
+document.getElementById(
+"photoDetailTitle"
+).textContent=lavoro.testo||"";
+
+const noteInput=document.getElementById(
+"photoDetailNoteInput"
+);
+
+if(noteInput){
+noteInput.value=lavoro.note||"";
+}
+
+mostraPagina("photoDetailPage");
+
+renderFotoLavoro();
+
+}
+
+
+/* =========================
+   SALVA NOTE
+========================= */
+
+async function salvaNoteLavoro(){
+
+if(!lavoroFotoAperto)return;
+
+const input=document.getElementById(
+"photoDetailNoteInput"
+);
+
+if(!input)return;
+
+const note=input.value.trim();
+
+try{
+
+await db.collection("lavori")
+.doc(lavoroFotoAperto.id)
+.update({
+note:note
+});
+
+lavoroFotoAperto.note=note;
+
+alert("Note salvate.");
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Errore nel salvataggio delle note."
+);
+
+}
+
+}
+
+
+/* =========================
+   INDIETRO
+========================= */
+
+function chiudiSchedaLavoro(){
+
+const ritorno=paginaPrimaScheda||"todoPage";
+
+lavoroFotoAperto=null;
+fotoCorrente=null;
+
+mostraPagina(ritorno);
+
+if(ritorno==="todoPage"){
+
+renderTodoJobs(
+lavori.filter(
+x=>x.attivo===true &&
+x.completato!==true
+)
+);
+
+}
+
+if(ritorno==="urgentPage"){
+
+renderUrgentJobs(
+lavori.filter(
+x=>x.attivo===true &&
+x.completato!==true &&
+x.urgente===true
+)
+);
+
+}
+
+if(ritorno==="completedPage"){
+
+renderCompletedJobs(
+lavori.filter(
+x=>x.attivo===true &&
+x.completato===true
+)
+);
+
+}
+
+if(
+ritorno==="storePage" &&
+puntoSelezionato
+){
+
+renderStoreJobs(
+puntoSelezionato
+);
+
+}
+
+}
+
+
+/* =========================
+   GALLERIA
+========================= */
+
+function renderFotoLavoro(){
+
+const grid=document.getElementById("photoGrid");
+
+if(!grid)return;
+
+grid.innerHTML="";
+
+if(!lavoroFotoAperto)return;
+
+const paths=fotoPaths(lavoroFotoAperto);
+
+if(!paths.length){
+
+grid.innerHTML=`
+<div class="photo-empty" style="grid-column:1/-1">
+Nessuna foto ancora.<br>
+Premi “+ Aggiungi foto” per inserirne una.
 </div>
 `;
 
@@ -3393,729 +2632,284 @@ return;
 
 }
 
+paths.forEach((path,index)=>{
 
-Object.keys(
-puntiVendita
-).forEach(
-categoria=>{
+const box=document.createElement("div");
 
-const punti=
-puntiVendita[
-categoria
-];
+box.className="photo-thumb";
 
-const lavoriCategoria=
-lista.filter(
-lavoro=>
-punti.includes(
-lavoro.punto
+const img=document.createElement("img");
+
+img.alt="Foto "+(index+1);
+
+box.appendChild(img);
+
+const del=document.createElement("button");
+
+del.className="photo-thumb-delete";
+del.textContent="×";
+del.title="Elimina foto";
+
+del.onclick=e=>{
+
+e.stopPropagation();
+eliminaFoto(path);
+
+};
+
+box.appendChild(del);
+
+box.onclick=()=>{
+apriFotoGrande(path);
+};
+
+grid.appendChild(box);
+
+getSignedUrl(path).then(url=>{
+
+if(url)img.src=url;
+
+});
+
+});
+
+}
+
+
+/* =========================
+   URL PRIVATA
+========================= */
+
+async function getSignedUrl(path){
+
+if(!path || !supabaseClient)return null;
+
+const cached=signedUrlCache.get(path);
+
+if(
+cached &&
+cached.expires>Date.now()
+){
+
+return cached.url;
+
+}
+
+const result=await supabaseClient
+.storage
+.from(SUPABASE_BUCKET)
+.createSignedUrl(path,3600);
+
+if(result.error){
+
+console.error(
+"Signed URL:",
+result.error
+);
+
+return null;
+
+}
+
+signedUrlCache.set(
+path,
+{
+url:result.data.signedUrl,
+expires:Date.now()+3500*1000
+}
+);
+
+return result.data.signedUrl;
+
+}
+
+
+/* =========================
+   SELEZIONA FOTO
+========================= */
+
+function selezionaFoto(){
+
+if(!lavoroFotoAperto)return;
+
+if(!supabaseClient){
+
+alert("Servizio foto non disponibile.");
+
+return;
+
+}
+
+const input=document.getElementById(
+"photoInput"
+);
+
+input.value="";
+
+input.onchange=caricaFoto;
+
+input.click();
+
+}
+
+
+/* =========================
+   COMPRESSIONE
+========================= */
+
+async function comprimiFoto(file){
+
+if(!file.type.startsWith("image/")){
+
+throw new Error(
+"Seleziona un'immagine."
+);
+
+}
+
+const url=URL.createObjectURL(file);
+
+const img=new Image();
+
+try{
+
+await new Promise((res,rej)=>{
+
+img.onload=res;
+img.onerror=rej;
+img.src=url;
+
+});
+
+let w=img.naturalWidth;
+let h=img.naturalHeight;
+
+const max=1600;
+
+if(w>max || h>max){
+
+if(w>=h){
+
+h=Math.round(h*max/w);
+w=max;
+
+}else{
+
+w=Math.round(w*max/h);
+h=max;
+
+}
+
+}
+
+const canvas=document.createElement("canvas");
+
+canvas.width=w;
+canvas.height=h;
+
+canvas
+.getContext("2d")
+.drawImage(img,0,0,w,h);
+
+return await new Promise(resolve=>
+canvas.toBlob(
+resolve,
+"image/jpeg",
+.82
 )
 );
 
+}finally{
 
-if(!lavoriCategoria.length)
+URL.revokeObjectURL(url);
+
+}
+
+}
+
+
+/* =========================
+   CARICA FOTO MULTIPLE
+========================= */
+
+async function caricaFoto(e){
+
+const files=[...(e.target.files||[])];
+
+if(!files.length || !lavoroFotoAperto)return;
+
+if(!supabaseClient){
+
+alert("Servizio foto non disponibile.");
 return;
 
-
-const titolo=
-document.createElement(
-"div"
-);
-
-titolo.className=
-"group-title";
-
-titolo.textContent=
-categoria;
-
-container.appendChild(
-titolo
-);
-
-
-punti.forEach(
-punto=>{
-
-const lavoriPunto=
-lavoriCategoria.filter(
-lavoro=>
-lavoro.punto===punto
-);
-
-
-if(!lavoriPunto.length)
-return;
-
-
-const gruppo=
-document.createElement(
-"div"
-);
-
-gruppo.className=
-"completed-job";
-
-
-const header=
-document.createElement(
-"div"
-);
-
-header.className=
-"completed-store-header";
-
-
-const nome=
-document.createElement(
-"div"
-);
-
-nome.className=
-"completed-store-name";
-
-nome.textContent=
-punto;
-
-
-const numero=
-document.createElement(
-"div"
-);
-
-numero.className=
-"completed-store-count";
-
-numero.textContent=
-lavoriPunto.length;
-
-
-header.append(
-nome,
-numero
-);
-
-
-gruppo.appendChild(
-header
-);
-
-
-lavoriPunto.forEach(
-lavoro=>{
-
-const row=
-document.createElement(
-"div"
-);
-
-row.className=
-"completed-job-row";
-
-
-row.classList.add(
-"job-clickable"
-);
-
-
-row.onclick=()=>{
-
-apriSchedaLavoro(
-lavoro.id
-);
-
-};
-
-
-const check=
-document.createElement(
-"div"
-);
-
-check.className=
-"completed-check";
-
-check.textContent=
-"✓";
-
-
-const content=
-document.createElement(
-"div"
-);
-
-content.className=
-"completed-job-content";
-
-
-const testo=
-document.createElement(
-"div"
-);
-
-testo.className=
-"completed-job-text";
-
-testo.textContent=
-lavoro.testo||"";
-
-
-content.appendChild(
-testo
-);
-
-
-if(lavoro.note){
-
-const nota=
-document.createElement(
-"div"
-);
-
-nota.className=
-"completed-job-note";
-
-nota.textContent=
-"Note: "+lavoro.note;
-
-content.appendChild(
-nota
-);
-
 }
 
+const lavoro=lavoroFotoAperto;
 
-const actions=
-document.createElement(
-"div"
+let caricati=0;
+
+try{
+
+for(const file of files){
+
+const blob=await comprimiFoto(file);
+
+const path=
+"lavori/"
++lavoro.id
++"/"
++Date.now()
++"-"
++Math.random().toString(36).slice(2,10)
++".jpg";
+
+const up=await supabaseClient
+.storage
+.from(SUPABASE_BUCKET)
+.upload(
+path,
+blob,
+{
+contentType:"image/jpeg",
+cacheControl:"3600",
+upsert:false
+}
 );
 
-actions.className=
-"symbol-actions";
+if(up.error)throw up.error;
 
-
-const rifai=
-document.createElement(
-"button"
-);
-
-rifai.className=
-"symbol-btn symbol-redo";
-
-rifai.textContent=
-"↻";
-
-rifai.title=
-"Da rifare";
-
-
-rifai.onclick=
-event=>{
-
-event.stopPropagation();
-
-daRifare(
-lavoro.id
-);
-
-};
-
-
-const elimina=
-document.createElement(
-"button"
-);
-
-elimina.className=
-"symbol-btn symbol-delete";
-
-elimina.textContent=
-"×";
-
-elimina.title=
-"Elimina";
-
-
-elimina.onclick=
-event=>{
-
-event.stopPropagation();
-
-eliminaLavoro(
-lavoro.id
-);
-
-};
-
-
-actions.append(
-rifai,
-elimina
-);
-
-
-row.append(
-check,
-content,
-actions
-);
-
-
-gruppo.appendChild(
-row
-);
-
+await db.collection("lavori")
+.doc(lavoro.id)
+.update({
+foto:
+firebase.firestore.FieldValue
+.arrayUnion(path)
 });
 
+caricati++;
 
-container.appendChild(
-gruppo
+}
+
+alert(
+caricati===1
+?"Foto aggiunta."
+:caricati+" foto aggiunte."
 );
 
-});
+}catch(error){
 
-});
+console.error(error);
 
-}/* =========================
-   FOTO / SCHEDA LAVORO
-========================= */
+alert(
+"Errore nel caricamento: "+
+(error.message||error)
+);
 
-let lavoroFotoAperto = null;
-let fotoInCaricamento = false;
-let cacheUrlFoto = {};
-
-/* Apre la scheda completa del singolo lavoro */
-function apriSchedaLavoro(id){
-
-  const lavoro = lavori.find(l => l.id === id);
-
-  if(!lavoro){
-    alert("Lavoro non trovato.");
-    return;
-  }
-
-  lavoroFotoAperto = lavoro;
-
-  document.getElementById("photoDetailTitle").textContent =
-    lavoro.punto || "Lavoro";
-
-  document.getElementById("photoDetailText").textContent =
-    lavoro.testo || "";
-
-  const noteInput = document.getElementById("photoDetailNoteInput");
-
-  if(noteInput){
-    noteInput.value = lavoro.note || "";
-  }
-
-  renderFotoLavoro();
-
-  mostraPagina("photoDetailPage");
 }
 
+e.target.value="";
 
-/* Chiude la scheda del lavoro */
-function chiudiSchedaLavoro(){
-
-  lavoroFotoAperto = null;
-
-  if(puntoSelezionato){
-    apriPuntoVendita(puntoSelezionato);
-  }else{
-    mostraPagina("todoPage");
-    renderTodoJobs(lavori);
-  }
-}
-
-
-/* =========================
-   NOTE
-========================= */
-
-async function salvaNoteLavoro(){
-
-  if(!lavoroFotoAperto){
-    return;
-  }
-
-  const input = document.getElementById("photoDetailNoteInput");
-
-  if(!input){
-    return;
-  }
-
-  const nuoveNote = input.value.trim();
-
-  try{
-
-    await db.collection("lavori")
-      .doc(lavoroFotoAperto.id)
-      .update({
-        note: nuoveNote
-      });
-
-    lavoroFotoAperto.note = nuoveNote;
-
-    /* Aggiorna anche l'array locale */
-    const indice = lavori.findIndex(
-      l => l.id === lavoroFotoAperto.id
-    );
-
-    if(indice !== -1){
-      lavori[indice].note = nuoveNote;
-    }
-
-    alert("Note salvate.");
-
-    aggiornaTutto();
-
-  }catch(errore){
-
-    console.error("Errore salvataggio note:", errore);
-
-    alert("Non è stato possibile salvare le note.");
-  }
-}
-
-
-/* =========================
-   COMPRESSIONE FOTO
-========================= */
-
-function comprimiFoto(file){
-
-  return new Promise((resolve,reject)=>{
-
-    const reader = new FileReader();
-
-    reader.onload = function(event){
-
-      const img = new Image();
-
-      img.onload = function(){
-
-        const MAX = 1600;
-
-        let width = img.width;
-        let height = img.height;
-
-        if(width > MAX || height > MAX){
-
-          if(width > height){
-
-            height = Math.round(height * MAX / width);
-            width = MAX;
-
-          }else{
-
-            width = Math.round(width * MAX / height);
-            height = MAX;
-          }
-        }
-
-        const canvas = document.createElement("canvas");
-
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext("2d");
-
-        ctx.drawImage(
-          img,
-          0,
-          0,
-          width,
-          height
-        );
-
-        canvas.toBlob(
-          blob => {
-
-            if(!blob){
-              reject(new Error("Impossibile comprimere la foto."));
-              return;
-            }
-
-            resolve(blob);
-
-          },
-          "image/jpeg",
-          0.82
-        );
-      };
-
-      img.onerror = reject;
-
-      img.src = event.target.result;
-    };
-
-    reader.onerror = reject;
-
-    reader.readAsDataURL(file);
-  });
-}
-
-
-/* =========================
-   CARICAMENTO FOTO
-========================= */
-
-async function aggiungiFotoLavoro(event){
-
-  const file = event.target.files[0];
-
-  /* Permette di selezionare di nuovo la stessa foto */
-  event.target.value = "";
-
-  if(!file){
-    return;
-  }
-
-  if(!lavoroFotoAperto){
-    alert("Nessun lavoro selezionato.");
-    return;
-  }
-
-  if(!file.type.startsWith("image/")){
-    alert("Seleziona una foto.");
-    return;
-  }
-
-  if(fotoInCaricamento){
-    return;
-  }
-
-  fotoInCaricamento = true;
-
-  try{
-
-    const blob = await comprimiFoto(file);
-
-    const nomeFile =
-      Date.now() +
-      "-" +
-      Math.random().toString(36).substring(2,10) +
-      ".jpg";
-
-    const percorso =
-      "lavori/" +
-      lavoroFotoAperto.id +
-      "/" +
-      nomeFile;
-
-    const {error: uploadError} =
-      await supabaseClient.storage
-        .from(SUPABASE_BUCKET)
-        .upload(
-          percorso,
-          blob,
-          {
-            contentType:"image/jpeg",
-            upsert:false
-          }
-        );
-
-    if(uploadError){
-      console.error(uploadError);
-      throw uploadError;
-    }
-
-    const fotoAttuali =
-      Array.isArray(lavoroFotoAperto.foto)
-        ? lavoroFotoAperto.foto
-        : [];
-
-    const nuoveFoto = [
-      ...fotoAttuali,
-      percorso
-    ];
-
-    await db.collection("lavori")
-      .doc(lavoroFotoAperto.id)
-      .update({
-        foto: nuoveFoto
-      });
-
-    lavoroFotoAperto.foto = nuoveFoto;
-
-    const indice = lavori.findIndex(
-      l => l.id === lavoroFotoAperto.id
-    );
-
-    if(indice !== -1){
-      lavori[indice].foto = nuoveFoto;
-    }
-
-    await renderFotoLavoro();
-
-  }catch(errore){
-
-    console.error("Errore caricamento foto:", errore);
-
-    alert(
-      "Errore nel caricamento della foto.\n\n" +
-      "Controlla di avere configurato correttamente " +
-      "il bucket Supabase."
-    );
-
-  }finally{
-
-    fotoInCaricamento = false;
-  }
-}
-
-
-/* =========================
-   URL FOTO PRIVATE
-========================= */
-
-async function creaUrlFoto(percorso){
-
-  if(!percorso){
-    return null;
-  }
-
-  const presente = cacheUrlFoto[percorso];
-
-  if(
-    presente &&
-    presente.scadenza > Date.now()
-  ){
-    return presente.url;
-  }
-
-  const {data,error} =
-    await supabaseClient.storage
-      .from(SUPABASE_BUCKET)
-      .createSignedUrl(
-        percorso,
-        3600
-      );
-
-  if(error){
-
-    console.error(
-      "Errore URL foto:",
-      error
-    );
-
-    return null;
-  }
-
-  cacheUrlFoto[percorso] = {
-    url:data.signedUrl,
-    scadenza:Date.now() + (3500 * 1000)
-  };
-
-  return data.signedUrl;
-}
-
-
-/* =========================
-   MOSTRA FOTO
-========================= */
-
-async function renderFotoLavoro(){
-
-  const contenitore =
-    document.getElementById("photoDetailGallery");
-
-  if(!contenitore){
-    return;
-  }
-
-  contenitore.innerHTML = "";
-
-  if(!lavoroFotoAperto){
-    return;
-  }
-
-  const foto =
-    Array.isArray(lavoroFotoAperto.foto)
-      ? lavoroFotoAperto.foto
-      : [];
-
-  if(foto.length === 0){
-
-    const vuoto =
-      document.createElement("div");
-
-    vuoto.className = "photo-empty";
-
-    vuoto.textContent =
-      "Nessuna foto presente.";
-
-    contenitore.appendChild(vuoto);
-
-    return;
-  }
-
-  for(const percorso of foto){
-
-    const url =
-      await creaUrlFoto(percorso);
-
-    if(!url){
-      continue;
-    }
-
-    const box =
-      document.createElement("div");
-
-    box.className =
-      "photo-item";
-
-    const img =
-      document.createElement("img");
-
-    img.src = url;
-    img.alt = "Foto lavoro";
-
-    img.onclick = function(){
-      apriFotoGrande(url);
-    };
-
-    const pulsanti =
-      document.createElement("div");
-
-    pulsanti.className =
-      "photo-item-actions";
-
-    const sostituisci =
-      document.createElement("button");
-
-    sostituisci.className =
-      "photo-replace";
-
-    sostituisci.textContent =
-      "Sostituisci";
-
-    sostituisci.onclick =
-      function(){
-        sostituisciFoto(percorso);
-      };
-
-    const elimina =
-      document.createElement("button");
-
-    elimina.className =
-      "photo-delete";
-
-    elimina.textContent =
-      "Elimina";
-
-    elimina.onclick =
-      function(){
-        eliminaFoto(percorso);
-      };
-
-    pulsanti.appendChild(sostituisci);
-    pulsanti.appendChild(elimina);
-
-    box.appendChild(img);
-    box.appendChild(pulsanti);
-
-    contenitore.appendChild(box);
-  }
 }
 
 
@@ -4123,39 +2917,42 @@ async function renderFotoLavoro(){
    FOTO GRANDE
 ========================= */
 
-function apriFotoGrande(url){
+async function apriFotoGrande(path){
 
-  const modal =
-    document.getElementById("photoModal");
+fotoCorrente=path;
 
-  const image =
-    document.getElementById("photoModalImage");
+const url=await getSignedUrl(path);
 
-  if(!modal || !image){
-    return;
-  }
+if(!url)return;
 
-  image.src = url;
+document.getElementById(
+"photoModalImage"
+).src=url;
 
-  modal.classList.add("active");
+document.getElementById(
+"photoModal"
+).classList.add("active");
+
 }
 
 
-function chiudiFotoGrande(){
+function chiudiFotoGrande(event){
 
-  const modal =
-    document.getElementById("photoModal");
+if(
+event &&
+event.target!==event.currentTarget
+)return;
 
-  const image =
-    document.getElementById("photoModalImage");
+document.getElementById(
+"photoModal"
+).classList.remove("active");
 
-  if(image){
-    image.src = "";
-  }
+document.getElementById(
+"photoModalImage"
+).src="";
 
-  if(modal){
-    modal.classList.remove("active");
-  }
+fotoCorrente=null;
+
 }
 
 
@@ -4163,116 +2960,109 @@ function chiudiFotoGrande(){
    SOSTITUISCI FOTO
 ========================= */
 
-async function sostituisciFoto(vecchioPercorso){
+function sostituisciFotoCorrente(){
 
-  if(!lavoroFotoAperto){
-    return;
-  }
+if(
+!fotoCorrente ||
+!lavoroFotoAperto
+)return;
 
-  const input =
-    document.createElement("input");
+const input=document.getElementById(
+"replacePhotoInput"
+);
 
-  input.type = "file";
-  input.accept = "image/*";
+input.value="";
 
-  input.onchange = async function(){
+input.onchange=eseguiSostituzioneFoto;
 
-    const file = input.files[0];
+input.click();
 
-    if(!file){
-      return;
-    }
+}
 
-    try{
 
-      const blob =
-        await comprimiFoto(file);
+async function eseguiSostituzioneFoto(e){
 
-      const nomeFile =
-        Date.now() +
-        "-" +
-        Math.random().toString(36).substring(2,10) +
-        ".jpg";
+const file=e.target.files?.[0];
 
-      const nuovoPercorso =
-        "lavori/" +
-        lavoroFotoAperto.id +
-        "/" +
-        nomeFile;
+if(
+!file ||
+!fotoCorrente ||
+!lavoroFotoAperto
+)return;
 
-      const {error: uploadError} =
-        await supabaseClient.storage
-          .from(SUPABASE_BUCKET)
-          .upload(
-            nuovoPercorso,
-            blob,
-            {
-              contentType:"image/jpeg",
-              upsert:false
-            }
-          );
+const oldPath=fotoCorrente;
+const lavoro=lavoroFotoAperto;
 
-      if(uploadError){
-        throw uploadError;
-      }
+try{
 
-      const fotoAttuali =
-        Array.isArray(lavoroFotoAperto.foto)
-          ? lavoroFotoAperto.foto
-          : [];
+const blob=await comprimiFoto(file);
 
-      const nuoveFoto =
-        fotoAttuali.map(
-          foto =>
-            foto === vecchioPercorso
-              ? nuovoPercorso
-              : foto
-        );
+const newPath=
+"lavori/"
++lavoro.id
++"/"
++Date.now()
++"-"
++Math.random().toString(36).slice(2,10)
++".jpg";
 
-      await db.collection("lavori")
-        .doc(lavoroFotoAperto.id)
-        .update({
-          foto: nuoveFoto
-        });
+const up=await supabaseClient
+.storage
+.from(SUPABASE_BUCKET)
+.upload(
+newPath,
+blob,
+{
+contentType:"image/jpeg",
+cacheControl:"3600",
+upsert:false
+}
+);
 
-      /* Elimina la vecchia foto */
-      await supabaseClient.storage
-        .from(SUPABASE_BUCKET)
-        .remove([
-          vecchioPercorso
-        ]);
+if(up.error)throw up.error;
 
-      delete cacheUrlFoto[vecchioPercorso];
+const nuoveFoto=
+fotoPaths(lavoro)
+.map(x=>x===oldPath?newPath:x);
 
-      lavoroFotoAperto.foto =
-        nuoveFoto;
+await db.collection("lavori")
+.doc(lavoro.id)
+.update({
+foto:nuoveFoto
+});
 
-      const indice =
-        lavori.findIndex(
-          l => l.id === lavoroFotoAperto.id
-        );
+await supabaseClient
+.storage
+.from(SUPABASE_BUCKET)
+.remove([oldPath]);
 
-      if(indice !== -1){
-        lavori[indice].foto =
-          nuoveFoto;
-      }
+signedUrlCache.delete(oldPath);
 
-      await renderFotoLavoro();
+lavoro.foto=nuoveFoto;
 
-    }catch(errore){
+document.getElementById(
+"photoModal"
+).classList.remove("active");
 
-      console.error(
-        "Errore sostituzione foto:",
-        errore
-      );
+fotoCorrente=null;
 
-      alert(
-        "Non è stato possibile sostituire la foto."
-      );
-    }
-  };
+renderFotoLavoro();
 
-  input.click();
+alert("Foto sostituita.");
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Errore nella sostituzione: "+
+(error.message||error)
+);
+
+}
+
+e.target.value="";
+
 }
 
 
@@ -4280,180 +3070,120 @@ async function sostituisciFoto(vecchioPercorso){
    ELIMINA FOTO
 ========================= */
 
-async function eliminaFoto(percorso){
+async function eliminaFoto(path){
 
-  if(!lavoroFotoAperto){
-    return;
-  }
+if(
+!lavoroFotoAperto ||
+!confirm("Vuoi eliminare questa foto?")
+)return;
 
-  const conferma =
-    confirm(
-      "Vuoi eliminare questa foto?"
-    );
+const lavoro=lavoroFotoAperto;
 
-  if(!conferma){
-    return;
-  }
+try{
 
-  try{
+if(supabaseClient){
 
-    const {error} =
-      await supabaseClient.storage
-        .from(SUPABASE_BUCKET)
-        .remove([
-          percorso
-        ]);
+const result=await supabaseClient
+.storage
+.from(SUPABASE_BUCKET)
+.remove([path]);
 
-    if(error){
-      console.error(error);
-    }
+if(result.error)throw result.error;
 
-    const fotoAttuali =
-      Array.isArray(lavoroFotoAperto.foto)
-        ? lavoroFotoAperto.foto
-        : [];
+}
 
-    const nuoveFoto =
-      fotoAttuali.filter(
-        foto => foto !== percorso
-      );
+await db.collection("lavori")
+.doc(lavoro.id)
+.update({
+foto:
+firebase.firestore.FieldValue
+.arrayRemove(path)
+});
 
-    await db.collection("lavori")
-      .doc(lavoroFotoAperto.id)
-      .update({
-        foto: nuoveFoto
-      });
+signedUrlCache.delete(path);
 
-    delete cacheUrlFoto[percorso];
+lavoro.foto=fotoPaths(lavoro)
+.filter(x=>x!==path);
 
-    lavoroFotoAperto.foto =
-      nuoveFoto;
+if(fotoCorrente===path){
 
-    const indice =
-      lavori.findIndex(
-        l => l.id === lavoroFotoAperto.id
-      );
+document.getElementById(
+"photoModal"
+).classList.remove("active");
 
-    if(indice !== -1){
-      lavori[indice].foto =
-        nuoveFoto;
-    }
+document.getElementById(
+"photoModalImage"
+).src="";
 
-    await renderFotoLavoro();
+fotoCorrente=null;
 
-  }catch(errore){
+}
 
-    console.error(
-      "Errore eliminazione foto:",
-      errore
-    );
+renderFotoLavoro();
 
-    alert(
-      "Non è stato possibile eliminare la foto."
-    );
-  }
+}catch(error){
+
+console.error(error);
+
+alert(
+"Errore nell'eliminazione della foto: "+
+(error.message||error)
+);
+
+}
+
+}
+
+
+async function eliminaFotoCorrente(){
+
+if(fotoCorrente){
+
+await eliminaFoto(fotoCorrente);
+
+}
+
 }
 
 
 /* =========================
-   ELIMINA TUTTE LE FOTO
-   QUANDO SI ELIMINA UN LAVORO
+   EVENTI HOME
 ========================= */
 
-async function eliminaFotoLavoroDaStorage(id){
-
-  try{
-
-    const lavoro =
-      lavori.find(
-        l => l.id === id
-      );
-
-    if(!lavoro){
-      return;
-    }
-
-    const foto =
-      Array.isArray(lavoro.foto)
-        ? lavoro.foto
-        : [];
-
-    if(foto.length === 0){
-      return;
-    }
-
-    await supabaseClient.storage
-      .from(SUPABASE_BUCKET)
-      .remove(foto);
-
-    foto.forEach(
-      percorso => {
-        delete cacheUrlFoto[percorso];
-      }
-    );
-
-  }catch(errore){
-
-    console.error(
-      "Errore eliminazione foto storage:",
-      errore
-    );
-  }
+document.getElementById(
+"btnLavoriDaFare"
+).addEventListener(
+"click",
+()=>{
+mostraPagina("todoPage");
 }
-
-
-/* =========================
-   AGGIORNA LE FOTO QUANDO
-   CAMBIA LA SCHEDA
-========================= */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(
-      event.key === "Escape"
-    ){
-
-      const modal =
-        document.getElementById(
-          "photoModal"
-        );
-
-      if(
-        modal &&
-        modal.classList.contains("active")
-      ){
-        chiudiFotoGrande();
-      }
-    }
-  }
 );
 
 
-/* Chiude il popup cliccando sullo sfondo */
-document.addEventListener(
-  "click",
-  function(event){
-
-    const modal =
-      document.getElementById(
-        "photoModal"
-      );
-
-    if(
-      modal &&
-      event.target === modal
-    ){
-      chiudiFotoGrande();
-    }
-  }
+document.getElementById(
+"btnUrgenti"
+).addEventListener(
+"click",
+()=>{
+mostraPagina("urgentPage");
+}
 );
 
 
-/* =========================
-   AVVIO
-========================= */
+document.getElementById(
+"btnCompletati"
+).addEventListener(
+"click",
+()=>{
+mostraPagina("completedPage");
+}
+);
+
+
+document.getElementById(
+"clearSearch"
+).onclick=cancellaRicerca;
+
 
 creaPuntiVendita();
 
