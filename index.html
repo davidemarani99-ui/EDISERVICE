@@ -4,29 +4,14 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>EDISERVICE</title>
 
-<link
-rel="icon"
-type="image/png"
-href="ediservice-icon.png"
->
-
-<link
-rel="apple-touch-icon"
-href="ediservice-icon.png"
->
+<link rel="icon" type="image/png" href="ediservice-icon.png">
+<link rel="apple-touch-icon" href="ediservice-icon.png">
 
 <style>
-
-/* ==================================================
-   BASE
-================================================== */
 
 *{
 box-sizing:border-box;
@@ -38,18 +23,10 @@ margin:0;
 padding:0;
 background:#fff;
 color:#222;
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-Roboto,
-Arial,
-sans-serif
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
 }
 
-button,
-input,
-textarea{
+button,input,textarea{
 font-family:inherit
 }
 
@@ -58,11 +35,6 @@ max-width:850px;
 margin:auto;
 padding:20px
 }
-
-
-/* ==================================================
-   HEADER
-================================================== */
 
 .header{
 text-align:center;
@@ -85,45 +57,14 @@ font-size:13px;
 font-weight:600
 }
 
-.status-ok{
-color:#2e7d32
-}
+.status-ok{color:#2e7d32}
+.status-error{color:#c62828}
 
-.status-error{
-color:#c62828
-}
+.page{display:none}
+.page.active{display:block}
 
-
-/* ==================================================
-   PAGINE
-================================================== */
-
-.page{
-display:none
-}
-
-.page.active{
-display:block
-}
-
-
-/*
-IMPORTANTE:
-anche la scheda del singolo lavoro
-viene nascosta quando si cambia pagina.
-*/
-.photo-detail-page{
-display:none
-}
-
-.photo-detail-page.active{
-display:block
-}
-
-
-/* ==================================================
-   CARTELLE HOME
-================================================== */
+.photo-detail-page{display:none}
+.photo-detail-page.active{display:block}
 
 .summary,
 .urgent-folder,
@@ -163,9 +104,7 @@ border:2px solid #43a047;
 color:#1b5e20
 }
 
-.folder-text{
-flex:1
-}
+.folder-text{flex:1}
 
 .folder-title{
 font-size:25px;
@@ -190,11 +129,6 @@ font-size:38px;
 margin-left:15px
 }
 
-
-/* ==================================================
-   TITOLI
-================================================== */
-
 .section-title{
 font-size:23px;
 font-weight:800;
@@ -215,11 +149,6 @@ font-size:18px;
 font-weight:900;
 box-shadow:0 2px 7px rgba(0,0,0,.06)
 }
-
-
-/* ==================================================
-   PUNTI VENDITA
-================================================== */
 
 .store-list{
 display:flex;
@@ -248,9 +177,7 @@ justify-content:space-between
 transform:scale(.98)
 }
 
-.store-name-text{
-color:#222
-}
+.store-name-text{color:#222}
 
 .store-count{
 min-width:34px;
@@ -266,11 +193,6 @@ font-size:16px;
 font-weight:900;
 margin-left:12px
 }
-
-
-/* ==================================================
-   TOPBAR
-================================================== */
 
 .topbar{
 display:flex;
@@ -294,11 +216,6 @@ font-size:24px;
 font-weight:850;
 margin:0
 }
-
-
-/* ==================================================
-   + AGGIUNGI LAVORO - PUNTO VENDITA
-================================================== */
 
 .store-topbar{
 display:flex;
@@ -336,11 +253,6 @@ flex-shrink:0
 .add-work-toggle:active{
 transform:scale(.94)
 }
-
-
-/* ==================================================
-   RICERCA
-================================================== */
 
 .search-box{
 position:relative;
@@ -381,11 +293,6 @@ display:none;
 cursor:pointer
 }
 
-
-/* ==================================================
-   NOME PUNTO VENDITA
-================================================== */
-
 .store-name{
 color:#d32f2f;
 font-size:27px;
@@ -398,11 +305,6 @@ font-size:14px;
 margin-bottom:20px
 }
 
-
-/* ==================================================
-   FORM AGGIUNGI LAVORO
-================================================== */
-
 .form-card{
 background:#fff;
 border-radius:20px;
@@ -411,17 +313,10 @@ margin:20px 0;
 box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
 
-.form-card h2{
-margin-top:0
-}
+.form-card h2{margin-top:0}
 
-.add-work-form{
-display:none
-}
-
-.add-work-form.active{
-display:block
-}
+.add-work-form{display:none}
+.add-work-form.active{display:block}
 
 label{
 display:block;
@@ -469,11 +364,6 @@ font-weight:800;
 cursor:pointer
 }
 
-
-/* ==================================================
-   LAVORI DA FARE
-================================================== */
-
 .todo-store-group{
 background:#fff;
 border-radius:20px;
@@ -516,9 +406,7 @@ padding:14px;
 border-bottom:1px solid #eee
 }
 
-.todo-job-row:last-child{
-border-bottom:0
-}
+.todo-job-row:last-child{border-bottom:0}
 
 .todo-job-main{
 display:flex;
@@ -553,6 +441,13 @@ font-size:13px;
 line-height:1.35
 }
 
+.todo-job-date{
+margin-top:5px;
+color:#999;
+font-size:12px;
+line-height:1.35
+}
+
 .todo-job-urgent{
 display:inline-block;
 background:#e53935;
@@ -563,11 +458,6 @@ font-size:10px;
 font-weight:800;
 margin-top:7px
 }
-
-
-/* ==================================================
-   AZIONI
-================================================== */
 
 .symbol-actions{
 display:flex;
@@ -592,9 +482,7 @@ cursor:pointer;
 box-shadow:0 1px 3px rgba(0,0,0,.12)
 }
 
-.symbol-btn:active{
-transform:scale(.88)
-}
+.symbol-btn:active{transform:scale(.88)}
 
 .symbol-complete{
 background:#e8f5e9;
@@ -622,11 +510,6 @@ color:#1565c0;
 font-size:15px
 }
 
-
-/* ==================================================
-   CARD LAVORO PUNTO VENDITA
-================================================== */
-
 .job-card{
 background:#fff;
 border-radius:18px;
@@ -647,10 +530,11 @@ color:#777;
 font-size:14px
 }
 
-
-/* ==================================================
-   COMPLETATI
-================================================== */
+.job-date{
+margin-top:7px;
+color:#999;
+font-size:12px
+}
 
 .completed-export-bar{
 display:flex;
@@ -679,9 +563,7 @@ background:#222;
 color:#fff
 }
 
-.completed-page-title{
-color:#2e7d32
-}
+.completed-page-title{color:#2e7d32}
 
 .completed-job{
 background:#fff;
@@ -728,9 +610,7 @@ padding:14px;
 border-bottom:1px solid #eee
 }
 
-.completed-job-row:last-child{
-border-bottom:0
-}
+.completed-job-row:last-child{border-bottom:0}
 
 .completed-check{
 color:#2e7d32;
@@ -755,14 +635,14 @@ font-size:13px;
 margin-top:5px
 }
 
-
-/* ==================================================
-   URGENTI
-================================================== */
-
-.urgent-page-title{
-color:#d32f2f
+.completed-job-date{
+color:#999;
+font-size:12px;
+margin-top:5px;
+line-height:1.4
 }
+
+.urgent-page-title{color:#d32f2f}
 
 .urgent-store-header{
 display:flex;
@@ -801,9 +681,7 @@ padding:14px;
 border-bottom:1px solid #eee
 }
 
-.urgent-job-row:last-child{
-border-bottom:0
-}
+.urgent-job-row:last-child{border-bottom:0}
 
 .urgent-job-dot{
 width:8px;
@@ -830,11 +708,6 @@ font-size:13px;
 margin-top:5px
 }
 
-
-/* ==================================================
-   GENERALE
-================================================== */
-
 .empty{
 background:#fff;
 border-radius:17px;
@@ -850,18 +723,9 @@ padding:30px;
 color:#777
 }
 
-.job-clickable{
-cursor:pointer
-}
+.job-clickable{cursor:pointer}
 
-.job-clickable:active{
-opacity:.75
-}
-
-
-/* ==================================================
-   SCHEDA SINGOLO LAVORO
-================================================== */
+.job-clickable:active{opacity:.75}
 
 .photo-detail-card{
 background:#fff;
@@ -892,9 +756,14 @@ font-size:14px;
 white-space:pre-wrap
 }
 
-.photo-notes-box{
-margin-top:18px
+.photo-detail-date{
+margin-top:8px;
+color:#999;
+font-size:13px;
+line-height:1.4
 }
+
+.photo-notes-box{margin-top:18px}
 
 .photo-notes-label{
 display:block;
@@ -933,9 +802,7 @@ font-weight:800;
 cursor:pointer
 }
 
-.photo-save-notes:active{
-transform:scale(.98)
-}
+.photo-save-notes:active{transform:scale(.98)}
 
 .photo-toolbar{
 display:flex;
@@ -954,9 +821,7 @@ font-weight:800;
 cursor:pointer
 }
 
-.photo-add-button:active{
-transform:scale(.98)
-}
+.photo-add-button:active{transform:scale(.98)}
 
 .photo-grid{
 display:grid;
@@ -1006,11 +871,6 @@ border-radius:13px;
 margin-top:12px
 }
 
-
-/* ==================================================
-   MODALE FOTO
-================================================== */
-
 .photo-modal{
 position:fixed;
 inset:0;
@@ -1022,9 +882,7 @@ padding:15px;
 z-index:1000
 }
 
-.photo-modal.active{
-display:flex
-}
+.photo-modal.active{display:flex}
 
 .photo-modal-content{
 position:relative;
@@ -1084,16 +942,9 @@ background:#ffebee;
 color:#d32f2f
 }
 
-
-/* ==================================================
-   MOBILE
-================================================== */
-
 @media(max-width:600px){
 
-.container{
-padding:15px
-}
+.container{padding:15px}
 
 .header img{
 width:230px;
@@ -1107,13 +958,8 @@ min-height:180px;
 padding:24px
 }
 
-.folder-title{
-font-size:22px
-}
-
-.folder-number{
-font-size:50px
-}
+.folder-title{font-size:22px}
+.folder-number{font-size:50px}
 
 .group-title{
 font-size:17px;
@@ -1161,9 +1007,7 @@ padding:13px
 font-size:15px
 }
 
-.symbol-actions{
-gap:4px
-}
+.symbol-actions{gap:4px}
 
 .symbol-btn{
 width:30px;
@@ -1211,39 +1055,23 @@ font-size:36px
 </style>
 </head>
 
-
 <body>
 
 <div class="container">
-
-
-<!-- ==================================================
-     HOME
-================================================== -->
 
 <div id="homePage" class="page active">
 
 <div class="header">
 
-<img
-src="ediservice-icon.png"
-alt="EDISERVICE"
->
+<img src="ediservice-icon.png" alt="EDISERVICE">
 
-<div
-id="firebaseStatus"
-class="firebase-status"
->
+<div id="firebaseStatus" class="firebase-status">
 Connessione Firebase...
 </div>
 
 </div>
 
-
-<div
-class="summary"
-id="btnLavoriDaFare"
->
+<div class="summary" id="btnLavoriDaFare">
 
 <div class="folder-text">
 
@@ -1251,10 +1079,7 @@ id="btnLavoriDaFare"
 Lavori da fare
 </div>
 
-<div
-class="folder-number"
-id="totaleDaFare"
->
+<div class="folder-number" id="totaleDaFare">
 0
 </div>
 
@@ -1264,17 +1089,11 @@ Lavori ancora da completare
 
 </div>
 
-<div class="folder-arrow">
-→
-</div>
+<div class="folder-arrow">→</div>
 
 </div>
 
-
-<div
-class="urgent-folder"
-id="btnUrgenti"
->
+<div class="urgent-folder" id="btnUrgenti">
 
 <div class="folder-text">
 
@@ -1282,10 +1101,7 @@ id="btnUrgenti"
 Lavori urgenti
 </div>
 
-<div
-class="folder-number"
-id="totaleUrgenti"
->
+<div class="folder-number" id="totaleUrgenti">
 0
 </div>
 
@@ -1295,17 +1111,11 @@ Interventi urgenti da completare
 
 </div>
 
-<div class="folder-arrow">
-→
-</div>
+<div class="folder-arrow">→</div>
 
 </div>
 
-
-<div
-class="completed-folder"
-id="btnCompletati"
->
+<div class="completed-folder" id="btnCompletati">
 
 <div class="folder-text">
 
@@ -1313,10 +1123,7 @@ id="btnCompletati"
 Lavori completati
 </div>
 
-<div
-class="folder-number"
-id="totaleCompletati"
->
+<div class="folder-number" id="totaleCompletati">
 0
 </div>
 
@@ -1326,12 +1133,9 @@ Lavori già completati
 
 </div>
 
-<div class="folder-arrow">
-→
-</div>
+<div class="folder-arrow">→</div>
 
 </div>
-
 
 <div class="section-title">
 Punti vendita
@@ -1341,20 +1145,11 @@ Punti vendita
 
 </div>
 
-
-
-<!-- ==================================================
-     LAVORI DA FARE
-================================================== -->
-
 <div id="todoPage" class="page">
 
 <div class="topbar">
 
-<button
-class="back-button"
-onclick="showHome()"
->
+<button class="back-button" onclick="showHome()">
 ← Indietro
 </button>
 
@@ -1363,7 +1158,6 @@ Lavori da fare
 </h2>
 
 </div>
-
 
 <div class="search-box">
 
@@ -1384,7 +1178,6 @@ onclick="cancellaRicerca()"
 
 </div>
 
-
 <div id="todoJobs">
 
 <div class="loading">
@@ -1395,23 +1188,13 @@ Caricamento...
 
 </div>
 
-
-
-<!-- ==================================================
-     PUNTO VENDITA
-================================================== -->
-
 <div id="storePage" class="page">
-
 
 <div class="store-topbar">
 
 <div class="store-topbar-left">
 
-<button
-class="back-button"
-onclick="showHome()"
->
+<button class="back-button" onclick="showHome()">
 ← Indietro
 </button>
 
@@ -1420,7 +1203,6 @@ Punto vendita
 </h2>
 
 </div>
-
 
 <button
 class="add-work-toggle"
@@ -1433,29 +1215,15 @@ aria-label="Aggiungi lavoro"
 
 </div>
 
+<div class="store-name" id="storePageName"></div>
 
-<div
-class="store-name"
-id="storePageName"
-></div>
+<div class="store-category" id="storePageCategory"></div>
 
-<div
-class="store-category"
-id="storePageCategory"
-></div>
-
-
-<!-- FORM NASCOSTO FINO A QUANDO SI PREME + -->
-
-<div
-class="form-card add-work-form"
-id="addWorkForm"
->
+<div class="form-card add-work-form" id="addWorkForm">
 
 <h2>
 Aggiungi lavoro
 </h2>
-
 
 <label>
 Lavoro
@@ -1467,7 +1235,6 @@ type="text"
 placeholder="Descrivi il lavoro da fare"
 >
 
-
 <label>
 Note
 </label>
@@ -1476,7 +1243,6 @@ Note
 id="noteInput"
 placeholder="Eventuali note..."
 ></textarea>
-
 
 <label class="urgent-check">
 
@@ -1491,7 +1257,6 @@ Lavoro urgente
 
 </label>
 
-
 <button
 class="add-button"
 id="addWorkButton"
@@ -1502,30 +1267,19 @@ onclick="aggiungiLavoro()"
 
 </div>
 
-
 <div class="section-title">
 Lavori del punto vendita
 </div>
 
 <div id="storeJobs"></div>
 
-
 </div>
-
-
-
-<!-- ==================================================
-     LAVORI URGENTI
-================================================== -->
 
 <div id="urgentPage" class="page">
 
 <div class="topbar">
 
-<button
-class="back-button"
-onclick="showHome()"
->
+<button class="back-button" onclick="showHome()">
 ← Indietro
 </button>
 
@@ -1539,20 +1293,11 @@ Lavori urgenti
 
 </div>
 
-
-
-<!-- ==================================================
-     LAVORI COMPLETATI
-================================================== -->
-
 <div id="completedPage" class="page">
 
 <div class="topbar">
 
-<button
-class="back-button"
-onclick="showHome()"
->
+<button class="back-button" onclick="showHome()">
 ← Indietro
 </button>
 
@@ -1561,7 +1306,6 @@ Lavori completati
 </h2>
 
 </div>
-
 
 <div class="completed-export-bar">
 
@@ -1581,28 +1325,15 @@ Condividi elenco
 
 </div>
 
-
 <div id="completedJobs"></div>
 
 </div>
 
-
-
-<!-- ==================================================
-     SCHEDA DEL SINGOLO LAVORO
-================================================== -->
-
-<div
-id="photoDetailPage"
-class="photo-detail-page"
->
+<div id="photoDetailPage" class="photo-detail-page">
 
 <div class="topbar">
 
-<button
-class="back-button"
-onclick="chiudiSchedaLavoro()"
->
+<button class="back-button" onclick="chiudiSchedaLavoro()">
 ← Indietro
 </button>
 
@@ -1612,27 +1343,32 @@ Lavoro
 
 </div>
 
-
 <div class="photo-detail-card">
-
 
 <div
 class="photo-detail-store"
 id="photoDetailStore"
 ></div>
 
-
 <div
 class="photo-detail-title"
 id="photoDetailTitle"
 ></div>
 
+<div
+class="photo-detail-date"
+id="photoDetailCreated"
+></div>
+
+<div
+class="photo-detail-date"
+id="photoDetailCompleted"
+></div>
 
 <div
 class="photo-detail-note"
 id="photoDetailNote"
 ></div>
-
 
 <div class="photo-notes-box">
 
@@ -1640,13 +1376,11 @@ id="photoDetailNote"
 Note
 </label>
 
-
 <textarea
 id="photoDetailNoteInput"
 class="photo-notes-input"
 placeholder="Scrivi qui le note del lavoro..."
 ></textarea>
-
 
 <button
 class="photo-save-notes"
@@ -1656,7 +1390,6 @@ Salva note
 </button>
 
 </div>
-
 
 <div class="photo-toolbar">
 
@@ -1669,24 +1402,13 @@ onclick="selezionaFoto()"
 
 </div>
 
-
-<div
-id="photoGrid"
-class="photo-grid"
-></div>
-
+<div id="photoGrid" class="photo-grid"></div>
 
 </div>
 
 </div>
 
 </div>
-
-
-
-<!-- ==================================================
-     INPUT FOTO
-================================================== -->
 
 <input
 id="photoInput"
@@ -1703,12 +1425,6 @@ accept="image/*"
 hidden
 >
 
-
-
-<!-- ==================================================
-     MODALE FOTO
-================================================== -->
-
 <div
 id="photoModal"
 class="photo-modal"
@@ -1720,7 +1436,6 @@ class="photo-modal-content"
 onclick="event.stopPropagation()"
 >
 
-
 <button
 class="photo-modal-close"
 onclick="chiudiFotoGrande()"
@@ -1728,13 +1443,11 @@ onclick="chiudiFotoGrande()"
 ×
 </button>
 
-
 <img
 id="photoModalImage"
 class="photo-modal-image"
 alt="Foto lavoro"
 >
-
 
 <div class="photo-modal-actions">
 
@@ -1758,68 +1471,35 @@ Elimina
 
 </div>
 
-
-
-<!-- ==================================================
-     FIREBASE
-================================================== -->
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
-
-/* ==================================================
-   FIREBASE
-================================================== */
-
 const firebaseConfig={
 
-apiKey:
-"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
 
-authDomain:
-"ediservice-bb88c.firebaseapp.com",
+authDomain:"ediservice-bb88c.firebaseapp.com",
 
-projectId:
-"ediservice-bb88c",
+projectId:"ediservice-bb88c",
 
-storageBucket:
-"ediservice-bb88c.firebasestorage.app",
+storageBucket:"ediservice-bb88c.firebasestorage.app",
 
-messagingSenderId:
-"420418885149",
+messagingSenderId:"420418885149",
 
-appId:
-"1:420418885149:web:2a07ba2ddfdafd31c798f4",
+appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
 
-measurementId:
-"G-BM489YWSY4"
+measurementId:"G-BM489YWSY4"
 
 };
 
-
 firebase.initializeApp(firebaseConfig);
 
-
-const auth=
-firebase.auth();
-
-const db=
-firebase.firestore();
-
-
-
-/* ==================================================
-   SUPABASE
-================================================== */
+const auth=firebase.auth();
+const db=firebase.firestore();
 
 const SUPABASE_URL=
 "https://ncfznorfwniqykuxymxd.supabase.co";
@@ -1827,9 +1507,7 @@ const SUPABASE_URL=
 const SUPABASE_PUBLISHABLE_KEY=
 "sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
 
-const SUPABASE_BUCKET=
-"foto-lavori";
-
+const SUPABASE_BUCKET="foto-lavori";
 
 const supabaseClient=
 window.supabase.createClient(
@@ -1837,16 +1515,9 @@ SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
 
-
-
-/* ==================================================
-   PUNTI VENDITA
-================================================== */
-
 const puntiVendita={
 
 PIM:[
-
 "Torresina",
 "Fontanile",
 "Torrevecchia 313",
@@ -1872,125 +1543,135 @@ PIM:[
 "Casal Palocco",
 "Guidonia",
 "Nepi"
-
 ],
 
 "AGORÀ":[
-
 "Taverna",
 "Boccea",
 "Gregorio",
 "San Basilio",
 "Laurentina"
-
 ],
 
 "IPERFAMILY":[
-
 "Iperfamily"
-
 ]
 
 };
 
-
-
-/* ==================================================
-   VARIABILI
-================================================== */
-
 let lavori=[];
-
 let puntoSelezionato=null;
-
 let categoriaSelezionata=null;
-
 let ricercaLavori="";
-
 let lavoroFotoAperto=null;
-
 let fotoCorrente=null;
-
 let addFormAperto=false;
 
-const signedUrlCache=
-new Map();
+/* ORIGINE DELLA SCHEDA */
+let origineSchedaLavoro=null;
 
-
+const signedUrlCache=new Map();
 
 /* ==================================================
-   FIREBASE STATUS
+   DATA E ORA AUTOMATICHE
 ================================================== */
+
+function formatDataOra(value){
+
+if(!value)
+return "";
+
+let data;
+
+if(
+value &&
+typeof value.toDate==="function"
+){
+
+data=value.toDate();
+
+}else if(value instanceof Date){
+
+data=value;
+
+}else if(
+typeof value==="string"||
+typeof value==="number"
+){
+
+data=new Date(value);
+
+}else{
+
+return "";
+
+}
+
+if(isNaN(data.getTime()))
+return "";
+
+const giorno=
+String(data.getDate())
+.padStart(2,"0");
+
+const mese=
+String(data.getMonth()+1)
+.padStart(2,"0");
+
+const anno=
+data.getFullYear();
+
+const ore=
+String(data.getHours())
+.padStart(2,"0");
+
+const minuti=
+String(data.getMinutes())
+.padStart(2,"0");
+
+return `${giorno}/${mese}/${anno} alle ${ore}:${minuti}`;
+
+}
 
 function firebaseOk(){
 
 const s=
-document.getElementById(
-"firebaseStatus"
-);
+document.getElementById("firebaseStatus");
 
-s.textContent=
-"● Firebase collegato";
-
-s.className=
-"firebase-status status-ok";
+s.textContent="● Firebase collegato";
+s.className="firebase-status status-ok";
 
 }
-
 
 function firebaseErrore(error){
 
-console.error(
-"Firebase:",
-error
-);
+console.error("Firebase:",error);
 
 const s=
-document.getElementById(
-"firebaseStatus"
-);
+document.getElementById("firebaseStatus");
 
-s.textContent=
-"● Errore Firebase";
-
-s.className=
-"firebase-status status-error";
+s.textContent="● Errore Firebase";
+s.className="firebase-status status-error";
 
 }
-
-
-
-/* ==================================================
-   AUTENTICAZIONE
-================================================== */
 
 auth.signInAnonymously()
 
 .then(()=>{
 
 firebaseOk();
-
 ascoltaLavori();
 
 })
 
 .catch(firebaseErrore);
 
-
-
-/* ==================================================
-   CREA PUNTI VENDITA
-================================================== */
-
 function creaPuntiVendita(){
 
 const c=
-document.getElementById(
-"puntiVendita"
-);
+document.getElementById("puntiVendita");
 
 c.innerHTML="";
-
 
 Object.keys(puntiVendita)
 .forEach(categoria=>{
@@ -2001,23 +1682,15 @@ document.createElement("div");
 const titolo=
 document.createElement("div");
 
-titolo.className=
-"group-title";
+titolo.className="group-title";
+titolo.textContent=categoria;
 
-titolo.textContent=
-categoria;
-
-gruppo.appendChild(
-titolo
-);
-
+gruppo.appendChild(titolo);
 
 const lista=
 document.createElement("div");
 
-lista.className=
-"store-list";
-
+lista.className="store-list";
 
 puntiVendita[categoria]
 .forEach(punto=>{
@@ -2025,38 +1698,22 @@ puntiVendita[categoria]
 const b=
 document.createElement("button");
 
-b.className=
-"store-button";
-
+b.className="store-button";
 
 const n=
 document.createElement("span");
 
-n.className=
-"store-name-text";
-
-n.textContent=
-punto;
-
+n.className="store-name-text";
+n.textContent=punto;
 
 const num=
 document.createElement("span");
 
-num.className=
-"store-count";
+num.className="store-count";
+num.id="count-"+encodeURIComponent(punto);
+num.textContent="0";
 
-num.id=
-"count-"+encodeURIComponent(punto);
-
-num.textContent=
-"0";
-
-
-b.append(
-n,
-num
-);
-
+b.append(n,num);
 
 b.onclick=()=>{
 
@@ -2067,36 +1724,21 @@ categoria
 
 };
 
-
 lista.appendChild(b);
 
 });
 
-
 gruppo.appendChild(lista);
-
 c.appendChild(gruppo);
 
 });
 
 }
 
-
-
-/* ==================================================
-   ASCOLTA LAVORI
-================================================== */
-
 function ascoltaLavori(){
 
 db.collection("lavori")
-
-.where(
-"attivo",
-"==",
-true
-)
-
+.where("attivo","==",true)
 .onSnapshot(
 
 snapshot=>{
@@ -2104,13 +1746,10 @@ snapshot=>{
 lavori=
 snapshot.docs.map(
 doc=>({
-
 id:doc.id,
 ...doc.data()
-
 })
 );
-
 
 aggiornaTutto();
 
@@ -2122,12 +1761,6 @@ firebaseErrore
 
 }
 
-
-
-/* ==================================================
-   AGGIORNA TUTTO
-================================================== */
-
 function aggiornaTutto(){
 
 const daFare=
@@ -2137,13 +1770,10 @@ x.attivo===true&&
 x.completato!==true
 );
 
-
 const urgenti=
 daFare.filter(
-x=>
-x.urgente===true
+x=>x.urgente===true
 );
-
 
 const completati=
 lavori.filter(
@@ -2152,64 +1782,26 @@ x.attivo===true&&
 x.completato===true
 );
 
-
-document.getElementById(
-"totaleDaFare"
-).textContent=
+document.getElementById("totaleDaFare").textContent=
 daFare.length;
 
-
-document.getElementById(
-"totaleUrgenti"
-).textContent=
+document.getElementById("totaleUrgenti").textContent=
 urgenti.length;
 
-
-document.getElementById(
-"totaleCompletati"
-).textContent=
+document.getElementById("totaleCompletati").textContent=
 completati.length;
-
 
 aggiornaNumeriPuntiVendita();
 
-
-renderTodoJobs(
-daFare
-);
-
-
-renderUrgentJobs(
-urgenti
-);
-
-
-renderCompletedJobs(
-completati
-);
-
-
-/*
-IMPORTANTE:
-nel Punto vendita mostriamo
-SOLO i lavori non completati.
-*/
+renderTodoJobs(daFare);
+renderUrgentJobs(urgenti);
+renderCompletedJobs(completati);
 
 if(puntoSelezionato){
-
-renderStoreJobs(
-puntoSelezionato
-);
-
+renderStoreJobs(puntoSelezionato);
 }
 
 }
-
-
-
-/* ==================================================
-   NUMERI PUNTI VENDITA
-================================================== */
 
 function aggiornaNumeriPuntiVendita(){
 
@@ -2227,12 +1819,10 @@ x.punto===punto&&
 x.completato!==true
 ).length;
 
-
 const e=
 document.getElementById(
 "count-"+encodeURIComponent(punto)
 );
-
 
 if(e)
 e.textContent=n;
@@ -2242,24 +1832,6 @@ e.textContent=n;
 });
 
 }
-
-
-
-/* ==================================================
-   CAMBIO PAGINA
-================================================== */
-
-/*
-QUESTA È LA CORREZIONE IMPORTANTE.
-
-Prima venivano nascosti solamente gli elementi
-con classe .page.
-
-La scheda "Lavoro" invece ha classe
-.photo-detail-page.
-
-Ora vengono nascoste ENTRAMBE.
-*/
 
 function mostraPagina(id){
 
@@ -2271,85 +1843,52 @@ document
 p.classList.remove("active");
 });
 
-
 const p=
 document.getElementById(id);
-
 
 if(p){
 
 p.classList.add("active");
 
-window.scrollTo(
-0,
-0
-);
+window.scrollTo(0,0);
 
 }
 
 }
-
-
-
-/* ==================================================
-   HOME
-================================================== */
 
 function showHome(){
 
 addFormAperto=false;
 
 const form=
-document.getElementById(
-"addWorkForm"
-);
+document.getElementById("addWorkForm");
 
 if(form)
 form.classList.remove("active");
 
-
 const toggle=
-document.getElementById(
-"addWorkToggle"
-);
+document.getElementById("addWorkToggle");
 
 if(toggle)
 toggle.textContent="+";
 
-
-mostraPagina(
-"homePage"
-);
+mostraPagina("homePage");
 
 }
-
-
-
-/* ==================================================
-   APRI / CHIUDI FORM AGGIUNGI LAVORO
-================================================== */
 
 function toggleAddWorkForm(){
 
 const form=
-document.getElementById(
-"addWorkForm"
-);
+document.getElementById("addWorkForm");
 
 const button=
-document.getElementById(
-"addWorkToggle"
-);
+document.getElementById("addWorkToggle");
 
-
-addFormAperto=
-!addFormAperto;
-
+addFormAperto=!addFormAperto;
 
 if(addFormAperto){
 
 form.classList.add("active");
-
 button.textContent="−";
 
 setTimeout(()=>{
@@ -2363,45 +1902,27 @@ document.getElementById(
 }else{
 
 form.classList.remove("active");
-
 button.textContent="+";
 
 }
 
 }
 
-
-
-/* ==================================================
-   RICERCA LAVORI
-================================================== */
-
 function filtraLavori(){
 
 const input=
-document.getElementById(
-"searchLavori"
-);
+document.getElementById("searchLavori");
 
 const clear=
-document.getElementById(
-"clearSearch"
-);
-
+document.getElementById("clearSearch");
 
 ricercaLavori=
-input.value
-.trim()
-.toLowerCase();
-
+input.value.trim().toLowerCase();
 
 clear.style.display=
 ricercaLavori
-?
-"block"
-:
-"none";
-
+?"block"
+:"none";
 
 renderTodoJobs(
 
@@ -2413,34 +1934,26 @@ x.completato===true
 )
 return false;
 
-
 if(!ricercaLavori)
 return true;
-
 
 return(
 
 (x.punto||"")
 .toLowerCase()
-.includes(
-ricercaLavori
-)
+.includes(ricercaLavori)
 
 ||
 
 (x.testo||"")
 .toLowerCase()
-.includes(
-ricercaLavori
-)
+.includes(ricercaLavori)
 
 ||
 
 (x.note||"")
 .toLowerCase()
-.includes(
-ricercaLavori
-)
+.includes(ricercaLavori)
 
 );
 
@@ -2450,27 +1963,17 @@ ricercaLavori
 
 }
 
-
-
-/* ==================================================
-   CANCELLA RICERCA
-================================================== */
-
 function cancellaRicerca(){
 
 document.getElementById(
 "searchLavori"
 ).value="";
 
-
 ricercaLavori="";
-
 
 document.getElementById(
 "clearSearch"
-)
-.style.display="none";
-
+).style.display="none";
 
 renderTodoJobs(
 
@@ -2484,21 +1987,12 @@ x.completato!==true
 
 }
 
-
-
-/* ==================================================
-   RENDER LAVORI DA FARE
-================================================== */
-
 function renderTodoJobs(lista){
 
 const c=
-document.getElementById(
-"todoJobs"
-);
+document.getElementById("todoJobs");
 
 c.innerHTML="";
-
 
 if(!lista.length){
 
@@ -2506,10 +2000,8 @@ c.innerHTML=
 `<div class="empty">
 ${
 ricercaLavori
-?
-"Nessun lavoro trovato."
-:
-"Nessun lavoro da fare."
+?"Nessun lavoro trovato."
+:"Nessun lavoro da fare."
 }
 </div>`;
 
@@ -2517,92 +2009,61 @@ return;
 
 }
 
-
 Object.keys(puntiVendita)
 .forEach(cat=>{
 
-const punti=
-puntiVendita[cat];
-
+const punti=puntiVendita[cat];
 
 const catJobs=
 lista.filter(
-x=>
-punti.includes(x.punto)
+x=>punti.includes(x.punto)
 );
-
 
 if(!catJobs.length)
 return;
 
-
 const t=
 document.createElement("div");
 
-t.className=
-"group-title";
-
-t.textContent=
-cat;
+t.className="group-title";
+t.textContent=cat;
 
 c.appendChild(t);
-
 
 punti.forEach(punto=>{
 
 const jobs=
 catJobs.filter(
-x=>
-x.punto===punto
+x=>x.punto===punto
 );
-
 
 if(!jobs.length)
 return;
 
-
 const g=
 document.createElement("div");
 
-g.className=
-"todo-store-group";
-
+g.className="todo-store-group";
 
 const h=
 document.createElement("div");
 
-h.className=
-"todo-store-header";
-
+h.className="todo-store-header";
 
 const n=
 document.createElement("div");
 
-n.className=
-"todo-store-name";
-
-n.textContent=
-punto;
-
+n.className="todo-store-name";
+n.textContent=punto;
 
 const num=
 document.createElement("div");
 
-num.className=
-"todo-store-count";
+num.className="todo-store-count";
+num.textContent=jobs.length;
 
-num.textContent=
-jobs.length;
-
-
-h.append(
-n,
-num
-);
-
-
+h.append(n,num);
 g.appendChild(h);
-
 
 jobs.forEach(job=>{
 
@@ -2612,7 +2073,6 @@ creaTodoJobRow(job)
 
 });
 
-
 c.appendChild(g);
 
 });
@@ -2621,20 +2081,12 @@ c.appendChild(g);
 
 }
 
-
-
-/* ==================================================
-   RIGA LAVORO
-================================================== */
-
 function creaTodoJobRow(lavoro){
 
 const r=
 document.createElement("div");
 
-r.className=
-"todo-job-row";
-
+r.className="todo-job-row";
 
 const main=
 document.createElement("div");
@@ -2642,139 +2094,108 @@ document.createElement("div");
 main.className=
 "todo-job-main job-clickable";
 
-
 const dot=
 document.createElement("div");
 
-dot.className=
-"todo-job-dot";
-
+dot.className="todo-job-dot";
 
 const content=
 document.createElement("div");
 
-content.className=
-"todo-job-content";
-
+content.className="todo-job-content";
 
 const text=
 document.createElement("div");
 
-text.className=
-"todo-job-text";
+text.className="todo-job-text";
+text.textContent=lavoro.testo||"";
 
-text.textContent=
-lavoro.testo||"";
+content.appendChild(text);
 
-content.appendChild(
-text
-);
+if(lavoro.creatoIl){
 
+const date=
+document.createElement("div");
+
+date.className="todo-job-date";
+
+date.textContent=
+"Inserito il "+
+formatDataOra(lavoro.creatoIl);
+
+content.appendChild(date);
+
+}
 
 if(lavoro.note){
 
 const note=
 document.createElement("div");
 
-note.className=
-"todo-job-note";
+note.className="todo-job-note";
 
-note.textContent=
-"Note: "+
-lavoro.note;
+note.textContent="Note: "+lavoro.note;
 
-content.appendChild(
-note
-);
+content.appendChild(note);
 
 }
-
 
 if(lavoro.urgente===true){
 
 const badge=
 document.createElement("div");
 
-badge.className=
-"todo-job-urgent";
+badge.className="todo-job-urgent";
+badge.textContent="URGENTE";
 
-badge.textContent=
-"URGENTE";
-
-content.appendChild(
-badge
-);
+content.appendChild(badge);
 
 }
 
-
-main.append(
-dot,
-content
-);
-
+main.append(dot,content);
 
 main.onclick=()=>{
 
 apriSchedaLavoro(
-lavoro.id
+lavoro.id,
+"todoPage"
 );
 
 };
 
-
-r.appendChild(
-main
-);
-
+r.appendChild(main);
 
 const actions=
 document.createElement("div");
 
-actions.className=
-"symbol-actions";
-
+actions.className="symbol-actions";
 
 const complete=
 document.createElement("button");
 
-complete.className=
-"symbol-btn symbol-complete";
-
-complete.title=
-"Completato";
-
-complete.textContent=
-"✓";
-
+complete.className="symbol-btn symbol-complete";
+complete.title="Completato";
+complete.textContent="✓";
 
 complete.onclick=e=>{
 
 e.stopPropagation();
 
-completaLavoro(
-lavoro.id
-);
+completaLavoro(lavoro.id);
 
 };
-
 
 const urgent=
 document.createElement("button");
 
-urgent.className=
-"symbol-btn symbol-urgent";
+urgent.className="symbol-btn symbol-urgent";
 
 urgent.title=
 lavoro.urgente
-?
-"Togli urgente"
-:
-"Segna urgente";
+?"Togli urgente"
+:"Segna urgente";
 
-urgent.textContent=
-"!";
-
+urgent.textContent="!";
 
 urgent.onclick=e=>{
 
@@ -2787,56 +2208,35 @@ lavoro.urgente===true
 
 };
 
-
 const del=
 document.createElement("button");
 
-del.className=
-"symbol-btn symbol-delete";
-
-del.title=
-"Elimina";
-
-del.textContent=
-"×";
-
+del.className="symbol-btn symbol-delete";
+del.title="Elimina";
+del.textContent="×";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(
-lavoro.id
-);
+eliminaLavoro(lavoro.id);
 
 };
-
-
-/* INVIA */
 
 const share=
 document.createElement("button");
 
-share.className=
-"symbol-btn symbol-share";
-
-share.title=
-"Invia";
-
-share.textContent=
-"↗";
-
+share.className="symbol-btn symbol-share";
+share.title="Invia";
+share.textContent="↗";
 
 share.onclick=e=>{
 
 e.stopPropagation();
 
-inviaLavoro(
-lavoro
-);
+inviaLavoro(lavoro);
 
 };
-
 
 actions.append(
 complete,
@@ -2845,116 +2245,44 @@ del,
 share
 );
 
-
-r.appendChild(
-actions
-);
-
+r.appendChild(actions);
 
 return r;
 
 }
 
+function apriPuntoVendita(punto,categoria){
 
-
-/* ==================================================
-   APRI PUNTO VENDITA
-================================================== */
-
-function apriPuntoVendita(
-punto,
-categoria
-){
-
-puntoSelezionato=
-punto;
-
-categoriaSelezionata=
-categoria;
-
-
-/*
-Ogni volta che apro un punto vendita
-il form parte CHIUSO.
-*/
+puntoSelezionato=punto;
+categoriaSelezionata=categoria;
 
 addFormAperto=false;
 
+document.getElementById("storePageName").textContent=punto;
+document.getElementById("storePageCategory").textContent=categoria;
 
-document.getElementById(
-"storePageName"
-).textContent=
-punto;
+document.getElementById("lavoroInput").value="";
+document.getElementById("noteInput").value="";
+document.getElementById("urgenteInput").checked=false;
 
+document.getElementById("addWorkForm")
+.classList.remove("active");
 
-document.getElementById(
-"storePageCategory"
-).textContent=
-categoria;
+document.getElementById("addWorkToggle")
+.textContent="+";
 
+renderStoreJobs(punto);
 
-document.getElementById(
-"lavoroInput"
-).value="";
-
-
-document.getElementById(
-"noteInput"
-).value="";
-
-
-document.getElementById(
-"urgenteInput"
-).checked=false;
-
-
-document.getElementById(
-"addWorkForm"
-).classList.remove(
-"active"
-);
-
-
-document.getElementById(
-"addWorkToggle"
-).textContent="+";
-
-
-renderStoreJobs(
-punto
-);
-
-
-mostraPagina(
-"storePage"
-);
+mostraPagina("storePage");
 
 }
-
-
-
-/* ==================================================
-   LAVORI DEL PUNTO VENDITA
-================================================== */
 
 function renderStoreJobs(punto){
 
 const c=
-document.getElementById(
-"storeJobs"
-);
+document.getElementById("storeJobs");
 
 c.innerHTML="";
-
-
-/*
-IMPORTANTE:
-
-QUI VENGONO ESCLUSI I LAVORI COMPLETATI.
-
-Quindi se premi ✓,
-il lavoro sparisce da questa schermata.
-*/
 
 const lista=
 lavori.filter(
@@ -2964,7 +2292,6 @@ x.punto===punto&&
 x.completato!==true
 );
 
-
 if(!lista.length){
 
 c.innerHTML=
@@ -2973,7 +2300,6 @@ c.innerHTML=
 return;
 
 }
-
 
 lista.forEach(job=>{
 
@@ -2985,114 +2311,90 @@ creaStoreJobCard(job)
 
 }
 
-
-
-/* ==================================================
-   CARD LAVORO PUNTO VENDITA
-================================================== */
-
 function creaStoreJobCard(lavoro){
 
 const card=
 document.createElement("div");
 
-card.className=
-"job-card job-clickable";
-
+card.className="job-card job-clickable";
 
 card.onclick=()=>{
 
 apriSchedaLavoro(
-lavoro.id
+lavoro.id,
+"storePage"
 );
 
 };
 
-
 const text=
 document.createElement("div");
 
-text.className=
-"job-text";
+text.className="job-text";
+text.textContent=lavoro.testo||"";
 
-text.textContent=
-lavoro.testo||"";
+card.appendChild(text);
 
+if(lavoro.creatoIl){
 
-card.appendChild(
-text
-);
+const date=
+document.createElement("div");
 
+date.className="job-date";
+
+date.textContent=
+"Inserito il "+
+formatDataOra(lavoro.creatoIl);
+
+card.appendChild(date);
+
+}
 
 if(lavoro.note){
 
 const note=
 document.createElement("div");
 
-note.className=
-"job-note";
+note.className="job-note";
 
-note.textContent=
-"Note: "+
-lavoro.note;
+note.textContent="Note: "+lavoro.note;
 
-card.appendChild(
-note
-);
+card.appendChild(note);
 
 }
-
 
 const actions=
 document.createElement("div");
 
-actions.className=
-"symbol-actions";
-
-actions.style.marginTop=
-"12px";
-
+actions.className="symbol-actions";
+actions.style.marginTop="12px";
 
 const complete=
 document.createElement("button");
 
-complete.className=
-"symbol-btn symbol-complete";
-
-complete.title=
-"Completato";
-
-complete.textContent=
-"✓";
-
+complete.className="symbol-btn symbol-complete";
+complete.title="Completato";
+complete.textContent="✓";
 
 complete.onclick=e=>{
 
 e.stopPropagation();
 
-completaLavoro(
-lavoro.id
-);
+completaLavoro(lavoro.id);
 
 };
-
 
 const urgent=
 document.createElement("button");
 
-urgent.className=
-"symbol-btn symbol-urgent";
+urgent.className="symbol-btn symbol-urgent";
 
 urgent.title=
 lavoro.urgente
-?
-"Togli urgente"
-:
-"Segna urgente";
+?"Togli urgente"
+:"Segna urgente";
 
-urgent.textContent=
-"!";
-
+urgent.textContent="!";
 
 urgent.onclick=e=>{
 
@@ -3105,30 +2407,20 @@ lavoro.urgente===true
 
 };
 
-
 const del=
 document.createElement("button");
 
-del.className=
-"symbol-btn symbol-delete";
-
-del.title=
-"Elimina";
-
-del.textContent=
-"×";
-
+del.className="symbol-btn symbol-delete";
+del.title="Elimina";
+del.textContent="×";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(
-lavoro.id
-);
+eliminaLavoro(lavoro.id);
 
 };
-
 
 actions.append(
 complete,
@@ -3136,90 +2428,55 @@ urgent,
 del
 );
 
-
-card.appendChild(
-actions
-);
-
+card.appendChild(actions);
 
 return card;
 
 }
-
-
-
-/* ==================================================
-   AGGIUNGI LAVORO
-================================================== */
 
 function aggiungiLavoro(){
 
 if(!puntoSelezionato)
 return;
 
-
 const lavoroInput=
-document.getElementById(
-"lavoroInput"
-);
-
+document.getElementById("lavoroInput");
 
 const noteInput=
-document.getElementById(
-"noteInput"
-);
-
+document.getElementById("noteInput");
 
 const urgentInput=
-document.getElementById(
-"urgenteInput"
-);
-
+document.getElementById("urgenteInput");
 
 const button=
-document.getElementById(
-"addWorkButton"
-);
-
+document.getElementById("addWorkButton");
 
 const testo=
 lavoroInput.value.trim();
 
-
 const note=
 noteInput.value.trim();
-
 
 const urgente=
 urgentInput.checked;
 
-
 if(!testo){
 
-alert(
-"Inserisci il lavoro da fare."
-);
-
+alert("Inserisci il lavoro da fare.");
 lavoroInput.focus();
-
 return;
 
 }
 
-
 button.disabled=true;
-
-button.textContent=
-"Salvataggio...";
-
+button.textContent="Salvataggio...";
 
 const salva=()=>{
 
 db.collection("lavori")
 .add({
 
-punto:
-puntoSelezionato,
+punto:puntoSelezionato,
 
 testo,
 
@@ -3235,55 +2492,39 @@ creatoDa:
 auth.currentUser
 ?
 auth.currentUser.uid
-:
-"",
+:"",
 
+/* DATA E ORA AUTOMATICHE */
 creatoIl:
-firebase.firestore
-.FieldValue
-.serverTimestamp(),
+firebase.firestore.FieldValue.serverTimestamp(),
+
+/* ALL'INIZIO NON È ANCORA COMPLETATO */
+completatoIl:null,
 
 foto:[]
 
 })
 
-
 .then(()=>{
 
 lavoroInput.value="";
-
 noteInput.value="";
-
 urgentInput.checked=false;
 
 button.disabled=false;
-
-button.textContent=
-"+ Aggiungi lavoro";
-
-
-/*
-Dopo aver aggiunto il lavoro
-chiudiamo il modulo.
-*/
+button.textContent="+ Aggiungi lavoro";
 
 addFormAperto=false;
 
 document.getElementById(
 "addWorkForm"
-)
-.classList.remove(
-"active"
-);
-
+).classList.remove("active");
 
 document.getElementById(
 "addWorkToggle"
-)
-.textContent="+";
+).textContent="+";
 
 })
-
 
 .catch(error=>{
 
@@ -3294,14 +2535,11 @@ alert(
 );
 
 button.disabled=false;
-
-button.textContent=
-"+ Aggiungi lavoro";
+button.textContent="+ Aggiungi lavoro";
 
 });
 
 };
-
 
 if(auth.currentUser){
 
@@ -3316,8 +2554,6 @@ auth.signInAnonymously()
 
 }
 
-
-
 /* ==================================================
    COMPLETA LAVORO
 ================================================== */
@@ -3328,7 +2564,11 @@ db.collection("lavori")
 .doc(id)
 .update({
 
-completato:true
+completato:true,
+
+/* DATA E ORA AUTOMATICHE DEL COMPLETAMENTO */
+completatoIl:
+firebase.firestore.FieldValue.serverTimestamp()
 
 })
 
@@ -3342,8 +2582,6 @@ alert(
 
 }
 
-
-
 /* ==================================================
    DA RIFARE
 ================================================== */
@@ -3354,7 +2592,10 @@ db.collection("lavori")
 .doc(id)
 .update({
 
-completato:false
+completato:false,
+
+/* RESET DELLA DATA DI COMPLETAMENTO */
+completatoIl:null
 
 })
 
@@ -3368,23 +2609,13 @@ alert(
 
 }
 
-
-
-/* ==================================================
-   URGENTE
-================================================== */
-
-function cambiaUrgente(
-id,
-giaUrgente
-){
+function cambiaUrgente(id,giaUrgente){
 
 db.collection("lavori")
 .doc(id)
 .update({
 
-urgente:
-!giaUrgente
+urgente:!giaUrgente
 
 })
 
@@ -3398,12 +2629,6 @@ alert(
 
 }
 
-
-
-/* ==================================================
-   ELIMINA LAVORO
-================================================== */
-
 function eliminaLavoro(id){
 
 if(
@@ -3412,7 +2637,6 @@ if(
 )
 )
 return;
-
 
 db.collection("lavori")
 .doc(id)
@@ -3432,21 +2656,12 @@ alert(
 
 }
 
-
-
-/* ==================================================
-   LAVORI URGENTI
-================================================== */
-
 function renderUrgentJobs(lista){
 
 const c=
-document.getElementById(
-"urgentJobs"
-);
+document.getElementById("urgentJobs");
 
 c.innerHTML="";
-
 
 if(!lista.length){
 
@@ -3457,92 +2672,61 @@ return;
 
 }
 
-
 Object.keys(puntiVendita)
 .forEach(cat=>{
 
-const punti=
-puntiVendita[cat];
-
+const punti=puntiVendita[cat];
 
 const catJobs=
 lista.filter(
-x=>
-punti.includes(x.punto)
+x=>punti.includes(x.punto)
 );
-
 
 if(!catJobs.length)
 return;
 
-
 const t=
 document.createElement("div");
 
-t.className=
-"group-title";
-
-t.textContent=
-cat;
+t.className="group-title";
+t.textContent=cat;
 
 c.appendChild(t);
-
 
 punti.forEach(punto=>{
 
 const jobs=
 catJobs.filter(
-x=>
-x.punto===punto
+x=>x.punto===punto
 );
-
 
 if(!jobs.length)
 return;
 
-
 const g=
 document.createElement("div");
 
-g.className=
-"todo-store-group";
-
+g.className="todo-store-group";
 
 const h=
 document.createElement("div");
 
-h.className=
-"urgent-store-header";
-
+h.className="urgent-store-header";
 
 const n=
 document.createElement("div");
 
-n.className=
-"urgent-store-name";
-
-n.textContent=
-punto;
-
+n.className="urgent-store-name";
+n.textContent=punto;
 
 const num=
 document.createElement("div");
 
-num.className=
-"urgent-store-count";
+num.className="urgent-store-count";
+num.textContent=jobs.length;
 
-num.textContent=
-jobs.length;
-
-
-h.append(
-n,
-num
-);
-
-
+h.append(n,num);
 g.appendChild(h);
-
 
 jobs.forEach(job=>{
 
@@ -3552,166 +2736,125 @@ document.createElement("div");
 r.className=
 "urgent-job-row job-clickable";
 
-
 r.onclick=()=>{
 
 apriSchedaLavoro(
-job.id
+job.id,
+"urgentPage"
 );
 
 };
 
-
 const dot=
 document.createElement("div");
 
-dot.className=
-"urgent-job-dot";
-
+dot.className="urgent-job-dot";
 
 const content=
 document.createElement("div");
 
-content.className=
-"urgent-job-content";
-
+content.className="urgent-job-content";
 
 const text=
 document.createElement("div");
 
-text.className=
-"urgent-job-text";
+text.className="urgent-job-text";
+text.textContent=job.testo||"";
 
-text.textContent=
-job.testo||"";
+content.appendChild(text);
 
-content.appendChild(
-text
-);
+if(job.creatoIl){
 
+const date=
+document.createElement("div");
+
+date.className="urgent-job-note";
+
+date.textContent=
+"Inserito il "+
+formatDataOra(job.creatoIl);
+
+content.appendChild(date);
+
+}
 
 if(job.note){
 
 const note=
 document.createElement("div");
 
-note.className=
-"urgent-job-note";
+note.className="urgent-job-note";
 
-note.textContent=
-"Note: "+
-job.note;
+note.textContent="Note: "+job.note;
 
-content.appendChild(
-note
-);
+content.appendChild(note);
 
 }
-
 
 const actions=
 document.createElement("div");
 
-actions.className=
-"symbol-actions";
-
+actions.className="symbol-actions";
 
 const complete=
 document.createElement("button");
 
-complete.className=
-"symbol-btn symbol-complete";
-
-complete.textContent=
-"✓";
-
-complete.title=
-"Completato";
-
+complete.className="symbol-btn symbol-complete";
+complete.textContent="✓";
+complete.title="Completato";
 
 complete.onclick=e=>{
 
 e.stopPropagation();
 
-completaLavoro(
-job.id
-);
+completaLavoro(job.id);
 
 };
-
 
 const urgent=
 document.createElement("button");
 
-urgent.className=
-"symbol-btn symbol-urgent";
-
-urgent.textContent=
-"!";
-
-urgent.title=
-"Togli urgente";
-
+urgent.className="symbol-btn symbol-urgent";
+urgent.textContent="!";
+urgent.title="Togli urgente";
 
 urgent.onclick=e=>{
 
 e.stopPropagation();
 
-cambiaUrgente(
-job.id,
-true
-);
+cambiaUrgente(job.id,true);
 
 };
-
 
 const del=
 document.createElement("button");
 
-del.className=
-"symbol-btn symbol-delete";
-
-del.textContent=
-"×";
-
-del.title=
-"Elimina";
-
+del.className="symbol-btn symbol-delete";
+del.textContent="×";
+del.title="Elimina";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(
-job.id
-);
+eliminaLavoro(job.id);
 
 };
-
 
 const share=
 document.createElement("button");
 
-share.className=
-"symbol-btn symbol-share";
-
-share.textContent=
-"↗";
-
-share.title=
-"Invia";
-
+share.className="symbol-btn symbol-share";
+share.textContent="↗";
+share.title="Invia";
 
 share.onclick=e=>{
 
 e.stopPropagation();
 
-inviaLavoro(
-job
-);
+inviaLavoro(job);
 
 };
-
 
 actions.append(
 complete,
@@ -3720,18 +2863,15 @@ del,
 share
 );
 
-
 r.append(
 dot,
 content,
 actions
 );
 
-
 g.appendChild(r);
 
 });
-
 
 c.appendChild(g);
 
@@ -3741,48 +2881,31 @@ c.appendChild(g);
 
 }
 
-
-
-/* ==================================================
-   INVIA LAVORO
-================================================== */
-
 async function inviaLavoro(lavoro){
 
 if(!lavoro)
 return;
 
-
 const stato=
 lavoro.urgente===true
-?
-"URGENTE"
-:
-lavoro.completato===true
-?
-"COMPLETATO"
-:
-"DA FARE";
-
+?"URGENTE"
+:lavoro.completato===true
+?"COMPLETATO"
+:"DA FARE";
 
 let testo=
 "EDISERVICE\n\n";
-
 
 testo+=
 "PUNTO VENDITA: "+
 (lavoro.punto||"Non specificato")+
 "\n\n";
 
-
 testo+=
 "LAVORO:\n"+
 (lavoro.testo||"");
 
-
-if(
-(lavoro.note||"").trim()
-){
+if((lavoro.note||"").trim()){
 
 testo+=
 "\n\nNOTE:\n"+
@@ -3790,11 +2913,25 @@ lavoro.note.trim();
 
 }
 
-
 testo+=
 "\n\nSTATO: "+
 stato;
 
+if(lavoro.creatoIl){
+
+testo+=
+"\n\nINSERITO IL: "+
+formatDataOra(lavoro.creatoIl);
+
+}
+
+if(lavoro.completatoIl){
+
+testo+=
+"\nCOMPLETATO IL: "+
+formatDataOra(lavoro.completatoIl);
+
+}
 
 try{
 
@@ -3802,63 +2939,40 @@ if(navigator.share){
 
 const files=[];
 
-
 const paths=
 Array.isArray(lavoro.foto)
-?
-lavoro.foto
-:
-[];
+?lavoro.foto
+:[];
 
-
-for(
-let i=0;
-i<paths.length;
-i++
-){
+for(let i=0;i<paths.length;i++){
 
 try{
 
 const url=
-await getSignedUrl(
-paths[i]
-);
+await getSignedUrl(paths[i]);
 
 if(!url)
 continue;
 
-
 const response=
 await fetch(url);
-
 
 if(!response.ok)
 continue;
 
-
 const blob=
 await response.blob();
 
-
 const file=
 new File(
-
 [blob],
-
-"EDISERVICE_foto_"+
-(i+1)+
-".jpg",
-
+"EDISERVICE_foto_"+(i+1)+".jpg",
 {
-
 type:
 blob.type||
 "image/jpeg"
-
 }
-
 );
-
 
 files.push(file);
 
@@ -3873,7 +2987,6 @@ photoError
 
 }
 
-
 if(
 files.length&&
 navigator.canShare&&
@@ -3881,28 +2994,21 @@ navigator.canShare({files})
 ){
 
 await navigator.share({
-
 text:testo,
-
 files:files
-
 });
 
 }else{
 
 await navigator.share({
-
 text:testo
-
 });
 
 }
 
 }else if(navigator.clipboard){
 
-await navigator.clipboard.writeText(
-testo
-);
+await navigator.clipboard.writeText(testo);
 
 alert(
 "Lavoro copiato negli appunti."
@@ -3925,15 +3031,11 @@ error.name==="AbortError"
 )
 return;
 
-
 console.error(error);
-
 
 try{
 
-await navigator.clipboard.writeText(
-testo
-);
+await navigator.clipboard.writeText(testo);
 
 alert(
 "Lavoro copiato negli appunti."
@@ -3952,12 +3054,6 @@ testo
 
 }
 
-
-
-/* ==================================================
-   GRUPPI COMPLETATI
-================================================== */
-
 function listaCompletatiPerPunto(){
 
 const completati=
@@ -3967,10 +3063,7 @@ x.attivo===true&&
 x.completato===true
 );
 
-
-const gruppi=
-new Map();
-
+const gruppi=new Map();
 
 Object.keys(puntiVendita)
 .forEach(cat=>{
@@ -3980,10 +3073,8 @@ puntiVendita[cat]
 
 const jobs=
 completati.filter(
-x=>
-x.punto===punto
+x=>x.punto===punto
 );
-
 
 if(jobs.length){
 
@@ -3998,32 +3089,22 @@ jobs
 
 });
 
-
 return gruppi;
 
 }
-
-
-
-/* ==================================================
-   TESTO COMPLETATI
-================================================== */
 
 function creaElencoCompletatiTesto(){
 
 const gruppi=
 listaCompletatiPerPunto();
 
-
 if(!gruppi.size)
 
 return
 "LAVORI COMPLETATI\n\nNessun lavoro completato.";
 
-
 let testo=
 "LAVORI COMPLETATI\n\n";
-
 
 for(
 const [punto,jobs]
@@ -4035,13 +3116,11 @@ testo+=
 punto+
 "\n";
 
-
 jobs.forEach(job=>{
 
 testo+=
 "- "+
 (job.testo||"").trim();
-
 
 if(
 (job.note||"").trim()
@@ -4053,92 +3132,76 @@ job.note.trim();
 
 }
 
+if(job.creatoIl){
+
+testo+=
+" — Inserito: "+
+formatDataOra(job.creatoIl);
+
+}
+
+if(job.completatoIl){
+
+testo+=
+" — Completato: "+
+formatDataOra(job.completatoIl);
+
+}
 
 testo+="\n";
 
 });
 
-
 testo+="\n";
 
 }
 
-
 return testo.trim();
 
 }
-
-
-
-/* ==================================================
-   SALVA COMPLETATI
-================================================== */
 
 function salvaElencoCompletati(){
 
 const testo=
 creaElencoCompletatiTesto();
 
-
 const blob=
 new Blob(
-
 [testo],
-
 {
-type:
-"text/plain;charset=utf-8"
+type:"text/plain;charset=utf-8"
 }
-
 );
-
 
 const url=
 URL.createObjectURL(blob);
 
-
 const a=
 document.createElement("a");
 
-
 a.href=url;
-
-
 a.download=
 "EDISERVICE-lavori-completati.txt";
 
-
 document.body.appendChild(a);
-
 
 a.click();
 
-
 a.remove();
-
 
 setTimeout(
 ()=>{
-
 URL.revokeObjectURL(url);
-
 },
 1000
 );
 
 }
 
-
-
-/* ==================================================
-   CONDIVIDI COMPLETATI
-================================================== */
-
 async function condividiElencoCompletati(){
 
 const testo=
 creaElencoCompletatiTesto();
-
 
 try{
 
@@ -4156,9 +3219,7 @@ testo
 
 }else if(navigator.clipboard){
 
-await navigator.clipboard.writeText(
-testo
-);
+await navigator.clipboard.writeText(testo);
 
 alert(
 "Elenco copiato negli appunti."
@@ -4181,12 +3242,9 @@ error.name==="AbortError"
 )
 return;
 
-
 try{
 
-await navigator.clipboard.writeText(
-testo
-);
+await navigator.clipboard.writeText(testo);
 
 alert(
 "Elenco copiato negli appunti."
@@ -4205,21 +3263,12 @@ testo
 
 }
 
-
-
-/* ==================================================
-   RENDER COMPLETATI
-================================================== */
-
 function renderCompletedJobs(lista){
 
 const c=
-document.getElementById(
-"completedJobs"
-);
+document.getElementById("completedJobs");
 
 c.innerHTML="";
-
 
 if(!lista.length){
 
@@ -4230,92 +3279,61 @@ return;
 
 }
 
-
 Object.keys(puntiVendita)
 .forEach(cat=>{
 
-const punti=
-puntiVendita[cat];
-
+const punti=puntiVendita[cat];
 
 const catJobs=
 lista.filter(
-x=>
-punti.includes(x.punto)
+x=>punti.includes(x.punto)
 );
-
 
 if(!catJobs.length)
 return;
 
-
 const t=
 document.createElement("div");
 
-t.className=
-"group-title";
-
-t.textContent=
-cat;
+t.className="group-title";
+t.textContent=cat;
 
 c.appendChild(t);
-
 
 punti.forEach(punto=>{
 
 const jobs=
 catJobs.filter(
-x=>
-x.punto===punto
+x=>x.punto===punto
 );
-
 
 if(!jobs.length)
 return;
 
-
 const g=
 document.createElement("div");
 
-g.className=
-"completed-job";
-
+g.className="completed-job";
 
 const h=
 document.createElement("div");
 
-h.className=
-"completed-store-header";
-
+h.className="completed-store-header";
 
 const n=
 document.createElement("div");
 
-n.className=
-"completed-store-name";
-
-n.textContent=
-punto;
-
+n.className="completed-store-name";
+n.textContent=punto;
 
 const num=
 document.createElement("div");
 
-num.className=
-"completed-store-count";
+num.className="completed-store-count";
+num.textContent=jobs.length;
 
-num.textContent=
-jobs.length;
-
-
-h.append(
-n,
-num
-);
-
-
+h.append(n,num);
 g.appendChild(h);
-
 
 jobs.forEach(job=>{
 
@@ -4325,46 +3343,70 @@ document.createElement("div");
 r.className=
 "completed-job-row job-clickable";
 
-
 r.onclick=()=>{
 
+/*
+DA LAVORI COMPLETATI
+SI TORNA ALLA HOME
+*/
+
 apriSchedaLavoro(
-job.id
+job.id,
+"completedPage"
 );
 
 };
 
-
 const check=
 document.createElement("div");
 
-check.className=
-"completed-check";
-
-check.textContent=
-"✓";
-
+check.className="completed-check";
+check.textContent="✓";
 
 const content=
 document.createElement("div");
 
-content.className=
-"completed-job-content";
-
+content.className="completed-job-content";
 
 const text=
 document.createElement("div");
 
-text.className=
-"completed-job-text";
+text.className="completed-job-text";
+text.textContent=job.testo||"";
 
-text.textContent=
-job.testo||"";
+content.appendChild(text);
 
-content.appendChild(
-text
-);
+if(job.creatoIl){
 
+const dateCreated=
+document.createElement("div");
+
+dateCreated.className=
+"completed-job-date";
+
+dateCreated.textContent=
+"Inserito il "+
+formatDataOra(job.creatoIl);
+
+content.appendChild(dateCreated);
+
+}
+
+if(job.completatoIl){
+
+const dateCompleted=
+document.createElement("div");
+
+dateCompleted.className=
+"completed-job-date";
+
+dateCompleted.textContent=
+"Completato il "+
+formatDataOra(job.completatoIl);
+
+content.appendChild(dateCompleted);
+
+}
 
 if(job.note){
 
@@ -4378,73 +3420,49 @@ note.textContent=
 "Note: "+
 job.note;
 
-content.appendChild(
-note
-);
+content.appendChild(note);
 
 }
-
 
 const actions=
 document.createElement("div");
 
-actions.className=
-"symbol-actions";
-
+actions.className="symbol-actions";
 
 const redo=
 document.createElement("button");
 
-redo.className=
-"symbol-btn symbol-redo";
-
-redo.title=
-"Da rifare";
-
-redo.textContent=
-"↻";
-
+redo.className="symbol-btn symbol-redo";
+redo.title="Da rifare";
+redo.textContent="↻";
 
 redo.onclick=e=>{
 
 e.stopPropagation();
 
-daRifare(
-job.id
-);
+daRifare(job.id);
 
 };
-
 
 const del=
 document.createElement("button");
 
-del.className=
-"symbol-btn symbol-delete";
-
-del.title=
-"Elimina";
-
-del.textContent=
-"×";
-
+del.className="symbol-btn symbol-delete";
+del.title="Elimina";
+del.textContent="×";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(
-job.id
-);
+eliminaLavoro(job.id);
 
 };
-
 
 actions.append(
 redo,
 del
 );
-
 
 r.append(
 check,
@@ -4452,11 +3470,9 @@ content,
 actions
 );
 
-
 g.appendChild(r);
 
 });
-
 
 c.appendChild(g);
 
@@ -4466,61 +3482,41 @@ c.appendChild(g);
 
 }
 
-
-
-/* ==================================================
-   NOTE LAVORO
-================================================== */
-
 function salvaNoteLavoro(){
 
 if(!lavoroFotoAperto)
 return;
-
 
 const input=
 document.getElementById(
 "photoDetailNoteInput"
 );
 
-
 const testo=
 input.value.trim();
-
 
 db.collection("lavori")
 .doc(lavoroFotoAperto.id)
 .update({
 
-note:
-testo
+note:testo
 
 })
 
-
 .then(()=>{
 
-lavoroFotoAperto.note=
-testo;
-
+lavoroFotoAperto.note=testo;
 
 document.getElementById(
 "photoDetailNote"
 ).textContent=
 testo
-?
-"Note: "+
-testo
-:
-"";
+?"Note: "+testo
+:"";
 
-
-alert(
-"Note salvate."
-);
+alert("Note salvate.");
 
 })
-
 
 .catch(error=>{
 
@@ -4534,146 +3530,141 @@ alert(
 
 }
 
-
-
-/* ==================================================
-   FOTO
-================================================== */
-
 function fotoPaths(lavoro){
 
 return Array.isArray(lavoro.foto)
-?
-lavoro.foto
-:
-[];
+?lavoro.foto
+:[];
 
 }
 
-
-
-/* ==================================================
-   APRI SCHEDA LAVORO
-================================================== */
-
-function apriSchedaLavoro(id){
+function apriSchedaLavoro(id,origine){
 
 const lavoro=
 lavori.find(
-x=>
-x.id===id
+x=>x.id===id
 );
-
 
 if(!lavoro)
 return;
 
+lavoroFotoAperto=lavoro;
 
-lavoroFotoAperto=
-lavoro;
-
+/* SALVIAMO DA DOVE È STATA APERTA LA SCHEDA */
+origineSchedaLavoro=
+origine||"todoPage";
 
 document.getElementById(
 "photoDetailStore"
 ).textContent=
 lavoro.punto||"";
 
-
 document.getElementById(
 "photoDetailTitle"
 ).textContent=
 lavoro.testo||"";
 
+/* DATA E ORA INSERIMENTO */
+
+document.getElementById(
+"photoDetailCreated"
+).textContent=
+lavoro.creatoIl
+?
+"Inserito il "+
+formatDataOra(lavoro.creatoIl)
+:"";
+
+/* DATA E ORA COMPLETAMENTO */
+
+document.getElementById(
+"photoDetailCompleted"
+).textContent=
+lavoro.completato===true &&
+lavoro.completatoIl
+?
+"Completato il "+
+formatDataOra(lavoro.completatoIl)
+:"";
 
 document.getElementById(
 "photoDetailNoteInput"
 ).value=
 lavoro.note||"";
 
-
 document.getElementById(
 "photoDetailNote"
 ).textContent=
 lavoro.note
 ?
-"Note: "+
-lavoro.note
-:
-"";
+"Note: "+lavoro.note
+:"";
 
-
-mostraPagina(
-"photoDetailPage"
-);
-
+mostraPagina("photoDetailPage");
 
 renderFotoLavoro();
 
 }
 
-
-
-/* ==================================================
-   CHIUDI SCHEDA
-================================================== */
-
 function chiudiSchedaLavoro(){
 
-lavoroFotoAperto=
-null;
+lavoroFotoAperto=null;
+fotoCorrente=null;
 
-fotoCorrente=
-null;
+if(
+origineSchedaLavoro==="completedPage"
+){
 
+origineSchedaLavoro=null;
 
-/*
-Se la scheda è stata aperta dal punto vendita,
-torna al punto vendita.
+mostraPagina("homePage");
 
-Altrimenti torna a Lavori da fare.
-*/
-
-if(puntoSelezionato){
-
-mostraPagina(
-"storePage"
-);
-
-}else{
-
-mostraPagina(
-"todoPage"
-);
+return;
 
 }
 
+if(
+origineSchedaLavoro==="storePage"
+){
+
+origineSchedaLavoro=null;
+
+mostraPagina("storePage");
+
+return;
+
 }
 
+if(
+origineSchedaLavoro==="urgentPage"
+){
 
+origineSchedaLavoro=null;
 
-/* ==================================================
-   RENDER FOTO
-================================================== */
+mostraPagina("urgentPage");
+
+return;
+
+}
+
+mostraPagina("todoPage");
+
+origineSchedaLavoro=null;
+
+}
 
 function renderFotoLavoro(){
 
 const grid=
-document.getElementById(
-"photoGrid"
-);
+document.getElementById("photoGrid");
 
 grid.innerHTML="";
-
 
 if(!lavoroFotoAperto)
 return;
 
-
 const paths=
-fotoPaths(
-lavoroFotoAperto
-);
-
+fotoPaths(lavoroFotoAperto);
 
 if(!paths.length){
 
@@ -4684,76 +3675,46 @@ return;
 
 }
 
-
-paths.forEach(
-(path,index)=>{
+paths.forEach((path,index)=>{
 
 const box=
 document.createElement("div");
 
-box.className=
-"photo-thumb";
-
+box.className="photo-thumb";
 
 const img=
 document.createElement("img");
 
-img.alt=
-"Foto "+
-(index+1);
+img.alt="Foto "+(index+1);
 
-
-box.appendChild(
-img
-);
-
+box.appendChild(img);
 
 const del=
 document.createElement("button");
 
-del.className=
-"photo-thumb-delete";
-
-del.textContent=
-"×";
-
-del.title=
-"Elimina foto";
-
+del.className="photo-thumb-delete";
+del.textContent="×";
+del.title="Elimina foto";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaFoto(
-path
-);
+eliminaFoto(path);
 
 };
 
-
-box.appendChild(
-del
-);
-
+box.appendChild(del);
 
 box.onclick=()=>{
 
-apriFotoGrande(
-path
-);
+apriFotoGrande(path);
 
 };
 
+grid.appendChild(box);
 
-grid.appendChild(
-box
-);
-
-
-getSignedUrl(
-path
-)
+getSignedUrl(path)
 .then(url=>{
 
 if(url)
@@ -4765,23 +3726,13 @@ img.src=url;
 
 }
 
-
-
-/* ==================================================
-   URL FOTO
-================================================== */
-
 async function getSignedUrl(path){
 
 if(!path)
 return null;
 
-
 const cached=
-signedUrlCache.get(
-path
-);
-
+signedUrlCache.get(path);
 
 if(
 cached&&
@@ -4791,7 +3742,6 @@ cached.expires>Date.now()
 return cached.url;
 
 }
-
 
 const {
 data,
@@ -4805,7 +3755,6 @@ path,
 3600
 );
 
-
 if(error){
 
 console.error(
@@ -4816,7 +3765,6 @@ error
 return null;
 
 }
-
 
 signedUrlCache.set(
 
@@ -4830,45 +3778,23 @@ Date.now()+3500*1000
 
 );
 
-
 return data.signedUrl;
 
 }
-
-
-
-/* ==================================================
-   SELEZIONA FOTO
-================================================== */
 
 function selezionaFoto(){
 
 if(!lavoroFotoAperto)
 return;
 
-
 const input=
-document.getElementById(
-"photoInput"
-);
-
+document.getElementById("photoInput");
 
 input.value="";
-
-
-input.onchange=
-caricaFoto;
-
-
+input.onchange=caricaFoto;
 input.click();
 
 }
-
-
-
-/* ==================================================
-   COMPRIMI FOTO
-================================================== */
 
 async function comprimiFoto(file){
 
@@ -4880,14 +3806,11 @@ throw new Error(
 "Seleziona un'immagine."
 );
 
-
 const url=
 URL.createObjectURL(file);
 
-
 const img=
 new Image();
-
 
 try{
 
@@ -4895,67 +3818,38 @@ await new Promise(
 (res,rej)=>{
 
 img.onload=res;
-
 img.onerror=rej;
-
 img.src=url;
 
 }
 );
 
+let w=img.naturalWidth;
+let h=img.naturalHeight;
 
-let w=
-img.naturalWidth;
+const max=1600;
 
-
-let h=
-img.naturalHeight;
-
-
-const max=
-1600;
-
-
-if(
-w>max||
-h>max
-){
+if(w>max||h>max){
 
 if(w>=h){
 
-h=
-Math.round(
-h*max/w
-);
-
+h=Math.round(h*max/w);
 w=max;
 
 }else{
 
-w=
-Math.round(
-w*max/h
-);
-
+w=Math.round(w*max/h);
 h=max;
 
 }
 
 }
 
-
 const canvas=
-document.createElement(
-"canvas"
-);
+document.createElement("canvas");
 
-
-canvas.width=
-w;
-
-canvas.height=
-h;
-
+canvas.width=w;
+canvas.height=h;
 
 canvas
 .getContext("2d")
@@ -4967,41 +3861,28 @@ w,
 h
 );
 
-
 return await new Promise(
 resolve=>
-
 canvas.toBlob(
 resolve,
 "image/jpeg",
 .82
 )
-
 );
 
 }finally{
 
-URL.revokeObjectURL(
-url
-);
+URL.revokeObjectURL(url);
 
 }
 
 }
-
-
-
-/* ==================================================
-   CARICA FOTO
-================================================== */
 
 async function caricaFoto(e){
 
-const files=
-[
+const files=[
 ...(e.target.files||[])
 ];
-
 
 if(
 !files.length||
@@ -5009,22 +3890,14 @@ if(
 )
 return;
 
-
-const lavoro=
-lavoroFotoAperto;
-
+const lavoro=lavoroFotoAperto;
 
 try{
 
-for(
-const file of files
-){
+for(const file of files){
 
 const blob=
-await comprimiFoto(
-file
-);
-
+await comprimiFoto(file);
 
 const path=
 "lavori/"+
@@ -5037,7 +3910,6 @@ Math.random()
 .slice(2,10)+
 ".jpg";
 
-
 const {
 error
 }=
@@ -5045,28 +3917,17 @@ await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
 .upload(
-
 path,
-
 blob,
-
 {
-contentType:
-"image/jpeg",
-
-cacheControl:
-"3600",
-
+contentType:"image/jpeg",
+cacheControl:"3600",
 upsert:false
-
 }
-
 );
-
 
 if(error)
 throw error;
-
 
 await db.collection("lavori")
 .doc(lavoro.id)
@@ -5081,23 +3942,15 @@ firebase.firestore
 
 }
 
-
 alert(
-
 files.length===1
-?
-"Foto aggiunta."
-:
-files.length+
-" foto aggiunte."
-
+?"Foto aggiunta."
+:files.length+" foto aggiunte."
 );
-
 
 }catch(error){
 
 console.error(error);
-
 
 alert(
 "Errore nel caricamento: "+
@@ -5108,48 +3961,26 @@ alert(
 
 }
 
-
-
-/* ==================================================
-   FOTO GRANDE
-================================================== */
-
 async function apriFotoGrande(path){
 
-fotoCorrente=
-path;
-
+fotoCorrente=path;
 
 const url=
-await getSignedUrl(
-path
-);
-
+await getSignedUrl(path);
 
 if(!url)
 return;
 
-
 document.getElementById(
 "photoModalImage"
-).src=
-url;
-
+).src=url;
 
 document.getElementById(
 "photoModal"
 )
-.classList.add(
-"active"
-);
+.classList.add("active");
 
 }
-
-
-
-/* ==================================================
-   CHIUDI FOTO
-================================================== */
 
 function chiudiFotoGrande(event){
 
@@ -5159,30 +3990,18 @@ event.target!==event.currentTarget
 )
 return;
 
-
 document.getElementById(
 "photoModal"
 )
-.classList.remove(
-"active"
-);
-
+.classList.remove("active");
 
 document.getElementById(
 "photoModalImage"
 ).src="";
 
-
-fotoCorrente=
-null;
+fotoCorrente=null;
 
 }
-
-
-
-/* ==================================================
-   SOSTITUISCI FOTO
-================================================== */
 
 function sostituisciFotoCorrente(){
 
@@ -5192,35 +4011,21 @@ if(
 )
 return;
 
-
 const input=
 document.getElementById(
 "replacePhotoInput"
 );
 
-
 input.value="";
-
-
-input.onchange=
-eseguiSostituzioneFoto;
-
-
+input.onchange=eseguiSostituzioneFoto;
 input.click();
 
 }
-
-
-
-/* ==================================================
-   ESEGUI SOSTITUZIONE
-================================================== */
 
 async function eseguiSostituzioneFoto(e){
 
 const file=
 e.target.files?.[0];
-
 
 if(
 !file||
@@ -5229,22 +4034,13 @@ if(
 )
 return;
 
-
-const oldPath=
-fotoCorrente;
-
-
-const lavoro=
-lavoroFotoAperto;
-
+const oldPath=fotoCorrente;
+const lavoro=lavoroFotoAperto;
 
 try{
 
 const blob=
-await comprimiFoto(
-file
-);
-
+await comprimiFoto(file);
 
 const newPath=
 "lavori/"+
@@ -5257,34 +4053,22 @@ Math.random()
 .slice(2,10)+
 ".jpg";
 
-
 const up=
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
 .upload(
-
 newPath,
-
 blob,
-
 {
-contentType:
-"image/jpeg",
-
-cacheControl:
-"3600",
-
+contentType:"image/jpeg",
+cacheControl:"3600",
 upsert:false
-
 }
-
 );
-
 
 if(up.error)
 throw up.error;
-
 
 await db.collection("lavori")
 .doc(lavoro.id)
@@ -5297,7 +4081,6 @@ firebase.firestore
 
 });
 
-
 await db.collection("lavori")
 .doc(lavoro.id)
 .update({
@@ -5309,7 +4092,6 @@ firebase.firestore
 
 });
 
-
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
@@ -5317,47 +4099,27 @@ await supabaseClient
 oldPath
 ]);
 
-
-signedUrlCache.delete(
-oldPath
-);
-
+signedUrlCache.delete(oldPath);
 
 lavoro.foto=
 fotoPaths(lavoro)
-.filter(
-x=>
-x!==oldPath
-)
-.concat(
-newPath
-);
-
+.filter(x=>x!==oldPath)
+.concat(newPath);
 
 document.getElementById(
 "photoModal"
 )
-.classList.remove(
-"active"
-);
+.classList.remove("active");
 
-
-fotoCorrente=
-null;
-
+fotoCorrente=null;
 
 renderFotoLavoro();
 
-
-alert(
-"Foto sostituita."
-);
-
+alert("Foto sostituita.");
 
 }catch(error){
 
 console.error(error);
-
 
 alert(
 "Errore nella sostituzione: "+
@@ -5367,12 +4129,6 @@ alert(
 }
 
 }
-
-
-
-/* ==================================================
-   ELIMINA FOTO
-================================================== */
 
 async function eliminaFoto(path){
 
@@ -5384,10 +4140,7 @@ if(
 )
 return;
 
-
-const lavoro=
-lavoroFotoAperto;
-
+const lavoro=lavoroFotoAperto;
 
 try{
 
@@ -5401,10 +4154,8 @@ await supabaseClient
 path
 ]);
 
-
 if(error)
 throw error;
-
 
 await db.collection("lavori")
 .doc(lavoro.id)
@@ -5417,39 +4168,24 @@ firebase.firestore
 
 });
 
-
-signedUrlCache.delete(
-path
-);
-
+signedUrlCache.delete(path);
 
 lavoro.foto=
 fotoPaths(lavoro)
-.filter(
-x=>
-x!==path
-);
-
+.filter(x=>x!==path);
 
 document.getElementById(
 "photoModal"
 )
-.classList.remove(
-"active"
-);
+.classList.remove("active");
 
-
-fotoCorrente=
-null;
-
+fotoCorrente=null;
 
 renderFotoLavoro();
-
 
 }catch(error){
 
 console.error(error);
-
 
 alert(
 "Errore nell'eliminazione della foto: "+
@@ -5459,12 +4195,6 @@ alert(
 }
 
 }
-
-
-
-/* ==================================================
-   ELIMINA FOTO CORRENTE
-================================================== */
 
 async function eliminaFotoCorrente(){
 
@@ -5478,12 +4208,6 @@ fotoCorrente
 
 }
 
-
-
-/* ==================================================
-   EVENTI HOME
-================================================== */
-
 document.getElementById(
 "btnLavoriDaFare"
 )
@@ -5491,13 +4215,10 @@ document.getElementById(
 "click",
 ()=>{
 
-mostraPagina(
-"todoPage"
-);
+mostraPagina("todoPage");
 
 }
 );
-
 
 document.getElementById(
 "btnUrgenti"
@@ -5506,13 +4227,10 @@ document.getElementById(
 "click",
 ()=>{
 
-mostraPagina(
-"urgentPage"
-);
+mostraPagina("urgentPage");
 
 }
 );
-
 
 document.getElementById(
 "btnCompletati"
@@ -5521,29 +4239,15 @@ document.getElementById(
 "click",
 ()=>{
 
-mostraPagina(
-"completedPage"
-);
+mostraPagina("completedPage");
 
 }
 );
-
-
-
-/* ==================================================
-   RICERCA
-================================================== */
 
 document.getElementById(
 "clearSearch"
 ).onclick=
 cancellaRicerca;
-
-
-
-/* ==================================================
-   AVVIO
-================================================== */
 
 creaPuntiVendita();
 
