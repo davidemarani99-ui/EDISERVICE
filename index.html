@@ -4,799 +4,344 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>EDISERVICE</title>
-
 <link rel="icon" type="image/png" href="ediservice-icon.png">
 <link rel="apple-touch-icon" href="ediservice-icon.png">
 
 <style>
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent
-}
-
-html,body{
-margin:0;
-padding:0;
-background:#fff;
-color:#222;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:#fff;color:#222;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
 button,input,textarea{font-family:inherit}
+.container{max-width:850px;margin:auto;padding:20px}
 
-.container{
-max-width:850px;
-margin:auto;
-padding:20px
-}
-
-.header{
-text-align:center;
-padding:10px 0 5px;
-background:#fff
-}
-
-.header img{
-display:block;
-width:250px;
-max-width:80%;
-height:auto;
-margin:0 auto 10px
-}
-
-.firebase-status{
-margin-top:8px;
-font-size:13px;
-font-weight:600
-}
-
+.header{text-align:center;padding:10px 0 5px;background:#fff}
+.header img{display:block;width:250px;max-width:80%;height:auto;margin:0 auto 10px;background:#fff}
+.firebase-status{margin-top:8px;font-size:13px;font-weight:600}
 .status-ok{color:#2e7d32}
 .status-error{color:#c62828}
 
 .page{display:none}
 .page.active{display:block}
 
-.summary,
-.urgent-folder,
-.completed-folder{
-min-height:190px;
-border-radius:28px;
-padding:28px;
-margin:25px 0;
-box-shadow:0 3px 12px rgba(0,0,0,.07);
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:space-between;
+.summary,.urgent-folder,.completed-folder{
+min-height:190px;border-radius:28px;padding:28px;margin:25px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.07);cursor:pointer;
+display:flex;align-items:center;justify-content:space-between;
 transition:.15s
 }
-
-.summary:active,
-.urgent-folder:active,
-.completed-folder:active{
-transform:scale(.98)
-}
-
-.summary{
-background:#555;
-color:#fff
-}
-
-.urgent-folder{
-background:#ffebee;
-border:2px solid #e53935;
-color:#b71c1c
-}
-
-.completed-folder{
-background:#e8f5e9;
-border:2px solid #43a047;
-color:#1b5e20
-}
+.summary:active,.urgent-folder:active,.completed-folder:active{transform:scale(.98)}
+.summary{background:#555;color:#fff}
+.urgent-folder{background:#ffebee;border:2px solid #e53935;color:#b71c1c}
+.completed-folder{background:#e8f5e9;border:2px solid #43a047;color:#1b5e20}
 
 .folder-text{flex:1}
+.folder-title{font-size:25px;font-weight:800;margin-bottom:12px}
+.folder-number{font-size:55px;line-height:1;font-weight:900}
+.folder-description{font-size:14px;margin-top:8px;opacity:.85}
+.folder-arrow{font-size:38px;margin-left:15px}
 
-.folder-title{
-font-size:25px;
-font-weight:800;
-margin-bottom:12px
-}
-
-.folder-number{
-font-size:55px;
-line-height:1;
-font-weight:900
-}
-
-.folder-description{
-font-size:14px;
-margin-top:8px;
-opacity:.85
-}
-
-.folder-arrow{
-font-size:38px;
-margin-left:15px
-}
-
-.section-title{
-font-size:23px;
-font-weight:800;
-margin:35px 0 15px;
-color:#d32f2f
-}
-
+.section-title{font-size:23px;font-weight:800;margin:35px 0 15px;color:#d32f2f}
 .group-title{
-display:block;
-width:100%;
-padding:11px 15px;
-margin:28px 0 12px;
-background:#f2f2f2;
-border-left:6px solid #d32f2f;
-border-radius:12px;
-color:#222;
-font-size:18px;
-font-weight:900
+display:block;width:100%;padding:11px 15px;margin:28px 0 12px;
+background:#f2f2f2;border-left:6px solid #d32f2f;border-radius:12px;
+color:#222;font-size:18px;font-weight:900;
+box-shadow:0 2px 7px rgba(0,0,0,.06)
 }
 
-.store-list{
-display:flex;
-flex-direction:column;
-gap:10px
-}
-
+.store-list{display:flex;flex-direction:column;gap:10px}
 .store-button{
-width:100%;
-background:#fff;
-color:#222;
-border:1px solid #ddd;
-border-radius:16px;
-padding:17px 18px;
-text-align:left;
-font-size:17px;
-font-weight:650;
-cursor:pointer;
-box-shadow:0 2px 6px rgba(0,0,0,.04);
-display:flex;
-align-items:center;
-justify-content:space-between
+width:100%;background:#fff;color:#222;border:1px solid #ddd;
+border-radius:16px;padding:17px 18px;text-align:left;font-size:17px;
+font-weight:650;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.04);
+display:flex;align-items:center;justify-content:space-between
 }
-
+.store-button:active{transform:scale(.98)}
 .store-name-text{color:#222}
-
 .store-count{
-min-width:34px;
-height:34px;
-padding:0 10px;
-border-radius:17px;
-background:#f1f1f1;
-color:#d32f2f;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:16px;
-font-weight:900
+min-width:34px;height:34px;padding:0 10px;border-radius:17px;
+background:#f1f1f1;color:#d32f2f;display:flex;align-items:center;
+justify-content:center;font-size:16px;font-weight:900;margin-left:12px
 }
 
-.topbar{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:20px
-}
-
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:20px}
 .back-button{
-background:#e9e9e9;
-color:#222;
-border:0;
-border-radius:12px;
-padding:11px 15px;
-font-weight:700
+background:#e9e9e9;color:#222;border:0;border-radius:12px;
+padding:11px 15px;font-weight:700;cursor:pointer
 }
+.page-title{font-size:24px;font-weight:850;margin:0}
 
-.page-title{
-font-size:24px;
-font-weight:850;
-margin:0
-}
-
-.search-box{
-position:relative;
-margin:15px 0 20px
-}
-
+.search-box{position:relative;margin:15px 0 20px}
 .search-box input{
-width:100%;
-height:52px;
-padding:0 48px 0 17px;
-border:1px solid #ddd;
-border-radius:15px;
-background:#f7f7f7;
-font-size:16px;
-outline:none
+width:100%;height:52px;padding:0 48px 0 17px;border:1px solid #ddd;
+border-radius:15px;background:#f7f7f7;font-size:16px;outline:none;
+box-shadow:0 2px 7px rgba(0,0,0,.05)
 }
-
+.search-box input:focus{border-color:#d32f2f;background:#fff}
 .search-box button{
-position:absolute;
-right:10px;
-top:50%;
-transform:translateY(-50%);
-width:31px;
-height:31px;
-border:0;
-border-radius:50%;
-background:#ddd;
-color:#555;
-font-size:22px;
-display:none
+position:absolute;right:10px;top:50%;transform:translateY(-50%);
+width:31px;height:31px;border:0;border-radius:50%;
+background:#ddd;color:#555;font-size:22px;line-height:29px;
+display:none;cursor:pointer
 }
 
-.store-name{
-color:#d32f2f;
-font-size:27px;
-font-weight:900
-}
-
-.store-category{
-color:#777;
-font-size:14px;
-margin-bottom:20px
-}
+.store-name{color:#d32f2f;font-size:27px;font-weight:900}
+.store-category{color:#777;font-size:14px;margin-bottom:20px}
 
 .form-card{
-background:#fff;
-border-radius:20px;
-padding:20px;
-margin:20px 0;
+background:#fff;border-radius:20px;padding:20px;margin:20px 0;
 box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
-
 .form-card h2{margin-top:0}
 
-label{
-display:block;
-font-weight:700;
-margin:15px 0 7px
+label{display:block;font-weight:700;margin:15px 0 7px}
+input[type="text"],textarea{
+width:100%;border:1px solid #d5d5d5;border-radius:12px;
+padding:13px;font-size:16px;background:#fafafa;outline:none
 }
+textarea{min-height:90px;resize:vertical}
 
-input[type="text"],
-textarea{
-width:100%;
-border:1px solid #d5d5d5;
-border-radius:12px;
-padding:13px;
-font-size:16px;
-background:#fafafa;
-outline:none
-}
-
-textarea{
-min-height:90px;
-resize:vertical
-}
-
-.urgent-check{
-display:flex;
-align-items:center;
-gap:10px;
-margin:15px 0
-}
-
-.urgent-check input{
-width:20px;
-height:20px
-}
-
+.urgent-check{display:flex;align-items:center;gap:10px;margin:15px 0}
+.urgent-check input{width:20px;height:20px}
 .add-button{
-width:100%;
-background:#222;
-color:#fff;
-border:0;
-border-radius:13px;
-padding:15px;
-font-size:17px;
-font-weight:800
+width:100%;background:#222;color:#fff;border:0;border-radius:13px;
+padding:15px;font-size:17px;font-weight:800;cursor:pointer
 }
 
-.todo-store-group,
-.completed-job{
-background:#fff;
-border-radius:20px;
-margin:17px 0;
-overflow:hidden;
+.todo-store-group{
+background:#fff;border-radius:20px;margin:17px 0;overflow:hidden;
 box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
-
-.todo-store-header,
-.completed-store-header,
-.urgent-store-header{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:16px 18px;
-background:#fafafa;
-border-bottom:1px solid #e8e8e8
+.todo-store-header{
+display:flex;align-items:center;justify-content:space-between;
+padding:16px 18px;background:#fafafa;border-bottom:1px solid #e8e8e8
+}
+.todo-store-name{color:#d32f2f;font-size:21px;font-weight:900}
+.todo-store-count{
+min-width:32px;height:32px;padding:0 9px;border-radius:16px;
+background:#f1f1f1;color:#d32f2f;display:flex;align-items:center;
+justify-content:center;font-size:14px;font-weight:900
 }
 
-.todo-store-name,
-.urgent-store-name{
-color:#d32f2f;
-font-size:21px;
-font-weight:900
+.todo-job-row{padding:14px;border-bottom:1px solid #eee}
+.todo-job-row:last-child{border-bottom:0}
+.todo-job-main{display:flex;align-items:center;gap:10px}
+.todo-job-dot{
+width:8px;height:8px;min-width:8px;border-radius:50%;background:#d32f2f
 }
-
-.completed-store-name{
-color:#2e7d32;
-font-size:21px;
-font-weight:900
+.todo-job-content{flex:1;min-width:0}
+.todo-job-text{
+font-size:16px;font-weight:700;line-height:1.35;word-break:break-word
 }
-
-.todo-store-count,
-.urgent-store-count,
-.completed-store-count{
-min-width:32px;
-height:32px;
-padding:0 9px;
-border-radius:16px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:14px;
-font-weight:900
-}
-
-.todo-store-count,
-.urgent-store-count{
-background:#ffebee;
-color:#d32f2f
-}
-
-.completed-store-count{
-background:#e8f5e9;
-color:#2e7d32
-}
-
-.todo-job-row,
-.urgent-job-row,
-.completed-job-row{
-display:flex;
-align-items:center;
-gap:10px;
-padding:14px;
-border-bottom:1px solid #eee
-}
-
-.todo-job-row:last-child,
-.urgent-job-row:last-child,
-.completed-job-row:last-child{
-border-bottom:0
-}
-
-.todo-job-main{
-display:flex;
-align-items:center;
-gap:10px;
-flex:1;
-min-width:0
-}
-
-.todo-job-dot,
-.urgent-job-dot{
-width:8px;
-height:8px;
-min-width:8px;
-border-radius:50%;
-background:#d32f2f
-}
-
-.todo-job-content,
-.urgent-job-content,
-.completed-job-content{
-flex:1;
-min-width:0
-}
-
-.todo-job-text,
-.urgent-job-text,
-.completed-job-text{
-font-size:16px;
-font-weight:700;
-line-height:1.35;
-word-break:break-word
-}
-
-.todo-job-note,
-.urgent-job-note,
-.completed-job-note{
-margin-top:5px;
-color:#777;
-font-size:13px;
-line-height:1.35
-}
-
+.todo-job-note{margin-top:5px;color:#777;font-size:13px;line-height:1.35}
 .todo-job-urgent{
-display:inline-block;
-background:#e53935;
-color:#fff;
-border-radius:7px;
-padding:3px 7px;
-font-size:10px;
-font-weight:800;
-margin-top:7px
-}
-
-.completed-check{
-color:#2e7d32;
-font-size:20px;
-font-weight:900
+display:inline-block;background:#e53935;color:#fff;border-radius:7px;
+padding:3px 7px;font-size:10px;font-weight:800;margin-top:7px
 }
 
 .symbol-actions{
-display:flex;
-align-items:center;
-justify-content:flex-end;
-gap:5px;
-margin-left:5px
+display:flex;align-items:center;justify-content:flex-end;
+gap:6px;margin-left:8px
 }
-
 .symbol-btn{
-width:31px;
-height:31px;
-min-width:31px;
-border:0;
-border-radius:8px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:17px;
-font-weight:900
+width:32px;height:32px;min-width:32px;border:0;border-radius:9px;
+display:flex;align-items:center;justify-content:center;
+font-size:17px;font-weight:900;cursor:pointer;
+box-shadow:0 1px 3px rgba(0,0,0,.12)
 }
+.symbol-btn:active{transform:scale(.88)}
+.symbol-complete{background:#e8f5e9;color:#2e7d32}
+.symbol-urgent{background:#fff3e0;color:#ef6c00}
+.symbol-delete{background:#ffebee;color:#d32f2f}
+.symbol-redo{background:#e3f2fd;color:#1976d2}
 
-.symbol-complete{
-background:#e8f5e9;
-color:#2e7d32
+.job-card{
+background:#fff;border-radius:18px;padding:18px;margin:12px 0;
+box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
-
-.symbol-urgent{
-background:#fff3e0;
-color:#ef6c00
-}
-
-.symbol-delete{
-background:#ffebee;
-color:#d32f2f
-}
-
-.symbol-redo{
-background:#e3f2fd;
-color:#1976d2
-}
-
-.job-clickable{cursor:pointer}
-
-.empty{
-background:#fff;
-border-radius:17px;
-padding:25px;
-color:#777;
-text-align:center;
-margin:15px 0
-}
-
-.loading{
-text-align:center;
-padding:30px;
-color:#777
-}
+.job-text{font-size:17px;font-weight:650;line-height:1.35}
+.job-note{margin-top:7px;color:#777;font-size:14px}
 
 .completed-page-title{color:#2e7d32}
+.completed-job{
+background:#fff;border-radius:20px;margin:17px 0;overflow:hidden;
+box-shadow:0 3px 12px rgba(0,0,0,.07)
+}
+.completed-store-header{
+display:flex;align-items:center;justify-content:space-between;
+padding:16px 18px;background:#fafafa;border-bottom:1px solid #e8e8e8
+}
+.completed-store-name{color:#2e7d32;font-size:21px;font-weight:900}
+.completed-store-count{
+min-width:32px;height:32px;padding:0 9px;border-radius:16px;
+background:#e8f5e9;color:#2e7d32;display:flex;align-items:center;
+justify-content:center;font-size:14px;font-weight:900
+}
+.completed-job-row{
+display:flex;align-items:center;gap:10px;padding:14px;
+border-bottom:1px solid #eee
+}
+.completed-job-row:last-child{border-bottom:0}
+.completed-check{color:#2e7d32;font-size:20px;font-weight:900}
+.completed-job-content{flex:1;min-width:0}
+.completed-job-text{font-size:16px;font-weight:650;line-height:1.35}
+.completed-job-note{color:#777;font-size:13px;margin-top:5px}
+
 .urgent-page-title{color:#d32f2f}
-
-/* CONDIVISIONE */
-
-.share-toolbar{
-margin:15px 0 20px;
-padding:14px;
-background:#f7f7f7;
-border-radius:16px;
-box-shadow:0 2px 7px rgba(0,0,0,.05)
+.urgent-store-header{
+display:flex;align-items:center;justify-content:space-between;
+padding:16px 18px;background:#fff5f5;border-bottom:1px solid #f3d1d1
 }
-
-.share-toolbar-row{
-display:flex;
-gap:8px;
-align-items:center;
-flex-wrap:wrap
+.urgent-store-name{color:#d32f2f;font-size:21px;font-weight:900}
+.urgent-store-count{
+min-width:32px;height:32px;padding:0 9px;border-radius:16px;
+background:#ffebee;color:#d32f2f;display:flex;align-items:center;
+justify-content:center;font-size:14px;font-weight:900
 }
-
-.share-toolbar button{
-border:0;
-border-radius:11px;
-padding:11px 13px;
-font-weight:800
+.urgent-job-row{
+display:flex;align-items:center;gap:10px;padding:14px;
+border-bottom:1px solid #eee
 }
-
-.share-select{
-background:#e3f2fd;
-color:#1976d2
+.urgent-job-row:last-child{border-bottom:0}
+.urgent-job-dot{
+width:8px;height:8px;min-width:8px;border-radius:50%;background:#e53935
 }
+.urgent-job-content{flex:1;min-width:0}
+.urgent-job-text{font-size:16px;font-weight:700;line-height:1.35}
+.urgent-job-note{color:#777;font-size:13px;margin-top:5px}
 
-.share-all{
-background:#222;
-color:#fff
+.empty{
+background:#fff;border-radius:17px;padding:25px;color:#777;
+text-align:center;margin:15px 0
 }
+.loading{text-align:center;padding:30px;color:#777}
 
-.share-save{
-background:#e8f5e9;
-color:#2e7d32
-}
-
-.share-selected{
-background:#1976d2;
-color:#fff;
-display:none
-}
-
-.selection-info{
-margin-top:9px;
-font-size:13px;
-color:#1976d2;
-font-weight:800
-}
-
-.share-job{
-border:0;
-border-radius:8px;
-padding:7px 9px;
-background:#e3f2fd;
-color:#1976d2;
-font-size:12px;
-font-weight:800
-}
-
-.job-select{
-width:20px;
-height:20px;
-min-width:20px;
-accent-color:#1976d2;
-display:none
-}
-
-/* FOTO */
+.job-clickable{cursor:pointer}
+.job-clickable:active{opacity:.75}
 
 .photo-detail-page{display:none}
 .photo-detail-page.active{display:block}
-
 .photo-detail-card{
-background:#fff;
-border-radius:20px;
-padding:20px;
-margin:12px 0;
+background:#fff;border-radius:20px;padding:20px;margin:12px 0;
 box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
-
 .photo-detail-store{
-color:#d32f2f;
-font-size:14px;
-font-weight:800;
-margin-bottom:7px
+color:#d32f2f;font-size:14px;font-weight:800;margin-bottom:7px
 }
-
 .photo-detail-title{
-font-size:21px;
-font-weight:800;
-line-height:1.35;
-white-space:pre-wrap
+font-size:21px;font-weight:800;line-height:1.35;white-space:pre-wrap
 }
-
+.photo-detail-note{
+margin-top:8px;color:#777;font-size:14px;white-space:pre-wrap
+}
 .photo-notes-box{margin-top:18px}
-
 .photo-notes-label{
-font-size:15px;
-font-weight:800;
-margin:0 0 7px
+display:block;font-size:16px;font-weight:800;margin:0 0 8px;color:#222
 }
-
 .photo-notes-input{
-width:100%;
-min-height:100px;
-border:1px solid #d5d5d5;
-border-radius:12px;
-padding:13px;
-font-size:16px;
-background:#fafafa;
-outline:none
+width:100%;min-height:120px;border:1px solid #ddd;border-radius:13px;
+padding:13px;font-size:16px;background:#fafafa;outline:none;resize:vertical
 }
-
+.photo-notes-input:focus{border-color:#222;background:#fff}
 .photo-save-notes{
-width:100%;
-margin-top:8px;
-border:0;
-border-radius:11px;
-padding:12px;
-background:#e3f2fd;
-color:#1976d2;
-font-weight:800
+width:100%;margin-top:8px;border:0;border-radius:12px;
+background:#e9e9e9;color:#222;padding:12px;font-weight:800;cursor:pointer
 }
+.photo-save-notes:active{transform:scale(.98)}
 
-.photo-toolbar{
-display:flex;
-gap:10px;
-margin:18px 0 10px
-}
-
+.photo-toolbar{display:flex;gap:10px;margin:18px 0 10px}
 .photo-add-button{
-flex:1;
-border:0;
-border-radius:12px;
-background:#222;
-color:#fff;
-padding:13px;
-font-weight:800
+flex:1;border:0;border-radius:12px;background:#222;color:#fff;
+padding:13px;font-weight:800;cursor:pointer
 }
+.photo-add-button:active{transform:scale(.98)}
 
 .photo-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:12px
+display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px
 }
-
 .photo-thumb{
-position:relative;
-aspect-ratio:1;
-border-radius:13px;
-overflow:hidden;
-background:#f2f2f2;
-box-shadow:0 2px 7px rgba(0,0,0,.08)
+position:relative;aspect-ratio:1;border-radius:13px;overflow:hidden;
+background:#f2f2f2;box-shadow:0 2px 7px rgba(0,0,0,.08);cursor:pointer
 }
-
 .photo-thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block
+width:100%;height:100%;object-fit:cover;display:block
 }
-
 .photo-thumb-delete{
-position:absolute;
-right:6px;
-top:6px;
-width:30px;
-height:30px;
-border:0;
-border-radius:50%;
-background:rgba(0,0,0,.68);
-color:#fff;
-font-size:20px
+position:absolute;right:6px;top:6px;width:30px;height:30px;
+border:0;border-radius:50%;background:rgba(0,0,0,.68);
+color:#fff;font-size:20px;line-height:30px;cursor:pointer
 }
-
 .photo-empty{
-padding:28px 15px;
-text-align:center;
-color:#777;
-background:#f7f7f7;
-border-radius:13px;
-margin-top:12px
+padding:28px 15px;text-align:center;color:#777;background:#f7f7f7;
+border-radius:13px;margin-top:12px
 }
 
 .photo-modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.88);
-display:none;
-align-items:center;
-justify-content:center;
-padding:15px;
-z-index:1000
+position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;
+align-items:center;justify-content:center;padding:15px;z-index:1000
 }
-
 .photo-modal.active{display:flex}
-
 .photo-modal-content{
-position:relative;
-width:100%;
-max-width:900px;
-max-height:92vh;
-background:#fff;
-border-radius:18px;
-padding:12px;
-overflow:auto
+position:relative;width:100%;max-width:900px;max-height:92vh;
+background:#fff;border-radius:18px;padding:12px;overflow:auto
 }
-
 .photo-modal-close{
-position:absolute;
-right:10px;
-top:10px;
-width:38px;
-height:38px;
-border:0;
-border-radius:50%;
-background:#eee;
-font-size:23px;
-font-weight:800;
+position:absolute;right:10px;top:10px;width:38px;height:38px;
+border:0;border-radius:50%;background:#eee;font-size:23px;font-weight:800;
 z-index:2
 }
-
 .photo-modal-image{
-display:block;
-width:100%;
-max-height:78vh;
-object-fit:contain;
-border-radius:12px;
-background:#111
+display:block;width:100%;max-height:78vh;object-fit:contain;
+border-radius:12px;background:#111
 }
-
-.photo-modal-actions{
-display:flex;
-gap:8px;
-margin-top:10px
-}
-
+.photo-modal-actions{display:flex;gap:8px;margin-top:10px}
 .photo-modal-actions button{
+flex:1;border:0;border-radius:10px;padding:10px;font-weight:800
+}
+.replace-photo{background:#e3f2fd;color:#1976d2}
+.delete-photo{background:#ffebee;color:#d32f2f}
+
+.export-actions{
+display:flex;
+gap:10px;
+margin:20px 0 10px;
+}
+.export-button{
 flex:1;
 border:0;
-border-radius:10px;
-padding:10px;
-font-weight:800
+border-radius:12px;
+padding:14px 12px;
+background:#222;
+color:#fff;
+font-size:15px;
+font-weight:800;
+cursor:pointer;
 }
-
-.replace-photo{
-background:#e3f2fd;
-color:#1976d2
-}
-
-.delete-photo{
-background:#ffebee;
-color:#d32f2f
-}
+.export-button:active{transform:scale(.98)}
+.share-export-button{background:#2e7d32}
 
 @media(max-width:600px){
-
 .container{padding:15px}
-
-.header img{
-width:230px;
-max-width:85%
-}
-
-.summary,
-.urgent-folder,
-.completed-folder{
-min-height:180px;
-padding:24px
-}
-
+.header img{width:230px;max-width:85%}
+.summary,.urgent-folder,.completed-folder{min-height:180px;padding:24px}
 .folder-title{font-size:22px}
 .folder-number{font-size:50px}
-
-.todo-store-name,
-.completed-store-name,
-.urgent-store-name{
-font-size:19px
+.group-title{font-size:17px;padding:11px 14px;margin-top:24px}
+.store-button{padding:16px;font-size:16px}
+.store-count{min-width:32px;height:32px;font-size:15px}
+.todo-store-group,.completed-job{border-radius:18px}
+.todo-store-header,.completed-store-header,.urgent-store-header{padding:15px}
+.todo-store-name,.completed-store-name,.urgent-store-name{font-size:19px}
+.todo-job-row,.completed-job-row,.urgent-job-row{padding:13px}
+.todo-job-text,.completed-job-text,.urgent-job-text{font-size:15px}
+.symbol-actions{gap:4px}
+.symbol-btn{width:30px;height:30px;min-width:30px;font-size:16px;border-radius:8px}
+.photo-grid{grid-template-columns:repeat(3,1fr)}
+.export-actions{flex-direction:column}
 }
 
-.todo-job-text,
-.completed-job-text,
-.urgent-job-text{
-font-size:15px
+@media(max-width:380px){
+.symbol-btn{width:28px;height:28px;min-width:28px;font-size:15px}
+.symbol-actions{gap:3px;margin-left:5px}
 }
-
-.share-toolbar-row{
-display:grid;
-grid-template-columns:1fr 1fr
-}
-
-.share-toolbar button{width:100%}
-
-.share-selected{grid-column:1/-1}
-
-.photo-grid{
-grid-template-columns:repeat(3,1fr)
-}
-
-}
-
 </style>
 </head>
 
@@ -804,15 +349,11 @@ grid-template-columns:repeat(3,1fr)
 
 <div class="container">
 
-<!-- HOME -->
 <div id="homePage" class="page active">
 
 <div class="header">
 <img src="ediservice-icon.png" alt="EDISERVICE">
-
-<div id="firebaseStatus" class="firebase-status">
-Connessione Firebase...
-</div>
+<div id="firebaseStatus" class="firebase-status">Connessione Firebase...</div>
 </div>
 
 <div class="summary" id="btnLavoriDaFare">
@@ -848,7 +389,6 @@ Connessione Firebase...
 </div>
 
 
-<!-- TODO -->
 <div id="todoPage" class="page">
 
 <div class="topbar">
@@ -856,36 +396,9 @@ Connessione Firebase...
 <h2 class="page-title">Lavori da fare</h2>
 </div>
 
-<div class="share-toolbar">
-<div class="share-toolbar-row">
-
-<button class="share-select" onclick="attivaSelezione('todo')">
-Seleziona lavori
-</button>
-
-<button class="share-all" onclick="condividiTuttiDaFare()">
-Condividi tutti
-</button>
-
-<button id="todoShareSelected" class="share-selected" onclick="condividiSelezionati()">
-Condividi selezionati
-</button>
-
-</div>
-
-<div id="todoSelectionInfo" class="selection-info"></div>
-</div>
-
 <div class="search-box">
-
-<input
-type="text"
-id="searchLavori"
-placeholder="Cerca punto vendita o lavoro..."
-oninput="filtraLavori()">
-
+<input type="text" id="searchLavori" placeholder="Cerca punto vendita o lavoro..." oninput="filtraLavori">
 <button type="button" id="clearSearch">×</button>
-
 </div>
 
 <div id="todoJobs">
@@ -895,7 +408,6 @@ oninput="filtraLavori()">
 </div>
 
 
-<!-- STORE -->
 <div id="storePage" class="page">
 
 <div class="topbar">
@@ -911,40 +423,28 @@ oninput="filtraLavori()">
 <h2>Aggiungi lavoro</h2>
 
 <label>Lavoro</label>
-
-<input
-id="lavoroInput"
-type="text"
-placeholder="Descrivi il lavoro da fare">
+<input id="lavoroInput" type="text" placeholder="Descrivi il lavoro da fare">
 
 <label>Note</label>
-
-<textarea
-id="noteInput"
-placeholder="Eventuali note..."></textarea>
+<textarea id="noteInput" placeholder="Eventuali note..."></textarea>
 
 <label class="urgent-check">
-
 <input type="checkbox" id="urgenteInput">
-
 <span>Lavoro urgente</span>
-
 </label>
 
-<button class="add-button" id="addWorkButton" onclick="aggiungiLavoro()">
+<button class="add-button" id="addWorkButton" onclick="aggiungiLavoro">
 + Aggiungi lavoro
 </button>
 
 </div>
 
 <div class="section-title">Lavori del punto vendita</div>
-
 <div id="storeJobs"></div>
 
 </div>
 
 
-<!-- URGENT -->
 <div id="urgentPage" class="page">
 
 <div class="topbar">
@@ -952,33 +452,11 @@ placeholder="Eventuali note..."></textarea>
 <h2 class="page-title urgent-page-title">Lavori urgenti</h2>
 </div>
 
-<div class="share-toolbar">
-
-<div class="share-toolbar-row">
-
-<button class="share-select" onclick="attivaSelezione('urgent')">
-Seleziona lavori
-</button>
-
-<button class="share-all" onclick="condividiTuttiUrgenti()">
-Condividi tutti
-</button>
-
-<button id="urgentShareSelected" class="share-selected" onclick="condividiSelezionati()">
-Condividi selezionati
-</button>
-
-</div>
-
-<div id="urgentSelectionInfo" class="selection-info"></div>
-</div>
-
 <div id="urgentJobs"></div>
 
 </div>
 
 
-<!-- COMPLETATI -->
 <div id="completedPage" class="page">
 
 <div class="topbar">
@@ -986,28 +464,21 @@ Condividi selezionati
 <h2 class="page-title completed-page-title">Lavori completati</h2>
 </div>
 
-<div class="share-toolbar">
+<div id="completedJobs"></div>
 
-<div class="share-toolbar-row">
-
-<button class="share-save" onclick="salvaElencoCompletati()">
+<div class="export-actions">
+<button class="export-button" onclick="salvaElencoCompletati()">
 Salva elenco
 </button>
 
-<button class="share-all" onclick="condividiElencoCompletati()">
+<button class="export-button share-export-button" onclick="condividiElencoCompletati()">
 Condividi elenco
 </button>
-
 </div>
 
 </div>
 
-<div id="completedJobs"></div>
 
-</div>
-
-
-<!-- SCHEDA LAVORO -->
 <div id="photoDetailPage" class="photo-detail-page">
 
 <div class="topbar">
@@ -1021,6 +492,9 @@ Condividi elenco
 
 <div class="photo-detail-title" id="photoDetailTitle"></div>
 
+<div class="photo-detail-note" id="photoDetailNote"></div>
+
+
 <div class="photo-notes-box">
 
 <label class="photo-notes-label">Note</label>
@@ -1028,13 +502,15 @@ Condividi elenco
 <textarea
 id="photoDetailNoteInput"
 class="photo-notes-input"
-placeholder="Scrivi qui le note del lavoro..."></textarea>
+placeholder="Scrivi qui le note del lavoro..."
+></textarea>
 
 <button class="photo-save-notes" onclick="salvaNoteLavoro()">
 Salva note
 </button>
 
 </div>
+
 
 <div class="photo-toolbar">
 
@@ -1058,7 +534,6 @@ Salva note
 <input id="replacePhotoInput" type="file" accept="image/*" hidden>
 
 
-<!-- MODALE FOTO -->
 <div id="photoModal" class="photo-modal" onclick="chiudiFotoGrande(event)">
 
 <div class="photo-modal-content" onclick="event.stopPropagation()">
@@ -1082,15 +557,13 @@ Elimina
 </div>
 
 </div>
+
 </div>
 
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -1110,39 +583,15 @@ firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth();
 const db=firebase.firestore();
 
-
-/* SUPABASE */
-
-const SUPABASE_URL=
-"https://ncfznorfwniqykuxymxd.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY=
-"sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
-
+const SUPABASE_URL="https://ncfznorfwniqykuxymxd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
 const SUPABASE_BUCKET="foto-lavori";
 
-let supabaseClient=null;
-
-try{
-
-if(window.supabase){
-
-supabaseClient=
-window.supabase.createClient(
+const supabaseClient=window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
 
-}
-
-}catch(error){
-
-console.error("Supabase:",error);
-
-}
-
-
-/* PUNTI VENDITA */
 
 const puntiVendita={
 
@@ -1194,23 +643,20 @@ let puntoSelezionato=null;
 let ricercaLavori="";
 let lavoroFotoAperto=null;
 let fotoCorrente=null;
-let paginaPrimaScheda="todoPage";
-let modalitaSelezione=null;
-let lavoriSelezionati=new Set();
 
 const signedUrlCache=new Map();
 
-
-/* FIREBASE */
 
 function firebaseOk(){
 
 const s=document.getElementById("firebaseStatus");
 
 s.textContent="● Firebase collegato";
+
 s.className="firebase-status status-ok";
 
 }
+
 
 function firebaseErrore(error){
 
@@ -1219,24 +665,19 @@ console.error("Firebase:",error);
 const s=document.getElementById("firebaseStatus");
 
 s.textContent="● Errore Firebase";
+
 s.className="firebase-status status-error";
 
 }
 
 
 auth.signInAnonymously()
-
 .then(()=>{
-
 firebaseOk();
 ascoltaLavori();
-
 })
-
 .catch(firebaseErrore);
 
-
-/* CREA PUNTI */
 
 function creaPuntiVendita(){
 
@@ -1246,50 +687,57 @@ c.innerHTML="";
 
 Object.keys(puntiVendita).forEach(categoria=>{
 
+const gruppo=document.createElement("div");
+
 const titolo=document.createElement("div");
 
 titolo.className="group-title";
+
 titolo.textContent=categoria;
 
-c.appendChild(titolo);
+gruppo.appendChild(titolo);
 
 const lista=document.createElement("div");
 
 lista.className="store-list";
 
+
 puntiVendita[categoria].forEach(punto=>{
 
-const b=document.createElement("button");
+const btn=document.createElement("button");
 
-b.className="store-button";
+btn.className="store-button";
 
-const n=document.createElement("span");
+const nome=document.createElement("span");
 
-n.className="store-name-text";
-n.textContent=punto;
+nome.className="store-name-text";
 
-const num=document.createElement("span");
+nome.textContent=punto;
 
-num.className="store-count";
-num.id="count-"+encodeURIComponent(punto);
-num.textContent="0";
+const count=document.createElement("span");
 
-b.append(n,num);
+count.className="store-count";
 
-b.onclick=()=>apriPuntoVendita(punto,categoria);
+count.id="count-"+encodeURIComponent(punto);
 
-lista.appendChild(b);
+count.textContent="0";
+
+btn.append(nome,count);
+
+btn.onclick=()=>apriPuntoVendita(punto,categoria);
+
+lista.appendChild(btn);
 
 });
 
-c.appendChild(lista);
+gruppo.appendChild(lista);
+
+c.appendChild(gruppo);
 
 });
 
 }
 
-
-/* FIRESTORE */
 
 function ascoltaLavori(){
 
@@ -1302,69 +750,46 @@ id:doc.id,
 ...doc.data()
 }));
 
-aggiornaTutto();
+aggiornaInterfaccia();
 
-},firebaseErrore);
+},error=>{
+
+console.error(error);
+
+firebaseErrore(error);
+
+});
 
 }
 
 
-/* AGGIORNA */
+function aggiornaInterfaccia(){
 
-function aggiornaTutto(){
-
-const daFare=lavori.filter(x=>
-x.attivo===true &&
-x.completato!==true
-);
+const daFare=lavori.filter(x=>x.attivo===true&&x.completato!==true);
 
 const urgenti=daFare.filter(x=>x.urgente===true);
 
-const completati=lavori.filter(x=>
-x.attivo===true &&
-x.completato===true
-);
+const completati=lavori.filter(x=>x.attivo===true&&x.completato===true);
 
 document.getElementById("totaleDaFare").textContent=daFare.length;
+
 document.getElementById("totaleUrgenti").textContent=urgenti.length;
+
 document.getElementById("totaleCompletati").textContent=completati.length;
 
 aggiornaNumeriPuntiVendita();
 
 renderTodoJobs(daFare);
+
 renderUrgentJobs(urgenti);
+
 renderCompletedJobs(completati);
 
-if(puntoSelezionato){
+if(puntoSelezionato)
 renderStoreJobs(puntoSelezionato);
-}
-
-if(lavoroFotoAperto){
-
-const aggiornato=lavori.find(
-x=>x.id===lavoroFotoAperto.id
-);
-
-if(aggiornato){
-
-lavoroFotoAperto=aggiornato;
-
-const input=document.getElementById(
-"photoDetailNoteInput"
-);
-
-if(input && document.activeElement!==input){
-input.value=aggiornato.note||"";
-}
 
 }
 
-}
-
-}
-
-
-/* NUMERI */
 
 function aggiornaNumeriPuntiVendita(){
 
@@ -1373,8 +798,8 @@ Object.keys(puntiVendita).forEach(cat=>{
 puntiVendita[cat].forEach(punto=>{
 
 const n=lavori.filter(x=>
-x.attivo===true &&
-x.punto===punto &&
+x.attivo===true&&
+x.punto===punto&&
 x.completato!==true
 ).length;
 
@@ -1391,51 +816,32 @@ if(e)e.textContent=n;
 }
 
 
-/* PAGINE */
-
 function mostraPagina(id){
 
-document.querySelectorAll(".page")
+document
+.querySelectorAll(".page")
 .forEach(p=>p.classList.remove("active"));
-
-const photoPage=document.getElementById(
-"photoDetailPage"
-);
-
-if(photoPage){
-photoPage.classList.remove("active");
-}
 
 const p=document.getElementById(id);
 
-if(p){
-p.classList.add("active");
+if(p)p.classList.add("active");
+
 window.scrollTo(0,0);
-}
-
-if(id==="photoDetailPage"){
-photoPage.classList.add("active");
-}
 
 }
+
 
 function showHome(){
-
-lavoroFotoAperto=null;
-fotoCorrente=null;
-modalitaSelezione=null;
-lavoriSelezionati.clear();
 
 mostraPagina("homePage");
 
 }
 
 
-/* RICERCA */
-
 function filtraLavori(){
 
 const input=document.getElementById("searchLavori");
+
 const clear=document.getElementById("clearSearch");
 
 ricercaLavori=input.value.trim().toLowerCase();
@@ -1445,15 +851,15 @@ clear.style.display=ricercaLavori?"block":"none";
 renderTodoJobs(
 lavori.filter(x=>{
 
-if(x.attivo!==true || x.completato===true)
+if(x.attivo!==true||x.completato===true)
 return false;
 
 if(!ricercaLavori)
 return true;
 
 return(
-(x.punto||"").toLowerCase().includes(ricercaLavori) ||
-(x.testo||"").toLowerCase().includes(ricercaLavori) ||
+(x.punto||"").toLowerCase().includes(ricercaLavori)||
+(x.testo||"").toLowerCase().includes(ricercaLavori)||
 (x.note||"").toLowerCase().includes(ricercaLavori)
 );
 
@@ -1462,24 +868,21 @@ return(
 
 }
 
+
 function cancellaRicerca(){
 
 document.getElementById("searchLavori").value="";
+
 ricercaLavori="";
 
 document.getElementById("clearSearch").style.display="none";
 
 renderTodoJobs(
-lavori.filter(x=>
-x.attivo===true &&
-x.completato!==true
-)
+lavori.filter(x=>x.attivo===true&&x.completato!==true)
 );
 
 }
 
-
-/* LAVORI DA FARE */
 
 function renderTodoJobs(lista){
 
@@ -1490,33 +893,41 @@ c.innerHTML="";
 if(!lista.length){
 
 c.innerHTML=
-`<div class="empty">${
-ricercaLavori
-?"Nessun lavoro trovato."
-:"Nessun lavoro da fare."
-}</div>`;
+`<div class="empty">
+${ricercaLavori?
+"Nessun lavoro trovato.":
+"Nessun lavoro da fare."}
+</div>`;
 
 return;
+
 }
+
 
 Object.keys(puntiVendita).forEach(cat=>{
 
 const punti=puntiVendita[cat];
 
-const catJobs=lista.filter(x=>punti.includes(x.punto));
+const catJobs=lista.filter(
+x=>punti.includes(x.punto)
+);
 
 if(!catJobs.length)return;
 
 const t=document.createElement("div");
 
 t.className="group-title";
+
 t.textContent=cat;
 
 c.appendChild(t);
 
+
 punti.forEach(punto=>{
 
-const jobs=catJobs.filter(x=>x.punto===punto);
+const jobs=catJobs.filter(
+x=>x.punto===punto
+);
 
 if(!jobs.length)return;
 
@@ -1531,20 +942,22 @@ h.className="todo-store-header";
 const n=document.createElement("div");
 
 n.className="todo-store-name";
+
 n.textContent=punto;
 
 const num=document.createElement("div");
 
 num.className="todo-store-count";
+
 num.textContent=jobs.length;
 
 h.append(n,num);
 
 g.appendChild(h);
 
-jobs.forEach(job=>{
-g.appendChild(creaTodoJobRow(job));
-});
+jobs.forEach(job=>
+g.appendChild(creaTodoJobRow(job))
+);
 
 c.appendChild(g);
 
@@ -1554,8 +967,6 @@ c.appendChild(g);
 
 }
 
-
-/* RIGA */
 
 function creaTodoJobRow(lavoro){
 
@@ -1578,113 +989,112 @@ content.className="todo-job-content";
 const text=document.createElement("div");
 
 text.className="todo-job-text";
+
 text.textContent=lavoro.testo||"";
 
 content.appendChild(text);
+
 
 if(lavoro.note){
 
 const note=document.createElement("div");
 
 note.className="todo-job-note";
+
 note.textContent="Note: "+lavoro.note;
 
 content.appendChild(note);
 
 }
 
+
 if(lavoro.urgente===true){
 
 const badge=document.createElement("div");
 
 badge.className="todo-job-urgent";
+
 badge.textContent="URGENTE";
 
 content.appendChild(badge);
 
 }
 
+
 main.append(dot,content);
 
-main.onclick=()=>{
-
-if(modalitaSelezione==="todo")return;
-
-apriSchedaLavoro(lavoro.id);
-
-};
+main.onclick=()=>apriSchedaLavoro(lavoro.id);
 
 r.appendChild(main);
+
 
 const actions=document.createElement("div");
 
 actions.className="symbol-actions";
 
-const select=document.createElement("input");
-
-select.type="checkbox";
-select.className="job-select";
-select.checked=lavoriSelezionati.has(lavoro.id);
-select.style.display=
-modalitaSelezione==="todo"?"block":"none";
-
-select.onclick=e=>e.stopPropagation();
-
-select.onchange=e=>
-selezionaLavoro(lavoro.id,e.target.checked);
-
-actions.appendChild(select);
-
-
-const share=document.createElement("button");
-
-share.className="share-job";
-share.textContent="Invia";
-
-share.onclick=e=>{
-e.stopPropagation();
-condividiSingoloLavoro(lavoro.id);
-};
-
-actions.appendChild(share);
-
 
 const complete=document.createElement("button");
 
 complete.className="symbol-btn symbol-complete";
-complete.textContent="✓";
+
 complete.title="Completato";
 
+complete.textContent="✓";
+
 complete.onclick=e=>{
+
 e.stopPropagation();
+
 completaLavoro(lavoro.id);
+
 };
 
 
 const urgent=document.createElement("button");
 
 urgent.className="symbol-btn symbol-urgent";
+
+urgent.title=
+lavoro.urgente?
+"Togli urgente":
+"Segna urgente";
+
 urgent.textContent="!";
-urgent.title=lavoro.urgente?"Togli urgente":"Segna urgente";
 
 urgent.onclick=e=>{
+
 e.stopPropagation();
-cambiaUrgente(lavoro.id,lavoro.urgente===true);
+
+cambiaUrgente(
+lavoro.id,
+lavoro.urgente===true
+);
+
 };
 
 
 const del=document.createElement("button");
 
 del.className="symbol-btn symbol-delete";
-del.textContent="×";
+
 del.title="Elimina";
 
+del.textContent="×";
+
 del.onclick=e=>{
+
 e.stopPropagation();
+
 eliminaLavoro(lavoro.id);
+
 };
 
-actions.append(complete,urgent,del);
+
+actions.append(
+complete,
+urgent,
+del
+);
 
 r.appendChild(actions);
 
@@ -1693,17 +1103,18 @@ return r;
 }
 
 
-/* PUNTO VENDITA */
-
 function apriPuntoVendita(punto,categoria){
 
 puntoSelezionato=punto;
 
 document.getElementById("storePageName").textContent=punto;
+
 document.getElementById("storePageCategory").textContent=categoria;
 
 document.getElementById("lavoroInput").value="";
+
 document.getElementById("noteInput").value="";
+
 document.getElementById("urgenteInput").checked=false;
 
 renderStoreJobs(punto);
@@ -1712,15 +1123,15 @@ mostraPagina("storePage");
 
 }
 
+
 function renderStoreJobs(punto){
 
 const c=document.getElementById("storeJobs");
 
 c.innerHTML="";
 
-const lista=lavori.filter(x=>
-x.attivo===true &&
-x.punto===punto
+const lista=lavori.filter(
+x=>x.attivo===true&&x.punto===punto
 );
 
 if(!lista.length){
@@ -1728,16 +1139,15 @@ if(!lista.length){
 c.innerHTML='<div class="empty">Nessun lavoro</div>';
 
 return;
-}
-
-lista.forEach(job=>{
-c.appendChild(creaStoreJobCard(job));
-});
 
 }
 
+lista.forEach(job=>
+c.appendChild(creaStoreJobCard(job))
+);
 
-/* CARD */
+}
+
 
 function creaStoreJobCard(lavoro){
 
@@ -1745,75 +1155,101 @@ const card=document.createElement("div");
 
 card.className="job-card job-clickable";
 
-card.style.padding="18px";
-card.style.margin="12px 0";
+card.onclick=()=>
+apriSchedaLavoro(lavoro.id);
 
-card.onclick=()=>apriSchedaLavoro(lavoro.id);
 
 const text=document.createElement("div");
 
 text.className="job-text";
+
 text.textContent=lavoro.testo||"";
 
 card.appendChild(text);
+
 
 if(lavoro.note){
 
 const note=document.createElement("div");
 
 note.className="job-note";
+
 note.textContent="Note: "+lavoro.note;
 
 card.appendChild(note);
 
 }
 
+
 const actions=document.createElement("div");
 
 actions.className="symbol-actions";
+
 actions.style.marginTop="12px";
 
-const share=document.createElement("button");
-
-share.className="share-job";
-share.textContent="Invia";
-
-share.onclick=e=>{
-e.stopPropagation();
-condividiSingoloLavoro(lavoro.id);
-};
 
 const complete=document.createElement("button");
 
 complete.className="symbol-btn symbol-complete";
+
+complete.title="Completato";
+
 complete.textContent="✓";
 
 complete.onclick=e=>{
+
 e.stopPropagation();
+
 completaLavoro(lavoro.id);
+
 };
+
 
 const urgent=document.createElement("button");
 
 urgent.className="symbol-btn symbol-urgent";
+
+urgent.title=
+lavoro.urgente?
+"Togli urgente":
+"Segna urgente";
+
 urgent.textContent="!";
 
 urgent.onclick=e=>{
+
 e.stopPropagation();
-cambiaUrgente(lavoro.id,lavoro.urgente===true);
+
+cambiaUrgente(
+lavoro.id,
+lavoro.urgente===true
+);
+
 };
+
 
 const del=document.createElement("button");
 
 del.className="symbol-btn symbol-delete";
+
+del.title="Elimina";
+
 del.textContent="×";
 
 del.onclick=e=>{
+
 e.stopPropagation();
+
 eliminaLavoro(lavoro.id);
+
 };
 
-actions.append(share,complete,urgent,del);
+
+actions.append(
+complete,
+urgent,
+del
+);
 
 card.appendChild(actions);
 
@@ -1822,61 +1258,88 @@ return card;
 }
 
 
-/* AGGIUNGI */
-
 function aggiungiLavoro(){
 
 if(!puntoSelezionato)return;
 
-const lavoroInput=document.getElementById("lavoroInput");
-const noteInput=document.getElementById("noteInput");
-const urgentInput=document.getElementById("urgenteInput");
-const button=document.getElementById("addWorkButton");
+const lavoroInput=
+document.getElementById("lavoroInput");
+
+const noteInput=
+document.getElementById("noteInput");
+
+const urgentInput=
+document.getElementById("urgenteInput");
+
+const button=
+document.getElementById("addWorkButton");
 
 const testo=lavoroInput.value.trim();
+
 const note=noteInput.value.trim();
+
 const urgente=urgentInput.checked;
+
 
 if(!testo){
 
 alert("Inserisci il lavoro da fare.");
+
 lavoroInput.focus();
 
 return;
+
 }
 
+
 button.disabled=true;
+
 button.textContent="Salvataggio...";
+
 
 const salva=()=>{
 
-return db.collection("lavori").add({
+return db.collection("lavori")
+.add({
 
 punto:puntoSelezionato,
-testo:testo,
-note:note,
+
+testo,
+
+note,
+
 completato:false,
+
 attivo:true,
-urgente:urgente,
 
-creatoDa:auth.currentUser?
-auth.currentUser.uid:"",
+urgente,
 
-creatoIl:firebase.firestore.FieldValue.serverTimestamp(),
+creatoDa:
+auth.currentUser?
+auth.currentUser.uid:
+"",
+
+creatoIl:
+firebase.firestore.FieldValue.serverTimestamp(),
 
 foto:[]
 
 })
+
 .then(()=>{
 
 lavoroInput.value="";
+
 noteInput.value="";
+
 urgentInput.checked=false;
 
 button.disabled=false;
+
 button.textContent="+ Aggiungi lavoro";
 
 })
+
 .catch(error=>{
 
 console.error(error);
@@ -1884,11 +1347,13 @@ console.error(error);
 alert("Errore nel salvataggio del lavoro.");
 
 button.disabled=false;
+
 button.textContent="+ Aggiungi lavoro";
 
 });
 
 };
+
 
 if(auth.currentUser)
 salva();
@@ -1898,79 +1363,64 @@ auth.signInAnonymously().then(salva);
 }
 
 
-/* AZIONI */
-
 function completaLavoro(id){
 
-db.collection("lavori").doc(id).update({
+db.collection("lavori")
+.doc(id)
+.update({
 completato:true
 })
-.catch(()=>{
-alert("Errore nel completare il lavoro.");
-});
+.catch(()=>
+alert("Errore nel completare il lavoro.")
+);
 
 }
+
 
 function daRifare(id){
 
-db.collection("lavori").doc(id).update({
+db.collection("lavori")
+.doc(id)
+.update({
 completato:false
 })
-.catch(()=>{
-alert("Errore nel modificare il lavoro.");
-});
+.catch(()=>
+alert("Errore nel modificare il lavoro.")
+);
 
 }
+
 
 function cambiaUrgente(id,giaUrgente){
 
-db.collection("lavori").doc(id).update({
+db.collection("lavori")
+.doc(id)
+.update({
 urgente:!giaUrgente
 })
-.catch(()=>{
-alert("Errore nella modifica dell'urgenza.");
-});
+.catch(()=>
+alert("Errore nella modifica dell'urgenza.")
+);
 
 }
 
-async function eliminaLavoro(id){
 
-if(!confirm("Vuoi eliminare questo lavoro?"))return;
+function eliminaLavoro(id){
 
-const lavoro=lavori.find(x=>x.id===id);
+if(!confirm("Vuoi eliminare questo lavoro?"))
+return;
 
-try{
-
-if(
-supabaseClient &&
-lavoro &&
-Array.isArray(lavoro.foto) &&
-lavoro.foto.length
-){
-
-await supabaseClient.storage
-.from(SUPABASE_BUCKET)
-.remove(lavoro.foto);
-
-}
-
-await db.collection("lavori")
+db.collection("lavori")
 .doc(id)
 .update({
 attivo:false
-});
-
-}catch(error){
-
-console.error(error);
-alert("Errore nell'eliminazione.");
+})
+.catch(()=>
+alert("Errore nell'eliminazione.")
+);
 
 }
 
-}
-
-
-/* URGENTI */
 
 function renderUrgentJobs(lista){
 
@@ -1984,50 +1434,65 @@ c.innerHTML=
 '<div class="empty">Nessun lavoro urgente.</div>';
 
 return;
+
 }
+
 
 Object.keys(puntiVendita).forEach(cat=>{
 
 const punti=puntiVendita[cat];
 
-const catJobs=lista.filter(x=>punti.includes(x.punto));
+const catJobs=lista.filter(
+x=>punti.includes(x.punto)
+);
 
 if(!catJobs.length)return;
 
 const t=document.createElement("div");
 
 t.className="group-title";
+
 t.textContent=cat;
 
 c.appendChild(t);
 
+
 punti.forEach(punto=>{
 
-const jobs=catJobs.filter(x=>x.punto===punto);
+const jobs=catJobs.filter(
+x=>x.punto===punto
+);
 
 if(!jobs.length)return;
+
 
 const g=document.createElement("div");
 
 g.className="todo-store-group";
 
+
 const h=document.createElement("div");
 
 h.className="urgent-store-header";
 
+
 const n=document.createElement("div");
 
 n.className="urgent-store-name";
+
 n.textContent=punto;
+
 
 const num=document.createElement("div");
 
 num.className="urgent-store-count";
+
 num.textContent=jobs.length;
 
 h.append(n,num);
 
 g.appendChild(h);
+
 
 jobs.forEach(job=>{
 
@@ -2035,106 +1500,112 @@ const r=document.createElement("div");
 
 r.className="urgent-job-row job-clickable";
 
-r.onclick=()=>{
-
-if(modalitaSelezione==="urgent")return;
-
+r.onclick=()=>
 apriSchedaLavoro(job.id);
 
-};
 
 const dot=document.createElement("div");
 
 dot.className="urgent-job-dot";
 
+
 const content=document.createElement("div");
 
 content.className="urgent-job-content";
 
+
 const text=document.createElement("div");
 
 text.className="urgent-job-text";
+
 text.textContent=job.testo||"";
 
 content.appendChild(text);
+
 
 if(job.note){
 
 const note=document.createElement("div");
 
 note.className="urgent-job-note";
+
 note.textContent="Note: "+job.note;
 
 content.appendChild(note);
 
 }
 
+
 const actions=document.createElement("div");
 
 actions.className="symbol-actions";
 
-const select=document.createElement("input");
-
-select.type="checkbox";
-select.className="job-select";
-select.checked=lavoriSelezionati.has(job.id);
-select.style.display=
-modalitaSelezione==="urgent"?"block":"none";
-
-select.onclick=e=>e.stopPropagation();
-
-select.onchange=e=>
-selezionaLavoro(job.id,e.target.checked);
-
-const share=document.createElement("button");
-
-share.className="share-job";
-share.textContent="Invia";
-
-share.onclick=e=>{
-e.stopPropagation();
-condividiSingoloLavoro(job.id);
-};
 
 const complete=document.createElement("button");
 
-complete.className="symbol-btn symbol-complete";
+complete.className=
+"symbol-btn symbol-complete";
+
 complete.textContent="✓";
 
+complete.title="Completato";
+
 complete.onclick=e=>{
+
 e.stopPropagation();
+
 completaLavoro(job.id);
+
 };
+
 
 const urgent=document.createElement("button");
 
-urgent.className="symbol-btn symbol-urgent";
+urgent.className=
+"symbol-btn symbol-urgent";
+
 urgent.textContent="!";
 
+urgent.title="Togli urgente";
+
 urgent.onclick=e=>{
+
 e.stopPropagation();
+
 cambiaUrgente(job.id,true);
+
 };
+
 
 const del=document.createElement("button");
 
-del.className="symbol-btn symbol-delete";
+del.className=
+"symbol-btn symbol-delete";
+
 del.textContent="×";
 
+del.title="Elimina";
+
 del.onclick=e=>{
+
 e.stopPropagation();
+
 eliminaLavoro(job.id);
+
 };
 
+
 actions.append(
-select,
-share,
 complete,
 urgent,
 del
 );
 
-r.append(dot,content,actions);
+r.append(
+dot,
+content,
+actions
+);
 
 g.appendChild(r);
 
@@ -2148,8 +1619,6 @@ c.appendChild(g);
 
 }
 
-
-/* COMPLETATI */
 
 function renderCompletedJobs(lista){
 
@@ -2163,50 +1632,67 @@ c.innerHTML=
 '<div class="empty">Nessun lavoro completato.</div>';
 
 return;
+
 }
+
 
 Object.keys(puntiVendita).forEach(cat=>{
 
 const punti=puntiVendita[cat];
 
-const catJobs=lista.filter(x=>punti.includes(x.punto));
+const catJobs=lista.filter(
+x=>punti.includes(x.punto)
+);
 
 if(!catJobs.length)return;
+
 
 const t=document.createElement("div");
 
 t.className="group-title";
+
 t.textContent=cat;
 
 c.appendChild(t);
 
+
 punti.forEach(punto=>{
 
-const jobs=catJobs.filter(x=>x.punto===punto);
+const jobs=catJobs.filter(
+x=>x.punto===punto
+);
 
 if(!jobs.length)return;
+
 
 const g=document.createElement("div");
 
 g.className="completed-job";
 
+
 const h=document.createElement("div");
 
 h.className="completed-store-header";
 
+
 const n=document.createElement("div");
 
 n.className="completed-store-name";
+
 n.textContent=punto;
+
 
 const num=document.createElement("div");
 
 num.className="completed-store-count";
+
 num.textContent=jobs.length;
+
 
 h.append(n,num);
 
 g.appendChild(h);
+
 
 jobs.forEach(job=>{
 
@@ -2214,72 +1700,95 @@ const r=document.createElement("div");
 
 r.className="completed-job-row job-clickable";
 
-r.onclick=()=>apriSchedaLavoro(job.id);
+r.onclick=()=>
+apriSchedaLavoro(job.id);
+
 
 const check=document.createElement("div");
 
 check.className="completed-check";
+
 check.textContent="✓";
+
 
 const content=document.createElement("div");
 
 content.className="completed-job-content";
 
+
 const text=document.createElement("div");
 
 text.className="completed-job-text";
+
 text.textContent=job.testo||"";
 
 content.appendChild(text);
+
 
 if(job.note){
 
 const note=document.createElement("div");
 
 note.className="completed-job-note";
+
 note.textContent="Note: "+job.note;
 
 content.appendChild(note);
 
 }
 
+
 const actions=document.createElement("div");
 
 actions.className="symbol-actions";
 
-const share=document.createElement("button");
-
-share.className="share-job";
-share.textContent="Invia";
-
-share.onclick=e=>{
-e.stopPropagation();
-condividiSingoloLavoro(job.id);
-};
 
 const redo=document.createElement("button");
 
-redo.className="symbol-btn symbol-redo";
+redo.className=
+"symbol-btn symbol-redo";
+
+redo.title="Da rifare";
+
 redo.textContent="↻";
 
 redo.onclick=e=>{
+
 e.stopPropagation();
+
 daRifare(job.id);
+
 };
+
 
 const del=document.createElement("button");
 
-del.className="symbol-btn symbol-delete";
+del.className=
+"symbol-btn symbol-delete";
+
+del.title="Elimina";
+
 del.textContent="×";
 
 del.onclick=e=>{
+
 e.stopPropagation();
+
 eliminaLavoro(job.id);
+
 };
 
-actions.append(share,redo,del);
 
-r.append(check,content,actions);
+actions.append(
+redo,
+del
+);
+
+r.append(
+check,
+content,
+actions
+);
 
 g.appendChild(r);
 
@@ -2294,44 +1803,451 @@ c.appendChild(g);
 }
 
 
-/* SCHEDA */
+/* =========================
+   ESPORTAZIONE COMPLETATI
+========================= */
+
+function lavoriCompletatiRaggruppati(){
+
+const completati=
+lavori.filter(
+x=>x.attivo===true&&x.completato===true
+);
+
+const gruppi={};
+
+completati.forEach(job=>{
+
+const punto=
+job.punto||
+"Punto vendita non specificato";
+
+if(!gruppi[punto])
+gruppi[punto]=[];
+
+gruppi[punto].push(job);
+
+});
+
+return gruppi;
+
+}
+
+
+function testoElencoCompletati(){
+
+const gruppi=
+lavoriCompletatiRaggruppati();
+
+const punti=
+Object.keys(gruppi);
+
+if(!punti.length)
+return "Nessun lavoro completato.";
+
+
+let testo="LAVORI COMPLETATI\n\n";
+
+
+punti.forEach((punto,index)=>{
+
+testo+="Punto vendita: "+punto+"\n";
+
+gruppi[punto].forEach(job=>{
+
+testo+="- "+(job.testo||"");
+
+if(job.note)
+testo+=" — Note: "+job.note;
+
+testo+="\n";
+
+});
+
+
+if(index<punti.length-1)
+testo+="\n";
+
+});
+
+
+return testo.trim();
+
+}
+
+
+function escapeHtml(value){
+
+return String(value||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+function htmlElencoCompletati(){
+
+const gruppi=
+lavoriCompletatiRaggruppati();
+
+const punti=
+Object.keys(gruppi);
+
+
+let html=`
+
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Lavori completati</title>
+
+<style>
+
+body{
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Arial,
+sans-serif;
+margin:0;
+padding:24px;
+background:#fff;
+color:#222
+}
+
+h1{
+font-size:25px;
+margin:0 0 25px
+}
+
+.store{
+margin:0 0 24px;
+padding:18px;
+border:1px solid #e5e5e5;
+border-radius:16px
+}
+
+.store h2{
+font-size:19px;
+margin:0 0 12px;
+color:#d32f2f
+}
+
+ul{
+margin:0;
+padding-left:22px
+}
+
+li{
+margin:8px 0;
+font-size:16px;
+line-height:1.4
+}
+
+.note{
+color:#777;
+font-size:13px
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>LAVORI COMPLETATI</h1>
+
+`;
+
+
+if(!punti.length){
+
+html+=
+"<p>Nessun lavoro completato.</p>";
+
+}
+
+
+punti.forEach(punto=>{
+
+html+=`
+
+<div class="store">
+
+<h2>
+Punto vendita:
+${escapeHtml(punto)}
+</h2>
+
+<ul>
+
+`;
+
+
+gruppi[punto].forEach(job=>{
+
+html+=`
+
+<li>
+
+${escapeHtml(job.testo||"")}
+
+`;
+
+
+if(job.note){
+
+html+=`
+
+<div class="note">
+
+Note:
+${escapeHtml(job.note)}
+
+</div>
+
+`;
+
+}
+
+
+html+=`
+
+</li>
+
+`;
+
+});
+
+
+html+=`
+
+</ul>
+
+</div>
+
+`;
+
+});
+
+
+html+=`
+
+</body>
+
+</html>
+
+`;
+
+
+return html;
+
+}
+
+
+function salvaElencoCompletati(){
+
+const blob=
+new Blob(
+[
+htmlElencoCompletati()
+],
+{
+type:
+"text/html;charset=utf-8"
+}
+);
+
+
+const url=
+URL.createObjectURL(blob);
+
+
+const a=
+document.createElement("a");
+
+a.href=url;
+
+a.download=
+"EDISERVICE_lavori_completati.html";
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+
+setTimeout(
+()=>URL.revokeObjectURL(url),
+1000
+);
+
+}
+
+
+async function condividiElencoCompletati(){
+
+const testo=
+testoElencoCompletati();
+
+
+try{
+
+if(navigator.share){
+
+await navigator.share({
+
+title:"Lavori completati",
+
+text:testo
+
+});
+
+}else{
+
+await navigator.clipboard
+.writeText(testo);
+
+alert(
+"Elenco copiato negli appunti."
+);
+
+}
+
+}catch(error){
+
+if(
+error&&
+error.name==="AbortError"
+)
+return;
+
+
+try{
+
+await navigator.clipboard
+.writeText(testo);
+
+alert(
+"Elenco copiato negli appunti."
+);
+
+}catch(e){
+
+alert(
+"Non è stato possibile condividere l'elenco."
+);
+
+}
+
+}
+
+}
+
+
+/* =========================
+   FOTO / SCHEDA LAVORO
+========================= */
+
+function salvaNoteLavoro(){
+
+if(!lavoroFotoAperto)
+return;
+
+const input=
+document.getElementById(
+"photoDetailNoteInput"
+);
+
+const testo=
+input.value.trim();
+
+
+db.collection("lavori")
+.doc(lavoroFotoAperto.id)
+.update({
+note:testo
+})
+.then(()=>{
+
+lavoroFotoAperto.note=testo;
+
+document.getElementById(
+"photoDetailNote"
+).textContent=
+testo?
+"Note: "+testo:
+"";
+
+alert("Note salvate.");
+
+})
+.catch(error=>{
+
+console.error(error);
+
+alert(
+"Errore nel salvataggio delle note."
+);
+
+});
+
+}
+
 
 function fotoPaths(lavoro){
 
 return Array.isArray(lavoro.foto)?
-lavoro.foto:[];
+lavoro.foto:
+[];
 
 }
+
 
 function apriSchedaLavoro(id){
 
-const lavoro=lavori.find(x=>x.id===id);
+const lavoro=
+lavori.find(x=>x.id===id);
 
-if(!lavoro){
-
-alert("Lavoro non trovato.");
+if(!lavoro)
 return;
-
-}
-
-const pagina=document.querySelector(".page.active");
-
-paginaPrimaScheda=pagina?
-pagina.id:"todoPage";
 
 lavoroFotoAperto=lavoro;
 
-document.getElementById("photoDetailStore").textContent=
+document.getElementById(
+"photoDetailStore"
+).textContent=
 lavoro.punto||"";
 
-document.getElementById("photoDetailTitle").textContent=
+document.getElementById(
+"photoDetailTitle"
+).textContent=
 lavoro.testo||"";
 
-const input=document.getElementById(
+document.getElementById(
 "photoDetailNoteInput"
-);
+).value=
+lavoro.note||"";
 
-if(input)input.value=lavoro.note||"";
+document.getElementById(
+"photoDetailNote"
+).textContent=
+lavoro.note?
+"Note: "+lavoro.note:
+"";
 
 mostraPagina("photoDetailPage");
 
@@ -2340,153 +2256,104 @@ renderFotoLavoro();
 }
 
 
-/* NOTE */
-
-async function salvaNoteLavoro(){
-
-if(!lavoroFotoAperto)return;
-
-const input=document.getElementById(
-"photoDetailNoteInput"
-);
-
-if(!input)return;
-
-const note=input.value.trim();
-
-try{
-
-await db.collection("lavori")
-.doc(lavoroFotoAperto.id)
-.update({
-note:note
-});
-
-lavoroFotoAperto.note=note;
-
-alert("Note salvate.");
-
-}catch(error){
-
-console.error(error);
-alert("Errore nel salvataggio delle note.");
-
-}
-
-}
-
-
-/* INDIETRO */
-
 function chiudiSchedaLavoro(){
 
-const ritorno=paginaPrimaScheda||"todoPage";
-
 lavoroFotoAperto=null;
+
 fotoCorrente=null;
 
-mostraPagina(ritorno);
-
-if(ritorno==="todoPage"){
-
-renderTodoJobs(
-lavori.filter(x=>
-x.attivo===true &&
-x.completato!==true
-)
-);
+if(puntoSelezionato)
+mostraPagina("storePage");
+else
+mostraPagina("todoPage");
 
 }
 
-if(ritorno==="urgentPage"){
-
-renderUrgentJobs(
-lavori.filter(x=>
-x.attivo===true &&
-x.completato!==true &&
-x.urgente===true
-)
-);
-
-}
-
-if(ritorno==="completedPage"){
-
-renderCompletedJobs(
-lavori.filter(x=>
-x.attivo===true &&
-x.completato===true
-)
-);
-
-}
-
-if(ritorno==="storePage" && puntoSelezionato){
-
-renderStoreJobs(puntoSelezionato);
-
-}
-
-}
-
-
-/* FOTO */
 
 function renderFotoLavoro(){
 
-const grid=document.getElementById("photoGrid");
-
-if(!grid)return;
+const grid=
+document.getElementById(
+"photoGrid"
+);
 
 grid.innerHTML="";
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
 
-const paths=fotoPaths(lavoroFotoAperto);
+const paths=
+fotoPaths(lavoroFotoAperto);
+
 
 if(!paths.length){
 
-grid.innerHTML=`
-<div class="photo-empty" style="grid-column:1/-1">
-Nessuna foto ancora.<br>
-Premi “+ Aggiungi foto” per inserirne una.
-</div>`;
+grid.innerHTML=
+`
+<div class="photo-empty"
+style="grid-column:1/-1">
+
+Nessuna foto ancora.
+<br>
+Premi “+ Aggiungi foto”
+per inserirne una.
+
+</div>
+`;
 
 return;
 
 }
 
+
 paths.forEach((path,index)=>{
 
-const box=document.createElement("div");
+const box=
+document.createElement("div");
 
 box.className="photo-thumb";
 
-const img=document.createElement("img");
+
+const img=
+document.createElement("img");
 
 img.alt="Foto "+(index+1);
 
 box.appendChild(img);
 
-const del=document.createElement("button");
 
-del.className="photo-thumb-delete";
+const del=
+document.createElement("button");
+
+del.className=
+"photo-thumb-delete";
+
 del.textContent="×";
 
+del.title="Elimina foto";
+
 del.onclick=e=>{
+
 e.stopPropagation();
+
 eliminaFoto(path);
+
 };
+
 
 box.appendChild(del);
 
-box.onclick=()=>apriFotoGrande(path);
+box.onclick=()=>
+apriFotoGrande(path);
 
 grid.appendChild(box);
 
-getSignedUrl(path).then(url=>{
 
-if(url)img.src=url;
+getSignedUrl(path)
+.then(url=>{
+
+if(url)
+img.src=url;
 
 });
 
@@ -2494,117 +2361,168 @@ if(url)img.src=url;
 
 }
 
-
-/* URL */
 
 async function getSignedUrl(path){
 
-if(!path || !supabaseClient)return null;
+if(!path)
+return null;
 
-const cached=signedUrlCache.get(path);
+const cached=
+signedUrlCache.get(path);
 
-if(cached && cached.expires>Date.now()){
+if(
+cached&&
+cached.expires>Date.now()
+)
 return cached.url;
-}
 
-const result=await supabaseClient
+
+const {
+data,
+error
+}=
+await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
 .createSignedUrl(path,3600);
 
-if(result.error){
 
-console.error("Signed URL:",result.error);
+if(error){
+
+console.error(
+"Signed URL:",
+error
+);
+
 return null;
 
 }
 
-signedUrlCache.set(path,{
-url:result.data.signedUrl,
-expires:Date.now()+3500000
-});
 
-return result.data.signedUrl;
+signedUrlCache.set(
+path,
+{
+url:data.signedUrl,
+expires:Date.now()+3500*1000
+}
+);
+
+return data.signedUrl;
 
 }
 
-
-/* SELEZIONA FOTO */
 
 function selezionaFoto(){
 
-if(!lavoroFotoAperto)return;
-
-if(!supabaseClient){
-
-alert("Servizio foto non disponibile.");
+if(!lavoroFotoAperto)
 return;
 
-}
-
-const input=document.getElementById("photoInput");
+const input=
+document.getElementById(
+"photoInput"
+);
 
 input.value="";
+
 input.onchange=caricaFoto;
+
 input.click();
 
 }
 
 
-/* COMPRESSIONE */
-
 async function comprimiFoto(file){
 
-if(!file.type.startsWith("image/")){
-throw new Error("Seleziona un'immagine.");
-}
+if(!file.type.startsWith("image/"))
+throw new Error(
+"Seleziona un'immagine."
+);
 
-const url=URL.createObjectURL(file);
-const img=new Image();
+
+const url=
+URL.createObjectURL(file);
+
+const img=
+new Image();
+
 
 try{
 
-await new Promise((resolve,reject)=>{
+await new Promise(
+(res,rej)=>{
 
-img.onload=resolve;
-img.onerror=reject;
+img.onload=res;
+
+img.onerror=rej;
+
 img.src=url;
 
-});
+}
+);
+
 
 let w=img.naturalWidth;
+
 let h=img.naturalHeight;
 
 const max=1600;
 
-if(w>max || h>max){
+
+if(w>max||h>max){
 
 if(w>=h){
 
-h=Math.round(h*max/w);
+h=
+Math.round(
+h*max/w
+);
+
 w=max;
 
 }else{
 
-w=Math.round(w*max/h);
+w=
+Math.round(
+w*max/h
+);
+
 h=max;
 
 }
 
 }
 
-const canvas=document.createElement("canvas");
+
+const canvas=
+document.createElement(
+"canvas"
+);
 
 canvas.width=w;
+
 canvas.height=h;
 
-canvas.getContext("2d").drawImage(
-img,0,0,w,h
+
+canvas
+.getContext("2d")
+.drawImage(
+img,
+0,
+0,
+w,
+h
 );
 
-return await new Promise(resolve=>
-canvas.toBlob(resolve,"image/jpeg",.82)
+
+return await new Promise(
+resolve=>
+canvas.toBlob(
+resolve,
+"image/jpeg",
+.82
+)
 );
+
 
 }finally{
 
@@ -2615,43 +2533,46 @@ URL.revokeObjectURL(url);
 }
 
 
-/* CARICA FOTO */
-
 async function caricaFoto(e){
 
-const files=[...(e.target.files||[])];
+const files=
+[...(e.target.files||[])];
 
-if(!files.length || !lavoroFotoAperto)return;
-
-if(!supabaseClient){
-
-alert("Servizio foto non disponibile.");
+if(
+!files.length||
+!lavoroFotoAperto
+)
 return;
 
-}
 
-const lavoro=lavoroFotoAperto;
+const lavoro=
+lavoroFotoAperto;
 
-let caricati=0;
 
 try{
 
 for(const file of files){
 
-const blob=await comprimiFoto(file);
+const blob=
+await comprimiFoto(file);
 
-if(!blob){
-throw new Error("Impossibile comprimere la foto.");
-}
 
 const path=
-"lavori/"+
-lavoro.id+"/"+
-Date.now()+"-"+
-Math.random().toString(36).slice(2,10)+
-".jpg";
+"lavori/"
++lavoro.id
++"/"
++Date.now()
++"-"
++Math.random()
+.toString(36)
+.slice(2,10)
++".jpg";
 
-const up=await supabaseClient
+
+const {
+error
+}=
+await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
 .upload(
@@ -2664,23 +2585,30 @@ upsert:false
 }
 );
 
-if(up.error)throw up.error;
 
-await db.collection("lavori")
+if(error)
+throw error;
+
+
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
-foto:firebase.firestore.FieldValue.arrayUnion(path)
+foto:
+firebase.firestore
+.FieldValue
+.arrayUnion(path)
 });
-
-caricati++;
 
 }
 
+
 alert(
-caricati===1?
+files.length===1?
 "Foto aggiunta.":
-caricati+" foto aggiunte."
+files.length+" foto aggiunte."
 );
+
 
 }catch(error){
 
@@ -2693,80 +2621,115 @@ alert(
 
 }
 
-e.target.value="";
-
 }
 
-
-/* FOTO GRANDE */
 
 async function apriFotoGrande(path){
 
 fotoCorrente=path;
 
-const url=await getSignedUrl(path);
+const url=
+await getSignedUrl(path);
 
-if(!url)return;
+if(!url)
+return;
 
-document.getElementById("photoModalImage").src=url;
+document.getElementById(
+"photoModalImage"
+).src=url;
 
-document.getElementById("photoModal")
-.classList.add("active");
+document.getElementById(
+"photoModal"
+).classList.add("active");
 
 }
 
+
 function chiudiFotoGrande(event){
 
-if(event && event.target!==event.currentTarget)return;
+if(
+event&&
+event.target!==event.currentTarget
+)
+return;
 
-document.getElementById("photoModal")
-.classList.remove("active");
+document.getElementById(
+"photoModal"
+).classList.remove("active");
 
-document.getElementById("photoModalImage").src="";
+document.getElementById(
+"photoModalImage"
+).src="";
 
 fotoCorrente=null;
 
 }
 
 
-/* SOSTITUISCI FOTO */
-
 function sostituisciFotoCorrente(){
 
-if(!fotoCorrente || !lavoroFotoAperto)return;
+if(
+!fotoCorrente||
+!lavoroFotoAperto
+)
+return;
 
-const input=document.getElementById(
+
+const input=
+document.getElementById(
 "replacePhotoInput"
 );
 
 input.value="";
-input.onchange=eseguiSostituzioneFoto;
+
+input.onchange=
+eseguiSostituzioneFoto;
+
 input.click();
 
 }
 
+
 async function eseguiSostituzioneFoto(e){
 
-const file=e.target.files?.[0];
+const file=
+e.target.files?.[0];
 
-if(!file || !fotoCorrente || !lavoroFotoAperto)
+if(
+!file||
+!fotoCorrente||
+!lavoroFotoAperto
+)
 return;
 
-const oldPath=fotoCorrente;
-const lavoro=lavoroFotoAperto;
+
+const oldPath=
+fotoCorrente;
+
+const lavoro=
+lavoroFotoAperto;
+
 
 try{
 
-const blob=await comprimiFoto(file);
+const blob=
+await comprimiFoto(file);
+
 
 const newPath=
-"lavori/"+
-lavoro.id+"/"+
-Date.now()+"-"+
-Math.random().toString(36).slice(2,10)+
-".jpg";
+"lavori/"
++lavoro.id
++"/"
++Date.now()
++"-"
++Math.random()
+.toString(36)
+.slice(2,10)
++".jpg";
 
-const up=await supabaseClient
+
+const up=
+await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
 .upload(
@@ -2779,35 +2742,58 @@ upsert:false
 }
 );
 
-if(up.error)throw up.error;
 
-const nuoveFoto=fotoPaths(lavoro).map(
-x=>x===oldPath?newPath:x
-);
+if(up.error)
+throw up.error;
 
-await db.collection("lavori")
+
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
-foto:nuoveFoto
+foto:
+firebase.firestore
+.FieldValue
+.arrayUnion(newPath)
 });
+
+
+await db
+.collection("lavori")
+.doc(lavoro.id)
+.update({
+foto:
+firebase.firestore
+.FieldValue
+.arrayRemove(oldPath)
+});
+
 
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
 .remove([oldPath]);
 
+
 signedUrlCache.delete(oldPath);
 
-lavoro.foto=nuoveFoto;
 
-document.getElementById("photoModal")
-.classList.remove("active");
+lavoro.foto=
+fotoPaths(lavoro)
+.filter(x=>x!==oldPath)
+.concat(newPath);
+
+
+document.getElementById(
+"photoModal"
+).classList.remove("active");
 
 fotoCorrente=null;
 
 renderFotoLavoro();
 
 alert("Foto sostituita.");
+
 
 }catch(error){
 
@@ -2820,59 +2806,65 @@ alert(
 
 }
 
-e.target.value="";
-
 }
 
-
-/* ELIMINA FOTO */
 
 async function eliminaFoto(path){
 
 if(
-!lavoroFotoAperto ||
+!lavoroFotoAperto||
 !confirm("Vuoi eliminare questa foto?")
-)return;
+)
+return;
 
-const lavoro=lavoroFotoAperto;
+
+const lavoro=
+lavoroFotoAperto;
+
 
 try{
 
-if(supabaseClient){
-
-const result=await supabaseClient
+const {
+error
+}=
+await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
 .remove([path]);
 
-if(result.error)throw result.error;
 
-}
+if(error)
+throw error;
 
-await db.collection("lavori")
+
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
-foto:firebase.firestore.FieldValue.arrayRemove(path)
+foto:
+firebase.firestore
+.FieldValue
+.arrayRemove(path)
 });
+
 
 signedUrlCache.delete(path);
 
-lavoro.foto=fotoPaths(lavoro).filter(
-x=>x!==path
-);
 
-if(fotoCorrente===path){
+lavoro.foto=
+fotoPaths(lavoro)
+.filter(x=>x!==path);
 
-document.getElementById("photoModal")
-.classList.remove("active");
 
-document.getElementById("photoModalImage").src="";
+document.getElementById(
+"photoModal"
+).classList.remove("active");
+
 
 fotoCorrente=null;
 
-}
-
 renderFotoLavoro();
+
 
 }catch(error){
 
@@ -2887,682 +2879,48 @@ alert(
 
 }
 
+
 async function eliminaFotoCorrente(){
 
-if(fotoCorrente){
+if(fotoCorrente)
 await eliminaFoto(fotoCorrente);
-}
 
 }
 
 
-/* SELEZIONE */
+/* =========================
+   EVENTI
+========================= */
 
-function attivaSelezione(tipo){
-
-if(modalitaSelezione===tipo){
-
-modalitaSelezione=null;
-lavoriSelezionati.clear();
-
-}else{
-
-modalitaSelezione=tipo;
-lavoriSelezionati.clear();
-
-}
-
-aggiornaInterfacciaSelezione();
-
-}
-
-function selezionaLavoro(id,checked){
-
-if(checked)
-lavoriSelezionati.add(id);
-else
-lavoriSelezionati.delete(id);
-
-aggiornaInterfacciaSelezione();
-
-}
-
-function aggiornaInterfacciaSelezione(){
-
-const todoButton=document.getElementById(
-"todoShareSelected"
+document
+.getElementById("btnLavoriDaFare")
+.addEventListener(
+"click",
+()=>mostraPagina("todoPage")
 );
 
-const urgentButton=document.getElementById(
-"urgentShareSelected"
+
+document
+.getElementById("btnUrgenti")
+.addEventListener(
+"click",
+()=>mostraPagina("urgentPage")
 );
 
-if(todoButton){
 
-todoButton.style.display=
-modalitaSelezione==="todo"?
-"block":"none";
-
-}
-
-if(urgentButton){
-
-urgentButton.style.display=
-modalitaSelezione==="urgent"?
-"block":"none";
-
-}
-
-const testo=lavoriSelezionati.size?
-lavoriSelezionati.size+" lavori selezionati":"";
-
-const todoInfo=document.getElementById(
-"todoSelectionInfo"
+document
+.getElementById("btnCompletati")
+.addEventListener(
+"click",
+()=>mostraPagina("completedPage")
 );
 
-const urgentInfo=document.getElementById(
-"urgentSelectionInfo"
-);
 
-if(todoInfo)
-todoInfo.textContent=
-modalitaSelezione==="todo"?testo:"";
+document
+.getElementById("clearSearch")
+.onclick=
+cancellaRicerca;
 
-if(urgentInfo)
-urgentInfo.textContent=
-modalitaSelezione==="urgent"?testo:"";
-
-renderTodoJobs(
-lavori.filter(x=>
-x.attivo===true &&
-x.completato!==true &&
-(
-!ricercaLavori ||
-(x.punto||"").toLowerCase().includes(ricercaLavori) ||
-(x.testo||"").toLowerCase().includes(ricercaLavori) ||
-(x.note||"").toLowerCase().includes(ricercaLavori)
-)
-)
-);
-
-renderUrgentJobs(
-lavori.filter(x=>
-x.attivo===true &&
-x.completato!==true &&
-x.urgente===true
-)
-);
-
-}
-
-
-/* TESTO */
-
-function creaTestoLavoro(lavoro){
-
-let testo="EDISERVICE\n\n";
-
-testo+="PUNTO VENDITA: "+
-(lavoro.punto||"")+
-"\n\n";
-
-testo+="LAVORO:\n"+
-(lavoro.testo||"")+
-"\n";
-
-if(lavoro.note){
-
-testo+="\nNOTE:\n"+
-lavoro.note+
-"\n";
-
-}
-
-testo+="\nSTATO: ";
-
-if(lavoro.completato===true)
-testo+="COMPLETATO";
-else if(lavoro.urgente===true)
-testo+="URGENTE";
-else
-testo+="DA FARE";
-
-return testo;
-
-}
-
-
-/* CONDIVISIONE */
-
-async function condividiSingoloLavoro(id){
-
-const lavoro=lavori.find(x=>x.id===id);
-
-if(!lavoro){
-
-alert("Lavoro non trovato.");
-return;
-
-}
-
-await condividiLavori([lavoro]);
-
-}
-
-async function condividiSelezionati(){
-
-const lista=lavori.filter(
-x=>lavoriSelezionati.has(x.id)
-);
-
-if(!lista.length){
-
-alert("Seleziona almeno un lavoro.");
-return;
-
-}
-
-await condividiLavori(lista);
-
-}
-
-async function condividiTuttiDaFare(){
-
-const lista=lavori.filter(x=>
-x.attivo===true &&
-x.completato!==true
-);
-
-if(!lista.length){
-
-alert("Non ci sono lavori da fare.");
-return;
-
-}
-
-await condividiLavori(lista);
-
-}
-
-async function condividiTuttiUrgenti(){
-
-const lista=lavori.filter(x=>
-x.attivo===true &&
-x.completato!==true &&
-x.urgente===true
-);
-
-if(!lista.length){
-
-alert("Non ci sono lavori urgenti.");
-return;
-
-}
-
-await condividiLavori(lista);
-
-}
-
-async function condividiElencoCompletati(){
-
-const lista=lavori
-.filter(x=>
-x.attivo===true &&
-x.completato===true
-)
-.sort((a,b)=>
-(a.punto||"").localeCompare(b.punto||"")
-);
-
-if(!lista.length){
-
-alert("Non ci sono lavori completati.");
-return;
-
-}
-
-await condividiLavori(lista);
-
-}
-
-
-/* CONDIVIDI FOTO */
-
-async function condividiLavori(lista){
-
-if(!lista || !lista.length){
-
-alert("Nessun lavoro da condividere.");
-return;
-
-}
-
-let testo="EDISERVICE\n\n";
-
-lista.forEach((lavoro,index)=>{
-
-if(index>0)
-testo+="\n--------------------\n\n";
-
-testo+=creaTestoLavoro(lavoro);
-
-});
-
-const files=[];
-
-for(const lavoro of lista){
-
-const foto=fotoPaths(lavoro);
-
-for(let i=0;i<foto.length;i++){
-
-try{
-
-const url=await getSignedUrl(foto[i]);
-
-if(!url)continue;
-
-const response=await fetch(url);
-
-const blob=await response.blob();
-
-const file=new File(
-[blob],
-"EDISERVICE-"+(lavoro.punto||"lavoro")+"-"+(i+1)+".jpg",
-{
-type:blob.type||"image/jpeg"
-}
-);
-
-files.push(file);
-
-}catch(error){
-
-console.error("Errore foto:",error);
-
-}
-
-}
-
-}
-
-try{
-
-if(
-navigator.share &&
-files.length &&
-navigator.canShare &&
-navigator.canShare({files:files})
-){
-
-await navigator.share({
-title:"EDISERVICE - Lavori",
-text:testo,
-files:files
-});
-
-return;
-
-}
-
-if(navigator.share){
-
-await navigator.share({
-title:"EDISERVICE - Lavori",
-text:testo
-});
-
-return;
-
-}
-
-if(navigator.clipboard){
-
-await navigator.clipboard.writeText(testo);
-
-alert("Testo copiato negli appunti.");
-
-return;
-
-}
-
-alert("Condivisione non disponibile.");
-
-}catch(error){
-
-if(error && error.name==="AbortError")
-return;
-
-console.error("Condivisione:",error);
-
-try{
-
-if(navigator.clipboard){
-
-await navigator.clipboard.writeText(testo);
-
-alert("Il testo è stato copiato negli appunti.");
-
-}else{
-
-alert("Condivisione non disponibile.");
-
-}
-
-}catch(e){
-
-alert("Condivisione non disponibile.");
-
-}
-
-}
-
-}
-
-
-/* SALVA COMPLETATI */
-
-async function salvaElencoCompletati(){
-
-const lista=lavori
-.filter(x=>
-x.attivo===true &&
-x.completato===true
-)
-.sort((a,b)=>
-(a.punto||"").localeCompare(b.punto||"")
-);
-
-if(!lista.length){
-
-alert("Non ci sono lavori completati.");
-return;
-
-}
-
-let html=`
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EDISERVICE - Lavori completati</title>
-<style>
-body{
-font-family:Arial,sans-serif;
-margin:0;
-padding:25px;
-color:#222;
-background:#fff
-}
-h1{
-font-size:26px
-}
-.data{
-color:#777;
-margin-bottom:25px
-}
-.punto{
-margin-top:30px;
-padding:12px;
-background:#e8f5e9;
-border-left:6px solid #2e7d32;
-border-radius:8px;
-font-size:20px;
-font-weight:800
-}
-.lavoro{
-margin:15px 0;
-padding:15px;
-border:1px solid #ddd;
-border-radius:12px
-}
-.titolo{
-font-size:17px;
-font-weight:800
-}
-.note{
-margin-top:8px;
-color:#666;
-white-space:pre-wrap
-}
-.stato{
-margin-top:10px;
-color:#2e7d32;
-font-weight:800
-}
-.foto{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:15px
-}
-.foto img{
-width:100%;
-border-radius:8px;
-display:block
-}
-@media(max-width:600px){
-.foto{
-grid-template-columns:repeat(2,1fr)
-}
-}
-</style>
-</head>
-<body>
-
-<h1>EDISERVICE</h1>
-
-<div class="data">
-ELENCO LAVORI COMPLETATI
-<br>
-${new Date().toLocaleDateString("it-IT")}
-</div>
-`;
-
-
-let puntoPrecedente="";
-
-for(const lavoro of lista){
-
-if(lavoro.punto!==puntoPrecedente){
-
-html+=`
-<div class="punto">
-${escapeHtml(lavoro.punto||"Punto vendita")}
-</div>
-`;
-
-puntoPrecedente=lavoro.punto;
-
-}
-
-html+=`
-<div class="lavoro">
-
-<div class="titolo">
-${escapeHtml(lavoro.testo||"")}
-</div>
-`;
-
-if(lavoro.note){
-
-html+=`
-<div class="note">
-<strong>Note:</strong><br>
-${escapeHtml(lavoro.note)}
-</div>
-`;
-
-}
-
-html+=`
-<div class="stato">
-✓ COMPLETATO
-</div>
-`;
-
-const foto=fotoPaths(lavoro);
-
-if(foto.length){
-
-html+=`
-<div class="foto">
-`;
-
-for(const path of foto){
-
-try{
-
-const url=await getSignedUrl(path);
-
-if(!url)continue;
-
-const response=await fetch(url);
-
-const blob=await response.blob();
-
-const dataUrl=await blobToDataUrl(blob);
-
-html+=`
-<img src="${dataUrl}" alt="Foto lavoro">
-`;
-
-}catch(error){
-
-console.error("Foto elenco:",error);
-
-}
-
-}
-
-html+=`
-</div>
-`;
-
-}
-
-html+=`
-</div>
-`;
-
-}
-
-html+=`
-</body>
-</html>
-`;
-
-
-const blob=new Blob(
-[html],
-{
-type:"text/html;charset=utf-8"
-}
-);
-
-const url=URL.createObjectURL(blob);
-
-const a=document.createElement("a");
-
-a.href=url;
-
-a.download=
-"EDISERVICE-Lavori-Completati-"+
-new Date().toISOString().slice(0,10)+
-".html";
-
-document.body.appendChild(a);
-
-a.click();
-
-a.remove();
-
-setTimeout(()=>{
-URL.revokeObjectURL(url);
-},1000);
-
-alert("Elenco completati salvato.");
-
-}
-
-
-/* FOTO BASE64 */
-/* QUI È STATA CORRETTA LA PARENTESI CHE BLOCCAVA TUTTO */
-
-function blobToDataUrl(blob){
-
-return new Promise((resolve,reject)=>{
-
-const reader=new FileReader();
-
-reader.onloadend=()=>{
-resolve(reader.result);
-};
-
-reader.onerror=reject;
-
-reader.readAsDataURL(blob);
-
-});
-
-}
-
-
-/* SICUREZZA */
-
-function escapeHtml(value){
-
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* EVENTI HOME */
-
-document.getElementById("btnLavoriDaFare")
-.addEventListener("click",()=>{
-
-mostraPagina("todoPage");
-
-modalitaSelezione=null;
-lavoriSelezionati.clear();
-
-});
-
-
-document.getElementById("btnUrgenti")
-.addEventListener("click",()=>{
-
-mostraPagina("urgentPage");
-
-modalitaSelezione=null;
-lavoriSelezionati.clear();
-
-});
-
-
-document.getElementById("btnCompletati")
-.addEventListener("click",()=>{
-
-mostraPagina("completedPage");
-
-modalitaSelezione=null;
-lavoriSelezionati.clear();
-
-});
-
-
-document.getElementById("clearSearch")
-.onclick=cancellaRicerca;
-
-
-/* AVVIO */
 
 creaPuntiVendita();
 
