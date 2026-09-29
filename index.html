@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>EDISERVICE</title>
 
 <link rel="icon" type="image/png" href="ediservice-icon.png">
@@ -32,6 +34,10 @@ max-width:850px;
 margin:auto;
 padding:20px
 }
+
+/* =========================
+HEADER
+========================= */
 
 .header{
 text-align:center;
@@ -63,7 +69,9 @@ color:#c62828
 }
 
 
-/* PAGINE */
+/* =========================
+PAGINE
+========================= */
 
 .page{
 display:none
@@ -74,7 +82,9 @@ display:block
 }
 
 
-/* CARTELLE HOME */
+/* =========================
+HOME
+========================= */
 
 .summary,
 .urgent-folder,
@@ -142,7 +152,9 @@ margin-left:15px
 }
 
 
-/* TITOLI */
+/* =========================
+TITOLI
+========================= */
 
 .section-title{
 font-size:23px;
@@ -166,7 +178,9 @@ box-shadow:0 2px 7px rgba(0,0,0,.06)
 }
 
 
-/* PUNTI VENDITA */
+/* =========================
+PUNTI VENDITA
+========================= */
 
 .store-list{
 display:flex;
@@ -215,13 +229,19 @@ margin-left:12px
 }
 
 
-/* TOPBAR */
+/* =========================
+TOPBAR
+========================= */
 
 .topbar{
 display:flex;
 align-items:center;
 gap:10px;
 margin-bottom:20px
+}
+
+.store-topbar{
+width:100%
 }
 
 .back-button{
@@ -241,7 +261,37 @@ margin:0
 }
 
 
-/* RICERCA */
+/* =========================
++ IN ALTO A DESTRA
+========================= */
+
+.add-top-button{
+margin-left:auto;
+width:46px;
+height:46px;
+min-width:46px;
+border:0;
+border-radius:13px;
+background:#222;
+color:#fff;
+font-size:30px;
+font-weight:500;
+line-height:1;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 3px 8px rgba(0,0,0,.12)
+}
+
+.add-top-button:active{
+transform:scale(.92)
+}
+
+
+/* =========================
+RICERCA
+========================= */
 
 .search-box{
 position:relative;
@@ -283,7 +333,9 @@ cursor:pointer
 }
 
 
-/* PUNTO VENDITA */
+/* =========================
+PUNTO VENDITA
+========================= */
 
 .store-name{
 color:#d32f2f;
@@ -298,7 +350,17 @@ margin-bottom:20px
 }
 
 
-/* FORM */
+/* =========================
+FORM AGGIUNGI
+========================= */
+
+.add-work-page{
+display:none
+}
+
+.add-work-page.active{
+display:block
+}
 
 .form-card{
 background:#fff;
@@ -359,7 +421,9 @@ cursor:pointer
 }
 
 
-/* LAVORI DA FARE */
+/* =========================
+LAVORI DA FARE
+========================= */
 
 .todo-store-group{
 background:#fff;
@@ -452,7 +516,9 @@ margin-top:7px
 }
 
 
-/* PULSANTI */
+/* =========================
+PULSANTI
+========================= */
 
 .symbol-actions{
 display:flex;
@@ -508,7 +574,9 @@ font-size:15px
 }
 
 
-/* SCHEDA PUNTO VENDITA */
+/* =========================
+SCHEDA LAVORO PUNTO VENDITA
+========================= */
 
 .job-card{
 background:#fff;
@@ -530,8 +598,18 @@ color:#777;
 font-size:14px
 }
 
+.job-clickable{
+cursor:pointer
+}
 
-/* COMPLETATI */
+.job-clickable:active{
+opacity:.75
+}
+
+
+/* =========================
+COMPLETATI
+========================= */
 
 .completed-export-bar{
 display:flex;
@@ -637,7 +715,9 @@ margin-top:5px
 }
 
 
-/* URGENTI */
+/* =========================
+URGENTI
+========================= */
 
 .urgent-page-title{
 color:#d32f2f
@@ -710,7 +790,9 @@ margin-top:5px
 }
 
 
-/* STATI */
+/* =========================
+STATI
+========================= */
 
 .empty{
 background:#fff;
@@ -728,12 +810,9 @@ color:#777
 }
 
 
-/* ==================================================
-   SCHEDA DEL SINGOLO LAVORO
-   IMPORTANTE:
-   È ANCHE .page, QUINDI RIMANE NASCOSTA
-   FINCHÉ NON VIENE APERTA.
-================================================== */
+/* =========================
+SCHEDA SINGOLO LAVORO
+========================= */
 
 .photo-detail-page{
 display:none
@@ -877,9 +956,6 @@ line-height:30px;
 cursor:pointer
 }
 
-
-/* FOTO VUOTE */
-
 .photo-empty{
 padding:28px 15px;
 text-align:center;
@@ -890,7 +966,9 @@ margin-top:12px
 }
 
 
-/* MODALE FOTO */
+/* =========================
+MODALE FOTO
+========================= */
 
 .photo-modal{
 position:fixed;
@@ -966,7 +1044,9 @@ color:#d32f2f
 }
 
 
-/* MOBILE */
+/* =========================
+MOBILE
+========================= */
 
 @media(max-width:600px){
 
@@ -1054,6 +1134,13 @@ border-radius:8px
 
 .photo-grid{
 grid-template-columns:repeat(3,1fr)
+}
+
+.add-top-button{
+width:44px;
+height:44px;
+min-width:44px;
+font-size:29px
 }
 
 }
@@ -1269,7 +1356,10 @@ PUNTO VENDITA
 
 <div id="storePage" class="page">
 
-<div class="topbar">
+
+<!-- TOPBAR CON + -->
+
+<div class="topbar store-topbar">
 
 <button
 class="back-button"
@@ -1281,6 +1371,13 @@ onclick="showHome()"
 <h2 class="page-title">
 Punto vendita
 </h2>
+
+<button
+class="add-top-button"
+onclick="apriAggiungiLavoro()"
+>
+＋
+</button>
 
 </div>
 
@@ -1296,11 +1393,39 @@ id="storePageCategory"
 ></div>
 
 
+
+<!-- =========================
+SCHERMATA AGGIUNGI LAVORO
+NASCONDO INIZIALMENTE
+========================= -->
+
+<div
+id="addWorkPage"
+class="add-work-page"
+>
+
+<div class="topbar">
+
+<button
+class="back-button"
+onclick="chiudiAggiungiLavoro()"
+>
+← Indietro
+</button>
+
+<h2 class="page-title">
+Aggiungi lavoro
+</h2>
+
+</div>
+
+
 <div class="form-card">
 
 <h2>
 Aggiungi lavoro
 </h2>
+
 
 <label>
 Lavoro
@@ -1347,6 +1472,17 @@ onclick="aggiungiLavoro()"
 
 </div>
 
+</div>
+
+
+
+<!-- =========================
+ELENCO LAVORI
+========================= -->
+
+<div
+id="storeJobsArea"
+>
 
 <div class="section-title">
 Lavori del punto vendita
@@ -1357,9 +1493,12 @@ Lavori del punto vendita
 </div>
 
 
+</div>
+
+
 
 <!-- ==================================================
-LAVORI URGENTI
+URGENTI
 ================================================== -->
 
 <div id="urgentPage" class="page">
@@ -1386,7 +1525,7 @@ Lavori urgenti
 
 
 <!-- ==================================================
-LAVORI COMPLETATI
+COMPLETATI
 ================================================== -->
 
 <div id="completedPage" class="page">
@@ -1435,24 +1574,14 @@ Condividi elenco
 <!-- ==================================================
 SCHEDA SINGOLO LAVORO
 
-IMPORTANTE:
-QUI HO INSERITO ANCHE class="page"
-
-PRIMA ERA:
-<div id="photoDetailPage" class="photo-detail-page">
-
-ADESSO È:
-<div id="photoDetailPage" class="page photo-detail-page">
-
-QUINDI NON RIMANE PIÙ VISIBILE
-SOTTO L'ELENCO DEI LAVORI.
+È UNA VERA PAGINA.
+NON APPARE PIÙ SOTTO GLI ELENCHI.
 ================================================== -->
 
 <div
 id="photoDetailPage"
 class="page photo-detail-page"
 >
-
 
 <div class="topbar">
 
@@ -1472,18 +1601,15 @@ Lavoro
 
 <div class="photo-detail-card">
 
-
 <div
 class="photo-detail-store"
 id="photoDetailStore"
 ></div>
 
-
 <div
 class="photo-detail-title"
 id="photoDetailTitle"
 ></div>
-
 
 <div
 class="photo-detail-note"
@@ -1502,7 +1628,6 @@ id="photoDetailNoteInput"
 class="photo-notes-input"
 placeholder="Scrivi qui le note del lavoro..."
 ></textarea>
-
 
 <button
 class="photo-save-notes"
@@ -1531,16 +1656,17 @@ id="photoGrid"
 class="photo-grid"
 ></div>
 
-
 </div>
 
 </div>
 
-
 </div>
 
 
-<!-- FOTO -->
+
+<!-- ==================================================
+INPUT FOTO
+================================================== -->
 
 <input
 id="photoInput"
@@ -1558,7 +1684,10 @@ hidden
 >
 
 
-<!-- MODALE FOTO -->
+
+<!-- ==================================================
+MODALE FOTO
+================================================== -->
 
 <div
 id="photoModal"
@@ -1578,13 +1707,11 @@ onclick="chiudiFotoGrande()"
 ×
 </button>
 
-
 <img
 id="photoModalImage"
 class="photo-modal-image"
 alt="Foto lavoro"
 >
-
 
 <div class="photo-modal-actions">
 
@@ -1610,10 +1737,14 @@ Elimina
 
 
 
-<!-- FIREBASE -->
+<!-- ==================================================
+FIREBASE
+================================================== -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1623,34 +1754,45 @@ Elimina
 
 
 /* ==================================================
-FIREBASE
+FIREBASE CONFIG
 ================================================== */
 
 const firebaseConfig={
 
-apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+apiKey:
+"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
 
-authDomain:"ediservice-bb88c.firebaseapp.com",
+authDomain:
+"ediservice-bb88c.firebaseapp.com",
 
-projectId:"ediservice-bb88c",
+projectId:
+"ediservice-bb88c",
 
-storageBucket:"ediservice-bb88c.firebasestorage.app",
+storageBucket:
+"ediservice-bb88c.firebasestorage.app",
 
-messagingSenderId:"420418885149",
+messagingSenderId:
+"420418885149",
 
-appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
+appId:
+"1:420418885149:web:2a07ba2ddfdafd31c798f4",
 
-measurementId:"G-BM489YWSY4"
+measurementId:
+"G-BM489YWSY4"
 
 };
 
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(
+firebaseConfig
+);
 
 
-const auth=firebase.auth();
+const auth=
+firebase.auth();
 
-const db=firebase.firestore();
+const db=
+firebase.firestore();
 
 
 
@@ -1661,14 +1803,11 @@ SUPABASE
 const SUPABASE_URL=
 "https://ncfznorfwniqykuxymxd.supabase.co";
 
-
 const SUPABASE_PUBLISHABLE_KEY=
 "sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
 
-
 const SUPABASE_BUCKET=
 "foto-lavori";
-
 
 const supabaseClient=
 window.supabase.createClient(
@@ -1748,7 +1887,8 @@ let lavoroFotoAperto=null;
 
 let fotoCorrente=null;
 
-const signedUrlCache=new Map();
+const signedUrlCache=
+new Map();
 
 
 
@@ -1791,7 +1931,6 @@ s.className=
 "firebase-status status-error";
 
 }
-
 
 
 auth.signInAnonymously()
@@ -1879,7 +2018,8 @@ num.id=
 "count-"+
 encodeURIComponent(punto);
 
-num.textContent="0";
+num.textContent=
+"0";
 
 
 b.append(
@@ -1903,9 +2043,13 @@ lista.appendChild(b);
 });
 
 
-gruppo.appendChild(lista);
+gruppo.appendChild(
+lista
+);
 
-c.appendChild(gruppo);
+c.appendChild(
+gruppo
+);
 
 });
 
@@ -1920,25 +2064,25 @@ ASCOLTA LAVORI
 function ascoltaLavori(){
 
 db.collection("lavori")
-
 .where(
 "attivo",
 "==",
 true
 )
-
 .onSnapshot(
 
 snapshot=>{
 
 lavori=
-snapshot.docs.map(doc=>({
+snapshot.docs.map(
+doc=>({
 
 id:doc.id,
 
 ...doc.data()
 
-}));
+})
+);
 
 
 aggiornaTutto();
@@ -2002,16 +2146,13 @@ completati.length;
 
 aggiornaNumeriPuntiVendita();
 
-
 renderTodoJobs(
 daFare
 );
 
-
 renderUrgentJobs(
 urgenti
 );
-
 
 renderCompletedJobs(
 completati
@@ -2060,7 +2201,8 @@ encodeURIComponent(punto)
 
 if(e){
 
-e.textContent=n;
+e.textContent=
+n;
 
 }
 
@@ -2080,10 +2222,16 @@ function mostraPagina(id){
 
 document
 .querySelectorAll(".page")
-.forEach(
-p=>
-p.classList.remove("active")
+.forEach(p=>{
+
+p.classList.remove(
+"active"
 );
+
+p.style.display=
+"none";
+
+});
 
 
 const p=
@@ -2092,7 +2240,12 @@ document.getElementById(id);
 
 if(p){
 
-p.classList.add("active");
+p.style.display=
+"block";
+
+p.classList.add(
+"active"
+);
 
 window.scrollTo(
 0,
@@ -2104,11 +2257,282 @@ window.scrollTo(
 }
 
 
+
+/* ==================================================
+HOME
+================================================== */
+
 function showHome(){
+
+chiudiAggiungiLavoroSilenzioso();
+
+lavoroFotoAperto=
+null;
+
+fotoCorrente=
+null;
 
 mostraPagina(
 "homePage"
 );
+
+}
+
+
+
+/* ==================================================
+APRI PUNTO VENDITA
+================================================== */
+
+function apriPuntoVendita(
+punto,
+categoria
+){
+
+/* Chiude eventuale scheda lavoro */
+
+lavoroFotoAperto=
+null;
+
+fotoCorrente=
+null;
+
+
+/* Chiude schermata aggiungi */
+
+chiudiAggiungiLavoroSilenzioso();
+
+
+/* Seleziona punto */
+
+puntoSelezionato=
+punto;
+
+
+/* Nome */
+
+document.getElementById(
+"storePageName"
+).textContent=
+punto;
+
+
+/* Categoria */
+
+document.getElementById(
+"storePageCategory"
+).textContent=
+categoria;
+
+
+/* Pulisce campi */
+
+document.getElementById(
+"lavoroInput"
+).value="";
+
+document.getElementById(
+"noteInput"
+).value="";
+
+document.getElementById(
+"urgenteInput"
+).checked=
+false;
+
+
+/* Mostra punto vendita */
+
+mostraPagina(
+"storePage"
+);
+
+
+/* Mostra elenco */
+
+document.getElementById(
+"storeJobsArea"
+).style.display=
+"block";
+
+
+/* Carica lavori */
+
+renderStoreJobs(
+punto
+);
+
+}
+
+
+
+/* ==================================================
+APRI AGGIUNGI LAVORO
+================================================== */
+
+function apriAggiungiLavoro(){
+
+const addPage=
+document.getElementById(
+"addWorkPage"
+);
+
+const jobsArea=
+document.getElementById(
+"storeJobsArea"
+);
+
+
+if(!addPage)
+return;
+
+
+addPage.classList.add(
+"active"
+);
+
+
+jobsArea.style.display=
+"none";
+
+
+/* Nasconde il + */
+
+const plus=
+document.querySelector(
+".add-top-button"
+);
+
+if(plus){
+
+plus.style.display=
+"none";
+
+}
+
+
+window.scrollTo(
+0,
+0
+);
+
+
+setTimeout(()=>{
+
+const input=
+document.getElementById(
+"lavoroInput"
+);
+
+if(input)
+input.focus();
+
+},100);
+
+}
+
+
+
+/* ==================================================
+CHIUDI AGGIUNGI LAVORO
+================================================== */
+
+function chiudiAggiungiLavoro(){
+
+const addPage=
+document.getElementById(
+"addWorkPage"
+);
+
+const jobsArea=
+document.getElementById(
+"storeJobsArea"
+);
+
+
+if(addPage){
+
+addPage.classList.remove(
+"active"
+);
+
+}
+
+
+if(jobsArea){
+
+jobsArea.style.display=
+"block";
+
+}
+
+
+/* Riappare il + */
+
+const plus=
+document.querySelector(
+".add-top-button"
+);
+
+if(plus){
+
+plus.style.display=
+"flex";
+
+}
+
+
+window.scrollTo(
+0,
+0
+);
+
+}
+
+
+/* Versione senza effetti visibili */
+
+function chiudiAggiungiLavoroSilenzioso(){
+
+const addPage=
+document.getElementById(
+"addWorkPage"
+);
+
+const jobsArea=
+document.getElementById(
+"storeJobsArea"
+);
+
+
+if(addPage){
+
+addPage.classList.remove(
+"active"
+);
+
+}
+
+
+if(jobsArea){
+
+jobsArea.style.display=
+"block";
+
+}
+
+
+const plus=
+document.querySelector(
+".add-top-button"
+);
+
+if(plus){
+
+plus.style.display=
+"flex";
+
+}
 
 }
 
@@ -2166,19 +2590,25 @@ return(
 
 (x.punto||"")
 .toLowerCase()
-.includes(ricercaLavori)
+.includes(
+ricercaLavori
+)
 
 ||
 
 (x.testo||"")
 .toLowerCase()
-.includes(ricercaLavori)
+.includes(
+ricercaLavori
+)
 
 ||
 
 (x.note||"")
 .toLowerCase()
-.includes(ricercaLavori)
+.includes(
+ricercaLavori
+)
 
 );
 
@@ -2265,17 +2695,20 @@ puntiVendita[cat];
 const catJobs=
 lista.filter(
 x=>
-punti.includes(x.punto)
+punti.includes(
+x.punto
+)
 );
 
 
 if(!catJobs.length)
-
 return;
 
 
 const t=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 t.className=
 "group-title";
@@ -2296,26 +2729,31 @@ x.punto===punto
 
 
 if(!jobs.length)
-
 return;
 
 
 const g=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 g.className=
 "todo-store-group";
 
 
 const h=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 h.className=
 "todo-store-header";
 
 
 const n=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 n.className=
 "todo-store-name";
@@ -2325,7 +2763,9 @@ punto;
 
 
 const num=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 num.className=
 "todo-store-count";
@@ -2369,35 +2809,45 @@ RIGA LAVORO
 function creaTodoJobRow(lavoro){
 
 const r=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 r.className=
 "todo-job-row";
 
 
 const main=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 main.className=
 "todo-job-main job-clickable";
 
 
 const dot=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 dot.className=
 "todo-job-dot";
 
 
 const content=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 content.className=
 "todo-job-content";
 
 
 const text=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 text.className=
 "todo-job-text";
@@ -2414,7 +2864,9 @@ text
 if(lavoro.note){
 
 const note=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 note.className=
 "todo-job-note";
@@ -2433,7 +2885,9 @@ note
 if(lavoro.urgente===true){
 
 const badge=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 badge.className=
 "todo-job-urgent";
@@ -2469,14 +2923,18 @@ main
 
 
 const actions=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 actions.className=
 "symbol-actions";
 
 
 const complete=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 complete.className=
 "symbol-btn symbol-complete";
@@ -2499,9 +2957,10 @@ lavoro.id
 };
 
 
-
 const urgent=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 urgent.className=
 "symbol-btn symbol-urgent";
@@ -2529,9 +2988,10 @@ lavoro.urgente===true
 };
 
 
-
 const del=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 del.className=
 "symbol-btn symbol-delete";
@@ -2554,9 +3014,10 @@ lavoro.id
 };
 
 
-
 const share=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 share.className=
 "symbol-btn symbol-share";
@@ -2593,59 +3054,6 @@ actions
 
 
 return r;
-
-}
-
-
-
-/* ==================================================
-APRI PUNTO VENDITA
-================================================== */
-
-function apriPuntoVendita(
-punto,
-categoria
-){
-
-puntoSelezionato=
-punto;
-
-
-document.getElementById(
-"storePageName"
-).textContent=
-punto;
-
-
-document.getElementById(
-"storePageCategory"
-).textContent=
-categoria;
-
-
-document.getElementById(
-"lavoroInput"
-).value="";
-
-
-document.getElementById(
-"noteInput"
-).value="";
-
-
-document.getElementById(
-"urgenteInput"
-).checked=false;
-
-
-renderStoreJobs(
-punto
-);
-
-
-mostraPagina(
-"storePage"
-);
 
 }
 
@@ -2696,13 +3104,15 @@ creaStoreJobCard(job)
 
 
 /* ==================================================
-SCHEDA LAVORO PUNTO VENDITA
+CARD LAVORO PUNTO VENDITA
 ================================================== */
 
 function creaStoreJobCard(lavoro){
 
 const card=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 card.className=
 "job-card job-clickable";
@@ -2718,7 +3128,9 @@ lavoro.id
 
 
 const text=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 text.className=
 "job-text";
@@ -2735,7 +3147,9 @@ text
 if(lavoro.note){
 
 const note=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 note.className=
 "job-note";
@@ -2752,7 +3166,9 @@ note
 
 
 const actions=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 actions.className=
 "symbol-actions";
@@ -2762,7 +3178,9 @@ actions.style.marginTop=
 
 
 const complete=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 complete.className=
 "symbol-btn symbol-complete";
@@ -2785,9 +3203,10 @@ lavoro.id
 };
 
 
-
 const urgent=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 urgent.className=
 "symbol-btn symbol-urgent";
@@ -2815,9 +3234,10 @@ lavoro.urgente===true
 };
 
 
-
 const del=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 del.className=
 "symbol-btn symbol-delete";
@@ -2865,7 +3285,6 @@ AGGIUNGI LAVORO
 function aggiungiLavoro(){
 
 if(!puntoSelezionato)
-
 return;
 
 
@@ -2960,12 +3379,20 @@ lavoroInput.value="";
 
 noteInput.value="";
 
-urgentInput.checked=false;
+urgentInput.checked=
+false;
 
-button.disabled=false;
+button.disabled=
+false;
 
 button.textContent=
 "+ Aggiungi lavoro";
+
+
+/* Torna automaticamente
+all'elenco del punto vendita */
+
+chiudiAggiungiLavoro();
 
 })
 
@@ -2977,7 +3404,8 @@ alert(
 "Errore nel salvataggio del lavoro."
 );
 
-button.disabled=false;
+button.disabled=
+false;
 
 button.textContent=
 "+ Aggiungi lavoro";
@@ -3009,7 +3437,9 @@ function completaLavoro(id){
 db.collection("lavori")
 .doc(id)
 .update({
+
 completato:true
+
 })
 
 .catch(()=>{
@@ -3033,7 +3463,9 @@ function daRifare(id){
 db.collection("lavori")
 .doc(id)
 .update({
+
 completato:false
+
 })
 
 .catch(()=>{
@@ -3060,7 +3492,10 @@ giaUrgente
 db.collection("lavori")
 .doc(id)
 .update({
-urgente:!giaUrgente
+
+urgente:
+!giaUrgente
+
 })
 
 .catch(()=>{
@@ -3076,7 +3511,7 @@ alert(
 
 
 /* ==================================================
-ELIMINA
+ELIMINA LAVORO
 ================================================== */
 
 function eliminaLavoro(id){
@@ -3091,7 +3526,9 @@ return;
 db.collection("lavori")
 .doc(id)
 .update({
+
 attivo:false
+
 })
 
 .catch(()=>{
@@ -3107,7 +3544,7 @@ alert(
 
 
 /* ==================================================
-LAVORI URGENTI
+URGENTI
 ================================================== */
 
 function renderUrgentJobs(lista){
@@ -3140,17 +3577,20 @@ puntiVendita[cat];
 const catJobs=
 lista.filter(
 x=>
-punti.includes(x.punto)
+punti.includes(
+x.punto
+)
 );
 
 
 if(!catJobs.length)
-
 return;
 
 
 const t=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 t.className=
 "group-title";
@@ -3171,26 +3611,31 @@ x.punto===punto
 
 
 if(!jobs.length)
-
 return;
 
 
 const g=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 g.className=
 "todo-store-group";
 
 
 const h=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 h.className=
 "urgent-store-header";
 
 
 const n=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 n.className=
 "urgent-store-name";
@@ -3200,7 +3645,9 @@ punto;
 
 
 const num=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 num.className=
 "urgent-store-count";
@@ -3214,14 +3661,15 @@ n,
 num
 );
 
-
 g.appendChild(h);
 
 
 jobs.forEach(job=>{
 
 const r=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 r.className=
 "urgent-job-row job-clickable";
@@ -3237,21 +3685,27 @@ job.id
 
 
 const dot=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 dot.className=
 "urgent-job-dot";
 
 
 const content=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 content.className=
 "urgent-job-content";
 
 
 const text=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 text.className=
 "urgent-job-text";
@@ -3268,7 +3722,9 @@ text
 if(job.note){
 
 const note=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 note.className=
 "urgent-job-note";
@@ -3285,14 +3741,18 @@ note
 
 
 const actions=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 actions.className=
 "symbol-actions";
 
 
 const complete=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 complete.className=
 "symbol-btn symbol-complete";
@@ -3315,9 +3775,10 @@ job.id
 };
 
 
-
 const urgent=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 urgent.className=
 "symbol-btn symbol-urgent";
@@ -3341,9 +3802,10 @@ true
 };
 
 
-
 const del=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 del.className=
 "symbol-btn symbol-delete";
@@ -3366,9 +3828,10 @@ job.id
 };
 
 
-
 const share=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 share.className=
 "symbol-btn symbol-share";
@@ -3428,7 +3891,6 @@ INVIA LAVORO
 async function inviaLavoro(lavoro){
 
 if(!lavoro)
-
 return;
 
 
@@ -3503,18 +3965,14 @@ await getSignedUrl(
 paths[i]
 );
 
-
 if(!url)
-
 continue;
 
 
 const response=
 await fetch(url);
 
-
 if(!response.ok)
-
 continue;
 
 
@@ -3613,7 +4071,6 @@ if(
 error &&
 error.name==="AbortError"
 )
-
 return;
 
 
@@ -3648,7 +4105,7 @@ testo
 
 
 /* ==================================================
-COMPLETATI PER PUNTO
+COMPLETATI
 ================================================== */
 
 function listaCompletatiPerPunto(){
@@ -3678,12 +4135,14 @@ x.punto===punto
 );
 
 
-if(jobs.length)
+if(jobs.length){
 
 gruppi.set(
 punto,
 jobs
 );
+
+}
 
 });
 
@@ -3695,10 +4154,6 @@ return gruppi;
 }
 
 
-
-/* ==================================================
-TESTO COMPLETATI
-================================================== */
 
 function creaElencoCompletatiTesto(){
 
@@ -3761,10 +4216,6 @@ return testo.trim();
 
 
 
-/* ==================================================
-SALVA COMPLETATI
-================================================== */
-
 function salvaElencoCompletati(){
 
 const testo=
@@ -3782,11 +4233,15 @@ type:
 
 
 const url=
-URL.createObjectURL(blob);
+URL.createObjectURL(
+blob
+);
 
 
 const a=
-document.createElement("a");
+document.createElement(
+"a"
+);
 
 a.href=
 url;
@@ -3804,7 +4259,9 @@ a.remove();
 
 setTimeout(
 ()=>{
-URL.revokeObjectURL(url);
+URL.revokeObjectURL(
+url
+);
 },
 1000
 );
@@ -3812,10 +4269,6 @@ URL.revokeObjectURL(url);
 }
 
 
-
-/* ==================================================
-CONDIVIDI COMPLETATI
-================================================== */
 
 async function condividiElencoCompletati(){
 
@@ -3868,7 +4321,6 @@ if(
 error &&
 error.name==="AbortError"
 )
-
 return;
 
 
@@ -3933,17 +4385,20 @@ puntiVendita[cat];
 const catJobs=
 lista.filter(
 x=>
-punti.includes(x.punto)
+punti.includes(
+x.punto
+)
 );
 
 
 if(!catJobs.length)
-
 return;
 
 
 const t=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 t.className=
 "group-title";
@@ -3964,26 +4419,31 @@ x.punto===punto
 
 
 if(!jobs.length)
-
 return;
 
 
 const g=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 g.className=
 "completed-job";
 
 
 const h=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 h.className=
 "completed-store-header";
 
 
 const n=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 n.className=
 "completed-store-name";
@@ -3993,7 +4453,9 @@ punto;
 
 
 const num=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 num.className=
 "completed-store-count";
@@ -4007,14 +4469,15 @@ n,
 num
 );
 
-
 g.appendChild(h);
 
 
 jobs.forEach(job=>{
 
 const r=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 r.className=
 "completed-job-row job-clickable";
@@ -4030,7 +4493,9 @@ job.id
 
 
 const check=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 check.className=
 "completed-check";
@@ -4040,14 +4505,18 @@ check.textContent=
 
 
 const content=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 content.className=
 "completed-job-content";
 
 
 const text=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 text.className=
 "completed-job-text";
@@ -4064,7 +4533,9 @@ text
 if(job.note){
 
 const note=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 note.className=
 "completed-job-note";
@@ -4081,14 +4552,18 @@ note
 
 
 const actions=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 actions.className=
 "symbol-actions";
 
 
 const redo=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 redo.className=
 "symbol-btn symbol-redo";
@@ -4111,9 +4586,10 @@ job.id
 };
 
 
-
 const del=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 del.className=
 "symbol-btn symbol-delete";
@@ -4171,7 +4647,6 @@ NOTE LAVORO
 function salvaNoteLavoro(){
 
 if(!lavoroFotoAperto)
-
 return;
 
 
@@ -4232,7 +4707,7 @@ alert(
 
 
 /* ==================================================
-FOTO PATHS
+FOTO PATH
 ================================================== */
 
 function fotoPaths(lavoro){
@@ -4244,6 +4719,7 @@ lavoro.foto
 lavoro.foto
 :
 [];
+
 
 }
 
@@ -4263,7 +4739,6 @@ x.id===id
 
 
 if(!lavoro)
-
 return;
 
 
@@ -4312,7 +4787,7 @@ renderFotoLavoro();
 
 
 /* ==================================================
-CHIUDI SCHEDA
+CHIUDI SCHEDA LAVORO
 ================================================== */
 
 function chiudiSchedaLavoro(){
@@ -4324,17 +4799,26 @@ fotoCorrente=
 null;
 
 
-if(puntoSelezionato)
+/* Se arrivava dal punto vendita */
+if(puntoSelezionato){
 
 mostraPagina(
 "storePage"
 );
 
-else
+renderStoreJobs(
+puntoSelezionato
+);
+
+}
+
+else{
 
 mostraPagina(
 "todoPage"
 );
+
+}
 
 }
 
@@ -4351,12 +4835,10 @@ document.getElementById(
 "photoGrid"
 );
 
-
 grid.innerHTML="";
 
 
 if(!lavoroFotoAperto)
-
 return;
 
 
@@ -4380,14 +4862,18 @@ paths.forEach(
 (path,index)=>{
 
 const box=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 box.className=
 "photo-thumb";
 
 
 const img=
-document.createElement("img");
+document.createElement(
+"img"
+);
 
 img.alt=
 "Foto "+
@@ -4400,7 +4886,9 @@ img
 
 
 const del=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 del.className=
 "photo-thumb-delete";
@@ -4446,7 +4934,6 @@ getSignedUrl(path)
 .then(url=>{
 
 if(url)
-
 img.src=url;
 
 });
@@ -4464,12 +4951,13 @@ SIGNED URL
 async function getSignedUrl(path){
 
 if(!path)
-
 return null;
 
 
 const cached=
-signedUrlCache.get(path);
+signedUrlCache.get(
+path
+);
 
 
 if(
@@ -4486,7 +4974,9 @@ error
 }=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
+.from(
+SUPABASE_BUCKET
+)
 .createSignedUrl(
 path,
 3600
@@ -4533,7 +5023,6 @@ SELEZIONA FOTO
 function selezionaFoto(){
 
 if(!lavoroFotoAperto)
-
 return;
 
 
@@ -4545,10 +5034,8 @@ document.getElementById(
 
 input.value="";
 
-
 input.onchange=
 caricaFoto;
-
 
 input.click();
 
@@ -4563,7 +5050,9 @@ COMPRIMI FOTO
 async function comprimiFoto(file){
 
 if(
-!file.type.startsWith("image/")
+!file.type.startsWith(
+"image/"
+)
 )
 
 throw new Error(
@@ -4572,7 +5061,9 @@ throw new Error(
 
 
 const url=
-URL.createObjectURL(file);
+URL.createObjectURL(
+file
+);
 
 
 const img=
@@ -4645,7 +5136,6 @@ document.createElement(
 "canvas"
 );
 
-
 canvas.width=
 w;
 
@@ -4701,7 +5191,6 @@ if(
 !files.length ||
 !lavoroFotoAperto
 )
-
 return;
 
 
@@ -4738,7 +5227,9 @@ error
 }=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
+.from(
+SUPABASE_BUCKET
+)
 .upload(
 
 path,
@@ -4761,7 +5252,6 @@ upsert:false
 
 
 if(error)
-
 throw error;
 
 
@@ -4772,7 +5262,9 @@ await db.collection("lavori")
 foto:
 firebase.firestore
 .FieldValue
-.arrayUnion(path)
+.arrayUnion(
+path
+)
 
 });
 
@@ -4782,13 +5274,9 @@ firebase.firestore
 alert(
 
 files.length===1
-
 ?
-
 "Foto aggiunta."
-
 :
-
 files.length+
 " foto aggiunte."
 
@@ -4799,7 +5287,6 @@ files.length+
 catch(error){
 
 console.error(error);
-
 
 alert(
 "Errore nel caricamento: "+
@@ -4829,7 +5316,6 @@ path
 
 
 if(!url)
-
 return;
 
 
@@ -4859,7 +5345,6 @@ if(
 event &&
 event.target!==event.currentTarget
 )
-
 return;
 
 
@@ -4893,7 +5378,6 @@ if(
 !fotoCorrente ||
 !lavoroFotoAperto
 )
-
 return;
 
 
@@ -4905,10 +5389,8 @@ document.getElementById(
 
 input.value="";
 
-
 input.onchange=
 eseguiSostituzioneFoto;
-
 
 input.click();
 
@@ -4917,7 +5399,7 @@ input.click();
 
 
 /* ==================================================
-ESEGUI SOSTITUZIONE
+ESEGUI SOSTITUZIONE FOTO
 ================================================== */
 
 async function eseguiSostituzioneFoto(e){
@@ -4931,13 +5413,11 @@ if(
 !fotoCorrente ||
 !lavoroFotoAperto
 )
-
 return;
 
 
 const oldPath=
 fotoCorrente;
-
 
 const lavoro=
 lavoroFotoAperto;
@@ -4966,7 +5446,9 @@ Math.random()
 const up=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
+.from(
+SUPABASE_BUCKET
+)
 .upload(
 
 newPath,
@@ -4989,7 +5471,6 @@ upsert:false
 
 
 if(up.error)
-
 throw up.error;
 
 
@@ -5023,7 +5504,9 @@ oldPath
 
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
+.from(
+SUPABASE_BUCKET
+)
 .remove(
 [oldPath]
 );
@@ -5069,7 +5552,6 @@ catch(error){
 
 console.error(error);
 
-
 alert(
 "Errore nella sostituzione: "+
 (error.message||error)
@@ -5093,7 +5575,6 @@ if(
 "Vuoi eliminare questa foto?"
 )
 )
-
 return;
 
 
@@ -5108,14 +5589,15 @@ error
 }=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
+.from(
+SUPABASE_BUCKET
+)
 .remove(
 [path]
 );
 
 
 if(error)
-
 throw error;
 
 
@@ -5165,7 +5647,6 @@ catch(error){
 
 console.error(error);
 
-
 alert(
 "Errore nell'eliminazione della foto: "+
 (error.message||error)
@@ -5183,11 +5664,13 @@ ELIMINA FOTO CORRENTE
 
 async function eliminaFotoCorrente(){
 
-if(fotoCorrente)
+if(fotoCorrente){
 
 await eliminaFoto(
 fotoCorrente
 );
+
+}
 
 }
 
@@ -5240,7 +5723,6 @@ mostraPagina(
 
 }
 );
-
 
 
 document.getElementById(
