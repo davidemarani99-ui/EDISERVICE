@@ -3,14 +3,30 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0"
+>
 
 <title>EDISERVICE</title>
 
-<link rel="icon" type="image/png" href="ediservice-icon.png">
-<link rel="apple-touch-icon" href="ediservice-icon.png">
+<link
+rel="icon"
+type="image/png"
+href="ediservice-icon.png"
+>
+
+<link
+rel="apple-touch-icon"
+href="ediservice-icon.png"
+>
 
 <style>
+
+/* ==================================================
+   BASE
+================================================== */
 
 *{
 box-sizing:border-box;
@@ -22,10 +38,18 @@ margin:0;
 padding:0;
 background:#fff;
 color:#222;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+Arial,
+sans-serif
 }
 
-button,input,textarea{
+button,
+input,
+textarea{
 font-family:inherit
 }
 
@@ -35,9 +59,10 @@ margin:auto;
 padding:20px
 }
 
-/* =========================
-HEADER
-========================= */
+
+/* ==================================================
+   HEADER
+================================================== */
 
 .header{
 text-align:center;
@@ -69,9 +94,9 @@ color:#c62828
 }
 
 
-/* =========================
-PAGINE
-========================= */
+/* ==================================================
+   PAGINE
+================================================== */
 
 .page{
 display:none
@@ -82,9 +107,23 @@ display:block
 }
 
 
-/* =========================
-HOME
-========================= */
+/*
+IMPORTANTE:
+anche la scheda del singolo lavoro
+viene nascosta quando si cambia pagina.
+*/
+.photo-detail-page{
+display:none
+}
+
+.photo-detail-page.active{
+display:block
+}
+
+
+/* ==================================================
+   CARTELLE HOME
+================================================== */
 
 .summary,
 .urgent-folder,
@@ -152,9 +191,9 @@ margin-left:15px
 }
 
 
-/* =========================
-TITOLI
-========================= */
+/* ==================================================
+   TITOLI
+================================================== */
 
 .section-title{
 font-size:23px;
@@ -178,9 +217,9 @@ box-shadow:0 2px 7px rgba(0,0,0,.06)
 }
 
 
-/* =========================
-PUNTI VENDITA
-========================= */
+/* ==================================================
+   PUNTI VENDITA
+================================================== */
 
 .store-list{
 display:flex;
@@ -229,19 +268,15 @@ margin-left:12px
 }
 
 
-/* =========================
-TOPBAR
-========================= */
+/* ==================================================
+   TOPBAR
+================================================== */
 
 .topbar{
 display:flex;
 align-items:center;
 gap:10px;
 margin-bottom:20px
-}
-
-.store-topbar{
-width:100%
 }
 
 .back-button{
@@ -261,37 +296,51 @@ margin:0
 }
 
 
-/* =========================
-+ IN ALTO A DESTRA
-========================= */
+/* ==================================================
+   + AGGIUNGI LAVORO - PUNTO VENDITA
+================================================== */
 
-.add-top-button{
-margin-left:auto;
-width:46px;
-height:46px;
-min-width:46px;
+.store-topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-bottom:20px
+}
+
+.store-topbar-left{
+display:flex;
+align-items:center;
+gap:10px;
+min-width:0
+}
+
+.add-work-toggle{
+width:60px;
+height:60px;
 border:0;
-border-radius:13px;
+border-radius:18px;
 background:#222;
 color:#fff;
-font-size:30px;
-font-weight:500;
+font-size:42px;
+font-weight:300;
 line-height:1;
 display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-box-shadow:0 3px 8px rgba(0,0,0,.12)
+box-shadow:0 4px 12px rgba(0,0,0,.18);
+flex-shrink:0
 }
 
-.add-top-button:active{
-transform:scale(.92)
+.add-work-toggle:active{
+transform:scale(.94)
 }
 
 
-/* =========================
-RICERCA
-========================= */
+/* ==================================================
+   RICERCA
+================================================== */
 
 .search-box{
 position:relative;
@@ -333,9 +382,9 @@ cursor:pointer
 }
 
 
-/* =========================
-PUNTO VENDITA
-========================= */
+/* ==================================================
+   NOME PUNTO VENDITA
+================================================== */
 
 .store-name{
 color:#d32f2f;
@@ -350,17 +399,9 @@ margin-bottom:20px
 }
 
 
-/* =========================
-FORM AGGIUNGI
-========================= */
-
-.add-work-page{
-display:none
-}
-
-.add-work-page.active{
-display:block
-}
+/* ==================================================
+   FORM AGGIUNGI LAVORO
+================================================== */
 
 .form-card{
 background:#fff;
@@ -372,6 +413,14 @@ box-shadow:0 2px 8px rgba(0,0,0,.06)
 
 .form-card h2{
 margin-top:0
+}
+
+.add-work-form{
+display:none
+}
+
+.add-work-form.active{
+display:block
 }
 
 label{
@@ -421,9 +470,9 @@ cursor:pointer
 }
 
 
-/* =========================
-LAVORI DA FARE
-========================= */
+/* ==================================================
+   LAVORI DA FARE
+================================================== */
 
 .todo-store-group{
 background:#fff;
@@ -516,9 +565,9 @@ margin-top:7px
 }
 
 
-/* =========================
-PULSANTI
-========================= */
+/* ==================================================
+   AZIONI
+================================================== */
 
 .symbol-actions{
 display:flex;
@@ -574,9 +623,9 @@ font-size:15px
 }
 
 
-/* =========================
-SCHEDA LAVORO PUNTO VENDITA
-========================= */
+/* ==================================================
+   CARD LAVORO PUNTO VENDITA
+================================================== */
 
 .job-card{
 background:#fff;
@@ -598,18 +647,10 @@ color:#777;
 font-size:14px
 }
 
-.job-clickable{
-cursor:pointer
-}
 
-.job-clickable:active{
-opacity:.75
-}
-
-
-/* =========================
-COMPLETATI
-========================= */
+/* ==================================================
+   COMPLETATI
+================================================== */
 
 .completed-export-bar{
 display:flex;
@@ -715,9 +756,9 @@ margin-top:5px
 }
 
 
-/* =========================
-URGENTI
-========================= */
+/* ==================================================
+   URGENTI
+================================================== */
 
 .urgent-page-title{
 color:#d32f2f
@@ -790,9 +831,9 @@ margin-top:5px
 }
 
 
-/* =========================
-STATI
-========================= */
+/* ==================================================
+   GENERALE
+================================================== */
 
 .empty{
 background:#fff;
@@ -809,18 +850,18 @@ padding:30px;
 color:#777
 }
 
-
-/* =========================
-SCHEDA SINGOLO LAVORO
-========================= */
-
-.photo-detail-page{
-display:none
+.job-clickable{
+cursor:pointer
 }
 
-.photo-detail-page.active{
-display:block
+.job-clickable:active{
+opacity:.75
 }
+
+
+/* ==================================================
+   SCHEDA SINGOLO LAVORO
+================================================== */
 
 .photo-detail-card{
 background:#fff;
@@ -966,9 +1007,9 @@ margin-top:12px
 }
 
 
-/* =========================
-MODALE FOTO
-========================= */
+/* ==================================================
+   MODALE FOTO
+================================================== */
 
 .photo-modal{
 position:fixed;
@@ -1044,9 +1085,9 @@ color:#d32f2f
 }
 
 
-/* =========================
-MOBILE
-========================= */
+/* ==================================================
+   MOBILE
+================================================== */
 
 @media(max-width:600px){
 
@@ -1132,15 +1173,15 @@ font-size:16px;
 border-radius:8px
 }
 
-.photo-grid{
-grid-template-columns:repeat(3,1fr)
+.add-work-toggle{
+width:56px;
+height:56px;
+font-size:38px;
+border-radius:17px
 }
 
-.add-top-button{
-width:44px;
-height:44px;
-min-width:44px;
-font-size:29px
+.photo-grid{
+grid-template-columns:repeat(3,1fr)
 }
 
 }
@@ -1159,6 +1200,12 @@ gap:3px;
 margin-left:5px
 }
 
+.add-work-toggle{
+width:52px;
+height:52px;
+font-size:36px
+}
+
 }
 
 </style>
@@ -1171,7 +1218,7 @@ margin-left:5px
 
 
 <!-- ==================================================
-HOME
+     HOME
 ================================================== -->
 
 <div id="homePage" class="page active">
@@ -1297,7 +1344,7 @@ Punti vendita
 
 
 <!-- ==================================================
-LAVORI DA FARE
+     LAVORI DA FARE
 ================================================== -->
 
 <div id="todoPage" class="page">
@@ -1351,15 +1398,15 @@ Caricamento...
 
 
 <!-- ==================================================
-PUNTO VENDITA
+     PUNTO VENDITA
 ================================================== -->
 
 <div id="storePage" class="page">
 
 
-<!-- TOPBAR CON + -->
+<div class="store-topbar">
 
-<div class="topbar store-topbar">
+<div class="store-topbar-left">
 
 <button
 class="back-button"
@@ -1372,11 +1419,16 @@ onclick="showHome()"
 Punto vendita
 </h2>
 
+</div>
+
+
 <button
-class="add-top-button"
-onclick="apriAggiungiLavoro()"
+class="add-work-toggle"
+id="addWorkToggle"
+onclick="toggleAddWorkForm()"
+aria-label="Aggiungi lavoro"
 >
-＋
++
 </button>
 
 </div>
@@ -1393,34 +1445,12 @@ id="storePageCategory"
 ></div>
 
 
-
-<!-- =========================
-SCHERMATA AGGIUNGI LAVORO
-NASCONDO INIZIALMENTE
-========================= -->
+<!-- FORM NASCOSTO FINO A QUANDO SI PREME + -->
 
 <div
-id="addWorkPage"
-class="add-work-page"
+class="form-card add-work-form"
+id="addWorkForm"
 >
-
-<div class="topbar">
-
-<button
-class="back-button"
-onclick="chiudiAggiungiLavoro()"
->
-← Indietro
-</button>
-
-<h2 class="page-title">
-Aggiungi lavoro
-</h2>
-
-</div>
-
-
-<div class="form-card">
 
 <h2>
 Aggiungi lavoro
@@ -1472,17 +1502,6 @@ onclick="aggiungiLavoro()"
 
 </div>
 
-</div>
-
-
-
-<!-- =========================
-ELENCO LAVORI
-========================= -->
-
-<div
-id="storeJobsArea"
->
 
 <div class="section-title">
 Lavori del punto vendita
@@ -1490,15 +1509,13 @@ Lavori del punto vendita
 
 <div id="storeJobs"></div>
 
-</div>
-
 
 </div>
 
 
 
 <!-- ==================================================
-URGENTI
+     LAVORI URGENTI
 ================================================== -->
 
 <div id="urgentPage" class="page">
@@ -1525,7 +1542,7 @@ Lavori urgenti
 
 
 <!-- ==================================================
-COMPLETATI
+     LAVORI COMPLETATI
 ================================================== -->
 
 <div id="completedPage" class="page">
@@ -1572,15 +1589,12 @@ Condividi elenco
 
 
 <!-- ==================================================
-SCHEDA SINGOLO LAVORO
-
-È UNA VERA PAGINA.
-NON APPARE PIÙ SOTTO GLI ELENCHI.
+     SCHEDA DEL SINGOLO LAVORO
 ================================================== -->
 
 <div
 id="photoDetailPage"
-class="page photo-detail-page"
+class="photo-detail-page"
 >
 
 <div class="topbar">
@@ -1601,15 +1615,18 @@ Lavoro
 
 <div class="photo-detail-card">
 
+
 <div
 class="photo-detail-store"
 id="photoDetailStore"
 ></div>
 
+
 <div
 class="photo-detail-title"
 id="photoDetailTitle"
 ></div>
+
 
 <div
 class="photo-detail-note"
@@ -1623,11 +1640,13 @@ id="photoDetailNote"
 Note
 </label>
 
+
 <textarea
 id="photoDetailNoteInput"
 class="photo-notes-input"
 placeholder="Scrivi qui le note del lavoro..."
 ></textarea>
+
 
 <button
 class="photo-save-notes"
@@ -1656,6 +1675,7 @@ id="photoGrid"
 class="photo-grid"
 ></div>
 
+
 </div>
 
 </div>
@@ -1665,7 +1685,7 @@ class="photo-grid"
 
 
 <!-- ==================================================
-INPUT FOTO
+     INPUT FOTO
 ================================================== -->
 
 <input
@@ -1686,7 +1706,7 @@ hidden
 
 
 <!-- ==================================================
-MODALE FOTO
+     MODALE FOTO
 ================================================== -->
 
 <div
@@ -1700,6 +1720,7 @@ class="photo-modal-content"
 onclick="event.stopPropagation()"
 >
 
+
 <button
 class="photo-modal-close"
 onclick="chiudiFotoGrande()"
@@ -1707,11 +1728,13 @@ onclick="chiudiFotoGrande()"
 ×
 </button>
 
+
 <img
 id="photoModalImage"
 class="photo-modal-image"
 alt="Foto lavoro"
 >
+
 
 <div class="photo-modal-actions">
 
@@ -1738,7 +1761,7 @@ Elimina
 
 
 <!-- ==================================================
-FIREBASE
+     FIREBASE
 ================================================== -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -1754,7 +1777,7 @@ FIREBASE
 
 
 /* ==================================================
-FIREBASE CONFIG
+   FIREBASE
 ================================================== */
 
 const firebaseConfig={
@@ -1783,9 +1806,7 @@ measurementId:
 };
 
 
-firebase.initializeApp(
-firebaseConfig
-);
+firebase.initializeApp(firebaseConfig);
 
 
 const auth=
@@ -1797,7 +1818,7 @@ firebase.firestore();
 
 
 /* ==================================================
-SUPABASE
+   SUPABASE
 ================================================== */
 
 const SUPABASE_URL=
@@ -1809,6 +1830,7 @@ const SUPABASE_PUBLISHABLE_KEY=
 const SUPABASE_BUCKET=
 "foto-lavori";
 
+
 const supabaseClient=
 window.supabase.createClient(
 SUPABASE_URL,
@@ -1818,7 +1840,7 @@ SUPABASE_PUBLISHABLE_KEY
 
 
 /* ==================================================
-PUNTI VENDITA
+   PUNTI VENDITA
 ================================================== */
 
 const puntiVendita={
@@ -1874,12 +1896,14 @@ PIM:[
 
 
 /* ==================================================
-VARIABILI
+   VARIABILI
 ================================================== */
 
 let lavori=[];
 
 let puntoSelezionato=null;
+
+let categoriaSelezionata=null;
 
 let ricercaLavori="";
 
@@ -1887,13 +1911,15 @@ let lavoroFotoAperto=null;
 
 let fotoCorrente=null;
 
+let addFormAperto=false;
+
 const signedUrlCache=
 new Map();
 
 
 
 /* ==================================================
-FIREBASE STATUS
+   FIREBASE STATUS
 ================================================== */
 
 function firebaseOk(){
@@ -1933,6 +1959,11 @@ s.className=
 }
 
 
+
+/* ==================================================
+   AUTENTICAZIONE
+================================================== */
+
 auth.signInAnonymously()
 
 .then(()=>{
@@ -1948,7 +1979,7 @@ ascoltaLavori();
 
 
 /* ==================================================
-CREA PUNTI VENDITA
+   CREA PUNTI VENDITA
 ================================================== */
 
 function creaPuntiVendita(){
@@ -2015,8 +2046,7 @@ num.className=
 "store-count";
 
 num.id=
-"count-"+
-encodeURIComponent(punto);
+"count-"+encodeURIComponent(punto);
 
 num.textContent=
 "0";
@@ -2043,13 +2073,9 @@ lista.appendChild(b);
 });
 
 
-gruppo.appendChild(
-lista
-);
+gruppo.appendChild(lista);
 
-c.appendChild(
-gruppo
-);
+c.appendChild(gruppo);
 
 });
 
@@ -2058,17 +2084,19 @@ gruppo
 
 
 /* ==================================================
-ASCOLTA LAVORI
+   ASCOLTA LAVORI
 ================================================== */
 
 function ascoltaLavori(){
 
 db.collection("lavori")
+
 .where(
 "attivo",
 "==",
 true
 )
+
 .onSnapshot(
 
 snapshot=>{
@@ -2078,7 +2106,6 @@ snapshot.docs.map(
 doc=>({
 
 id:doc.id,
-
 ...doc.data()
 
 })
@@ -2098,7 +2125,7 @@ firebaseErrore
 
 
 /* ==================================================
-AGGIORNA TUTTO
+   AGGIORNA TUTTO
 ================================================== */
 
 function aggiornaTutto(){
@@ -2106,7 +2133,7 @@ function aggiornaTutto(){
 const daFare=
 lavori.filter(
 x=>
-x.attivo===true &&
+x.attivo===true&&
 x.completato!==true
 );
 
@@ -2121,7 +2148,7 @@ x.urgente===true
 const completati=
 lavori.filter(
 x=>
-x.attivo===true &&
+x.attivo===true&&
 x.completato===true
 );
 
@@ -2146,18 +2173,27 @@ completati.length;
 
 aggiornaNumeriPuntiVendita();
 
+
 renderTodoJobs(
 daFare
 );
+
 
 renderUrgentJobs(
 urgenti
 );
 
+
 renderCompletedJobs(
 completati
 );
 
+
+/*
+IMPORTANTE:
+nel Punto vendita mostriamo
+SOLO i lavori non completati.
+*/
 
 if(puntoSelezionato){
 
@@ -2172,7 +2208,7 @@ puntoSelezionato
 
 
 /* ==================================================
-NUMERI PUNTI VENDITA
+   NUMERI PUNTI VENDITA
 ================================================== */
 
 function aggiornaNumeriPuntiVendita(){
@@ -2186,25 +2222,20 @@ puntiVendita[cat]
 const n=
 lavori.filter(
 x=>
-x.attivo===true &&
-x.punto===punto &&
+x.attivo===true&&
+x.punto===punto&&
 x.completato!==true
 ).length;
 
 
 const e=
 document.getElementById(
-"count-"+
-encodeURIComponent(punto)
+"count-"+encodeURIComponent(punto)
 );
 
 
-if(e){
-
-e.textContent=
-n;
-
-}
+if(e)
+e.textContent=n;
 
 });
 
@@ -2215,22 +2246,29 @@ n;
 
 
 /* ==================================================
-MOSTRA PAGINA
+   CAMBIO PAGINA
 ================================================== */
+
+/*
+QUESTA È LA CORREZIONE IMPORTANTE.
+
+Prima venivano nascosti solamente gli elementi
+con classe .page.
+
+La scheda "Lavoro" invece ha classe
+.photo-detail-page.
+
+Ora vengono nascoste ENTRAMBE.
+*/
 
 function mostraPagina(id){
 
 document
-.querySelectorAll(".page")
+.querySelectorAll(
+".page,.photo-detail-page"
+)
 .forEach(p=>{
-
-p.classList.remove(
-"active"
-);
-
-p.style.display=
-"none";
-
+p.classList.remove("active");
 });
 
 
@@ -2240,12 +2278,7 @@ document.getElementById(id);
 
 if(p){
 
-p.style.display=
-"block";
-
-p.classList.add(
-"active"
-);
+p.classList.add("active");
 
 window.scrollTo(
 0,
@@ -2259,18 +2292,30 @@ window.scrollTo(
 
 
 /* ==================================================
-HOME
+   HOME
 ================================================== */
 
 function showHome(){
 
-chiudiAggiungiLavoroSilenzioso();
+addFormAperto=false;
 
-lavoroFotoAperto=
-null;
+const form=
+document.getElementById(
+"addWorkForm"
+);
 
-fotoCorrente=
-null;
+if(form)
+form.classList.remove("active");
+
+
+const toggle=
+document.getElementById(
+"addWorkToggle"
+);
+
+if(toggle)
+toggle.textContent="+";
+
 
 mostraPagina(
 "homePage"
@@ -2281,256 +2326,45 @@ mostraPagina(
 
 
 /* ==================================================
-APRI PUNTO VENDITA
+   APRI / CHIUDI FORM AGGIUNGI LAVORO
 ================================================== */
 
-function apriPuntoVendita(
-punto,
-categoria
-){
+function toggleAddWorkForm(){
 
-/* Chiude eventuale scheda lavoro */
-
-lavoroFotoAperto=
-null;
-
-fotoCorrente=
-null;
-
-
-/* Chiude schermata aggiungi */
-
-chiudiAggiungiLavoroSilenzioso();
-
-
-/* Seleziona punto */
-
-puntoSelezionato=
-punto;
-
-
-/* Nome */
-
+const form=
 document.getElementById(
-"storePageName"
-).textContent=
-punto;
+"addWorkForm"
+);
 
-
-/* Categoria */
-
+const button=
 document.getElementById(
-"storePageCategory"
-).textContent=
-categoria;
-
-
-/* Pulisce campi */
-
-document.getElementById(
-"lavoroInput"
-).value="";
-
-document.getElementById(
-"noteInput"
-).value="";
-
-document.getElementById(
-"urgenteInput"
-).checked=
-false;
-
-
-/* Mostra punto vendita */
-
-mostraPagina(
-"storePage"
+"addWorkToggle"
 );
 
 
-/* Mostra elenco */
-
-document.getElementById(
-"storeJobsArea"
-).style.display=
-"block";
+addFormAperto=
+!addFormAperto;
 
 
-/* Carica lavori */
+if(addFormAperto){
 
-renderStoreJobs(
-punto
-);
+form.classList.add("active");
 
-}
-
-
-
-/* ==================================================
-APRI AGGIUNGI LAVORO
-================================================== */
-
-function apriAggiungiLavoro(){
-
-const addPage=
-document.getElementById(
-"addWorkPage"
-);
-
-const jobsArea=
-document.getElementById(
-"storeJobsArea"
-);
-
-
-if(!addPage)
-return;
-
-
-addPage.classList.add(
-"active"
-);
-
-
-jobsArea.style.display=
-"none";
-
-
-/* Nasconde il + */
-
-const plus=
-document.querySelector(
-".add-top-button"
-);
-
-if(plus){
-
-plus.style.display=
-"none";
-
-}
-
-
-window.scrollTo(
-0,
-0
-);
-
+button.textContent="−";
 
 setTimeout(()=>{
 
-const input=
 document.getElementById(
 "lavoroInput"
-);
-
-if(input)
-input.focus();
+).focus();
 
 },100);
 
-}
+}else{
 
+form.classList.remove("active");
 
-
-/* ==================================================
-CHIUDI AGGIUNGI LAVORO
-================================================== */
-
-function chiudiAggiungiLavoro(){
-
-const addPage=
-document.getElementById(
-"addWorkPage"
-);
-
-const jobsArea=
-document.getElementById(
-"storeJobsArea"
-);
-
-
-if(addPage){
-
-addPage.classList.remove(
-"active"
-);
-
-}
-
-
-if(jobsArea){
-
-jobsArea.style.display=
-"block";
-
-}
-
-
-/* Riappare il + */
-
-const plus=
-document.querySelector(
-".add-top-button"
-);
-
-if(plus){
-
-plus.style.display=
-"flex";
-
-}
-
-
-window.scrollTo(
-0,
-0
-);
-
-}
-
-
-/* Versione senza effetti visibili */
-
-function chiudiAggiungiLavoroSilenzioso(){
-
-const addPage=
-document.getElementById(
-"addWorkPage"
-);
-
-const jobsArea=
-document.getElementById(
-"storeJobsArea"
-);
-
-
-if(addPage){
-
-addPage.classList.remove(
-"active"
-);
-
-}
-
-
-if(jobsArea){
-
-jobsArea.style.display=
-"block";
-
-}
-
-
-const plus=
-document.querySelector(
-".add-top-button"
-);
-
-if(plus){
-
-plus.style.display=
-"flex";
+button.textContent="+";
 
 }
 
@@ -2539,7 +2373,7 @@ plus.style.display=
 
 
 /* ==================================================
-RICERCA
+   RICERCA LAVORI
 ================================================== */
 
 function filtraLavori(){
@@ -2574,15 +2408,13 @@ renderTodoJobs(
 lavori.filter(x=>{
 
 if(
-x.attivo!==true ||
+x.attivo!==true||
 x.completato===true
 )
-
 return false;
 
 
 if(!ricercaLavori)
-
 return true;
 
 
@@ -2620,6 +2452,10 @@ ricercaLavori
 
 
 
+/* ==================================================
+   CANCELLA RICERCA
+================================================== */
+
 function cancellaRicerca(){
 
 document.getElementById(
@@ -2632,15 +2468,15 @@ ricercaLavori="";
 
 document.getElementById(
 "clearSearch"
-).style.display=
-"none";
+)
+.style.display="none";
 
 
 renderTodoJobs(
 
 lavori.filter(
 x=>
-x.attivo===true &&
+x.attivo===true&&
 x.completato!==true
 )
 
@@ -2651,7 +2487,7 @@ x.completato!==true
 
 
 /* ==================================================
-RENDER LAVORI DA FARE
+   RENDER LAVORI DA FARE
 ================================================== */
 
 function renderTodoJobs(lista){
@@ -2667,9 +2503,7 @@ c.innerHTML="";
 if(!lista.length){
 
 c.innerHTML=
-
 `<div class="empty">
-
 ${
 ricercaLavori
 ?
@@ -2677,7 +2511,6 @@ ricercaLavori
 :
 "Nessun lavoro da fare."
 }
-
 </div>`;
 
 return;
@@ -2695,9 +2528,7 @@ puntiVendita[cat];
 const catJobs=
 lista.filter(
 x=>
-punti.includes(
-x.punto
-)
+punti.includes(x.punto)
 );
 
 
@@ -2706,9 +2537,7 @@ return;
 
 
 const t=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 t.className=
 "group-title";
@@ -2733,27 +2562,21 @@ return;
 
 
 const g=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 g.className=
 "todo-store-group";
 
 
 const h=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 h.className=
 "todo-store-header";
 
 
 const n=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 n.className=
 "todo-store-name";
@@ -2763,9 +2586,7 @@ punto;
 
 
 const num=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 num.className=
 "todo-store-count";
@@ -2803,58 +2624,47 @@ c.appendChild(g);
 
 
 /* ==================================================
-RIGA LAVORO
+   RIGA LAVORO
 ================================================== */
 
 function creaTodoJobRow(lavoro){
 
 const r=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 r.className=
 "todo-job-row";
 
 
 const main=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 main.className=
 "todo-job-main job-clickable";
 
 
 const dot=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 dot.className=
 "todo-job-dot";
 
 
 const content=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 content.className=
 "todo-job-content";
 
 
 const text=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 text.className=
 "todo-job-text";
 
 text.textContent=
 lavoro.testo||"";
-
 
 content.appendChild(
 text
@@ -2864,9 +2674,7 @@ text
 if(lavoro.note){
 
 const note=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 note.className=
 "todo-job-note";
@@ -2885,9 +2693,7 @@ note
 if(lavoro.urgente===true){
 
 const badge=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 badge.className=
 "todo-job-urgent";
@@ -2923,18 +2729,14 @@ main
 
 
 const actions=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 actions.className=
 "symbol-actions";
 
 
 const complete=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 complete.className=
 "symbol-btn symbol-complete";
@@ -2958,9 +2760,7 @@ lavoro.id
 
 
 const urgent=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 urgent.className=
 "symbol-btn symbol-urgent";
@@ -2989,9 +2789,7 @@ lavoro.urgente===true
 
 
 const del=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
@@ -3014,10 +2812,10 @@ lavoro.id
 };
 
 
+/* INVIA */
+
 const share=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 share.className=
 "symbol-btn symbol-share";
@@ -3060,7 +2858,83 @@ return r;
 
 
 /* ==================================================
-LAVORI PUNTO VENDITA
+   APRI PUNTO VENDITA
+================================================== */
+
+function apriPuntoVendita(
+punto,
+categoria
+){
+
+puntoSelezionato=
+punto;
+
+categoriaSelezionata=
+categoria;
+
+
+/*
+Ogni volta che apro un punto vendita
+il form parte CHIUSO.
+*/
+
+addFormAperto=false;
+
+
+document.getElementById(
+"storePageName"
+).textContent=
+punto;
+
+
+document.getElementById(
+"storePageCategory"
+).textContent=
+categoria;
+
+
+document.getElementById(
+"lavoroInput"
+).value="";
+
+
+document.getElementById(
+"noteInput"
+).value="";
+
+
+document.getElementById(
+"urgenteInput"
+).checked=false;
+
+
+document.getElementById(
+"addWorkForm"
+).classList.remove(
+"active"
+);
+
+
+document.getElementById(
+"addWorkToggle"
+).textContent="+";
+
+
+renderStoreJobs(
+punto
+);
+
+
+mostraPagina(
+"storePage"
+);
+
+}
+
+
+
+/* ==================================================
+   LAVORI DEL PUNTO VENDITA
 ================================================== */
 
 function renderStoreJobs(punto){
@@ -3073,11 +2947,21 @@ document.getElementById(
 c.innerHTML="";
 
 
+/*
+IMPORTANTE:
+
+QUI VENGONO ESCLUSI I LAVORI COMPLETATI.
+
+Quindi se premi ✓,
+il lavoro sparisce da questa schermata.
+*/
+
 const lista=
 lavori.filter(
 x=>
-x.attivo===true &&
-x.punto===punto
+x.attivo===true&&
+x.punto===punto&&
+x.completato!==true
 );
 
 
@@ -3104,15 +2988,13 @@ creaStoreJobCard(job)
 
 
 /* ==================================================
-CARD LAVORO PUNTO VENDITA
+   CARD LAVORO PUNTO VENDITA
 ================================================== */
 
 function creaStoreJobCard(lavoro){
 
 const card=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 card.className=
 "job-card job-clickable";
@@ -3128,9 +3010,7 @@ lavoro.id
 
 
 const text=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 text.className=
 "job-text";
@@ -3147,9 +3027,7 @@ text
 if(lavoro.note){
 
 const note=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 note.className=
 "job-note";
@@ -3166,9 +3044,7 @@ note
 
 
 const actions=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 actions.className=
 "symbol-actions";
@@ -3178,9 +3054,7 @@ actions.style.marginTop=
 
 
 const complete=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 complete.className=
 "symbol-btn symbol-complete";
@@ -3204,9 +3078,7 @@ lavoro.id
 
 
 const urgent=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 urgent.className=
 "symbol-btn symbol-urgent";
@@ -3235,9 +3107,7 @@ lavoro.urgente===true
 
 
 const del=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
@@ -3279,7 +3149,7 @@ return card;
 
 
 /* ==================================================
-AGGIUNGI LAVORO
+   AGGIUNGI LAVORO
 ================================================== */
 
 function aggiungiLavoro(){
@@ -3293,15 +3163,18 @@ document.getElementById(
 "lavoroInput"
 );
 
+
 const noteInput=
 document.getElementById(
 "noteInput"
 );
 
+
 const urgentInput=
 document.getElementById(
 "urgenteInput"
 );
+
 
 const button=
 document.getElementById(
@@ -3312,8 +3185,10 @@ document.getElementById(
 const testo=
 lavoroInput.value.trim();
 
+
 const note=
 noteInput.value.trim();
+
 
 const urgente=
 urgentInput.checked;
@@ -3332,8 +3207,7 @@ return;
 }
 
 
-button.disabled=
-true;
+button.disabled=true;
 
 button.textContent=
 "Salvataggio...";
@@ -3373,28 +3247,43 @@ foto:[]
 
 })
 
+
 .then(()=>{
 
 lavoroInput.value="";
 
 noteInput.value="";
 
-urgentInput.checked=
-false;
+urgentInput.checked=false;
 
-button.disabled=
-false;
+button.disabled=false;
 
 button.textContent=
 "+ Aggiungi lavoro";
 
 
-/* Torna automaticamente
-all'elenco del punto vendita */
+/*
+Dopo aver aggiunto il lavoro
+chiudiamo il modulo.
+*/
 
-chiudiAggiungiLavoro();
+addFormAperto=false;
+
+document.getElementById(
+"addWorkForm"
+)
+.classList.remove(
+"active"
+);
+
+
+document.getElementById(
+"addWorkToggle"
+)
+.textContent="+";
 
 })
+
 
 .catch(error=>{
 
@@ -3404,8 +3293,7 @@ alert(
 "Errore nel salvataggio del lavoro."
 );
 
-button.disabled=
-false;
+button.disabled=false;
 
 button.textContent=
 "+ Aggiungi lavoro";
@@ -3415,21 +3303,23 @@ button.textContent=
 };
 
 
-if(auth.currentUser)
+if(auth.currentUser){
 
 salva();
 
-else
+}else{
 
 auth.signInAnonymously()
 .then(salva);
 
 }
 
+}
+
 
 
 /* ==================================================
-COMPLETA
+   COMPLETA LAVORO
 ================================================== */
 
 function completaLavoro(id){
@@ -3455,7 +3345,7 @@ alert(
 
 
 /* ==================================================
-DA RIFARE
+   DA RIFARE
 ================================================== */
 
 function daRifare(id){
@@ -3481,7 +3371,7 @@ alert(
 
 
 /* ==================================================
-URGENTE
+   URGENTE
 ================================================== */
 
 function cambiaUrgente(
@@ -3511,15 +3401,16 @@ alert(
 
 
 /* ==================================================
-ELIMINA LAVORO
+   ELIMINA LAVORO
 ================================================== */
 
 function eliminaLavoro(id){
 
-if(!confirm(
+if(
+!confirm(
 "Vuoi eliminare questo lavoro?"
-))
-
+)
+)
 return;
 
 
@@ -3544,7 +3435,7 @@ alert(
 
 
 /* ==================================================
-URGENTI
+   LAVORI URGENTI
 ================================================== */
 
 function renderUrgentJobs(lista){
@@ -3577,9 +3468,7 @@ puntiVendita[cat];
 const catJobs=
 lista.filter(
 x=>
-punti.includes(
-x.punto
-)
+punti.includes(x.punto)
 );
 
 
@@ -3588,9 +3477,7 @@ return;
 
 
 const t=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 t.className=
 "group-title";
@@ -3615,27 +3502,21 @@ return;
 
 
 const g=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 g.className=
 "todo-store-group";
 
 
 const h=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 h.className=
 "urgent-store-header";
 
 
 const n=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 n.className=
 "urgent-store-name";
@@ -3645,9 +3526,7 @@ punto;
 
 
 const num=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 num.className=
 "urgent-store-count";
@@ -3661,15 +3540,14 @@ n,
 num
 );
 
+
 g.appendChild(h);
 
 
 jobs.forEach(job=>{
 
 const r=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 r.className=
 "urgent-job-row job-clickable";
@@ -3685,34 +3563,27 @@ job.id
 
 
 const dot=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 dot.className=
 "urgent-job-dot";
 
 
 const content=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 content.className=
 "urgent-job-content";
 
 
 const text=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 text.className=
 "urgent-job-text";
 
 text.textContent=
 job.testo||"";
-
 
 content.appendChild(
 text
@@ -3722,9 +3593,7 @@ text
 if(job.note){
 
 const note=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 note.className=
 "urgent-job-note";
@@ -3741,18 +3610,14 @@ note
 
 
 const actions=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 actions.className=
 "symbol-actions";
 
 
 const complete=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 complete.className=
 "symbol-btn symbol-complete";
@@ -3776,9 +3641,7 @@ job.id
 
 
 const urgent=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 urgent.className=
 "symbol-btn symbol-urgent";
@@ -3803,9 +3666,7 @@ true
 
 
 const del=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
@@ -3829,9 +3690,7 @@ job.id
 
 
 const share=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 share.className=
 "symbol-btn symbol-share";
@@ -3885,7 +3744,7 @@ c.appendChild(g);
 
 
 /* ==================================================
-INVIA LAVORO
+   INVIA LAVORO
 ================================================== */
 
 async function inviaLavoro(lavoro){
@@ -3972,6 +3831,7 @@ continue;
 const response=
 await fetch(url);
 
+
 if(!response.ok)
 continue;
 
@@ -3990,9 +3850,11 @@ new File(
 ".jpg",
 
 {
+
 type:
 blob.type||
 "image/jpeg"
+
 }
 
 );
@@ -4000,9 +3862,7 @@ blob.type||
 
 files.push(file);
 
-}
-
-catch(photoError){
+}catch(photoError){
 
 console.error(
 "Foto da condividere:",
@@ -4015,8 +3875,8 @@ photoError
 
 
 if(
-files.length &&
-navigator.canShare &&
+files.length&&
+navigator.canShare&&
 navigator.canShare({files})
 ){
 
@@ -4028,9 +3888,7 @@ files:files
 
 });
 
-}
-
-else{
+}else{
 
 await navigator.share({
 
@@ -4040,9 +3898,7 @@ text:testo
 
 }
 
-}
-
-else if(navigator.clipboard){
+}else if(navigator.clipboard){
 
 await navigator.clipboard.writeText(
 testo
@@ -4052,9 +3908,7 @@ alert(
 "Lavoro copiato negli appunti."
 );
 
-}
-
-else{
+}else{
 
 prompt(
 "Copia questo lavoro:",
@@ -4063,12 +3917,10 @@ testo
 
 }
 
-}
-
-catch(error){
+}catch(error){
 
 if(
-error &&
+error&&
 error.name==="AbortError"
 )
 return;
@@ -4087,9 +3939,7 @@ alert(
 "Lavoro copiato negli appunti."
 );
 
-}
-
-catch(e){
+}catch(e){
 
 prompt(
 "Copia questo lavoro:",
@@ -4105,7 +3955,7 @@ testo
 
 
 /* ==================================================
-COMPLETATI
+   GRUPPI COMPLETATI
 ================================================== */
 
 function listaCompletatiPerPunto(){
@@ -4113,7 +3963,7 @@ function listaCompletatiPerPunto(){
 const completati=
 lavori.filter(
 x=>
-x.attivo===true &&
+x.attivo===true&&
 x.completato===true
 );
 
@@ -4154,6 +4004,10 @@ return gruppi;
 }
 
 
+
+/* ==================================================
+   TESTO COMPLETATI
+================================================== */
 
 function creaElencoCompletatiTesto(){
 
@@ -4216,6 +4070,10 @@ return testo.trim();
 
 
 
+/* ==================================================
+   SALVA COMPLETATI
+================================================== */
+
 function salvaElencoCompletati(){
 
 const testo=
@@ -4224,27 +4082,27 @@ creaElencoCompletatiTesto();
 
 const blob=
 new Blob(
+
 [testo],
+
 {
 type:
 "text/plain;charset=utf-8"
 }
+
 );
 
 
 const url=
-URL.createObjectURL(
-blob
-);
+URL.createObjectURL(blob);
 
 
 const a=
-document.createElement(
-"a"
-);
+document.createElement("a");
 
-a.href=
-url;
+
+a.href=url;
+
 
 a.download=
 "EDISERVICE-lavori-completati.txt";
@@ -4252,16 +4110,18 @@ a.download=
 
 document.body.appendChild(a);
 
+
 a.click();
+
 
 a.remove();
 
 
 setTimeout(
 ()=>{
-URL.revokeObjectURL(
-url
-);
+
+URL.revokeObjectURL(url);
+
 },
 1000
 );
@@ -4269,6 +4129,10 @@ url
 }
 
 
+
+/* ==================================================
+   CONDIVIDI COMPLETATI
+================================================== */
 
 async function condividiElencoCompletati(){
 
@@ -4290,9 +4154,7 @@ testo
 
 });
 
-}
-
-else if(navigator.clipboard){
+}else if(navigator.clipboard){
 
 await navigator.clipboard.writeText(
 testo
@@ -4302,9 +4164,7 @@ alert(
 "Elenco copiato negli appunti."
 );
 
-}
-
-else{
+}else{
 
 prompt(
 "Copia questo elenco:",
@@ -4313,12 +4173,10 @@ testo
 
 }
 
-}
-
-catch(error){
+}catch(error){
 
 if(
-error &&
+error&&
 error.name==="AbortError"
 )
 return;
@@ -4334,9 +4192,7 @@ alert(
 "Elenco copiato negli appunti."
 );
 
-}
-
-catch(e){
+}catch(e){
 
 prompt(
 "Copia questo elenco:",
@@ -4352,7 +4208,7 @@ testo
 
 
 /* ==================================================
-RENDER COMPLETATI
+   RENDER COMPLETATI
 ================================================== */
 
 function renderCompletedJobs(lista){
@@ -4385,9 +4241,7 @@ puntiVendita[cat];
 const catJobs=
 lista.filter(
 x=>
-punti.includes(
-x.punto
-)
+punti.includes(x.punto)
 );
 
 
@@ -4396,9 +4250,7 @@ return;
 
 
 const t=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 t.className=
 "group-title";
@@ -4423,27 +4275,21 @@ return;
 
 
 const g=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 g.className=
 "completed-job";
 
 
 const h=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 h.className=
 "completed-store-header";
 
 
 const n=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 n.className=
 "completed-store-name";
@@ -4453,9 +4299,7 @@ punto;
 
 
 const num=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 num.className=
 "completed-store-count";
@@ -4469,15 +4313,14 @@ n,
 num
 );
 
+
 g.appendChild(h);
 
 
 jobs.forEach(job=>{
 
 const r=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 r.className=
 "completed-job-row job-clickable";
@@ -4493,9 +4336,7 @@ job.id
 
 
 const check=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 check.className=
 "completed-check";
@@ -4505,25 +4346,20 @@ check.textContent=
 
 
 const content=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 content.className=
 "completed-job-content";
 
 
 const text=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 text.className=
 "completed-job-text";
 
 text.textContent=
 job.testo||"";
-
 
 content.appendChild(
 text
@@ -4533,9 +4369,7 @@ text
 if(job.note){
 
 const note=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 note.className=
 "completed-job-note";
@@ -4552,18 +4386,14 @@ note
 
 
 const actions=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 actions.className=
 "symbol-actions";
 
 
 const redo=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 redo.className=
 "symbol-btn symbol-redo";
@@ -4587,9 +4417,7 @@ job.id
 
 
 const del=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
@@ -4641,7 +4469,7 @@ c.appendChild(g);
 
 
 /* ==================================================
-NOTE LAVORO
+   NOTE LAVORO
 ================================================== */
 
 function salvaNoteLavoro(){
@@ -4669,6 +4497,7 @@ testo
 
 })
 
+
 .then(()=>{
 
 lavoroFotoAperto.note=
@@ -4692,6 +4521,7 @@ alert(
 
 })
 
+
 .catch(error=>{
 
 console.error(error);
@@ -4707,26 +4537,23 @@ alert(
 
 
 /* ==================================================
-FOTO PATH
+   FOTO
 ================================================== */
 
 function fotoPaths(lavoro){
 
-return Array.isArray(
-lavoro.foto
-)
+return Array.isArray(lavoro.foto)
 ?
 lavoro.foto
 :
 [];
-
 
 }
 
 
 
 /* ==================================================
-APRI SCHEDA LAVORO
+   APRI SCHEDA LAVORO
 ================================================== */
 
 function apriSchedaLavoro(id){
@@ -4787,7 +4614,7 @@ renderFotoLavoro();
 
 
 /* ==================================================
-CHIUDI SCHEDA LAVORO
+   CHIUDI SCHEDA
 ================================================== */
 
 function chiudiSchedaLavoro(){
@@ -4799,20 +4626,20 @@ fotoCorrente=
 null;
 
 
-/* Se arrivava dal punto vendita */
+/*
+Se la scheda è stata aperta dal punto vendita,
+torna al punto vendita.
+
+Altrimenti torna a Lavori da fare.
+*/
+
 if(puntoSelezionato){
 
 mostraPagina(
 "storePage"
 );
 
-renderStoreJobs(
-puntoSelezionato
-);
-
-}
-
-else{
+}else{
 
 mostraPagina(
 "todoPage"
@@ -4825,7 +4652,7 @@ mostraPagina(
 
 
 /* ==================================================
-RENDER FOTO
+   RENDER FOTO
 ================================================== */
 
 function renderFotoLavoro(){
@@ -4862,18 +4689,14 @@ paths.forEach(
 (path,index)=>{
 
 const box=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 box.className=
 "photo-thumb";
 
 
 const img=
-document.createElement(
-"img"
-);
+document.createElement("img");
 
 img.alt=
 "Foto "+
@@ -4886,9 +4709,7 @@ img
 
 
 const del=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 del.className=
 "photo-thumb-delete";
@@ -4930,7 +4751,9 @@ box
 );
 
 
-getSignedUrl(path)
+getSignedUrl(
+path
+)
 .then(url=>{
 
 if(url)
@@ -4945,7 +4768,7 @@ img.src=url;
 
 
 /* ==================================================
-SIGNED URL
+   URL FOTO
 ================================================== */
 
 async function getSignedUrl(path){
@@ -4961,11 +4784,13 @@ path
 
 
 if(
-cached &&
+cached&&
 cached.expires>Date.now()
-)
+){
 
 return cached.url;
+
+}
 
 
 const {
@@ -4974,9 +4799,7 @@ error
 }=
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
+.from(SUPABASE_BUCKET)
 .createSignedUrl(
 path,
 3600
@@ -4996,15 +4819,13 @@ return null;
 
 
 signedUrlCache.set(
+
 path,
+
 {
-
-url:
-data.signedUrl,
-
+url:data.signedUrl,
 expires:
 Date.now()+3500*1000
-
 }
 
 );
@@ -5017,7 +4838,7 @@ return data.signedUrl;
 
 
 /* ==================================================
-SELEZIONA FOTO
+   SELEZIONA FOTO
 ================================================== */
 
 function selezionaFoto(){
@@ -5034,8 +4855,10 @@ document.getElementById(
 
 input.value="";
 
+
 input.onchange=
 caricaFoto;
+
 
 input.click();
 
@@ -5044,15 +4867,13 @@ input.click();
 
 
 /* ==================================================
-COMPRIMI FOTO
+   COMPRIMI FOTO
 ================================================== */
 
 async function comprimiFoto(file){
 
 if(
-!file.type.startsWith(
-"image/"
-)
+!file.type.startsWith("image/")
 )
 
 throw new Error(
@@ -5061,9 +4882,7 @@ throw new Error(
 
 
 const url=
-URL.createObjectURL(
-file
-);
+URL.createObjectURL(file);
 
 
 const img=
@@ -5075,14 +4894,11 @@ try{
 await new Promise(
 (res,rej)=>{
 
-img.onload=
-res;
+img.onload=res;
 
-img.onerror=
-rej;
+img.onerror=rej;
 
-img.src=
-url;
+img.src=url;
 
 }
 );
@@ -5090,6 +4906,7 @@ url;
 
 let w=
 img.naturalWidth;
+
 
 let h=
 img.naturalHeight;
@@ -5100,7 +4917,7 @@ const max=
 
 
 if(
-w>max ||
+w>max||
 h>max
 ){
 
@@ -5111,20 +4928,16 @@ Math.round(
 h*max/w
 );
 
-w=
-max;
+w=max;
 
-}
-
-else{
+}else{
 
 w=
 Math.round(
 w*max/h
 );
 
-h=
-max;
+h=max;
 
 }
 
@@ -5135,6 +4948,7 @@ const canvas=
 document.createElement(
 "canvas"
 );
+
 
 canvas.width=
 w;
@@ -5156,16 +4970,16 @@ h
 
 return await new Promise(
 resolve=>
+
 canvas.toBlob(
 resolve,
 "image/jpeg",
 .82
 )
+
 );
 
-}
-
-finally{
+}finally{
 
 URL.revokeObjectURL(
 url
@@ -5178,17 +4992,19 @@ url
 
 
 /* ==================================================
-CARICA FOTO
+   CARICA FOTO
 ================================================== */
 
 async function caricaFoto(e){
 
 const files=
-[...(e.target.files||[])];
+[
+...(e.target.files||[])
+];
 
 
 if(
-!files.length ||
+!files.length||
 !lavoroFotoAperto
 )
 return;
@@ -5227,9 +5043,7 @@ error
 }=
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
+.from(SUPABASE_BUCKET)
 .upload(
 
 path,
@@ -5237,7 +5051,6 @@ path,
 blob,
 
 {
-
 contentType:
 "image/jpeg",
 
@@ -5262,9 +5075,7 @@ await db.collection("lavori")
 foto:
 firebase.firestore
 .FieldValue
-.arrayUnion(
-path
-)
+.arrayUnion(path)
 
 });
 
@@ -5282,11 +5093,11 @@ files.length+
 
 );
 
-}
 
-catch(error){
+}catch(error){
 
 console.error(error);
+
 
 alert(
 "Errore nel caricamento: "+
@@ -5300,7 +5111,7 @@ alert(
 
 
 /* ==================================================
-APRI FOTO GRANDE
+   FOTO GRANDE
 ================================================== */
 
 async function apriFotoGrande(path){
@@ -5327,7 +5138,8 @@ url;
 
 document.getElementById(
 "photoModal"
-).classList.add(
+)
+.classList.add(
 "active"
 );
 
@@ -5336,13 +5148,13 @@ document.getElementById(
 
 
 /* ==================================================
-CHIUDI FOTO GRANDE
+   CHIUDI FOTO
 ================================================== */
 
 function chiudiFotoGrande(event){
 
 if(
-event &&
+event&&
 event.target!==event.currentTarget
 )
 return;
@@ -5350,15 +5162,15 @@ return;
 
 document.getElementById(
 "photoModal"
-).classList.remove(
+)
+.classList.remove(
 "active"
 );
 
 
 document.getElementById(
 "photoModalImage"
-).src=
-"";
+).src="";
 
 
 fotoCorrente=
@@ -5369,13 +5181,13 @@ null;
 
 
 /* ==================================================
-SOSTITUISCI FOTO
+   SOSTITUISCI FOTO
 ================================================== */
 
 function sostituisciFotoCorrente(){
 
 if(
-!fotoCorrente ||
+!fotoCorrente||
 !lavoroFotoAperto
 )
 return;
@@ -5389,8 +5201,10 @@ document.getElementById(
 
 input.value="";
 
+
 input.onchange=
 eseguiSostituzioneFoto;
+
 
 input.click();
 
@@ -5399,7 +5213,7 @@ input.click();
 
 
 /* ==================================================
-ESEGUI SOSTITUZIONE FOTO
+   ESEGUI SOSTITUZIONE
 ================================================== */
 
 async function eseguiSostituzioneFoto(e){
@@ -5409,8 +5223,8 @@ e.target.files?.[0];
 
 
 if(
-!file ||
-!fotoCorrente ||
+!file||
+!fotoCorrente||
 !lavoroFotoAperto
 )
 return;
@@ -5418,6 +5232,7 @@ return;
 
 const oldPath=
 fotoCorrente;
+
 
 const lavoro=
 lavoroFotoAperto;
@@ -5446,9 +5261,7 @@ Math.random()
 const up=
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
+.from(SUPABASE_BUCKET)
 .upload(
 
 newPath,
@@ -5456,7 +5269,6 @@ newPath,
 blob,
 
 {
-
 contentType:
 "image/jpeg",
 
@@ -5481,9 +5293,7 @@ await db.collection("lavori")
 foto:
 firebase.firestore
 .FieldValue
-.arrayUnion(
-newPath
-)
+.arrayUnion(newPath)
 
 });
 
@@ -5495,21 +5305,17 @@ await db.collection("lavori")
 foto:
 firebase.firestore
 .FieldValue
-.arrayRemove(
-oldPath
-)
+.arrayRemove(oldPath)
 
 });
 
 
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
-.remove(
-[oldPath]
-);
+.from(SUPABASE_BUCKET)
+.remove([
+oldPath
+]);
 
 
 signedUrlCache.delete(
@@ -5530,7 +5336,8 @@ newPath
 
 document.getElementById(
 "photoModal"
-).classList.remove(
+)
+.classList.remove(
 "active"
 );
 
@@ -5546,11 +5353,11 @@ alert(
 "Foto sostituita."
 );
 
-}
 
-catch(error){
+}catch(error){
 
 console.error(error);
+
 
 alert(
 "Errore nella sostituzione: "+
@@ -5564,13 +5371,13 @@ alert(
 
 
 /* ==================================================
-ELIMINA FOTO
+   ELIMINA FOTO
 ================================================== */
 
 async function eliminaFoto(path){
 
 if(
-!lavoroFotoAperto ||
+!lavoroFotoAperto||
 !confirm(
 "Vuoi eliminare questa foto?"
 )
@@ -5589,12 +5396,10 @@ error
 }=
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
-.remove(
-[path]
-);
+.from(SUPABASE_BUCKET)
+.remove([
+path
+]);
 
 
 if(error)
@@ -5608,9 +5413,7 @@ await db.collection("lavori")
 foto:
 firebase.firestore
 .FieldValue
-.arrayRemove(
-path
-)
+.arrayRemove(path)
 
 });
 
@@ -5630,7 +5433,8 @@ x!==path
 
 document.getElementById(
 "photoModal"
-).classList.remove(
+)
+.classList.remove(
 "active"
 );
 
@@ -5641,11 +5445,11 @@ null;
 
 renderFotoLavoro();
 
-}
 
-catch(error){
+}catch(error){
 
 console.error(error);
+
 
 alert(
 "Errore nell'eliminazione della foto: "+
@@ -5659,7 +5463,7 @@ alert(
 
 
 /* ==================================================
-ELIMINA FOTO CORRENTE
+   ELIMINA FOTO CORRENTE
 ================================================== */
 
 async function eliminaFotoCorrente(){
@@ -5677,7 +5481,7 @@ fotoCorrente
 
 
 /* ==================================================
-PULSANTI HOME
+   EVENTI HOME
 ================================================== */
 
 document.getElementById(
@@ -5725,6 +5529,11 @@ mostraPagina(
 );
 
 
+
+/* ==================================================
+   RICERCA
+================================================== */
+
 document.getElementById(
 "clearSearch"
 ).onclick=
@@ -5733,7 +5542,7 @@ cancellaRicerca;
 
 
 /* ==================================================
-AVVIO
+   AVVIO
 ================================================== */
 
 creaPuntiVendita();
