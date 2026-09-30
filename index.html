@@ -209,6 +209,53 @@ gap:10px;
 margin-bottom:20px
 }
 
+/* BARRA DEL PUNTO VENDITA */
+
+.store-topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-bottom:20px
+}
+
+.store-topbar-left{
+display:flex;
+align-items:center;
+gap:10px;
+min-width:0
+}
+
+.add-work-toggle{
+width:58px;
+height:58px;
+border:0;
+border-radius:17px;
+background:#222;
+color:#fff;
+font-size:40px;
+font-weight:300;
+line-height:1;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,.18);
+flex-shrink:0
+}
+
+.add-work-toggle:active{
+transform:scale(.94)
+}
+
+.add-work-form{
+display:none
+}
+
+.add-work-form.active{
+display:block
+}
+
 .back-button{
 background:#e9e9e9;
 color:#222;
@@ -322,7 +369,7 @@ width:20px;
 height:20px
 }
 
-/* FOTO NELLA SCHERMATA DI AGGIUNTA */
+/* FOTO NUOVO LAVORO */
 
 .add-photo-picker{
 width:100%;
@@ -678,9 +725,7 @@ padding:30px;
 color:#777
 }
 
-/* =========================
-   SCHEDA SINGOLO LAVORO
-========================= */
+/* SCHEDA SINGOLO LAVORO */
 
 .job-clickable{
 cursor:pointer
@@ -916,6 +961,13 @@ color:#d32f2f
 
 @media(max-width:600px){
 
+.add-work-toggle{
+width:56px;
+height:56px;
+font-size:38px;
+border-radius:17px
+}
+
 .container{
 padding:15px
 }
@@ -1027,10 +1079,6 @@ margin-left:5px
 
 <div class="container">
 
-<!-- =========================
-     HOME
-========================= -->
-
 <div id="homePage" class="page active">
 
 <div class="header">
@@ -1042,7 +1090,6 @@ Connessione Firebase...
 </div>
 
 </div>
-
 
 <div class="summary" id="btnLavoriDaFare">
 
@@ -1068,7 +1115,6 @@ Lavori ancora da completare
 
 </div>
 
-
 <div class="urgent-folder" id="btnUrgenti">
 
 <div class="folder-text">
@@ -1092,7 +1138,6 @@ Interventi urgenti da completare
 </div>
 
 </div>
-
 
 <div class="completed-folder" id="btnCompletati">
 
@@ -1118,7 +1163,6 @@ Lavori già completati
 
 </div>
 
-
 <div class="section-title">
 Punti vendita
 </div>
@@ -1126,11 +1170,6 @@ Punti vendita
 <div id="puntiVendita"></div>
 
 </div>
-
-
-<!-- =========================
-     LAVORI DA FARE
-========================= -->
 
 <div id="todoPage" class="page">
 
@@ -1147,7 +1186,6 @@ Lavori da fare
 </h2>
 
 </div>
-
 
 <div class="search-box">
 
@@ -1166,7 +1204,6 @@ onclick="cancellaRicerca()">
 
 </div>
 
-
 <div id="todoJobs">
 
 <div class="loading">
@@ -1177,14 +1214,11 @@ Caricamento...
 
 </div>
 
-
-<!-- =========================
-     PUNTO VENDITA
-========================= -->
-
 <div id="storePage" class="page">
 
-<div class="topbar">
+<div class="store-topbar">
+
+<div class="store-topbar-left">
 
 <button
 class="back-button"
@@ -1198,6 +1232,14 @@ Punto vendita
 
 </div>
 
+<button
+class="add-work-toggle"
+id="addWorkToggle"
+onclick="toggleAddWorkForm()">
++
+</button>
+
+</div>
 
 <div
 class="store-name"
@@ -1209,16 +1251,13 @@ class="store-category"
 id="storePageCategory">
 </div>
 
-
-<!-- QUESTA È LA SCHERMATA
-     CHE VOLEVI -->
-
-<div class="form-card">
+<div
+class="form-card add-work-form"
+id="addWorkForm">
 
 <h2>
 Aggiungi lavoro
 </h2>
-
 
 <label>
 Lavoro
@@ -1229,7 +1268,6 @@ id="lavoroInput"
 type="text"
 placeholder="Descrivi il lavoro da fare">
 
-
 <label>
 Note
 </label>
@@ -1238,7 +1276,6 @@ Note
 id="noteInput"
 placeholder="Eventuali note...">
 </textarea>
-
 
 <label class="urgent-check">
 
@@ -1252,9 +1289,6 @@ Lavoro urgente
 
 </label>
 
-
-<!-- FOTO -->
-
 <button
 type="button"
 class="add-photo-picker"
@@ -1264,14 +1298,10 @@ Foto
 
 </button>
 
-
 <div
 id="addPhotoSelected"
 class="add-photo-selected">
 </div>
-
-
-<!-- SALVA -->
 
 <button
 class="add-button"
@@ -1284,20 +1314,13 @@ onclick="aggiungiLavoro()">
 
 </div>
 
-
 <div class="section-title">
 Lavori del punto vendita
 </div>
 
-
 <div id="storeJobs"></div>
 
 </div>
-
-
-<!-- =========================
-     URGENTI
-========================= -->
 
 <div id="urgentPage" class="page">
 
@@ -1319,11 +1342,6 @@ Lavori urgenti
 
 </div>
 
-
-<!-- =========================
-     COMPLETATI
-========================= -->
-
 <div id="completedPage" class="page">
 
 <div class="topbar">
@@ -1343,11 +1361,6 @@ Lavori completati
 <div id="completedJobs"></div>
 
 </div>
-
-
-<!-- =========================
-     SCHEDA SINGOLO LAVORO
-========================= -->
 
 <div
 id="photoDetailPage"
@@ -1369,7 +1382,6 @@ Lavoro
 
 </div>
 
-
 <div class="photo-detail-card">
 
 <div
@@ -1377,18 +1389,15 @@ class="photo-detail-store"
 id="photoDetailStore">
 </div>
 
-
 <div
 class="photo-detail-title"
 id="photoDetailTitle">
 </div>
 
-
 <div
 class="photo-detail-note"
 id="photoDetailNote">
 </div>
-
 
 <div class="photo-notes-box">
 
@@ -1402,7 +1411,6 @@ class="photo-notes-input"
 placeholder="Scrivi qui le note del lavoro...">
 </textarea>
 
-
 <button
 class="photo-save-notes"
 onclick="salvaNoteLavoro()">
@@ -1412,7 +1420,6 @@ Salva note
 </button>
 
 </div>
-
 
 <div class="photo-toolbar">
 
@@ -1426,7 +1433,6 @@ onclick="selezionaFoto()">
 
 </div>
 
-
 <div
 id="photoGrid"
 class="photo-grid">
@@ -1438,16 +1444,12 @@ class="photo-grid">
 
 </div>
 
-
-<!-- INPUT FOTO -->
-
 <input
 id="photoInput"
 type="file"
 accept="image/*"
 multiple
 hidden>
-
 
 <input
 id="addPhotoInput"
@@ -1456,15 +1458,11 @@ accept="image/*"
 multiple
 hidden>
 
-
 <input
 id="replacePhotoInput"
 type="file"
 accept="image/*"
 hidden>
-
-
-<!-- MODALE FOTO -->
 
 <div
 id="photoModal"
@@ -1483,12 +1481,10 @@ onclick="chiudiFotoGrande()">
 
 </button>
 
-
 <img
 id="photoModalImage"
 class="photo-modal-image"
 alt="Foto lavoro">
-
 
 <div class="photo-modal-actions">
 
@@ -1499,7 +1495,6 @@ onclick="sostituisciFotoCorrente()">
 Sostituisci
 
 </button>
-
 
 <button
 class="delete-photo"
@@ -1515,17 +1510,10 @@ Elimina
 
 </div>
 
-
-<!-- FIREBASE -->
-
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <script>
 
@@ -1554,11 +1542,9 @@ measurementId:
 
 };
 
-
 firebase.initializeApp(
 firebaseConfig
 );
-
 
 const auth=
 firebase.auth();
@@ -1566,25 +1552,20 @@ firebase.auth();
 const db=
 firebase.firestore();
 
-
 const SUPABASE_URL=
 "https://ncfznorfwniqykuxymxd.supabase.co";
-
 
 const SUPABASE_PUBLISHABLE_KEY=
 "sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
 
-
 const SUPABASE_BUCKET=
 "foto-lavori";
-
 
 const supabaseClient=
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
-
 
 const puntiVendita={
 
@@ -1636,7 +1617,6 @@ PIM:[
 
 };
 
-
 let lavori=[];
 
 let puntoSelezionato=null;
@@ -1647,18 +1627,12 @@ let lavoroFotoAperto=null;
 
 let fotoCorrente=null;
 
-
-/*
- FOTO SELEZIONATE
- NEL NUOVO LAVORO
-*/
+let addFormAperto=false;
 
 let fotoNuovoLavoro=[];
 
-
 const signedUrlCache=
 new Map();
-
 
 function firebaseOk(){
 
@@ -1674,7 +1648,6 @@ s.className=
 "firebase-status status-ok";
 
 }
-
 
 function firebaseErrore(error){
 
@@ -1696,7 +1669,6 @@ s.className=
 
 }
 
-
 auth
 .signInAnonymously()
 .then(()=>{
@@ -1706,8 +1678,9 @@ firebaseOk();
 ascoltaLavori();
 
 })
-.catch(firebaseErrore);
-
+.catch(
+firebaseErrore
+);
 
 function creaPuntiVendita(){
 
@@ -1718,25 +1691,21 @@ document.getElementById(
 
 c.innerHTML="";
 
-
 Object.keys(
 puntiVendita
 )
 .forEach(
 categoria=>{
 
-
 const gruppo=
 document.createElement(
 "div"
 );
 
-
 const titolo=
 document.createElement(
 "div"
 );
-
 
 titolo.className=
 "group-title";
@@ -1744,11 +1713,9 @@ titolo.className=
 titolo.textContent=
 categoria;
 
-
 gruppo.appendChild(
 titolo
 );
-
 
 const lista=
 document.createElement(
@@ -1758,12 +1725,10 @@ document.createElement(
 lista.className=
 "store-list";
 
-
 puntiVendita[
 categoria
 ].forEach(
 punto=>{
-
 
 const b=
 document.createElement(
@@ -1773,42 +1738,38 @@ document.createElement(
 b.className=
 "store-button";
 
-
-const nome=
+const n=
 document.createElement(
 "span"
 );
 
-nome.className=
+n.className=
 "store-name-text";
 
-nome.textContent=
+n.textContent=
 punto;
 
-
-const count=
+const num=
 document.createElement(
 "span"
 );
 
-count.className=
+num.className=
 "store-count";
 
-count.id=
+num.id=
 "count-"+
 encodeURIComponent(
 punto
 );
 
-count.textContent=
+num.textContent=
 "0";
 
-
 b.append(
-nome,
-count
+n,
+num
 );
-
 
 b.onclick=()=>{
 
@@ -1819,13 +1780,11 @@ categoria
 
 };
 
-
 lista.appendChild(
 b
 );
 
 });
-
 
 gruppo.appendChild(
 lista
@@ -1839,14 +1798,18 @@ gruppo
 
 }
 
-
 function ascoltaLavori(){
 
 db
 .collection("lavori")
+.where(
+"attivo",
+"==",
+true
+)
 .onSnapshot(
-snapshot=>{
 
+snapshot=>{
 
 lavori=
 snapshot.docs.map(
@@ -1859,23 +1822,17 @@ id:doc.id,
 })
 );
 
-
-aggiornaInterfaccia();
-
+aggiornaTutto();
 
 },
-error=>{
 
-firebaseErrore(
-error
+firebaseErrore
+
 );
-
-});
 
 }
 
-
-function aggiornaInterfaccia(){
+function aggiornaTutto(){
 
 const daFare=
 lavori.filter(
@@ -1884,13 +1841,11 @@ x.attivo===true &&
 x.completato!==true
 );
 
-
 const urgenti=
 daFare.filter(
 x=>
 x.urgente===true
 );
-
 
 const completati=
 lavori.filter(
@@ -1899,42 +1854,34 @@ x.attivo===true &&
 x.completato===true
 );
 
-
 document.getElementById(
 "totaleDaFare"
 ).textContent=
 daFare.length;
-
 
 document.getElementById(
 "totaleUrgenti"
 ).textContent=
 urgenti.length;
 
-
 document.getElementById(
 "totaleCompletati"
 ).textContent=
 completati.length;
 
-
 aggiornaNumeriPuntiVendita();
-
 
 renderTodoJobs(
 daFare
 );
 
-
 renderUrgentJobs(
 urgenti
 );
 
-
 renderCompletedJobs(
 completati
 );
-
 
 if(puntoSelezionato){
 
@@ -1945,7 +1892,6 @@ puntoSelezionato
 }
 
 }
-
 
 function aggiornaNumeriPuntiVendita(){
 
@@ -1961,7 +1907,6 @@ cat
 .forEach(
 punto=>{
 
-
 const n=
 lavori.filter(
 x=>
@@ -1969,7 +1914,6 @@ x.attivo===true &&
 x.punto===punto &&
 x.completato!==true
 ).length;
-
 
 const e=
 document.getElementById(
@@ -1979,7 +1923,6 @@ punto
 )
 );
 
-
 if(e)
 e.textContent=
 n;
@@ -1987,7 +1930,6 @@ n;
 }));
 
 }
-
 
 function mostraPagina(id){
 
@@ -2002,21 +1944,16 @@ p.classList.remove(
 )
 );
 
-
 const p=
 document.getElementById(
 id
 );
-
 
 if(p){
 
 p.classList.add(
 "active"
 );
-
-}
-
 
 window.scrollTo(
 0,
@@ -2025,8 +1962,39 @@ window.scrollTo(
 
 }
 
+}
 
 function showHome(){
+
+addFormAperto=false;
+
+const form=
+document.getElementById(
+"addWorkForm"
+);
+
+if(form)
+form.classList.remove(
+"active"
+);
+
+const button=
+document.getElementById(
+"addWorkToggle"
+);
+
+if(button)
+button.textContent="+";
+
+fotoNuovoLavoro=[];
+
+const box=
+document.getElementById(
+"addPhotoSelected"
+);
+
+if(box)
+box.textContent="";
 
 mostraPagina(
 "homePage"
@@ -2034,6 +2002,53 @@ mostraPagina(
 
 }
 
+function toggleAddWorkForm(){
+
+const form=
+document.getElementById(
+"addWorkForm"
+);
+
+const button=
+document.getElementById(
+"addWorkToggle"
+);
+
+addFormAperto=
+!addFormAperto;
+
+if(addFormAperto){
+
+form.classList.add(
+"active"
+);
+
+button.textContent="−";
+
+setTimeout(
+()=>{
+
+document
+.getElementById(
+"lavoroInput"
+)
+.focus();
+
+},
+100
+);
+
+}else{
+
+form.classList.remove(
+"active"
+);
+
+button.textContent="+";
+
+}
+
+}
 
 function filtraLavori(){
 
@@ -2047,24 +2062,22 @@ document.getElementById(
 "clearSearch"
 );
 
-
 ricercaLavori=
 input.value
 .trim()
 .toLowerCase();
 
-
 clear.style.display=
-ricercaLavori?
-"block":
+ricercaLavori
+?
+"block"
+:
 "none";
-
 
 renderTodoJobs(
 
 lavori.filter(
 x=>{
-
 
 if(
 x.attivo!==true ||
@@ -2072,12 +2085,10 @@ x.completato===true
 )
 return false;
 
-
 if(
 !ricercaLavori
 )
 return true;
-
 
 return(
 
@@ -2111,22 +2122,18 @@ ricercaLavori
 
 }
 
-
 function cancellaRicerca(){
 
 document.getElementById(
 "searchLavori"
 ).value="";
 
-
 ricercaLavori="";
-
 
 document.getElementById(
 "clearSearch"
 ).style.display=
 "none";
-
 
 renderTodoJobs(
 
@@ -2140,7 +2147,6 @@ x.completato!==true
 
 }
 
-
 function renderTodoJobs(lista){
 
 const c=
@@ -2150,24 +2156,20 @@ document.getElementById(
 
 c.innerHTML="";
 
-
 if(!lista.length){
 
 c.innerHTML=
-`<div class="empty">
-${
+`<div class="empty">${
 ricercaLavori
 ?
 "Nessun lavoro trovato."
 :
 "Nessun lavoro da fare."
-}
-</div>`;
+}</div>`;
 
 return;
 
 }
-
 
 Object.keys(
 puntiVendita
@@ -2175,12 +2177,10 @@ puntiVendita
 .forEach(
 cat=>{
 
-
 const punti=
 puntiVendita[
 cat
 ];
-
 
 const catJobs=
 lista.filter(
@@ -2190,10 +2190,8 @@ x.punto
 )
 );
 
-
 if(!catJobs.length)
 return;
-
 
 const t=
 document.createElement(
@@ -2210,10 +2208,8 @@ c.appendChild(
 t
 );
 
-
 punti.forEach(
 punto=>{
-
 
 const jobs=
 catJobs.filter(
@@ -2221,10 +2217,8 @@ x=>
 x.punto===punto
 );
 
-
 if(!jobs.length)
 return;
-
 
 const g=
 document.createElement(
@@ -2234,7 +2228,6 @@ document.createElement(
 g.className=
 "todo-store-group";
 
-
 const h=
 document.createElement(
 "div"
@@ -2242,7 +2235,6 @@ document.createElement(
 
 h.className=
 "todo-store-header";
-
 
 const n=
 document.createElement(
@@ -2255,7 +2247,6 @@ n.className=
 n.textContent=
 punto;
 
-
 const num=
 document.createElement(
 "div"
@@ -2267,17 +2258,14 @@ num.className=
 num.textContent=
 jobs.length;
 
-
 h.append(
 n,
 num
 );
 
-
 g.appendChild(
 h
 );
-
 
 jobs.forEach(
 job=>
@@ -2288,7 +2276,6 @@ job
 )
 );
 
-
 c.appendChild(
 g
 );
@@ -2298,7 +2285,6 @@ g
 });
 
 }
-
 
 function creaTodoJobRow(
 lavoro
@@ -2312,7 +2298,6 @@ document.createElement(
 r.className=
 "todo-job-row";
 
-
 const main=
 document.createElement(
 "div"
@@ -2320,7 +2305,6 @@ document.createElement(
 
 main.className=
 "todo-job-main job-clickable";
-
 
 const dot=
 document.createElement(
@@ -2330,7 +2314,6 @@ document.createElement(
 dot.className=
 "todo-job-dot";
 
-
 const content=
 document.createElement(
 "div"
@@ -2338,7 +2321,6 @@ document.createElement(
 
 content.className=
 "todo-job-content";
-
 
 const text=
 document.createElement(
@@ -2351,11 +2333,9 @@ text.className=
 text.textContent=
 lavoro.testo||"";
 
-
 content.appendChild(
 text
 );
-
 
 if(lavoro.note){
 
@@ -2376,7 +2356,6 @@ note
 );
 
 }
-
 
 if(
 lavoro.urgente===true
@@ -2399,12 +2378,10 @@ badge
 
 }
 
-
 main.append(
 dot,
 content
 );
-
 
 main.onclick=()=>{
 
@@ -2414,11 +2391,9 @@ lavoro.id
 
 };
 
-
 r.appendChild(
 main
 );
-
 
 const actions=
 document.createElement(
@@ -2427,7 +2402,6 @@ document.createElement(
 
 actions.className=
 "symbol-actions";
-
 
 const complete=
 document.createElement(
@@ -2443,7 +2417,6 @@ complete.title=
 complete.textContent=
 "✓";
 
-
 complete.onclick=e=>{
 
 e.stopPropagation();
@@ -2453,7 +2426,6 @@ lavoro.id
 );
 
 };
-
 
 const urgent=
 document.createElement(
@@ -2473,7 +2445,6 @@ lavoro.urgente
 urgent.textContent=
 "!";
 
-
 urgent.onclick=e=>{
 
 e.stopPropagation();
@@ -2484,7 +2455,6 @@ lavoro.urgente===true
 );
 
 };
-
 
 const del=
 document.createElement(
@@ -2500,7 +2470,6 @@ del.title=
 del.textContent=
 "×";
 
-
 del.onclick=e=>{
 
 e.stopPropagation();
@@ -2511,27 +2480,19 @@ lavoro.id
 
 };
 
-
 actions.append(
 complete,
 urgent,
 del
 );
 
-
 r.appendChild(
 actions
 );
 
-
 return r;
 
 }
-
-
-/* =========================
-   APERTURA PUNTO VENDITA
-========================= */
 
 function apriPuntoVendita(
 punto,
@@ -2541,59 +2502,61 @@ categoria
 puntoSelezionato=
 punto;
 
+addFormAperto=false;
+
+document
+.getElementById(
+"addWorkForm"
+)
+.classList.remove(
+"active"
+);
+
+document
+.getElementById(
+"addWorkToggle"
+)
+.textContent="+";
+
+fotoNuovoLavoro=[];
+
+document
+.getElementById(
+"addPhotoSelected"
+)
+.textContent="";
 
 document.getElementById(
 "storePageName"
 ).textContent=
 punto;
 
-
 document.getElementById(
 "storePageCategory"
 ).textContent=
 categoria;
 
-
 document.getElementById(
 "lavoroInput"
 ).value="";
-
 
 document.getElementById(
 "noteInput"
 ).value="";
 
-
 document.getElementById(
 "urgenteInput"
 ).checked=false;
 
-
-/*
- IMPORTANTE:
- ogni volta che entri in un punto vendita
- ripartiamo con nessuna foto selezionata
-*/
-
-fotoNuovoLavoro=[];
-
-
-document.getElementById(
-"addPhotoSelected"
-).textContent="";
-
-
 renderStoreJobs(
 punto
 );
-
 
 mostraPagina(
 "storePage"
 );
 
 }
-
 
 function renderStoreJobs(
 punto
@@ -2606,18 +2569,12 @@ document.getElementById(
 
 c.innerHTML="";
 
-
-/*
- SOLO I LAVORI DI QUESTO PUNTO VENDITA
-*/
-
 const lista=
 lavori.filter(
 x=>
 x.attivo===true &&
 x.punto===punto
 );
-
 
 if(!lista.length){
 
@@ -2627,7 +2584,6 @@ c.innerHTML=
 return;
 
 }
-
 
 lista.forEach(
 job=>
@@ -2639,7 +2595,6 @@ job
 );
 
 }
-
 
 function creaStoreJobCard(
 lavoro
@@ -2653,7 +2608,6 @@ document.createElement(
 card.className=
 "job-card job-clickable";
 
-
 card.onclick=()=>{
 
 apriSchedaLavoro(
@@ -2661,7 +2615,6 @@ lavoro.id
 );
 
 };
-
 
 const text=
 document.createElement(
@@ -2674,11 +2627,9 @@ text.className=
 text.textContent=
 lavoro.testo||"";
 
-
 card.appendChild(
 text
 );
-
 
 if(lavoro.note){
 
@@ -2700,7 +2651,6 @@ note
 
 }
 
-
 const actions=
 document.createElement(
 "div"
@@ -2711,7 +2661,6 @@ actions.className=
 
 actions.style.marginTop=
 "12px";
-
 
 const complete=
 document.createElement(
@@ -2727,7 +2676,6 @@ complete.title=
 complete.textContent=
 "✓";
 
-
 complete.onclick=e=>{
 
 e.stopPropagation();
@@ -2737,7 +2685,6 @@ lavoro.id
 );
 
 };
-
 
 const urgent=
 document.createElement(
@@ -2757,7 +2704,6 @@ lavoro.urgente
 urgent.textContent=
 "!";
 
-
 urgent.onclick=e=>{
 
 e.stopPropagation();
@@ -2768,7 +2714,6 @@ lavoro.urgente===true
 );
 
 };
-
 
 const del=
 document.createElement(
@@ -2784,7 +2729,6 @@ del.title=
 del.textContent=
 "×";
 
-
 del.onclick=e=>{
 
 e.stopPropagation();
@@ -2795,27 +2739,21 @@ lavoro.id
 
 };
 
-
 actions.append(
 complete,
 urgent,
 del
 );
 
-
 card.appendChild(
 actions
 );
-
 
 return card;
 
 }
 
-
-/* =========================
-   FOTO DEL NUOVO LAVORO
-========================= */
+/* FOTO DEL NUOVO LAVORO */
 
 function selezionaFotoNuovoLavoro(){
 
@@ -2824,9 +2762,7 @@ document.getElementById(
 "addPhotoInput"
 );
 
-
 input.value="";
-
 
 input.onchange=
 e=>{
@@ -2834,43 +2770,38 @@ e=>{
 fotoNuovoLavoro=
 [
 ...(e.target.files||[])
-];
-
+]
+.filter(
+file=>
+file.type.startsWith(
+"image/"
+)
+);
 
 const box=
 document.getElementById(
 "addPhotoSelected"
 );
 
-
-if(!fotoNuovoLavoro.length){
-
-box.textContent="";
-
-return;
-
-}
-
-
 box.textContent=
+fotoNuovoLavoro.length
+?
+(
 fotoNuovoLavoro.length===1
 ?
 "1 foto selezionata"
 :
 fotoNuovoLavoro.length+
-" foto selezionate";
+" foto selezionate"
+)
+:
+"";
 
 };
-
 
 input.click();
 
 }
-
-
-/* =========================
-   CARICA FOTO NUOVO LAVORO
-========================= */
 
 async function caricaFotoNuovoLavoro(
 id,
@@ -2878,7 +2809,6 @@ files
 ){
 
 const paths=[];
-
 
 for(
 const file of files
@@ -2888,7 +2818,6 @@ const blob=
 await comprimiFoto(
 file
 );
-
 
 const path=
 "lavori/"+
@@ -2900,7 +2829,6 @@ Math.random()
 .toString(36)
 .slice(2,10)+
 ".jpg";
-
 
 const result=
 await supabaseClient
@@ -2918,27 +2846,18 @@ contentType:
 cacheControl:
 "3600",
 
-upsert:
-false
+upsert:false
 }
 );
 
-
 if(result.error)
 throw result.error;
-
 
 paths.push(
 path
 );
 
 }
-
-
-/*
- COLLEGA LE FOTO
- ESCLUSIVAMENTE A QUESTO LAVORO
-*/
 
 if(paths.length){
 
@@ -2948,7 +2867,8 @@ await db
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayUnion(
 ...paths
 )
@@ -2957,57 +2877,43 @@ firebase.firestore.FieldValue
 
 }
 
-
 return paths;
 
 }
 
-
-/* =========================
-   AGGIUNGI LAVORO
-========================= */
-
-function aggiungiLavoro(){
+async function aggiungiLavoro(){
 
 if(!puntoSelezionato)
 return;
-
 
 const lavoroInput=
 document.getElementById(
 "lavoroInput"
 );
 
-
 const noteInput=
 document.getElementById(
 "noteInput"
 );
-
 
 const urgentInput=
 document.getElementById(
 "urgenteInput"
 );
 
-
 const button=
 document.getElementById(
 "addWorkButton"
 );
 
-
 const testo=
 lavoroInput.value.trim();
-
 
 const note=
 noteInput.value.trim();
 
-
 const urgente=
 urgentInput.checked;
-
 
 if(!testo){
 
@@ -3021,33 +2927,23 @@ return;
 
 }
 
-
 button.disabled=true;
 
 button.textContent=
 "Salvataggio...";
-
-
-/*
- COPIA LE FOTO SELEZIONATE
- PRIMA DI SALVARE
-*/
 
 const fotoDaCaricare=
 [
 ...fotoNuovoLavoro
 ];
 
-
-const salva=
-async()=>{
-
 try{
 
+if(!auth.currentUser){
 
-/*
- 1. CREA IL LAVORO
-*/
+await auth.signInAnonymously();
+
+}
 
 const ref=
 await db
@@ -3089,20 +2985,12 @@ foto:
 
 });
 
-
-/*
- 2. SE CI SONO FOTO,
- LE CARICA NELLA CARTELLA
- DI QUESTO SPECIFICO LAVORO
-*/
-
 if(
 fotoDaCaricare.length
 ){
 
 button.textContent=
 "Caricamento foto...";
-
 
 await caricaFotoNuovoLavoro(
 ref.id,
@@ -3111,45 +2999,44 @@ fotoDaCaricare
 
 }
 
-
-/*
- 3. PULISCE IL MODULO
-*/
-
 lavoroInput.value="";
 
 noteInput.value="";
 
 urgentInput.checked=false;
 
-
 fotoNuovoLavoro=[];
-
 
 document.getElementById(
 "addPhotoSelected"
 ).textContent="";
 
+addFormAperto=false;
+
+document.getElementById(
+"addWorkForm"
+).classList.remove(
+"active"
+);
+
+document.getElementById(
+"addWorkToggle"
+).textContent="+";
 
 button.disabled=false;
 
 button.textContent=
 "+ Aggiungi lavoro";
 
-
 }catch(error){
 
-console.error(
-error
-);
-
+console.error(error);
 
 alert(
 "Errore nel salvataggio del lavoro: "+
 (error.message||error)
 );
 
-
 button.disabled=false;
 
 button.textContent=
@@ -3157,45 +3044,11 @@ button.textContent=
 
 }
 
-};
-
-
-if(auth.currentUser){
-
-salva();
-
-}else{
-
-auth
-.signInAnonymously()
-.then(salva)
-.catch(error=>{
-
-console.error(
-error
-);
-
-alert(
-"Errore di autenticazione."
-);
-
-button.disabled=false;
-
-button.textContent=
-"+ Aggiungi lavoro";
-
-});
-
 }
 
-}
-
-
-/* =========================
-   AZIONI LAVORI
-========================= */
-
-function completaLavoro(id){
+function completaLavoro(
+id
+){
 
 db
 .collection("lavori")
@@ -3216,8 +3069,9 @@ alert(
 
 }
 
-
-function daRifare(id){
+function daRifare(
+id
+){
 
 db
 .collection("lavori")
@@ -3237,7 +3091,6 @@ alert(
 );
 
 }
-
 
 function cambiaUrgente(
 id,
@@ -3263,8 +3116,9 @@ alert(
 
 }
 
-
-function eliminaLavoro(id){
+function eliminaLavoro(
+id
+){
 
 if(
 !confirm(
@@ -3272,7 +3126,6 @@ if(
 )
 )
 return;
-
 
 db
 .collection("lavori")
@@ -3293,10 +3146,7 @@ alert(
 
 }
 
-
-/* =========================
-   URGENTI
-========================= */
+/* URGENTI */
 
 function renderUrgentJobs(
 lista
@@ -3309,7 +3159,6 @@ document.getElementById(
 
 c.innerHTML="";
 
-
 if(!lista.length){
 
 c.innerHTML=
@@ -3319,19 +3168,16 @@ return;
 
 }
 
-
 Object.keys(
 puntiVendita
 )
 .forEach(
 cat=>{
 
-
 const punti=
 puntiVendita[
 cat
 ];
-
 
 const catJobs=
 lista.filter(
@@ -3341,10 +3187,8 @@ x.punto
 )
 );
 
-
 if(!catJobs.length)
 return;
-
 
 const t=
 document.createElement(
@@ -3361,10 +3205,8 @@ c.appendChild(
 t
 );
 
-
 punti.forEach(
 punto=>{
-
 
 const jobs=
 catJobs.filter(
@@ -3372,10 +3214,8 @@ x=>
 x.punto===punto
 );
 
-
 if(!jobs.length)
 return;
-
 
 const g=
 document.createElement(
@@ -3385,7 +3225,6 @@ document.createElement(
 g.className=
 "todo-store-group";
 
-
 const h=
 document.createElement(
 "div"
@@ -3393,7 +3232,6 @@ document.createElement(
 
 h.className=
 "urgent-store-header";
-
 
 const n=
 document.createElement(
@@ -3406,7 +3244,6 @@ n.className=
 n.textContent=
 punto;
 
-
 const num=
 document.createElement(
 "div"
@@ -3418,7 +3255,6 @@ num.className=
 num.textContent=
 jobs.length;
 
-
 h.append(
 n,
 num
@@ -3428,10 +3264,8 @@ g.appendChild(
 h
 );
 
-
 jobs.forEach(
 job=>{
-
 
 const r=
 document.createElement(
@@ -3441,7 +3275,6 @@ document.createElement(
 r.className=
 "urgent-job-row job-clickable";
 
-
 r.onclick=()=>{
 
 apriSchedaLavoro(
@@ -3449,7 +3282,6 @@ job.id
 );
 
 };
-
 
 const dot=
 document.createElement(
@@ -3459,7 +3291,6 @@ document.createElement(
 dot.className=
 "urgent-job-dot";
 
-
 const content=
 document.createElement(
 "div"
@@ -3467,7 +3298,6 @@ document.createElement(
 
 content.className=
 "urgent-job-content";
-
 
 const text=
 document.createElement(
@@ -3483,7 +3313,6 @@ job.testo||"";
 content.appendChild(
 text
 );
-
 
 if(job.note){
 
@@ -3505,7 +3334,6 @@ note
 
 }
 
-
 const actions=
 document.createElement(
 "div"
@@ -3513,7 +3341,6 @@ document.createElement(
 
 actions.className=
 "symbol-actions";
-
 
 const complete=
 document.createElement(
@@ -3529,7 +3356,6 @@ complete.textContent=
 complete.title=
 "Completato";
 
-
 complete.onclick=e=>{
 
 e.stopPropagation();
@@ -3539,7 +3365,6 @@ job.id
 );
 
 };
-
 
 const urgent=
 document.createElement(
@@ -3555,7 +3380,6 @@ urgent.textContent=
 urgent.title=
 "Togli urgente";
 
-
 urgent.onclick=e=>{
 
 e.stopPropagation();
@@ -3566,7 +3390,6 @@ true
 );
 
 };
-
 
 const del=
 document.createElement(
@@ -3582,7 +3405,6 @@ del.textContent=
 del.title=
 "Elimina";
 
-
 del.onclick=e=>{
 
 e.stopPropagation();
@@ -3593,13 +3415,11 @@ job.id
 
 };
 
-
 actions.append(
 complete,
 urgent,
 del
 );
-
 
 r.append(
 dot,
@@ -3607,13 +3427,11 @@ content,
 actions
 );
 
-
 g.appendChild(
 r
 );
 
 });
-
 
 c.appendChild(
 g
@@ -3625,10 +3443,7 @@ g
 
 }
 
-
-/* =========================
-   COMPLETATI
-========================= */
+/* COMPLETATI */
 
 function renderCompletedJobs(
 lista
@@ -3641,7 +3456,6 @@ document.getElementById(
 
 c.innerHTML="";
 
-
 if(!lista.length){
 
 c.innerHTML=
@@ -3651,19 +3465,16 @@ return;
 
 }
 
-
 Object.keys(
 puntiVendita
 )
 .forEach(
 cat=>{
 
-
 const punti=
 puntiVendita[
 cat
 ];
-
 
 const catJobs=
 lista.filter(
@@ -3673,10 +3484,8 @@ x.punto
 )
 );
 
-
 if(!catJobs.length)
 return;
-
 
 const t=
 document.createElement(
@@ -3693,10 +3502,8 @@ c.appendChild(
 t
 );
 
-
 punti.forEach(
 punto=>{
-
 
 const jobs=
 catJobs.filter(
@@ -3704,10 +3511,8 @@ x=>
 x.punto===punto
 );
 
-
 if(!jobs.length)
 return;
-
 
 const g=
 document.createElement(
@@ -3717,7 +3522,6 @@ document.createElement(
 g.className=
 "completed-job";
 
-
 const h=
 document.createElement(
 "div"
@@ -3725,7 +3529,6 @@ document.createElement(
 
 h.className=
 "completed-store-header";
-
 
 const n=
 document.createElement(
@@ -3738,7 +3541,6 @@ n.className=
 n.textContent=
 punto;
 
-
 const num=
 document.createElement(
 "div"
@@ -3750,7 +3552,6 @@ num.className=
 num.textContent=
 jobs.length;
 
-
 h.append(
 n,
 num
@@ -3760,10 +3561,8 @@ g.appendChild(
 h
 );
 
-
 jobs.forEach(
 job=>{
-
 
 const r=
 document.createElement(
@@ -3773,7 +3572,6 @@ document.createElement(
 r.className=
 "completed-job-row job-clickable";
 
-
 r.onclick=()=>{
 
 apriSchedaLavoro(
@@ -3781,7 +3579,6 @@ job.id
 );
 
 };
-
 
 const check=
 document.createElement(
@@ -3794,7 +3591,6 @@ check.className=
 check.textContent=
 "✓";
 
-
 const content=
 document.createElement(
 "div"
@@ -3802,7 +3598,6 @@ document.createElement(
 
 content.className=
 "completed-job-content";
-
 
 const text=
 document.createElement(
@@ -3818,7 +3613,6 @@ job.testo||"";
 content.appendChild(
 text
 );
-
 
 if(job.note){
 
@@ -3840,7 +3634,6 @@ note
 
 }
 
-
 const actions=
 document.createElement(
 "div"
@@ -3848,7 +3641,6 @@ document.createElement(
 
 actions.className=
 "symbol-actions";
-
 
 const redo=
 document.createElement(
@@ -3864,7 +3656,6 @@ redo.title=
 redo.textContent=
 "↻";
 
-
 redo.onclick=e=>{
 
 e.stopPropagation();
@@ -3874,7 +3665,6 @@ job.id
 );
 
 };
-
 
 const del=
 document.createElement(
@@ -3890,7 +3680,6 @@ del.title=
 del.textContent=
 "×";
 
-
 del.onclick=e=>{
 
 e.stopPropagation();
@@ -3901,12 +3690,10 @@ job.id
 
 };
 
-
 actions.append(
 redo,
 del
 );
-
 
 r.append(
 check,
@@ -3914,13 +3701,11 @@ content,
 actions
 );
 
-
 g.appendChild(
 r
 );
 
 });
-
 
 c.appendChild(
 g
@@ -3932,26 +3717,20 @@ g
 
 }
 
-
-/* =========================
-   NOTE SCHEDA LAVORO
-========================= */
+/* NOTE */
 
 function salvaNoteLavoro(){
 
 if(!lavoroFotoAperto)
 return;
 
-
 const input=
 document.getElementById(
 "photoDetailNoteInput"
 );
 
-
 const testo=
 input.value.trim();
-
 
 db
 .collection("lavori")
@@ -3964,25 +3743,22 @@ testo
 })
 .then(()=>{
 
-
 lavoroFotoAperto.note=
 testo;
-
 
 document.getElementById(
 "photoDetailNote"
 ).textContent=
 testo
 ?
-"Note: "+testo
+"Note: "+
+testo
 :
 "";
-
 
 alert(
 "Note salvate."
 );
-
 
 })
 .catch(error=>{
@@ -3999,7 +3775,6 @@ alert(
 
 }
 
-
 function fotoPaths(
 lavoro
 ){
@@ -4014,11 +3789,6 @@ lavoro.foto
 
 }
 
-
-/* =========================
-   APERTURA SCHEDA LAVORO
-========================= */
-
 function apriSchedaLavoro(
 id
 ){
@@ -4029,117 +3799,54 @@ x=>
 x.id===id
 );
 
-
 if(!lavoro)
 return;
 
-
-/*
- IMPORTANTE:
- il punto vendita viene preso
- direttamente dal lavoro
-*/
-
-puntoSelezionato=
-lavoro.punto||null;
-
-
 lavoroFotoAperto=
 lavoro;
-
 
 document.getElementById(
 "photoDetailStore"
 ).textContent=
 lavoro.punto||"";
 
-
 document.getElementById(
 "photoDetailTitle"
 ).textContent=
 lavoro.testo||"";
-
 
 document.getElementById(
 "photoDetailNoteInput"
 ).value=
 lavoro.note||"";
 
-
 document.getElementById(
 "photoDetailNote"
 ).textContent=
 lavoro.note
 ?
-"Note: "+lavoro.note
+"Note: "+
+lavoro.note
 :
 "";
-
 
 mostraPagina(
 "photoDetailPage"
 );
 
-
 renderFotoLavoro();
 
 }
 
-
-/* =========================
-   CHIUSURA SCHEDA
-========================= */
-
 function chiudiSchedaLavoro(){
-
-const punto=
-lavoroFotoAperto?.punto ||
-puntoSelezionato;
-
 
 lavoroFotoAperto=
 null;
 
-
 fotoCorrente=
 null;
 
-
-if(punto){
-
-puntoSelezionato=
-punto;
-
-
-const categoria=
-Object.keys(
-puntiVendita
-).find(
-cat=>
-puntiVendita[
-cat
-].includes(
-punto
-)
-)||"";
-
-
-document.getElementById(
-"storePageName"
-).textContent=
-punto;
-
-
-document.getElementById(
-"storePageCategory"
-).textContent=
-categoria;
-
-
-renderStoreJobs(
-punto
-);
-
+if(puntoSelezionato){
 
 mostraPagina(
 "storePage"
@@ -4155,11 +3862,6 @@ mostraPagina(
 
 }
 
-
-/* =========================
-   VISUALIZZA FOTO LAVORO
-========================= */
-
 function renderFotoLavoro(){
 
 const grid=
@@ -4169,16 +3871,13 @@ document.getElementById(
 
 grid.innerHTML="";
 
-
 if(!lavoroFotoAperto)
 return;
-
 
 const paths=
 fotoPaths(
 lavoroFotoAperto
 );
-
 
 if(!paths.length){
 
@@ -4189,10 +3888,8 @@ return;
 
 }
 
-
 paths.forEach(
 (path,index)=>{
-
 
 const box=
 document.createElement(
@@ -4202,22 +3899,18 @@ document.createElement(
 box.className=
 "photo-thumb";
 
-
 const img=
 document.createElement(
 "img"
 );
 
 img.alt=
-"Foto "+(
-index+1
-);
-
+"Foto "+
+(index+1);
 
 box.appendChild(
 img
 );
-
 
 const del=
 document.createElement(
@@ -4233,7 +3926,6 @@ del.textContent=
 del.title=
 "Elimina foto";
 
-
 del.onclick=e=>{
 
 e.stopPropagation();
@@ -4244,11 +3936,9 @@ path
 
 };
 
-
 box.appendChild(
 del
 );
-
 
 box.onclick=()=>{
 
@@ -4258,11 +3948,9 @@ path
 
 };
 
-
 grid.appendChild(
 box
 );
-
 
 getSignedUrl(
 path
@@ -4271,7 +3959,8 @@ path
 url=>{
 
 if(url)
-img.src=url;
+img.src=
+url;
 
 }
 );
@@ -4280,11 +3969,6 @@ img.src=url;
 
 }
 
-
-/* =========================
-   URL FOTO
-========================= */
-
 async function getSignedUrl(
 path
 ){
@@ -4292,19 +3976,16 @@ path
 if(!path)
 return null;
 
-
 const cached=
 signedUrlCache.get(
 path
 );
-
 
 if(
 cached &&
 cached.expires>Date.now()
 )
 return cached.url;
-
 
 const {
 data,
@@ -4320,7 +4001,6 @@ path,
 3600
 );
 
-
 if(error){
 
 console.error(
@@ -4332,7 +4012,6 @@ return null;
 
 }
 
-
 signedUrlCache.set(
 path,
 {
@@ -4342,27 +4021,19 @@ Date.now()+3500*1000
 }
 );
 
-
 return data.signedUrl;
 
 }
-
-
-/* =========================
-   AGGIUNGI FOTO A LAVORO ESISTENTE
-========================= */
 
 function selezionaFoto(){
 
 if(!lavoroFotoAperto)
 return;
 
-
 const input=
 document.getElementById(
 "photoInput"
 );
-
 
 input.value="";
 
@@ -4372,11 +4043,6 @@ caricaFoto;
 input.click();
 
 }
-
-
-/* =========================
-   COMPRESSIONE FOTO
-========================= */
 
 async function comprimiFoto(
 file
@@ -4391,19 +4057,15 @@ throw new Error(
 "Seleziona un'immagine."
 );
 
-
 const url=
 URL.createObjectURL(
 file
 );
 
-
 const img=
 new Image();
 
-
 try{
-
 
 await new Promise(
 (res,rej)=>{
@@ -4420,17 +4082,14 @@ url;
 }
 );
 
-
 let w=
 img.naturalWidth;
 
 let h=
 img.naturalHeight;
 
-
 const max=
 1600;
-
 
 if(
 w>max ||
@@ -4459,19 +4118,16 @@ h=max;
 
 }
 
-
 const canvas=
 document.createElement(
 "canvas"
 );
-
 
 canvas.width=
 w;
 
 canvas.height=
 h;
-
 
 canvas
 .getContext(
@@ -4485,18 +4141,14 @@ w,
 h
 );
 
-
 return await new Promise(
 resolve=>
-
 canvas.toBlob(
 resolve,
 "image/jpeg",
 .82
 )
-
 );
-
 
 }finally{
 
@@ -4508,18 +4160,14 @@ url
 
 }
 
-
-/* =========================
-   CARICA FOTO IN SCHEDA
-========================= */
-
-async function caricaFoto(e){
+async function caricaFoto(
+e
+){
 
 const files=
 [
 ...(e.target.files||[])
 ];
-
 
 if(
 !files.length ||
@@ -4527,13 +4175,10 @@ if(
 )
 return;
 
-
 const lavoro=
 lavoroFotoAperto;
 
-
 try{
-
 
 for(
 const file of files
@@ -4543,7 +4188,6 @@ const blob=
 await comprimiFoto(
 file
 );
-
 
 const path=
 "lavori/"+
@@ -4555,7 +4199,6 @@ Math.random()
 .toString(36)
 .slice(2,10)+
 ".jpg";
-
 
 const {
 error
@@ -4575,15 +4218,12 @@ contentType:
 cacheControl:
 "3600",
 
-upsert:
-false
+upsert:false
 }
 );
 
-
 if(error)
 throw error;
-
 
 await db
 .collection("lavori")
@@ -4591,7 +4231,8 @@ await db
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayUnion(
 path
 )
@@ -4600,25 +4241,20 @@ path
 
 }
 
-
 alert(
-
 files.length===1
 ?
 "Foto aggiunta."
 :
 files.length+
 " foto aggiunte."
-
 );
-
 
 }catch(error){
 
 console.error(
 error
 );
-
 
 alert(
 "Errore nel caricamento: "+
@@ -4629,11 +4265,6 @@ alert(
 
 }
 
-
-/* =========================
-   FOTO GRANDE
-========================= */
-
 async function apriFotoGrande(
 path
 ){
@@ -4641,22 +4272,18 @@ path
 fotoCorrente=
 path;
 
-
 const url=
 await getSignedUrl(
 path
 );
 
-
 if(!url)
 return;
-
 
 document.getElementById(
 "photoModalImage"
 ).src=
 url;
-
 
 document.getElementById(
 "photoModal"
@@ -4665,7 +4292,6 @@ document.getElementById(
 );
 
 }
-
 
 function chiudiFotoGrande(
 event
@@ -4677,28 +4303,20 @@ event.target!==event.currentTarget
 )
 return;
 
-
 document.getElementById(
 "photoModal"
 ).classList.remove(
 "active"
 );
 
-
 document.getElementById(
 "photoModalImage"
 ).src="";
-
 
 fotoCorrente=
 null;
 
 }
-
-
-/* =========================
-   SOSTITUISCI FOTO
-========================= */
 
 function sostituisciFotoCorrente(){
 
@@ -4708,24 +4326,19 @@ if(
 )
 return;
 
-
 const input=
 document.getElementById(
 "replacePhotoInput"
 );
 
-
 input.value="";
-
 
 input.onchange=
 eseguiSostituzioneFoto;
 
-
 input.click();
 
 }
-
 
 async function eseguiSostituzioneFoto(
 e
@@ -4734,7 +4347,6 @@ e
 const file=
 e.target.files?.[0];
 
-
 if(
 !file ||
 !fotoCorrente ||
@@ -4742,23 +4354,18 @@ if(
 )
 return;
 
-
 const oldPath=
 fotoCorrente;
-
 
 const lavoro=
 lavoroFotoAperto;
 
-
 try{
-
 
 const blob=
 await comprimiFoto(
 file
 );
-
 
 const newPath=
 "lavori/"+
@@ -4770,7 +4377,6 @@ Math.random()
 .toString(36)
 .slice(2,10)+
 ".jpg";
-
 
 const up=
 await supabaseClient
@@ -4788,15 +4394,12 @@ contentType:
 cacheControl:
 "3600",
 
-upsert:
-false
+upsert:false
 }
 );
 
-
 if(up.error)
 throw up.error;
-
 
 await db
 .collection("lavori")
@@ -4804,27 +4407,27 @@ await db
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayUnion(
 newPath
 )
 
 });
 
-
 await db
 .collection("lavori")
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayRemove(
 oldPath
 )
 
 });
-
 
 await supabaseClient
 .storage
@@ -4835,11 +4438,9 @@ SUPABASE_BUCKET
 [oldPath]
 );
 
-
 signedUrlCache.delete(
 oldPath
 );
-
 
 lavoro.foto=
 fotoPaths(
@@ -4853,32 +4454,26 @@ x!==oldPath
 newPath
 );
 
-
 document.getElementById(
 "photoModal"
 ).classList.remove(
 "active"
 );
 
-
 fotoCorrente=
 null;
 
-
 renderFotoLavoro();
-
 
 alert(
 "Foto sostituita."
 );
-
 
 }catch(error){
 
 console.error(
 error
 );
-
 
 alert(
 "Errore nella sostituzione: "+
@@ -4888,11 +4483,6 @@ alert(
 }
 
 }
-
-
-/* =========================
-   ELIMINA FOTO
-========================= */
 
 async function eliminaFoto(
 path
@@ -4906,13 +4496,10 @@ if(
 )
 return;
 
-
 const lavoro=
 lavoroFotoAperto;
 
-
 try{
-
 
 const {
 error
@@ -4926,10 +4513,8 @@ SUPABASE_BUCKET
 [path]
 );
 
-
 if(error)
 throw error;
-
 
 await db
 .collection("lavori")
@@ -4937,18 +4522,17 @@ await db
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayRemove(
 path
 )
 
 });
 
-
 signedUrlCache.delete(
 path
 );
-
 
 lavoro.foto=
 fotoPaths(
@@ -4959,27 +4543,22 @@ x=>
 x!==path
 );
 
-
 document.getElementById(
 "photoModal"
 ).classList.remove(
 "active"
 );
 
-
 fotoCorrente=
 null;
 
-
 renderFotoLavoro();
-
 
 }catch(error){
 
 console.error(
 error
 );
-
 
 alert(
 "Errore nell'eliminazione della foto: "+
@@ -4989,7 +4568,6 @@ alert(
 }
 
 }
-
 
 async function eliminaFotoCorrente(){
 
@@ -5003,11 +4581,6 @@ fotoCorrente
 
 }
 
-
-/* =========================
-   AVVIO
-========================= */
-
 document.getElementById(
 "btnLavoriDaFare"
 ).addEventListener(
@@ -5018,7 +4591,6 @@ mostraPagina(
 )
 }
 );
-
 
 document.getElementById(
 "btnUrgenti"
@@ -5031,7 +4603,6 @@ mostraPagina(
 }
 );
 
-
 document.getElementById(
 "btnCompletati"
 ).addEventListener(
@@ -5043,12 +4614,10 @@ mostraPagina(
 }
 );
 
-
 document.getElementById(
 "clearSearch"
 ).onclick=
 cancellaRicerca;
-
 
 creaPuntiVendita();
 
