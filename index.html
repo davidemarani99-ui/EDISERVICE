@@ -3,21 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>EDISERVICE</title>
+
 <link rel="icon" type="image/png" href="ediservice-icon.png">
 <link rel="apple-touch-icon" href="ediservice-icon.png">
-<style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0;background:#fff;color:#222;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-button,input,textarea{font-family:inherit}
-.container{max-width:850px;margin:auto;padding:20px}
-.header{text-align:center;padding:10px 0 5px;background:#fff}
-.header img{display:block;width:250px;max-width:80%;height:auto;margin:0 auto 10px;background:#fff}
-.firebase-status{margin-top:8px;font-size:13px;font-weight:600}
-.status-ok{color:#2e7d32}.status-error{color:#c62828}
-.page{display:none}.page.active{display:block}
 
-.summary,.urgent-folder,.completed-folder{
+<style>
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent
+}
+
+html,body{
+margin:0;
+padding:0;
+background:#fff;
+color:#222;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
+}
+
+button,input,textarea{
+font-family:inherit
+}
+
+.container{
+max-width:850px;
+margin:auto;
+padding:20px
+}
+
+.header{
+text-align:center;
+padding:10px 0 5px;
+background:#fff
+}
+
+.header img{
+display:block;
+width:250px;
+max-width:80%;
+height:auto;
+margin:0 auto 10px;
+background:#fff
+}
+
+.firebase-status{
+margin-top:8px;
+font-size:13px;
+font-weight:600
+}
+
+.status-ok{color:#2e7d32}
+.status-error{color:#c62828}
+
+.page{display:none}
+.page.active{display:block}
+
+.summary,
+.urgent-folder,
+.completed-folder{
 min-height:190px;
 border-radius:28px;
 padding:28px;
@@ -30,16 +76,53 @@ justify-content:space-between;
 transition:.15s
 }
 
-.summary:active,.urgent-folder:active,.completed-folder:active{transform:scale(.98)}
-.summary{background:#555;color:#fff}
-.urgent-folder{background:#ffebee;border:2px solid #e53935;color:#b71c1c}
-.completed-folder{background:#e8f5e9;border:2px solid #43a047;color:#1b5e20}
+.summary:active,
+.urgent-folder:active,
+.completed-folder:active{
+transform:scale(.98)
+}
+
+.summary{
+background:#555;
+color:#fff
+}
+
+.urgent-folder{
+background:#ffebee;
+border:2px solid #e53935;
+color:#b71c1c
+}
+
+.completed-folder{
+background:#e8f5e9;
+border:2px solid #43a047;
+color:#1b5e20
+}
 
 .folder-text{flex:1}
-.folder-title{font-size:25px;font-weight:800;margin-bottom:12px}
-.folder-number{font-size:55px;line-height:1;font-weight:900}
-.folder-description{font-size:14px;margin-top:8px;opacity:.85}
-.folder-arrow{font-size:38px;margin-left:15px}
+
+.folder-title{
+font-size:25px;
+font-weight:800;
+margin-bottom:12px
+}
+
+.folder-number{
+font-size:55px;
+line-height:1;
+font-weight:900
+}
+
+.folder-description{
+font-size:14px;
+margin-top:8px;
+opacity:.85
+}
+
+.folder-arrow{
+font-size:38px;
+margin-left:15px
+}
 
 .section-title{
 font-size:23px;
@@ -85,8 +168,13 @@ align-items:center;
 justify-content:space-between
 }
 
-.store-button:active{transform:scale(.98)}
-.store-name-text{color:#222}
+.store-button:active{
+transform:scale(.98)
+}
+
+.store-name-text{
+color:#222
+}
 
 .store-count{
 min-width:34px;
@@ -124,6 +212,120 @@ cursor:pointer
 font-size:24px;
 font-weight:850;
 margin:0
+}
+
+.completed-topbar{
+position:relative;
+padding-right:52px
+}
+
+.completed-page-title{
+color:#2e7d32
+}
+
+.completed-menu-button{
+position:absolute;
+right:0;
+top:50%;
+transform:translateY(-50%);
+width:42px;
+height:42px;
+border:0;
+border-radius:12px;
+background:#f2f2f2;
+color:#222;
+font-size:21px;
+font-weight:900;
+letter-spacing:2px;
+cursor:pointer;
+line-height:35px
+}
+
+.completed-menu-button:active{
+transform:translateY(-50%) scale(.92)
+}
+
+.completed-menu{
+display:none;
+position:absolute;
+right:0;
+top:48px;
+width:190px;
+background:#fff;
+border:1px solid #eee;
+border-radius:15px;
+padding:6px;
+box-shadow:0 8px 28px rgba(0,0,0,.18);
+z-index:500
+}
+
+.completed-menu.active{
+display:block
+}
+
+.completed-menu button{
+display:block;
+width:100%;
+border:0;
+background:#fff;
+color:#222;
+text-align:left;
+padding:12px 13px;
+border-radius:10px;
+font-size:15px;
+font-weight:700;
+cursor:pointer
+}
+
+.completed-menu button:active{
+background:#f2f2f2
+}
+
+.completed-month-bar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:0 0 8px;
+background:#e8f5e9;
+border:2px solid #43a047;
+border-radius:16px;
+padding:10px
+}
+
+.completed-month-button{
+width:45px;
+height:45px;
+min-width:45px;
+border:0;
+border-radius:12px;
+background:#fff;
+color:#2e7d32;
+font-size:30px;
+font-weight:900;
+line-height:1;
+cursor:pointer;
+box-shadow:0 2px 6px rgba(0,0,0,.08)
+}
+
+.completed-month-button:active{
+transform:scale(.92)
+}
+
+.completed-month-title{
+flex:1;
+text-align:center;
+font-size:20px;
+font-weight:900;
+color:#1b5e20
+}
+
+.completed-month-count{
+text-align:center;
+font-size:13px;
+font-weight:700;
+color:#777;
+margin:0 0 12px
 }
 
 .search-box{
@@ -185,7 +387,9 @@ margin:20px 0;
 box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
 
-.form-card h2{margin-top:0}
+.form-card h2{
+margin-top:0
+}
 
 label{
 display:block;
@@ -193,7 +397,8 @@ font-weight:700;
 margin:15px 0 7px
 }
 
-input[type="text"],textarea{
+input[type="text"],
+textarea{
 width:100%;
 border:1px solid #d5d5d5;
 border-radius:12px;
@@ -240,7 +445,8 @@ overflow:hidden;
 box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
 
-.todo-store-header{
+.todo-store-header,
+.completed-store-header{
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -255,7 +461,8 @@ font-size:21px;
 font-weight:900
 }
 
-.todo-store-count{
+.todo-store-count,
+.completed-store-count{
 min-width:32px;
 height:32px;
 padding:0 9px;
@@ -274,7 +481,9 @@ padding:14px;
 border-bottom:1px solid #eee
 }
 
-.todo-job-row:last-child{border-bottom:0}
+.todo-job-row:last-child{
+border-bottom:0
+}
 
 .todo-job-main{
 display:flex;
@@ -343,12 +552,29 @@ cursor:pointer;
 box-shadow:0 1px 3px rgba(0,0,0,.12)
 }
 
-.symbol-btn:active{transform:scale(.88)}
+.symbol-btn:active{
+transform:scale(.88)
+}
 
-.symbol-complete{background:#e8f5e9;color:#2e7d32}
-.symbol-urgent{background:#fff3e0;color:#ef6c00}
-.symbol-delete{background:#ffebee;color:#d32f2f}
-.symbol-redo{background:#e3f2fd;color:#1976d2}
+.symbol-complete{
+background:#e8f5e9;
+color:#2e7d32
+}
+
+.symbol-urgent{
+background:#fff3e0;
+color:#ef6c00
+}
+
+.symbol-delete{
+background:#ffebee;
+color:#d32f2f
+}
+
+.symbol-redo{
+background:#e3f2fd;
+color:#1976d2
+}
 
 .job-card{
 background:#fff;
@@ -370,23 +596,12 @@ color:#777;
 font-size:14px
 }
 
-.completed-page-title{color:#2e7d32}
-
 .completed-job{
 background:#fff;
 border-radius:20px;
 margin:17px 0;
 overflow:hidden;
 box-shadow:0 3px 12px rgba(0,0,0,.07)
-}
-
-.completed-store-header{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:16px 18px;
-background:#fafafa;
-border-bottom:1px solid #e8e8e8
 }
 
 .completed-store-name{
@@ -396,17 +611,8 @@ font-weight:900
 }
 
 .completed-store-count{
-min-width:32px;
-height:32px;
-padding:0 9px;
-border-radius:16px;
 background:#e8f5e9;
-color:#2e7d32;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:14px;
-font-weight:900
+color:#2e7d32
 }
 
 .completed-job-row{
@@ -417,7 +623,9 @@ padding:14px;
 border-bottom:1px solid #eee
 }
 
-.completed-job-row:last-child{border-bottom:0}
+.completed-job-row:last-child{
+border-bottom:0
+}
 
 .completed-check{
 color:#2e7d32;
@@ -442,7 +650,15 @@ font-size:13px;
 margin-top:5px
 }
 
-.urgent-page-title{color:#d32f2f}
+.completed-job-date{
+color:#999;
+font-size:12px;
+margin-top:5px
+}
+
+.urgent-page-title{
+color:#d32f2f
+}
 
 .urgent-store-header{
 display:flex;
@@ -481,7 +697,9 @@ padding:14px;
 border-bottom:1px solid #eee
 }
 
-.urgent-job-row:last-child{border-bottom:0}
+.urgent-job-row:last-child{
+border-bottom:0
+}
 
 .urgent-job-dot{
 width:8px;
@@ -523,12 +741,23 @@ padding:30px;
 color:#777
 }
 
-/* FOTO */
-.job-clickable{cursor:pointer}
-.job-clickable:active{opacity:.75}
+.job-clickable{
+cursor:pointer
+}
 
-.photo-detail-page{display:none}
-.photo-detail-page.active{display:block}
+.job-clickable:active{
+opacity:.75
+}
+
+/* FOTO */
+
+.photo-detail-page{
+display:none
+}
+
+.photo-detail-page.active{
+display:block
+}
 
 .photo-detail-card{
 background:#fff;
@@ -559,7 +788,9 @@ font-size:14px;
 white-space:pre-wrap
 }
 
-.photo-notes-box{margin-top:18px}
+.photo-notes-box{
+margin-top:18px
+}
 
 .photo-notes-label{
 display:block;
@@ -598,7 +829,9 @@ font-weight:800;
 cursor:pointer
 }
 
-.photo-save-notes:active{transform:scale(.98)}
+.photo-save-notes:active{
+transform:scale(.98)
+}
 
 .photo-toolbar{
 display:flex;
@@ -617,7 +850,9 @@ font-weight:800;
 cursor:pointer
 }
 
-.photo-add-button:active{transform:scale(.98)}
+.photo-add-button:active{
+transform:scale(.98)
+}
 
 .photo-grid{
 display:grid;
@@ -678,7 +913,9 @@ padding:15px;
 z-index:1000
 }
 
-.photo-modal.active{display:flex}
+.photo-modal.active{
+display:flex
+}
 
 .photo-modal-content{
 position:relative;
@@ -738,87 +975,31 @@ background:#ffebee;
 color:#d32f2f
 }
 
-/* ARCHIVIO MENSILE COMPLETATI */
-
-.completed-month-bar{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-margin:0 0 8px;
-background:#e8f5e9;
-border:2px solid #43a047;
-border-radius:16px;
-padding:10px
-}
-
-.completed-month-button{
-width:45px;
-height:45px;
-min-width:45px;
-border:0;
-border-radius:12px;
-background:#fff;
-color:#2e7d32;
-font-size:30px;
-font-weight:900;
-line-height:1;
-cursor:pointer;
-box-shadow:0 2px 6px rgba(0,0,0,.08)
-}
-
-.completed-month-button:active{transform:scale(.92)}
-
-.completed-month-title{
-flex:1;
-text-align:center;
-font-size:20px;
-font-weight:900;
-color:#1b5e20
-}
-
-.completed-month-count{
-text-align:center;
-font-size:13px;
-font-weight:700;
-color:#777;
-margin:0 0 12px
-}
-
-.completed-export-bar{
-display:flex;
-justify-content:center;
-margin:0 0 18px
-}
-
-.completed-export-button{
-border:0;
-border-radius:12px;
-background:#2e7d32;
-color:#fff;
-padding:12px 18px;
-font-weight:800;
-cursor:pointer
-}
-
-.completed-export-button:active{transform:scale(.98)}
-
 @media(max-width:600px){
 
-.container{padding:15px}
+.container{
+padding:15px
+}
 
 .header img{
 width:230px;
 max-width:85%
 }
 
-.summary,.urgent-folder,.completed-folder{
+.summary,
+.urgent-folder,
+.completed-folder{
 min-height:180px;
 padding:24px
 }
 
-.folder-title{font-size:22px}
-.folder-number{font-size:50px}
+.folder-title{
+font-size:22px
+}
+
+.folder-number{
+font-size:50px
+}
 
 .group-title{
 font-size:17px;
@@ -837,27 +1018,38 @@ height:32px;
 font-size:15px
 }
 
-.todo-store-group,.completed-job{
+.todo-store-group,
+.completed-job{
 border-radius:18px
 }
 
-.todo-store-header,.completed-store-header,.urgent-store-header{
+.todo-store-header,
+.completed-store-header,
+.urgent-store-header{
 padding:15px
 }
 
-.todo-store-name,.completed-store-name,.urgent-store-name{
+.todo-store-name,
+.completed-store-name,
+.urgent-store-name{
 font-size:19px
 }
 
-.todo-job-row,.completed-job-row,.urgent-job-row{
+.todo-job-row,
+.completed-job-row,
+.urgent-job-row{
 padding:13px
 }
 
-.todo-job-text,.completed-job-text,.urgent-job-text{
+.todo-job-text,
+.completed-job-text,
+.urgent-job-text{
 font-size:15px
 }
 
-.symbol-actions{gap:4px}
+.symbol-actions{
+gap:4px
+}
 
 .symbol-btn{
 width:30px;
@@ -867,28 +1059,23 @@ font-size:16px;
 border-radius:8px
 }
 
-.photo-grid{
-grid-template-columns:repeat(3,1fr)
+.completed-month-title{
+font-size:18px
 }
-
-.completed-month-title{font-size:18px}
 
 .completed-month-button{
 width:42px;
 height:42px;
 min-width:42px
 }
+
+.photo-grid{
+grid-template-columns:repeat(3,1fr)
+}
+
 }
 
 @media(max-width:380px){
-
-.completed-month-title{font-size:16px}
-
-.completed-month-button{
-width:40px;
-height:40px;
-min-width:40px
-}
 
 .symbol-btn{
 width:28px;
@@ -901,269 +1088,546 @@ font-size:15px
 gap:3px;
 margin-left:5px
 }
+
+.completed-month-title{
+font-size:16px
 }
+
+.completed-month-button{
+width:40px;
+height:40px;
+min-width:40px
+}
+
+}
+
 </style>
 </head>
 
 <body>
+
 <div class="container">
+
+<!-- HOME -->
 
 <div id="homePage" class="page active">
 
 <div class="header">
+
 <img src="ediservice-icon.png" alt="EDISERVICE">
-<div id="firebaseStatus" class="firebase-status">Connessione Firebase...</div>
+
+<div id="firebaseStatus" class="firebase-status">
+Connessione Firebase...
 </div>
+
+</div>
+
 
 <div class="summary" id="btnLavoriDaFare">
+
 <div class="folder-text">
-<div class="folder-title">Lavori da fare</div>
-<div class="folder-number" id="totaleDaFare">0</div>
-<div class="folder-description">Lavori ancora da completare</div>
+
+<div class="folder-title">
+Lavori da fare
 </div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-number" id="totaleDaFare">
+0
 </div>
+
+<div class="folder-description">
+Lavori ancora da completare
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
+</div>
+
 
 <div class="urgent-folder" id="btnUrgenti">
+
 <div class="folder-text">
-<div class="folder-title">Lavori urgenti</div>
-<div class="folder-number" id="totaleUrgenti">0</div>
-<div class="folder-description">Interventi urgenti da completare</div>
+
+<div class="folder-title">
+Lavori urgenti
 </div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-number" id="totaleUrgenti">
+0
 </div>
+
+<div class="folder-description">
+Interventi urgenti da completare
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
+</div>
+
 
 <div class="completed-folder" id="btnCompletati">
+
 <div class="folder-text">
-<div class="folder-title">Lavori completati</div>
-<div class="folder-number" id="totaleCompletati">0</div>
-<div class="folder-description">Lavori già completati</div>
-</div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-title">
+Lavori completati
 </div>
 
-<div class="section-title">Punti vendita</div>
+<div class="folder-number" id="totaleCompletati">
+0
+</div>
+
+<div class="folder-description">
+Lavori già completati
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
+</div>
+
+
+<div class="section-title">
+Punti vendita
+</div>
+
 <div id="puntiVendita"></div>
 
 </div>
 
+
+<!-- DA FARE -->
+
 <div id="todoPage" class="page">
 
 <div class="topbar">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title">Lavori da fare</h2>
+
+<button class="back-button" onclick="showHome()">
+← Indietro
+</button>
+
+<h2 class="page-title">
+Lavori da fare
+</h2>
+
 </div>
+
 
 <div class="search-box">
-<input type="text" id="searchLavori" placeholder="Cerca punto vendita o lavoro..." oninput="filtraLavori()">
-<button type="button" id="clearSearch" onclick="cancellaRicerca()">×</button>
-</div>
 
-<div id="todoJobs">
-<div class="loading">Caricamento...</div>
-</div>
+<input
+type="text"
+id="searchLavori"
+placeholder="Cerca punto vendita o lavoro..."
+oninput="filtraLavori()">
 
-</div>
-
-<div id="storePage" class="page">
-
-<div class="topbar">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title">Punto vendita</h2>
-</div>
-
-<div class="store-name" id="storePageName"></div>
-<div class="store-category" id="storePageCategory"></div>
-
-<div class="form-card">
-
-<h2>Aggiungi lavoro</h2>
-
-<label>Lavoro</label>
-<input id="lavoroInput" type="text" placeholder="Descrivi il lavoro da fare">
-
-<label>Note</label>
-<textarea id="noteInput" placeholder="Eventuali note..."></textarea>
-
-<label class="urgent-check">
-<input type="checkbox" id="urgenteInput">
-<span>Lavoro urgente</span>
-</label>
-
-<button class="add-button" id="addWorkButton" onclick="aggiungiLavoro()">
-+ Aggiungi lavoro
+<button
+type="button"
+id="clearSearch">
+×
 </button>
 
 </div>
 
-<div class="section-title">Lavori del punto vendita</div>
+
+<div id="todoJobs">
+<div class="loading">
+Caricamento...
+</div>
+</div>
+
+</div>
+
+
+<!-- PUNTO VENDITA -->
+
+<div id="storePage" class="page">
+
+<div class="topbar">
+
+<button class="back-button" onclick="showHome()">
+← Indietro
+</button>
+
+<h2 class="page-title">
+Punto vendita
+</h2>
+
+</div>
+
+
+<div
+class="store-name"
+id="storePageName">
+</div>
+
+<div
+class="store-category"
+id="storePageCategory">
+</div>
+
+
+<div class="form-card">
+
+<h2>
+Aggiungi lavoro
+</h2>
+
+<label>
+Lavoro
+</label>
+
+<input
+id="lavoroInput"
+type="text"
+placeholder="Descrivi il lavoro da fare">
+
+
+<label>
+Note
+</label>
+
+<textarea
+id="noteInput"
+placeholder="Eventuali note...">
+</textarea>
+
+
+<label class="urgent-check">
+
+<input
+type="checkbox"
+id="urgenteInput">
+
+<span>
+Lavoro urgente
+</span>
+
+</label>
+
+
+<button
+class="add-button"
+id="addWorkButton"
+onclick="aggiungiLavoro()">
+
++ Aggiungi lavoro
+
+</button>
+
+</div>
+
+
+<div class="section-title">
+Lavori del punto vendita
+</div>
+
 <div id="storeJobs"></div>
 
 </div>
 
+
+<!-- URGENTI -->
+
 <div id="urgentPage" class="page">
 
 <div class="topbar">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title urgent-page-title">Lavori urgenti</h2>
+
+<button
+class="back-button"
+onclick="showHome()">
+← Indietro
+</button>
+
+<h2 class="page-title urgent-page-title">
+Lavori urgenti
+</h2>
+
 </div>
 
 <div id="urgentJobs"></div>
 
 </div>
 
+
+<!-- COMPLETATI -->
+
 <div id="completedPage" class="page">
 
-<div class="topbar">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title completed-page-title">Lavori completati</h2>
+<div class="topbar completed-topbar">
+
+<button
+class="back-button"
+onclick="showHome()">
+← Indietro
+</button>
+
+<h2 class="page-title completed-page-title">
+Lavori completati
+</h2>
+
+
+<button
+class="completed-menu-button"
+onclick="toggleCompletedMenu()"
+aria-label="Azioni">
+
+•••
+
+</button>
+
+
+<div
+id="completedMenu"
+class="completed-menu">
+
+<button
+onclick="salvaElencoCompletati()">
+Salva
+</button>
+
+<button
+onclick="inoltraElencoCompletati()">
+Inoltra
+</button>
+
+<button
+onclick="condividiElencoCompletati()">
+Condividi
+</button>
+
 </div>
+
+</div>
+
 
 <div class="completed-month-bar">
 
-<button class="completed-month-button" onclick="cambiaMeseCompletati(-1)">
+<button
+class="completed-month-button"
+onclick="cambiaMeseCompletati(-1)">
 ‹
 </button>
 
-<div id="completedMonthTitle" class="completed-month-title"></div>
 
-<button class="completed-month-button" onclick="cambiaMeseCompletati(1)">
+<div
+id="completedMonthTitle"
+class="completed-month-title">
+SETTEMBRE 2026
+</div>
+
+
+<button
+class="completed-month-button"
+onclick="cambiaMeseCompletati(1)">
 ›
 </button>
 
 </div>
 
-<div id="completedMonthCount" class="completed-month-count">
+
+<div
+id="completedMonthCount"
+class="completed-month-count">
 0 lavori completati
 </div>
 
-<div class="completed-export-bar">
-
-<button class="completed-export-button" onclick="condividiElencoCompletati()">
-Condividi elenco
-</button>
-
-</div>
 
 <div id="completedJobs"></div>
 
 </div>
 
-<!-- SCHEDA DEL SINGOLO LAVORO -->
 
-<div id="photoDetailPage" class="photo-detail-page">
+<!-- SCHEDA LAVORO -->
+
+<div
+id="photoDetailPage"
+class="photo-detail-page">
 
 <div class="topbar">
-<button class="back-button" onclick="chiudiSchedaLavoro()">← Indietro</button>
-<h2 class="page-title">Lavoro</h2>
+
+<button
+class="back-button"
+onclick="chiudiSchedaLavoro()">
+← Indietro
+</button>
+
+<h2 class="page-title">
+Lavoro
+</h2>
+
 </div>
+
 
 <div class="photo-detail-card">
 
-<div class="photo-detail-store" id="photoDetailStore"></div>
+<div
+class="photo-detail-store"
+id="photoDetailStore">
+</div>
 
-<div class="photo-detail-title" id="photoDetailTitle"></div>
 
-<div class="photo-detail-note" id="photoDetailNote"></div>
+<div
+class="photo-detail-title"
+id="photoDetailTitle">
+</div>
+
+
+<div
+class="photo-detail-note"
+id="photoDetailNote">
+</div>
+
 
 <div class="photo-notes-box">
 
-<label class="photo-notes-label">Note</label>
+<label class="photo-notes-label">
+Note
+</label>
 
 <textarea
 id="photoDetailNoteInput"
 class="photo-notes-input"
-placeholder="Scrivi qui le note del lavoro..."
-></textarea>
+placeholder="Scrivi qui le note del lavoro...">
+</textarea>
 
-<button class="photo-save-notes" onclick="salvaNoteLavoro()">
+
+<button
+class="photo-save-notes"
+onclick="salvaNoteLavoro()">
 Salva note
 </button>
 
 </div>
 
+
 <div class="photo-toolbar">
 
-<button class="photo-add-button" onclick="selezionaFoto()">
+<button
+class="photo-add-button"
+onclick="selezionaFoto()">
 + Aggiungi foto
 </button>
 
 </div>
 
-<div id="photoGrid" class="photo-grid"></div>
+
+<div
+id="photoGrid"
+class="photo-grid">
+</div>
 
 </div>
-</div>
 
 </div>
 
-<input id="photoInput" type="file" accept="image/*" multiple hidden>
-<input id="replacePhotoInput" type="file" accept="image/*" hidden>
+</div>
 
-<div id="photoModal" class="photo-modal" onclick="chiudiFotoGrande(event)">
 
-<div class="photo-modal-content" onclick="event.stopPropagation()">
+<input
+id="photoInput"
+type="file"
+accept="image/*"
+multiple
+hidden>
 
-<button class="photo-modal-close" onclick="chiudiFotoGrande()">
+
+<input
+id="replacePhotoInput"
+type="file"
+accept="image/*"
+hidden>
+
+
+<div
+id="photoModal"
+class="photo-modal"
+onclick="chiudiFotoGrande(event)">
+
+<div
+class="photo-modal-content"
+onclick="event.stopPropagation()">
+
+<button
+class="photo-modal-close"
+onclick="chiudiFotoGrande()">
 ×
 </button>
 
-<img id="photoModalImage" class="photo-modal-image" alt="Foto lavoro">
+
+<img
+id="photoModalImage"
+class="photo-modal-image"
+alt="Foto lavoro">
+
 
 <div class="photo-modal-actions">
 
-<button class="replace-photo" onclick="sostituisciFotoCorrente()">
+<button
+class="replace-photo"
+onclick="sostituisciFotoCorrente()">
 Sostituisci
 </button>
 
-<button class="delete-photo" onclick="eliminaFotoCorrente()">
+<button
+class="delete-photo"
+onclick="eliminaFotoCorrente()">
 Elimina
 </button>
 
 </div>
 
 </div>
+
 </div>
+
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
 
 const firebaseConfig={
-
 apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
-
 authDomain:"ediservice-bb88c.firebaseapp.com",
-
 projectId:"ediservice-bb88c",
-
 storageBucket:"ediservice-bb88c.firebasestorage.app",
-
 messagingSenderId:"420418885149",
-
 appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
-
 measurementId:"G-BM489YWSY4"
-
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const auth=firebase.auth();
-
 const db=firebase.firestore();
 
 
-const SUPABASE_URL="https://ncfznorfwniqykuxymxd.supabase.co";
+const SUPABASE_URL=
+"https://ncfznorfwniqykuxymxd.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
+const SUPABASE_PUBLISHABLE_KEY=
+"sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
 
-const SUPABASE_BUCKET="foto-lavori";
+const SUPABASE_BUCKET=
+"foto-lavori";
 
-const supabaseClient=window.supabase.createClient(
+const supabaseClient=
+window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
@@ -1217,25 +1681,39 @@ PIM:[
 let lavori=[];
 let puntoSelezionato=null;
 let ricercaLavori="";
-
 let lavoroFotoAperto=null;
 let fotoCorrente=null;
 
 const signedUrlCache=new Map();
 
-let meseCompletatiVisualizzato=new Date().getMonth();
-let annoCompletatiVisualizzato=new Date().getFullYear();
+
+/* =========================
+   ARCHIVIO MENSILE
+========================= */
+
+let meseCompletatiVisualizzato=
+new Date().getMonth();
+
+let annoCompletatiVisualizzato=
+new Date().getFullYear();
 
 let archivioInizializzato=false;
 
 
+/* =========================
+   FIREBASE
+========================= */
+
 function firebaseOk(){
 
-const s=document.getElementById("firebaseStatus");
+const s=
+document.getElementById("firebaseStatus");
 
-s.textContent="● Firebase collegato";
+s.textContent=
+"● Firebase collegato";
 
-s.className="firebase-status status-ok";
+s.className=
+"firebase-status status-ok";
 
 }
 
@@ -1244,11 +1722,14 @@ function firebaseErrore(error){
 
 console.error("Firebase:",error);
 
-const s=document.getElementById("firebaseStatus");
+const s=
+document.getElementById("firebaseStatus");
 
-s.textContent="● Errore Firebase";
+s.textContent=
+"● Errore Firebase";
 
-s.className="firebase-status status-error";
+s.className=
+"firebase-status status-error";
 
 }
 
@@ -1261,58 +1742,91 @@ ascoltaLavori();
 .catch(firebaseErrore);
 
 
+/* =========================
+   PUNTI VENDITA
+========================= */
+
 function creaPuntiVendita(){
 
-const c=document.getElementById("puntiVendita");
+const c=
+document.getElementById("puntiVendita");
 
 c.innerHTML="";
 
-Object.keys(puntiVendita).forEach(categoria=>{
 
-const gruppo=document.createElement("div");
+Object.keys(puntiVendita)
+.forEach(categoria=>{
 
-const titolo=document.createElement("div");
+const gruppo=
+document.createElement("div");
 
-titolo.className="group-title";
+const titolo=
+document.createElement("div");
 
-titolo.textContent=categoria;
+titolo.className=
+"group-title";
+
+titolo.textContent=
+categoria;
 
 gruppo.appendChild(titolo);
 
 
-const lista=document.createElement("div");
+const lista=
+document.createElement("div");
 
-lista.className="store-list";
-
-
-puntiVendita[categoria].forEach(punto=>{
-
-const b=document.createElement("button");
-
-b.className="store-button";
+lista.className=
+"store-list";
 
 
-const n=document.createElement("span");
+puntiVendita[categoria]
+.forEach(punto=>{
 
-n.className="store-name-text";
+const button=
+document.createElement("button");
 
-n.textContent=punto;
-
-
-const num=document.createElement("span");
-
-num.className="store-count";
-
-num.id="count-"+encodeURIComponent(punto);
-
-num.textContent="0";
+button.className=
+"store-button";
 
 
-b.append(n,num);
+const nome=
+document.createElement("span");
 
-b.onclick=()=>apriPuntoVendita(punto,categoria);
+nome.className=
+"store-name-text";
 
-lista.appendChild(b);
+nome.textContent=
+punto;
+
+
+const count=
+document.createElement("span");
+
+count.className=
+"store-count";
+
+count.id=
+"count-"+encodeURIComponent(punto);
+
+count.textContent=
+"0";
+
+
+button.append(
+nome,
+count
+);
+
+
+button.onclick=()=>{
+apriPuntoVendita(
+punto,
+categoria
+);
+};
+
+
+lista.appendChild(button);
 
 });
 
@@ -1326,1007 +1840,40 @@ c.appendChild(gruppo);
 }
 
 
+/* =========================
+   FIRESTORE
+========================= */
+
 function ascoltaLavori(){
 
 db.collection("lavori")
 .where("attivo","==",true)
-.onSnapshot(snapshot=>{
+.onSnapshot(
 
-lavori=snapshot.docs.map(doc=>({
+snapshot=>{
+
+lavori=
+snapshot.docs.map(
+doc=>({
 id:doc.id,
 ...doc.data()
-}));
+})
+);
 
 aggiornaTutto();
 
-},firebaseErrore);
+},
 
-}
-
-
-function aggiornaTutto(){
-
-const daFare=lavori.filter(
-x=>x.attivo===true&&x.completato!==true
-);
-
-const urgenti=daFare.filter(
-x=>x.urgente===true
-);
-
-const completati=lavori.filter(
-x=>x.attivo===true&&x.completato===true
-);
-
-
-if(!archivioInizializzato&&completati.length){
-
-const conData=completati
-.map(x=>dataCompletamentoValida(x))
-.filter(Boolean)
-.sort((a,b)=>b-a);
-
-if(conData.length){
-
-meseCompletatiVisualizzato=conData[0].getMonth();
-
-annoCompletatiVisualizzato=conData[0].getFullYear();
-
-}
-
-archivioInizializzato=true;
-
-}
-
-
-document.getElementById("totaleDaFare").textContent=
-daFare.length;
-
-document.getElementById("totaleUrgenti").textContent=
-urgenti.length;
-
-
-const completatiMese=listaCompletatiDelMese();
-
-document.getElementById("totaleCompletati").textContent=
-completatiMese.length;
-
-
-aggiornaNumeriPuntiVendita();
-
-renderTodoJobs(daFare);
-
-renderUrgentJobs(urgenti);
-
-renderCompletedJobs(completatiMese);
-
-aggiornaTitoloMeseCompletati();
-
-
-if(puntoSelezionato)
-renderStoreJobs(puntoSelezionato);
-
-}
-
-
-function aggiornaNumeriPuntiVendita(){
-
-Object.keys(puntiVendita).forEach(cat=>
-
-puntiVendita[cat].forEach(punto=>{
-
-const n=lavori.filter(
-x=>x.attivo===true&&
-x.punto===punto&&
-x.completato!==true
-).length;
-
-
-const e=document.getElementById(
-"count-"+encodeURIComponent(punto)
-);
-
-if(e)
-e.textContent=n;
-
-}));
-
-}
-
-
-function mostraPagina(id){
-
-document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
-
-const p=document.getElementById(id);
-
-if(p){
-
-p.classList.add("active");
-
-window.scrollTo(0,0);
-
-}
-
-}
-
-
-function showHome(){
-
-mostraPagina("homePage");
-
-}
-
-
-function filtraLavori(){
-
-const input=document.getElementById("searchLavori");
-
-const clear=document.getElementById("clearSearch");
-
-ricercaLavori=
-input.value.trim().toLowerCase();
-
-clear.style.display=
-ricercaLavori?"block":"none";
-
-
-renderTodoJobs(
-
-lavori.filter(x=>{
-
-if(
-x.attivo!==true||
-x.completato===true
-)
-return false;
-
-if(!ricercaLavori)
-return true;
-
-
-return (
-
-x.punto||""
-).toLowerCase().includes(ricercaLavori)
-
-||
-
-(
-
-x.testo||""
-).toLowerCase().includes(ricercaLavori)
-
-||
-
-(
-
-x.note||""
-).toLowerCase().includes(ricercaLavori);
-
-})
+firebaseErrore
 
 );
 
 }
 
 
-function cancellaRicerca(){
-
-document.getElementById("searchLavori").value="";
-
-ricercaLavori="";
-
-document.getElementById("clearSearch").style.display="none";
-
-renderTodoJobs(
-lavori.filter(
-x=>x.attivo===true&&x.completato!==true
-)
-);
-
-}
-
-
-function renderTodoJobs(lista){
-
-const c=document.getElementById("todoJobs");
-
-c.innerHTML="";
-
-
-if(!lista.length){
-
-c.innerHTML=
-`<div class="empty">
-${ricercaLavori?
-"Nessun lavoro trovato.":
-"Nessun lavoro da fare."}
-</div>`;
-
-return;
-
-}
-
-
-Object.keys(puntiVendita).forEach(cat=>{
-
-const punti=puntiVendita[cat];
-
-const catJobs=
-lista.filter(x=>punti.includes(x.punto));
-
-if(!catJobs.length)
-return;
-
-
-const t=document.createElement("div");
-
-t.className="group-title";
-
-t.textContent=cat;
-
-c.appendChild(t);
-
-
-punti.forEach(punto=>{
-
-const jobs=
-catJobs.filter(x=>x.punto===punto);
-
-if(!jobs.length)
-return;
-
-
-const g=document.createElement("div");
-
-g.className="todo-store-group";
-
-
-const h=document.createElement("div");
-
-h.className="todo-store-header";
-
-
-const n=document.createElement("div");
-
-n.className="todo-store-name";
-
-n.textContent=punto;
-
-
-const num=document.createElement("div");
-
-num.className="todo-store-count";
-
-num.textContent=jobs.length;
-
-
-h.append(n,num);
-
-g.appendChild(h);
-
-
-jobs.forEach(job=>
-g.appendChild(creaTodoJobRow(job))
-);
-
-c.appendChild(g);
-
-});
-
-});
-
-}
-
-
-function creaTodoJobRow(lavoro){
-
-const r=document.createElement("div");
-
-r.className="todo-job-row";
-
-
-const main=document.createElement("div");
-
-main.className="todo-job-main job-clickable";
-
-
-const dot=document.createElement("div");
-
-dot.className="todo-job-dot";
-
-
-const content=document.createElement("div");
-
-content.className="todo-job-content";
-
-
-const text=document.createElement("div");
-
-text.className="todo-job-text";
-
-text.textContent=lavoro.testo||"";
-
-content.appendChild(text);
-
-
-if(lavoro.note){
-
-const note=document.createElement("div");
-
-note.className="todo-job-note";
-
-note.textContent="Note: "+lavoro.note;
-
-content.appendChild(note);
-
-}
-
-
-if(lavoro.urgente===true){
-
-const badge=document.createElement("div");
-
-badge.className="todo-job-urgent";
-
-badge.textContent="URGENTE";
-
-content.appendChild(badge);
-
-}
-
-
-main.append(dot,content);
-
-main.onclick=()=>
-apriSchedaLavoro(lavoro.id);
-
-
-r.appendChild(main);
-
-
-const actions=document.createElement("div");
-
-actions.className="symbol-actions";
-
-
-const complete=document.createElement("button");
-
-complete.className=
-"symbol-btn symbol-complete";
-
-complete.title="Completato";
-
-complete.textContent="✓";
-
-complete.onclick=e=>{
-
-e.stopPropagation();
-
-completaLavoro(lavoro.id);
-
-};
-
-
-const urgent=document.createElement("button");
-
-urgent.className=
-"symbol-btn symbol-urgent";
-
-urgent.title=
-lavoro.urgente?
-"Togli urgente":
-"Segna urgente";
-
-urgent.textContent="!";
-
-urgent.onclick=e=>{
-
-e.stopPropagation();
-
-cambiaUrgente(
-lavoro.id,
-lavoro.urgente===true
-);
-
-};
-
-
-const del=document.createElement("button");
-
-del.className=
-"symbol-btn symbol-delete";
-
-del.title="Elimina";
-
-del.textContent="×";
-
-del.onclick=e=>{
-
-e.stopPropagation();
-
-eliminaLavoro(lavoro.id);
-
-};
-
-
-actions.append(
-complete,
-urgent,
-del
-);
-
-r.appendChild(actions);
-
-return r;
-
-}
-
-
-function apriPuntoVendita(punto,categoria){
-
-puntoSelezionato=punto;
-
-document.getElementById(
-"storePageName"
-).textContent=punto;
-
-document.getElementById(
-"storePageCategory"
-).textContent=categoria;
-
-
-document.getElementById(
-"lavoroInput"
-).value="";
-
-document.getElementById(
-"noteInput"
-).value="";
-
-document.getElementById(
-"urgenteInput"
-).checked=false;
-
-
-renderStoreJobs(punto);
-
-mostraPagina("storePage");
-
-}
-
-
-function renderStoreJobs(punto){
-
-const c=document.getElementById("storeJobs");
-
-c.innerHTML="";
-
-
-const lista=lavori.filter(
-x=>x.attivo===true&&x.punto===punto
-);
-
-
-if(!lista.length){
-
-c.innerHTML=
-'<div class="empty">Nessun lavoro</div>';
-
-return;
-
-}
-
-
-lista.forEach(job=>
-c.appendChild(creaStoreJobCard(job))
-);
-
-}
-
-
-function creaStoreJobCard(lavoro){
-
-const card=document.createElement("div");
-
-card.className=
-"job-card job-clickable";
-
-card.onclick=()=>
-apriSchedaLavoro(lavoro.id);
-
-
-const text=document.createElement("div");
-
-text.className="job-text";
-
-text.textContent=lavoro.testo||"";
-
-card.appendChild(text);
-
-
-if(lavoro.note){
-
-const note=document.createElement("div");
-
-note.className="job-note";
-
-note.textContent=
-"Note: "+lavoro.note;
-
-card.appendChild(note);
-
-}
-
-
-const actions=document.createElement("div");
-
-actions.className="symbol-actions";
-
-actions.style.marginTop="12px";
-
-
-const complete=document.createElement("button");
-
-complete.className=
-"symbol-btn symbol-complete";
-
-complete.title="Completato";
-
-complete.textContent="✓";
-
-complete.onclick=e=>{
-
-e.stopPropagation();
-
-completaLavoro(lavoro.id);
-
-};
-
-
-const urgent=document.createElement("button");
-
-urgent.className=
-"symbol-btn symbol-urgent";
-
-urgent.title=
-lavoro.urgente?
-"Togli urgente":
-"Segna urgente";
-
-urgent.textContent="!";
-
-urgent.onclick=e=>{
-
-e.stopPropagation();
-
-cambiaUrgente(
-lavoro.id,
-lavoro.urgente===true
-);
-
-};
-
-
-const del=document.createElement("button");
-
-del.className=
-"symbol-btn symbol-delete";
-
-del.title="Elimina";
-
-del.textContent="×";
-
-del.onclick=e=>{
-
-e.stopPropagation();
-
-eliminaLavoro(lavoro.id);
-
-};
-
-
-actions.append(
-complete,
-urgent,
-del
-);
-
-card.appendChild(actions);
-
-return card;
-
-}
-
-
-function aggiungiLavoro(){
-
-if(!puntoSelezionato)
-return;
-
-
-const lavoroInput=
-document.getElementById("lavoroInput");
-
-const noteInput=
-document.getElementById("noteInput");
-
-const urgentInput=
-document.getElementById("urgenteInput");
-
-const button=
-document.getElementById("addWorkButton");
-
-
-const testo=
-lavoroInput.value.trim();
-
-const note=
-noteInput.value.trim();
-
-const urgente=
-urgentInput.checked;
-
-
-if(!testo){
-
-alert("Inserisci il lavoro da fare.");
-
-lavoroInput.focus();
-
-return;
-
-}
-
-
-button.disabled=true;
-
-button.textContent="Salvataggio...";
-
-
-const salva=()=>db.collection("lavori").add({
-
-punto:puntoSelezionato,
-
-testo,
-
-note,
-
-completato:false,
-
-attivo:true,
-
-urgente,
-
-creatoDa:
-auth.currentUser?
-auth.currentUser.uid:
-"",
-
-creatoIl:
-firebase.firestore.FieldValue.serverTimestamp(),
-
-foto:[]
-
-}).then(()=>{
-
-lavoroInput.value="";
-
-noteInput.value="";
-
-urgentInput.checked=false;
-
-button.disabled=false;
-
-button.textContent="+ Aggiungi lavoro";
-
-}).catch(error=>{
-
-console.error(error);
-
-alert(
-"Errore nel salvataggio del lavoro."
-);
-
-button.disabled=false;
-
-button.textContent="+ Aggiungi lavoro";
-
-});
-
-
-if(auth.currentUser)
-salva();
-else
-auth.signInAnonymously().then(salva);
-
-}
-
-
-function completaLavoro(id){
-
-db.collection("lavori")
-.doc(id)
-.update({
-
-completato:true,
-
-completatoIl:
-firebase.firestore.FieldValue.serverTimestamp()
-
-})
-
-.catch(()=>
-alert("Errore nel completare il lavoro.")
-);
-
-}
-
-
-function daRifare(id){
-
-db.collection("lavori")
-.doc(id)
-.update({
-
-completato:false,
-
-completatoIl:null
-
-})
-
-.catch(()=>
-alert("Errore nel modificare il lavoro.")
-);
-
-}
-
-
-function cambiaUrgente(id,giaUrgente){
-
-db.collection("lavori")
-.doc(id)
-.update({
-urgente:!giaUrgente
-})
-
-.catch(()=>
-alert("Errore nella modifica dell'urgenza.")
-);
-
-}
-
-
-function eliminaLavoro(id){
-
-if(!confirm("Vuoi eliminare questo lavoro?"))
-return;
-
-db.collection("lavori")
-.doc(id)
-.update({
-attivo:false
-})
-
-.catch(()=>
-alert("Errore nell'eliminazione.")
-);
-
-}
-
-
-function renderUrgentJobs(lista){
-
-const c=document.getElementById("urgentJobs");
-
-c.innerHTML="";
-
-
-if(!lista.length){
-
-c.innerHTML=
-'<div class="empty">Nessun lavoro urgente.</div>';
-
-return;
-
-}
-
-
-Object.keys(puntiVendita).forEach(cat=>{
-
-const punti=puntiVendita[cat];
-
-const catJobs=
-lista.filter(x=>punti.includes(x.punto));
-
-if(!catJobs.length)
-return;
-
-
-const t=document.createElement("div");
-
-t.className="group-title";
-
-t.textContent=cat;
-
-c.appendChild(t);
-
-
-punti.forEach(punto=>{
-
-const jobs=
-catJobs.filter(x=>x.punto===punto);
-
-if(!jobs.length)
-return;
-
-
-const g=document.createElement("div");
-
-g.className="todo-store-group";
-
-
-const h=document.createElement("div");
-
-h.className="urgent-store-header";
-
-
-const n=document.createElement("div");
-
-n.className="urgent-store-name";
-
-n.textContent=punto;
-
-
-const num=document.createElement("div");
-
-num.className="urgent-store-count";
-
-num.textContent=jobs.length;
-
-
-h.append(n,num);
-
-g.appendChild(h);
-
-
-jobs.forEach(job=>{
-
-const r=document.createElement("div");
-
-r.className=
-"urgent-job-row job-clickable";
-
-r.onclick=()=>
-apriSchedaLavoro(job.id);
-
-
-const dot=document.createElement("div");
-
-dot.className="urgent-job-dot";
-
-
-const content=document.createElement("div");
-
-content.className=
-"urgent-job-content";
-
-
-const text=document.createElement("div");
-
-text.className=
-"urgent-job-text";
-
-text.textContent=
-job.testo||"";
-
-content.appendChild(text);
-
-
-if(job.note){
-
-const note=document.createElement("div");
-
-note.className=
-"urgent-job-note";
-
-note.textContent=
-"Note: "+job.note;
-
-content.appendChild(note);
-
-}
-
-
-const actions=document.createElement("div");
-
-actions.className=
-"symbol-actions";
-
-
-const complete=
-document.createElement("button");
-
-complete.className=
-"symbol-btn symbol-complete";
-
-complete.textContent="✓";
-
-complete.title="Completato";
-
-complete.onclick=e=>{
-
-e.stopPropagation();
-
-completaLavoro(job.id);
-
-};
-
-
-const urgent=
-document.createElement("button");
-
-urgent.className=
-"symbol-btn symbol-urgent";
-
-urgent.textContent="!";
-
-urgent.title="Togli urgente";
-
-urgent.onclick=e=>{
-
-e.stopPropagation();
-
-cambiaUrgente(job.id,true);
-
-};
-
-
-const del=
-document.createElement("button");
-
-del.className=
-"symbol-btn symbol-delete";
-
-del.textContent="×";
-
-del.title="Elimina";
-
-del.onclick=e=>{
-
-e.stopPropagation();
-
-eliminaLavoro(job.id);
-
-};
-
-
-actions.append(
-complete,
-urgent,
-del
-);
-
-r.append(
-dot,
-content,
-actions
-);
-
-g.appendChild(r);
-
-});
-
-c.appendChild(g);
-
-});
-
-});
-
-}
-
+/* =========================
+   DATA COMPLETAMENTO
+========================= */
 
 function dataCompletamentoValida(lavoro){
 
@@ -2337,24 +1884,37 @@ return null;
 if(
 lavoro.completatoIl &&
 typeof lavoro.completatoIl.toDate==="function"
-)
+){
+
 return lavoro.completatoIl.toDate();
-
-
-if(lavoro.completatoIl instanceof Date)
-return lavoro.completatoIl;
-
-
-const data=
-new Date(lavoro.completatoIl);
-
-
-return isNaN(data.getTime())?
-null:
-data;
 
 }
 
+
+if(
+lavoro.completatoIl instanceof Date
+){
+
+return lavoro.completatoIl;
+
+}
+
+
+const data=
+new Date(
+lavoro.completatoIl
+);
+
+return isNaN(data.getTime())
+?null
+:data;
+
+}
+
+
+/* =========================
+   MESI
+========================= */
 
 function nomeMeseCompletati(mese){
 
@@ -2378,11 +1938,17 @@ return [
 }
 
 
+/* =========================
+   LISTA DEL MESE
+========================= */
+
 function listaCompletatiDelMese(){
 
 const completati=
 lavori.filter(
-x=>x.attivo===true&&x.completato===true
+x=>
+x.attivo===true &&
+x.completato===true
 );
 
 
@@ -2401,19 +1967,86 @@ annoCompletatiVisualizzato;
 });
 
 
-/* I vecchi completati che non hanno
-   completatoIl vengono mantenuti visibili. */
-
 const senzaData=
 completati.filter(
-x=>!dataCompletamentoValida(x)
+x=>
+!dataCompletamentoValida(x)
 );
 
 
-return conData.concat(senzaData);
+/*
+I vecchi lavori già completati
+che non hanno completatoIl
+vengono considerati SETTEMBRE 2026.
+*/
+
+if(
+meseCompletatiVisualizzato===8 &&
+annoCompletatiVisualizzato===2026
+){
+
+return conData.concat(
+senzaData
+);
 
 }
 
+
+return conData;
+
+}
+
+
+/* =========================
+   CAMBIO MESE
+========================= */
+
+function cambiaMeseCompletati(delta){
+
+meseCompletatiVisualizzato+=
+delta;
+
+
+if(
+meseCompletatiVisualizzato<0
+){
+
+meseCompletatiVisualizzato=11;
+annoCompletatiVisualizzato--;
+
+}
+
+
+if(
+meseCompletatiVisualizzato>11
+){
+
+meseCompletatiVisualizzato=0;
+annoCompletatiVisualizzato++;
+
+}
+
+
+const lista=
+listaCompletatiDelMese();
+
+
+renderCompletedJobs(lista);
+
+aggiornaTitoloMeseCompletati();
+
+
+document.getElementById(
+"totaleCompletati"
+).textContent=
+lista.length;
+
+}
+
+
+/* =========================
+   TITOLO MESE
+========================= */
 
 function aggiornaTitoloMeseCompletati(){
 
@@ -2427,8 +2060,10 @@ document.getElementById(
 "completedMonthCount"
 );
 
-
-if(!title||!count)
+if(
+!title ||
+!count
+)
 return;
 
 
@@ -2436,7 +2071,9 @@ title.textContent=
 nomeMeseCompletati(
 meseCompletatiVisualizzato
 )
-+" "+
++
+" "
++
 annoCompletatiVisualizzato;
 
 
@@ -2445,184 +2082,1445 @@ listaCompletatiDelMese().length;
 
 
 count.textContent=
-n===1?
-"1 lavoro completato":
+n===1
+?
+"1 lavoro completato"
+:
 n+" lavori completati";
 
 }
 
 
-function cambiaMeseCompletati(delta){
+/* =========================
+   AGGIORNA TUTTO
+========================= */
 
-meseCompletatiVisualizzato+=delta;
+function aggiornaTutto(){
 
-
-if(meseCompletatiVisualizzato<0){
-
-meseCompletatiVisualizzato=11;
-
-annoCompletatiVisualizzato--;
-
-}
-
-
-if(meseCompletatiVisualizzato>11){
-
-meseCompletatiVisualizzato=0;
-
-annoCompletatiVisualizzato++;
-
-}
-
-
-renderCompletedJobs(
-listaCompletatiDelMese()
+const daFare=
+lavori.filter(
+x=>
+x.attivo===true &&
+x.completato!==true
 );
 
-aggiornaTitoloMeseCompletati();
+
+const urgenti=
+daFare.filter(
+x=>
+x.urgente===true
+);
+
+
+const completati=
+lavori.filter(
+x=>
+x.attivo===true &&
+x.completato===true
+);
+
+
+/*
+Alla prima apertura mostra
+il mese dell'ultimo completamento.
+Se i vecchi lavori non hanno data,
+mostra SETTEMBRE 2026.
+*/
+
+if(
+!archivioInizializzato
+){
+
+if(completati.length){
+
+const conData=
+completati
+.map(
+x=>
+dataCompletamentoValida(x)
+)
+.filter(Boolean)
+.sort(
+(a,b)=>b-a
+);
+
+
+if(conData.length){
+
+meseCompletatiVisualizzato=
+conData[0].getMonth();
+
+annoCompletatiVisualizzato=
+conData[0].getFullYear();
+
+}
+else{
+
+meseCompletatiVisualizzato=8;
+annoCompletatiVisualizzato=2026;
+
+}
+
+}
+else{
+
+const oggi=
+new Date();
+
+meseCompletatiVisualizzato=
+oggi.getMonth();
+
+annoCompletatiVisualizzato=
+oggi.getFullYear();
+
+}
+
+archivioInizializzato=true;
+
+}
+
+
+const completatiDelMese=
+listaCompletatiDelMese();
+
+
+document.getElementById(
+"totaleDaFare"
+).textContent=
+daFare.length;
+
+
+document.getElementById(
+"totaleUrgenti"
+).textContent=
+urgenti.length;
 
 
 document.getElementById(
 "totaleCompletati"
 ).textContent=
-listaCompletatiDelMese().length;
+completatiDelMese.length;
+
+
+aggiornaTitoloMeseCompletati();
+
+aggiornaNumeriPuntiVendita();
+
+renderTodoJobs(daFare);
+
+renderUrgentJobs(urgenti);
+
+renderCompletedJobs(
+completatiDelMese
+);
+
+
+if(puntoSelezionato){
+
+renderStoreJobs(
+puntoSelezionato
+);
+
+}
 
 }
 
 
-async function condividiElencoCompletati(){
+/* =========================
+   NUMERI PUNTI
+========================= */
 
-const lista=
-listaCompletatiDelMese();
+function aggiornaNumeriPuntiVendita(){
+
+Object.keys(puntiVendita)
+.forEach(cat=>
+
+puntiVendita[cat]
+.forEach(punto=>{
+
+const n=
+lavori.filter(
+x=>
+x.attivo===true &&
+x.punto===punto &&
+x.completato!==true
+).length;
+
+
+const e=
+document.getElementById(
+"count-"+encodeURIComponent(punto)
+);
+
+
+if(e)
+e.textContent=n;
+
+})
+
+);
+
+}
+
+
+/* =========================
+   PAGINE
+========================= */
+
+function mostraPagina(id){
+
+document
+.querySelectorAll(".page")
+.forEach(
+p=>
+p.classList.remove("active")
+);
+
+
+const p=
+document.getElementById(id);
+
+
+if(p)
+p.classList.add("active");
+
+
+window.scrollTo(0,0);
+
+}
+
+
+function showHome(){
+
+chiudiMenuCompletati();
+
+mostraPagina(
+"homePage"
+);
+
+}
+
+
+/* =========================
+   RICERCA
+========================= */
+
+function filtraLavori(){
+
+const input=
+document.getElementById(
+"searchLavori"
+);
+
+const clear=
+document.getElementById(
+"clearSearch"
+);
+
+
+ricercaLavori=
+input.value
+.trim()
+.toLowerCase();
+
+
+clear.style.display=
+ricercaLavori
+?
+"block"
+:
+"none";
+
+
+renderTodoJobs(
+
+lavori.filter(x=>{
+
+if(
+x.attivo!==true ||
+x.completato===true
+)
+return false;
+
+
+if(!ricercaLavori)
+return true;
+
+
+return (
+
+x.punto||""
+)
+.toLowerCase()
+.includes(ricercaLavori)
+
+||
+
+(
+x.testo||""
+)
+.toLowerCase()
+.includes(ricercaLavori)
+
+||
+
+(
+x.note||""
+)
+.toLowerCase()
+.includes(ricercaLavori);
+
+})
+
+);
+
+}
+
+
+function cancellaRicerca(){
+
+document.getElementById(
+"searchLavori"
+).value="";
+
+ricercaLavori="";
+
+
+document.getElementById(
+"clearSearch"
+).style.display=
+"none";
+
+
+renderTodoJobs(
+lavori.filter(
+x=>
+x.attivo===true &&
+x.completato!==true
+)
+);
+
+}
+
+
+/* =========================
+   LAVORI DA FARE
+========================= */
+
+function renderTodoJobs(lista){
+
+const c=
+document.getElementById(
+"todoJobs"
+);
+
+c.innerHTML="";
 
 
 if(!lista.length){
 
-alert(
-"Nessun lavoro completato da condividere in questo mese."
-);
+c.innerHTML=
+`<div class="empty">
+${
+ricercaLavori
+?
+"Nessun lavoro trovato."
+:
+"Nessun lavoro da fare."
+}
+</div>`;
 
 return;
 
 }
 
 
-let testo=
-"EDISERVICE\n"+
-"LAVORI COMPLETATI - "+
-nomeMeseCompletati(
-meseCompletatiVisualizzato
-)+" "+
-annoCompletatiVisualizzato+
-"\n\n";
-
-
-Object.keys(puntiVendita).forEach(cat=>{
+Object.keys(puntiVendita)
+.forEach(cat=>{
 
 const punti=
 puntiVendita[cat];
 
+
 const catJobs=
 lista.filter(
-x=>punti.includes(x.punto)
+x=>
+punti.includes(x.punto)
 );
+
 
 if(!catJobs.length)
 return;
 
 
-testo+=cat+"\n";
+const t=
+document.createElement("div");
+
+t.className=
+"group-title";
+
+t.textContent=
+cat;
+
+c.appendChild(t);
 
 
 punti.forEach(punto=>{
 
 const jobs=
 catJobs.filter(
-x=>x.punto===punto
+x=>
+x.punto===punto
 );
+
 
 if(!jobs.length)
 return;
 
 
-testo+="\n"+punto+"\n";
+const g=
+document.createElement("div");
+
+g.className=
+"todo-store-group";
+
+
+const h=
+document.createElement("div");
+
+h.className=
+"todo-store-header";
+
+
+const n=
+document.createElement("div");
+
+n.className=
+"todo-store-name";
+
+n.textContent=
+punto;
+
+
+const num=
+document.createElement("div");
+
+num.className=
+"todo-store-count";
+
+num.textContent=
+jobs.length;
+
+
+h.append(
+n,
+num
+);
+
+
+g.appendChild(h);
+
+
+jobs.forEach(
+job=>
+g.appendChild(
+creaTodoJobRow(job)
+)
+);
+
+
+c.appendChild(g);
+
+});
+
+});
+
+}
+
+
+/* =========================
+   RIGA DA FARE
+========================= */
+
+function creaTodoJobRow(lavoro){
+
+const r=
+document.createElement("div");
+
+r.className=
+"todo-job-row";
+
+
+const main=
+document.createElement("div");
+
+main.className=
+"todo-job-main job-clickable";
+
+
+const dot=
+document.createElement("div");
+
+dot.className=
+"todo-job-dot";
+
+
+const content=
+document.createElement("div");
+
+content.className=
+"todo-job-content";
+
+
+const text=
+document.createElement("div");
+
+text.className=
+"todo-job-text";
+
+text.textContent=
+lavoro.testo||"";
+
+
+content.appendChild(text);
+
+
+if(lavoro.note){
+
+const note=
+document.createElement("div");
+
+note.className=
+"todo-job-note";
+
+note.textContent=
+"Note: "+lavoro.note;
+
+content.appendChild(note);
+
+}
+
+
+if(lavoro.urgente===true){
+
+const badge=
+document.createElement("div");
+
+badge.className=
+"todo-job-urgent";
+
+badge.textContent=
+"URGENTE";
+
+content.appendChild(badge);
+
+}
+
+
+main.append(
+dot,
+content
+);
+
+
+main.onclick=()=>{
+apriSchedaLavoro(
+lavoro.id
+);
+};
+
+
+r.appendChild(main);
+
+
+const actions=
+document.createElement("div");
+
+actions.className=
+"symbol-actions";
+
+
+const complete=
+document.createElement("button");
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.title=
+"Completato";
+
+complete.textContent=
+"✓";
+
+
+complete.onclick=e=>{
+
+e.stopPropagation();
+
+completaLavoro(
+lavoro.id
+);
+
+};
+
+
+const urgent=
+document.createElement("button");
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.title=
+lavoro.urgente
+?
+"Togli urgente"
+:
+"Segna urgente";
+
+urgent.textContent=
+"!";
+
+
+urgent.onclick=e=>{
+
+e.stopPropagation();
+
+cambiaUrgente(
+lavoro.id,
+lavoro.urgente===true
+);
+
+};
+
+
+const del=
+document.createElement("button");
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.title=
+"Elimina";
+
+del.textContent=
+"×";
+
+
+del.onclick=e=>{
+
+e.stopPropagation();
+
+eliminaLavoro(
+lavoro.id
+);
+
+};
+
+
+actions.append(
+complete,
+urgent,
+del
+);
+
+
+r.appendChild(actions);
+
+
+return r;
+
+}
+
+
+/* =========================
+   PUNTO VENDITA
+========================= */
+
+function apriPuntoVendita(
+punto,
+categoria
+){
+
+puntoSelezionato=
+punto;
+
+
+document.getElementById(
+"storePageName"
+).textContent=
+punto;
+
+
+document.getElementById(
+"storePageCategory"
+).textContent=
+categoria;
+
+
+document.getElementById(
+"lavoroInput"
+).value="";
+
+
+document.getElementById(
+"noteInput"
+).value="";
+
+
+document.getElementById(
+"urgenteInput"
+).checked=false;
+
+
+renderStoreJobs(
+punto
+);
+
+mostraPagina(
+"storePage"
+);
+
+}
+
+
+/* =========================
+   LAVORI DEL PUNTO
+========================= */
+
+function renderStoreJobs(punto){
+
+const c=
+document.getElementById(
+"storeJobs"
+);
+
+c.innerHTML="";
+
+
+const lista=
+lavori.filter(
+x=>
+x.attivo===true &&
+x.punto===punto
+);
+
+
+if(!lista.length){
+
+c.innerHTML=
+'<div class="empty">Nessun lavoro</div>';
+
+return;
+
+}
+
+
+lista.forEach(
+job=>
+c.appendChild(
+creaStoreJobCard(job)
+)
+);
+
+}
+
+
+function creaStoreJobCard(lavoro){
+
+const card=
+document.createElement("div");
+
+card.className=
+"job-card job-clickable";
+
+
+card.onclick=()=>{
+apriSchedaLavoro(
+lavoro.id
+);
+};
+
+
+const text=
+document.createElement("div");
+
+text.className=
+"job-text";
+
+text.textContent=
+lavoro.testo||"";
+
+card.appendChild(text);
+
+
+if(lavoro.note){
+
+const note=
+document.createElement("div");
+
+note.className=
+"job-note";
+
+note.textContent=
+"Note: "+lavoro.note;
+
+card.appendChild(note);
+
+}
+
+
+const actions=
+document.createElement("div");
+
+actions.className=
+"symbol-actions";
+
+actions.style.marginTop=
+"12px";
+
+
+const complete=
+document.createElement("button");
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.title=
+"Completato";
+
+complete.textContent=
+"✓";
+
+
+complete.onclick=e=>{
+
+e.stopPropagation();
+
+completaLavoro(
+lavoro.id
+);
+
+};
+
+
+const urgent=
+document.createElement("button");
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.title=
+lavoro.urgente
+?
+"Togli urgente"
+:
+"Segna urgente";
+
+urgent.textContent=
+"!";
+
+
+urgent.onclick=e=>{
+
+e.stopPropagation();
+
+cambiaUrgente(
+lavoro.id,
+lavoro.urgente===true
+);
+
+};
+
+
+const del=
+document.createElement("button");
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.title=
+"Elimina";
+
+del.textContent=
+"×";
+
+
+del.onclick=e=>{
+
+e.stopPropagation();
+
+eliminaLavoro(
+lavoro.id
+);
+
+};
+
+
+actions.append(
+complete,
+urgent,
+del
+);
+
+
+card.appendChild(actions);
+
+
+return card;
+
+}
+
+
+/* =========================
+   AGGIUNGI LAVORO
+========================= */
+
+function aggiungiLavoro(){
+
+if(!puntoSelezionato)
+return;
+
+
+const lavoroInput=
+document.getElementById(
+"lavoroInput"
+);
+
+const noteInput=
+document.getElementById(
+"noteInput"
+);
+
+const urgentInput=
+document.getElementById(
+"urgenteInput"
+);
+
+const button=
+document.getElementById(
+"addWorkButton"
+);
+
+
+const testo=
+lavoroInput.value.trim();
+
+const note=
+noteInput.value.trim();
+
+const urgente=
+urgentInput.checked;
+
+
+if(!testo){
+
+alert(
+"Inserisci il lavoro da fare."
+);
+
+lavoroInput.focus();
+
+return;
+
+}
+
+
+button.disabled=true;
+
+button.textContent=
+"Salvataggio...";
+
+
+const salva=()=>{
+
+db.collection("lavori")
+.add({
+
+punto:puntoSelezionato,
+
+testo:testo,
+
+note:note,
+
+completato:false,
+
+completatoIl:null,
+
+attivo:true,
+
+urgente:urgente,
+
+creatoDa:
+auth.currentUser
+?
+auth.currentUser.uid
+:
+"",
+
+creatoIl:
+firebase.firestore.FieldValue.serverTimestamp(),
+
+foto:[]
+
+})
+
+.then(()=>{
+
+lavoroInput.value="";
+
+noteInput.value="";
+
+urgentInput.checked=false;
+
+button.disabled=false;
+
+button.textContent=
+"+ Aggiungi lavoro";
+
+})
+
+.catch(error=>{
+
+console.error(error);
+
+alert(
+"Errore nel salvataggio del lavoro."
+);
+
+button.disabled=false;
+
+button.textContent=
+"+ Aggiungi lavoro";
+
+});
+
+};
+
+
+if(auth.currentUser){
+
+salva();
+
+}
+else{
+
+auth.signInAnonymously()
+.then(salva);
+
+}
+
+}
+
+
+/* =========================
+   COMPLETA
+========================= */
+
+function completaLavoro(id){
+
+db.collection("lavori")
+.doc(id)
+.update({
+
+completato:true,
+
+/*
+QUESTA È LA PARTE IMPORTANTE:
+la data viene registrata
+automaticamente quando premi ✓.
+*/
+
+completatoIl:
+firebase.firestore.FieldValue.serverTimestamp()
+
+})
+
+.catch(error=>{
+
+console.error(error);
+
+alert(
+"Errore nel completare il lavoro."
+);
+
+});
+
+}
+
+
+/* =========================
+   DA RIFARE
+========================= */
+
+function daRifare(id){
+
+db.collection("lavori")
+.doc(id)
+.update({
+
+completato:false,
+
+completatoIl:null
+
+})
+
+.catch(error=>{
+
+console.error(error);
+
+alert(
+"Errore nel modificare il lavoro."
+);
+
+});
+
+}
+
+
+/* =========================
+   URGENTE
+========================= */
+
+function cambiaUrgente(
+id,
+giaUrgente
+){
+
+db.collection("lavori")
+.doc(id)
+.update({
+
+urgente:
+!giaUrgente
+
+})
+
+.catch(error=>{
+
+console.error(error);
+
+alert(
+"Errore nella modifica dell'urgenza."
+);
+
+});
+
+}
+
+
+/* =========================
+   ELIMINA
+========================= */
+
+function eliminaLavoro(id){
+
+if(
+!confirm(
+"Vuoi eliminare questo lavoro?"
+)
+)
+return;
+
+
+db.collection("lavori")
+.doc(id)
+.update({
+
+attivo:false
+
+})
+
+.catch(error=>{
+
+console.error(error);
+
+alert(
+"Errore nell'eliminazione."
+);
+
+});
+
+}
+
+
+/* =========================
+   URGENTI
+========================= */
+
+function renderUrgentJobs(lista){
+
+const c=
+document.getElementById(
+"urgentJobs"
+);
+
+c.innerHTML="";
+
+
+if(!lista.length){
+
+c.innerHTML=
+'<div class="empty">Nessun lavoro urgente.</div>';
+
+return;
+
+}
+
+
+Object.keys(puntiVendita)
+.forEach(cat=>{
+
+const punti=
+puntiVendita[cat];
+
+
+const catJobs=
+lista.filter(
+x=>
+punti.includes(x.punto)
+);
+
+
+if(!catJobs.length)
+return;
+
+
+const t=
+document.createElement("div");
+
+t.className=
+"group-title";
+
+t.textContent=
+cat;
+
+c.appendChild(t);
+
+
+punti.forEach(punto=>{
+
+const jobs=
+catJobs.filter(
+x=>
+x.punto===punto
+);
+
+
+if(!jobs.length)
+return;
+
+
+const g=
+document.createElement("div");
+
+g.className=
+"todo-store-group";
+
+
+const h=
+document.createElement("div");
+
+h.className=
+"urgent-store-header";
+
+
+const n=
+document.createElement("div");
+
+n.className=
+"urgent-store-name";
+
+n.textContent=
+punto;
+
+
+const num=
+document.createElement("div");
+
+num.className=
+"urgent-store-count";
+
+num.textContent=
+jobs.length;
+
+
+h.append(
+n,
+num
+);
+
+g.appendChild(h);
 
 
 jobs.forEach(job=>{
 
-testo+="• "+
-(job.testo||"")+
-"\n";
+const r=
+document.createElement("div");
 
-});
-
-});
+r.className=
+"urgent-job-row job-clickable";
 
 
-testo+="\n";
+r.onclick=()=>{
+apriSchedaLavoro(
+job.id
+);
+};
 
-});
+
+const dot=
+document.createElement("div");
+
+dot.className=
+"urgent-job-dot";
 
 
-try{
+const content=
+document.createElement("div");
 
-if(navigator.share){
+content.className=
+"urgent-job-content";
 
-await navigator.share({
 
-title:
-"EDISERVICE - Lavori completati",
+const text=
+document.createElement("div");
 
-text:testo
+text.className=
+"urgent-job-text";
 
-});
+text.textContent=
+job.testo||"";
+
+content.appendChild(text);
+
+
+if(job.note){
+
+const note=
+document.createElement("div");
+
+note.className=
+"urgent-job-note";
+
+note.textContent=
+"Note: "+job.note;
+
+content.appendChild(note);
 
 }
 
-else if(navigator.clipboard){
 
-await navigator.clipboard.writeText(testo);
+const actions=
+document.createElement("div");
 
-alert(
-"Elenco copiato negli appunti."
+actions.className=
+"symbol-actions";
+
+
+const complete=
+document.createElement("button");
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.textContent=
+"✓";
+
+complete.title=
+"Completato";
+
+
+complete.onclick=e=>{
+
+e.stopPropagation();
+
+completaLavoro(
+job.id
 );
 
-}
+};
 
-else{
 
-const area=
-document.createElement("textarea");
+const urgent=
+document.createElement("button");
 
-area.value=testo;
+urgent.className=
+"symbol-btn symbol-urgent";
 
-document.body.appendChild(area);
+urgent.textContent=
+"!";
 
-area.select();
+urgent.title=
+"Togli urgente";
 
-document.execCommand("copy");
 
-area.remove();
+urgent.onclick=e=>{
 
-alert(
-"Elenco copiato negli appunti."
+e.stopPropagation();
+
+cambiaUrgente(
+job.id,
+true
 );
 
-}
+};
+
+
+const del=
+document.createElement("button");
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.textContent=
+"×";
+
+del.title=
+"Elimina";
+
+
+del.onclick=e=>{
+
+e.stopPropagation();
+
+eliminaLavoro(
+job.id
+);
+
+};
+
+
+actions.append(
+complete,
+urgent,
+del
+);
+
+
+r.append(
+dot,
+content,
+actions
+);
+
+
+g.appendChild(r);
+
+});
+
+
+c.appendChild(g);
+
+});
+
+});
 
 }
-catch(error){
 
-if(
-error &&
-error.name!=="AbortError"
-)
-console.error(error);
 
-}
-
-}
-
+/* =========================
+   COMPLETATI
+========================= */
 
 function renderCompletedJobs(lista){
 
@@ -2637,22 +3535,26 @@ c.innerHTML="";
 if(!lista.length){
 
 c.innerHTML=
-'<div class="empty">Nessun lavoro completato in questo mese.</div>';
+'<div class="empty">Nessun lavoro completato.</div>';
 
 return;
 
 }
 
 
-Object.keys(puntiVendita).forEach(cat=>{
+Object.keys(puntiVendita)
+.forEach(cat=>{
 
 const punti=
 puntiVendita[cat];
 
+
 const catJobs=
 lista.filter(
-x=>punti.includes(x.punto)
+x=>
+punti.includes(x.punto)
 );
+
 
 if(!catJobs.length)
 return;
@@ -2661,9 +3563,11 @@ return;
 const t=
 document.createElement("div");
 
-t.className="group-title";
+t.className=
+"group-title";
 
-t.textContent=cat;
+t.textContent=
+cat;
 
 c.appendChild(t);
 
@@ -2672,8 +3576,10 @@ punti.forEach(punto=>{
 
 const jobs=
 catJobs.filter(
-x=>x.punto===punto
+x=>
+x.punto===punto
 );
+
 
 if(!jobs.length)
 return;
@@ -2682,7 +3588,8 @@ return;
 const g=
 document.createElement("div");
 
-g.className="completed-job";
+g.className=
+"completed-job";
 
 
 const h=
@@ -2698,7 +3605,8 @@ document.createElement("div");
 n.className=
 "completed-store-name";
 
-n.textContent=punto;
+n.textContent=
+punto;
 
 
 const num=
@@ -2711,7 +3619,10 @@ num.textContent=
 jobs.length;
 
 
-h.append(n,num);
+h.append(
+n,
+num
+);
 
 g.appendChild(h);
 
@@ -2724,8 +3635,12 @@ document.createElement("div");
 r.className=
 "completed-job-row job-clickable";
 
-r.onclick=()=>
-apriSchedaLavoro(job.id);
+
+r.onclick=()=>{
+apriSchedaLavoro(
+job.id
+);
+};
 
 
 const check=
@@ -2734,7 +3649,8 @@ document.createElement("div");
 check.className=
 "completed-check";
 
-check.textContent="✓";
+check.textContent=
+"✓";
 
 
 const content=
@@ -2756,39 +3672,6 @@ job.testo||"";
 content.appendChild(text);
 
 
-const data=
-dataCompletamentoValida(job);
-
-
-const dataText=
-document.createElement("div");
-
-dataText.className=
-"completed-job-note";
-
-
-dataText.textContent=
-data?
-
-"Completato il "+
-data.toLocaleDateString("it-IT")+
-" alle "+
-data.toLocaleTimeString(
-"it-IT",
-{
-hour:"2-digit",
-minute:"2-digit"
-}
-)
-
-:
-
-"Data di completamento non disponibile";
-
-
-content.appendChild(dataText);
-
-
 if(job.note){
 
 const note=
@@ -2801,6 +3684,38 @@ note.textContent=
 "Note: "+job.note;
 
 content.appendChild(note);
+
+}
+
+
+const data=
+dataCompletamentoValida(job);
+
+
+if(data){
+
+const dataEl=
+document.createElement("div");
+
+dataEl.className=
+"completed-job-date";
+
+dataEl.textContent=
+"Completato il "
++
+String(data.getDate())
+.padStart(2,"0")
++
+"/"
++
+String(data.getMonth()+1)
+.padStart(2,"0")
++
+"/"
++
+data.getFullYear();
+
+content.appendChild(dataEl);
 
 }
 
@@ -2818,15 +3733,20 @@ document.createElement("button");
 redo.className=
 "symbol-btn symbol-redo";
 
-redo.title="Da rifare";
+redo.title=
+"Da rifare";
 
-redo.textContent="↻";
+redo.textContent=
+"↻";
+
 
 redo.onclick=e=>{
 
 e.stopPropagation();
 
-daRifare(job.id);
+daRifare(
+job.id
+);
 
 };
 
@@ -2837,15 +3757,20 @@ document.createElement("button");
 del.className=
 "symbol-btn symbol-delete";
 
-del.title="Elimina";
+del.title=
+"Elimina";
 
-del.textContent="×";
+del.textContent=
+"×";
+
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(job.id);
+eliminaLavoro(
+job.id
+);
 
 };
 
@@ -2862,6 +3787,7 @@ content,
 actions
 );
 
+
 g.appendChild(r);
 
 });
@@ -2877,7 +3803,418 @@ c.appendChild(g);
 
 
 /* =========================
-   FOTO / SCHEDA LAVORO
+   MENU •••
+========================= */
+
+function toggleCompletedMenu(){
+
+const menu=
+document.getElementById(
+"completedMenu"
+);
+
+menu.classList.toggle(
+"active"
+);
+
+}
+
+
+function chiudiMenuCompletati(){
+
+const menu=
+document.getElementById(
+"completedMenu"
+);
+
+if(menu)
+menu.classList.remove(
+"active"
+);
+
+}
+
+
+document.addEventListener(
+"click",
+function(event){
+
+const menu=
+document.getElementById(
+"completedMenu"
+);
+
+const button=
+document.querySelector(
+".completed-menu-button"
+);
+
+
+if(
+menu &&
+button &&
+!menu.contains(event.target) &&
+!button.contains(event.target)
+){
+
+menu.classList.remove(
+"active"
+);
+
+}
+
+});
+
+
+/* =========================
+   TESTO DEL MESE
+========================= */
+
+function creaTestoElencoCompletati(){
+
+const lista=
+listaCompletatiDelMese();
+
+
+if(!lista.length)
+return "";
+
+
+let testo=
+"EDISERVICE\n"
++
+"LAVORI COMPLETATI - "
++
+nomeMeseCompletati(
+meseCompletatiVisualizzato
+)
++
+" "
++
+annoCompletatiVisualizzato
++
+"\n\n";
+
+
+Object.keys(puntiVendita)
+.forEach(cat=>{
+
+const punti=
+puntiVendita[cat];
+
+
+const catJobs=
+lista.filter(
+x=>
+punti.includes(x.punto)
+);
+
+
+if(!catJobs.length)
+return;
+
+
+testo+=
+cat+
+"\n";
+
+
+punti.forEach(punto=>{
+
+const jobs=
+catJobs.filter(
+x=>
+x.punto===punto
+);
+
+
+if(!jobs.length)
+return;
+
+
+testo+=
+"\n"+
+punto+
+"\n";
+
+
+jobs.forEach(job=>{
+
+testo+=
+"• "+
+(job.testo||"")+
+"\n";
+
+});
+
+});
+
+
+testo+="\n";
+
+});
+
+
+return testo;
+
+}
+
+
+/* =========================
+   SALVA
+========================= */
+
+function salvaElencoCompletati(){
+
+chiudiMenuCompletati();
+
+
+const testo=
+creaTestoElencoCompletati();
+
+
+if(!testo){
+
+alert(
+"Nessun lavoro completato da salvare in questo mese."
+);
+
+return;
+
+}
+
+
+const blob=
+new Blob(
+[testo],
+{
+type:
+"text/plain;charset=utf-8"
+}
+);
+
+
+const url=
+URL.createObjectURL(blob);
+
+
+const a=
+document.createElement("a");
+
+
+a.href=
+url;
+
+
+a.download=
+"EDISERVICE-"
++
+nomeMeseCompletati(
+meseCompletatiVisualizzato
+)
++
+"-"
++
+annoCompletatiVisualizzato
++
+".txt";
+
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================
+   CONDIVIDI
+========================= */
+
+async function condividiElencoCompletati(){
+
+chiudiMenuCompletati();
+
+
+const testo=
+creaTestoElencoCompletati();
+
+
+if(!testo){
+
+alert(
+"Nessun lavoro completato da condividere in questo mese."
+);
+
+return;
+
+}
+
+
+try{
+
+if(navigator.share){
+
+await navigator.share({
+
+title:
+"EDISERVICE - Lavori completati",
+
+text:
+testo
+
+});
+
+}
+else if(navigator.clipboard){
+
+await navigator.clipboard.writeText(
+testo
+);
+
+alert(
+"Elenco copiato negli appunti."
+);
+
+}
+else{
+
+const area=
+document.createElement("textarea");
+
+area.value=
+testo;
+
+document.body.appendChild(area);
+
+area.select();
+
+document.execCommand(
+"copy"
+);
+
+area.remove();
+
+alert(
+"Elenco copiato negli appunti."
+);
+
+}
+
+}
+catch(error){
+
+if(
+error &&
+error.name!=="AbortError"
+){
+
+console.error(error);
+
+}
+
+}
+
+}
+
+
+/* =========================
+   INOLTRA
+========================= */
+
+async function inoltraElencoCompletati(){
+
+chiudiMenuCompletati();
+
+
+const testo=
+creaTestoElencoCompletati();
+
+
+if(!testo){
+
+alert(
+"Nessun lavoro completato da inoltrare in questo mese."
+);
+
+return;
+
+}
+
+
+try{
+
+if(navigator.share){
+
+await navigator.share({
+
+title:
+"EDISERVICE - Lavori completati",
+
+text:
+testo
+
+});
+
+}
+else if(navigator.clipboard){
+
+await navigator.clipboard.writeText(
+testo
+);
+
+alert(
+"Elenco copiato. Ora puoi incollarlo dove vuoi."
+);
+
+}
+else{
+
+const area=
+document.createElement("textarea");
+
+area.value=
+testo;
+
+document.body.appendChild(area);
+
+area.select();
+
+document.execCommand(
+"copy"
+);
+
+area.remove();
+
+alert(
+"Elenco copiato. Ora puoi incollarlo dove vuoi."
+);
+
+}
+
+}
+catch(error){
+
+if(
+error &&
+error.name!=="AbortError"
+){
+
+console.error(error);
+
+}
+
+}
+
+}
+
+
+/* =========================
+   FOTO
 ========================= */
 
 function salvaNoteLavoro(){
@@ -2891,6 +4228,7 @@ document.getElementById(
 "photoDetailNoteInput"
 );
 
+
 const testo=
 input.value.trim();
 
@@ -2900,15 +4238,27 @@ db.collection("lavori")
 .update({
 note:testo
 })
-
 .then(()=>{
 
-lavoroFotoAperto.note=testo;
+lavoroFotoAperto.note=
+testo;
 
-alert("Note salvate.");
+
+document.getElementById(
+"photoDetailNote"
+).textContent=
+testo
+?
+"Note: "+testo
+:
+"";
+
+
+alert(
+"Note salvate."
+);
 
 })
-
 .catch(error=>{
 
 console.error(error);
@@ -2924,8 +4274,12 @@ alert(
 
 function fotoPaths(lavoro){
 
-return Array.isArray(lavoro.foto)?
-lavoro.foto:
+return Array.isArray(
+lavoro.foto
+)
+?
+lavoro.foto
+:
 [];
 
 }
@@ -2938,11 +4292,13 @@ lavori.find(
 x=>x.id===id
 );
 
+
 if(!lavoro)
 return;
 
 
-lavoroFotoAperto=lavoro;
+lavoroFotoAperto=
+lavoro;
 
 
 document.getElementById(
@@ -2966,14 +4322,17 @@ lavoro.note||"";
 document.getElementById(
 "photoDetailNote"
 ).textContent=
-lavoro.note?
-"Note: "+lavoro.note:
+lavoro.note
+?
+"Note: "+lavoro.note
+:
 "";
 
 
 mostraPagina(
 "photoDetailPage"
 );
+
 
 renderFotoLavoro();
 
@@ -2988,10 +4347,13 @@ fotoCorrente=null;
 
 
 if(puntoSelezionato)
-mostraPagina("storePage");
-
+mostraPagina(
+"storePage"
+);
 else
-mostraPagina("todoPage");
+mostraPagina(
+"todoPage"
+);
 
 }
 
@@ -3011,7 +4373,9 @@ return;
 
 
 const paths=
-fotoPaths(lavoroFotoAperto);
+fotoPaths(
+lavoroFotoAperto
+);
 
 
 if(!paths.length){
@@ -3024,7 +4388,8 @@ return;
 }
 
 
-paths.forEach((path,index)=>{
+paths.forEach(
+(path,index)=>{
 
 const box=
 document.createElement("div");
@@ -3048,10 +4413,12 @@ document.createElement("button");
 del.className=
 "photo-thumb-delete";
 
-del.textContent="×";
+del.textContent=
+"×";
 
 del.title=
 "Elimina foto";
+
 
 del.onclick=e=>{
 
@@ -3065,8 +4432,9 @@ eliminaFoto(path);
 box.appendChild(del);
 
 
-box.onclick=()=>
+box.onclick=()=>{
 apriFotoGrande(path);
+};
 
 
 grid.appendChild(box);
@@ -3102,7 +4470,7 @@ cached.expires>Date.now()
 return cached.url;
 
 
-const {data,error}=
+const result=
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
@@ -3112,11 +4480,11 @@ path,
 );
 
 
-if(error){
+if(result.error){
 
 console.error(
 "Signed URL:",
-error
+result.error
 );
 
 return null;
@@ -3127,13 +4495,13 @@ return null;
 signedUrlCache.set(
 path,
 {
-url:data.signedUrl,
-expires:Date.now()+3500*1000
+url:result.data.signedUrl,
+expires:Date.now()+3500000
 }
 );
 
 
-return data.signedUrl;
+return result.data.signedUrl;
 
 }
 
@@ -3149,6 +4517,7 @@ document.getElementById(
 "photoInput"
 );
 
+
 input.value="";
 
 input.onchange=
@@ -3161,7 +4530,9 @@ input.click();
 
 async function comprimiFoto(file){
 
-if(!file.type.startsWith("image/"))
+if(
+!file.type.startsWith("image/")
+)
 throw new Error(
 "Seleziona un'immagine."
 );
@@ -3170,7 +4541,8 @@ throw new Error(
 const url=
 URL.createObjectURL(file);
 
-const img=new Image();
+const img=
+new Image();
 
 
 try{
@@ -3188,25 +4560,36 @@ img.src=url;
 );
 
 
-let w=img.naturalWidth;
+let w=
+img.naturalWidth;
 
-let h=img.naturalHeight;
+let h=
+img.naturalHeight;
 
-let max=1600;
+const max=1600;
 
 
-if(w>max||h>max){
+if(
+w>max ||
+h>max
+){
 
 if(w>=h){
 
-h=Math.round(h*max/w);
+h=
+Math.round(
+h*max/w
+);
 
 w=max;
 
 }
 else{
 
-w=Math.round(w*max/h);
+w=
+Math.round(
+w*max/h
+);
 
 h=max;
 
@@ -3216,11 +4599,15 @@ h=max;
 
 
 const canvas=
-document.createElement("canvas");
+document.createElement(
+"canvas"
+);
 
-canvas.width=w;
+canvas.width=
+w;
 
-canvas.height=h;
+canvas.height=
+h;
 
 
 canvas
@@ -3244,7 +4631,6 @@ resolve,
 );
 
 }
-
 finally{
 
 URL.revokeObjectURL(url);
@@ -3257,10 +4643,13 @@ URL.revokeObjectURL(url);
 async function caricaFoto(e){
 
 const files=
-[...(e.target.files||[])];
+[
+...(e.target.files||[])
+];
+
 
 if(
-!files.length||
+!files.length ||
 !lavoroFotoAperto
 )
 return;
@@ -3272,25 +4661,35 @@ lavoroFotoAperto;
 
 try{
 
-for(const file of files){
+for(
+const file of files
+){
 
 const blob=
-await comprimiFoto(file);
+await comprimiFoto(
+file
+);
 
 
 const path=
-"lavori/"+
-lavoro.id+
-"/"+
-Date.now()+
-"-"+
+"lavori/"
++
+lavoro.id
++
+"/"
++
+Date.now()
++
+"-"
++
 Math.random()
 .toString(36)
-.slice(2,10)+
+.slice(2,10)
++
 ".jpg";
 
 
-const {error}=
+const result=
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
@@ -3298,18 +4697,21 @@ await supabaseClient
 path,
 blob,
 {
-contentType:"image/jpeg",
-cacheControl:"3600",
+contentType:
+"image/jpeg",
+cacheControl:
+"3600",
 upsert:false
 }
 );
 
 
-if(error)
-throw error;
+if(result.error)
+throw result.error;
 
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
 
@@ -3323,19 +4725,22 @@ firebase.firestore.FieldValue
 
 
 alert(
-files.length===1?
-"Foto aggiunta.":
-files.length+" foto aggiunte."
+files.length===1
+?
+"Foto aggiunta."
+:
+files.length+
+" foto aggiunte."
 );
 
 }
-
 catch(error){
 
 console.error(error);
 
 alert(
-"Errore nel caricamento: "+
+"Errore nel caricamento: "
++
 (error.message||error)
 );
 
@@ -3346,11 +4751,14 @@ alert(
 
 async function apriFotoGrande(path){
 
-fotoCorrente=path;
+fotoCorrente=
+path;
 
 
 const url=
-await getSignedUrl(path);
+await getSignedUrl(
+path
+);
 
 
 if(!url)
@@ -3359,12 +4767,15 @@ return;
 
 document.getElementById(
 "photoModalImage"
-).src=url;
+).src=
+url;
 
 
 document.getElementById(
 "photoModal"
-).classList.add("active");
+).classList.add(
+"active"
+);
 
 }
 
@@ -3380,12 +4791,15 @@ return;
 
 document.getElementById(
 "photoModal"
-).classList.remove("active");
+).classList.remove(
+"active"
+);
 
 
 document.getElementById(
 "photoModalImage"
-).src="";
+).src=
+"";
 
 
 fotoCorrente=null;
@@ -3396,7 +4810,7 @@ fotoCorrente=null;
 function sostituisciFotoCorrente(){
 
 if(
-!fotoCorrente||
+!fotoCorrente ||
 !lavoroFotoAperto
 )
 return;
@@ -3406,6 +4820,7 @@ const input=
 document.getElementById(
 "replacePhotoInput"
 );
+
 
 input.value="";
 
@@ -3422,34 +4837,45 @@ async function eseguiSostituzioneFoto(e){
 const file=
 e.target.files?.[0];
 
+
 if(
-!file||
-!fotoCorrente||
+!file ||
+!fotoCorrente ||
 !lavoroFotoAperto
 )
 return;
 
 
-const oldPath=fotoCorrente;
+const oldPath=
+fotoCorrente;
 
-const lavoro=lavoroFotoAperto;
+const lavoro=
+lavoroFotoAperto;
 
 
 try{
 
 const blob=
-await comprimiFoto(file);
+await comprimiFoto(
+file
+);
 
 
 const newPath=
-"lavori/"+
-lavoro.id+
-"/"+
-Date.now()+
-"-"+
+"lavori/"
++
+lavoro.id
++
+"/"
++
+Date.now()
++
+"-"
++
 Math.random()
 .toString(36)
-.slice(2,10)+
+.slice(2,10)
++
 ".jpg";
 
 
@@ -3461,8 +4887,10 @@ await supabaseClient
 newPath,
 blob,
 {
-contentType:"image/jpeg",
-cacheControl:"3600",
+contentType:
+"image/jpeg",
+cacheControl:
+"3600",
 upsert:false
 }
 );
@@ -3472,7 +4900,8 @@ if(up.error)
 throw up.error;
 
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
 
@@ -3483,7 +4912,8 @@ firebase.firestore.FieldValue
 });
 
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
 
@@ -3497,21 +4927,31 @@ firebase.firestore.FieldValue
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
-.remove([oldPath]);
+.remove([
+oldPath
+]);
 
 
-signedUrlCache.delete(oldPath);
+signedUrlCache.delete(
+oldPath
+);
 
 
 lavoro.foto=
 fotoPaths(lavoro)
-.filter(x=>x!==oldPath)
-.concat(newPath);
+.filter(
+x=>x!==oldPath
+)
+.concat(
+newPath
+);
 
 
 document.getElementById(
 "photoModal"
-).classList.remove("active");
+).classList.remove(
+"active"
+);
 
 
 fotoCorrente=null;
@@ -3520,16 +4960,18 @@ fotoCorrente=null;
 renderFotoLavoro();
 
 
-alert("Foto sostituita.");
+alert(
+"Foto sostituita."
+);
 
 }
-
 catch(error){
 
 console.error(error);
 
 alert(
-"Errore nella sostituzione: "+
+"Errore nella sostituzione: "
++
 (error.message||error)
 );
 
@@ -3541,8 +4983,10 @@ alert(
 async function eliminaFoto(path){
 
 if(
-!lavoroFotoAperto||
-!confirm("Vuoi eliminare questa foto?")
+!lavoroFotoAperto ||
+!confirm(
+"Vuoi eliminare questa foto?"
+)
 )
 return;
 
@@ -3553,18 +4997,21 @@ lavoroFotoAperto;
 
 try{
 
-const {error}=
+const result=
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
-.remove([path]);
+.remove([
+path
+]);
 
 
-if(error)
-throw error;
+if(result.error)
+throw result.error;
 
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
 
@@ -3575,17 +5022,23 @@ firebase.firestore.FieldValue
 });
 
 
-signedUrlCache.delete(path);
+signedUrlCache.delete(
+path
+);
 
 
 lavoro.foto=
 fotoPaths(lavoro)
-.filter(x=>x!==path);
+.filter(
+x=>x!==path
+);
 
 
 document.getElementById(
 "photoModal"
-).classList.remove("active");
+).classList.remove(
+"active"
+);
 
 
 fotoCorrente=null;
@@ -3594,13 +5047,13 @@ fotoCorrente=null;
 renderFotoLavoro();
 
 }
-
 catch(error){
 
 console.error(error);
 
 alert(
-"Errore nell'eliminazione della foto: "+
+"Errore nell'eliminazione della foto: "
++
 (error.message||error)
 );
 
@@ -3612,32 +5065,56 @@ alert(
 async function eliminaFotoCorrente(){
 
 if(fotoCorrente)
-await eliminaFoto(fotoCorrente);
+await eliminaFoto(
+fotoCorrente
+);
 
 }
 
 
-document.getElementById(
+/* =========================
+   EVENTI
+========================= */
+
+document
+.getElementById(
 "btnLavoriDaFare"
-).addEventListener(
-"click",
-()=>mostraPagina("todoPage")
-);
-
-
-document.getElementById(
-"btnUrgenti"
-).addEventListener(
-"click",
-()=>mostraPagina("urgentPage")
-);
-
-
-document.getElementById(
-"btnCompletati"
-).addEventListener(
+)
+.addEventListener(
 "click",
 ()=>{
+mostraPagina(
+"todoPage"
+)
+}
+);
+
+
+document
+.getElementById(
+"btnUrgenti"
+)
+.addEventListener(
+"click",
+()=>{
+mostraPagina(
+"urgentPage"
+)
+}
+);
+
+
+document
+.getElementById(
+"btnCompletati"
+)
+.addEventListener(
+"click",
+()=>{
+
+mostraPagina(
+"completedPage"
+);
 
 aggiornaTitoloMeseCompletati();
 
@@ -3645,17 +5122,15 @@ renderCompletedJobs(
 listaCompletatiDelMese()
 );
 
-mostraPagina(
-"completedPage"
-);
-
 }
 );
 
 
-document.getElementById(
+document
+.getElementById(
 "clearSearch"
-).onclick=
+)
+.onclick=
 cancellaRicerca;
 
 
