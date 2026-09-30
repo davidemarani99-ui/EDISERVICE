@@ -633,6 +633,53 @@ min-width:0
 
 .completed-page-title{color:#2e7d32}
 
+.completed-month-bar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:0 0 8px;
+background:#e8f5e9;
+border:2px solid #43a047;
+border-radius:16px;
+padding:10px
+}
+
+.completed-month-button{
+width:45px;
+height:45px;
+min-width:45px;
+border:0;
+border-radius:12px;
+background:#fff;
+color:#2e7d32;
+font-size:30px;
+font-weight:900;
+line-height:1;
+cursor:pointer;
+box-shadow:0 2px 6px rgba(0,0,0,.08)
+}
+
+.completed-month-button:active{
+transform:scale(.92)
+}
+
+.completed-month-title{
+flex:1;
+text-align:center;
+font-size:20px;
+font-weight:900;
+color:#1b5e20
+}
+
+.completed-month-count{
+text-align:center;
+font-size:13px;
+font-weight:700;
+color:#777;
+margin:0 0 18px
+}
+
 .completed-export-bar{
 display:flex;
 gap:10px;
@@ -644,8 +691,8 @@ flex:1;
 border:0;
 border-radius:12px;
 padding:13px 10px;
-background:#e8f5e9;
-color:#1b5e20;
+background:#222;
+color:#fff;
 font-weight:800;
 font-size:15px;
 cursor:pointer
@@ -1064,6 +1111,16 @@ border-radius:17px
 grid-template-columns:repeat(3,1fr)
 }
 
+.completed-month-title{
+font-size:18px
+}
+
+.completed-month-button{
+width:42px;
+height:42px;
+min-width:42px
+}
+
 }
 
 @media(max-width:380px){
@@ -1084,6 +1141,16 @@ margin-left:5px
 width:52px;
 height:52px;
 font-size:36px
+}
+
+.completed-month-title{
+font-size:16px
+}
+
+.completed-month-button{
+width:40px;
+height:40px;
+min-width:40px
 }
 
 }
@@ -1108,42 +1175,101 @@ Connessione Firebase...
 </div>
 
 <div class="summary" id="btnLavoriDaFare">
+
 <div class="folder-text">
-<div class="folder-title">Lavori da fare</div>
-<div class="folder-number" id="totaleDaFare">0</div>
-<div class="folder-description">Lavori ancora da completare</div>
+
+<div class="folder-title">
+Lavori da fare
 </div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-number" id="totaleDaFare">
+0
+</div>
+
+<div class="folder-description">
+Lavori ancora da completare
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
 </div>
 
 <div class="urgent-folder" id="btnUrgenti">
+
 <div class="folder-text">
-<div class="folder-title">Lavori urgenti</div>
-<div class="folder-number" id="totaleUrgenti">0</div>
-<div class="folder-description">Interventi urgenti da completare</div>
+
+<div class="folder-title">
+Lavori urgenti
 </div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-number" id="totaleUrgenti">
+0
+</div>
+
+<div class="folder-description">
+Interventi urgenti da completare
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
 </div>
 
 <div class="completed-folder" id="btnCompletati">
+
 <div class="folder-text">
-<div class="folder-title">Lavori completati</div>
-<div class="folder-number" id="totaleCompletati">0</div>
-<div class="folder-description">Lavori già completati</div>
-</div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-title">
+Lavori completati
 </div>
 
-<div class="section-title">Punti vendita</div>
+<div class="folder-number" id="totaleCompletati">
+0
+</div>
+
+<div class="folder-description">
+Lavori già completati
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
+</div>
+
+<div class="section-title">
+Punti vendita
+</div>
+
 <div id="puntiVendita"></div>
 
 </div>
 
+
 <div id="todoPage" class="page">
 
 <div class="topbar">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title">Lavori da fare</h2>
+
+<button
+class="back-button"
+onclick="showHome()"
+>
+← Indietro
+</button>
+
+<h2 class="page-title">
+Lavori da fare
+</h2>
+
 </div>
 
 <div class="search-box">
@@ -1166,10 +1292,15 @@ onclick="cancellaRicerca()"
 </div>
 
 <div id="todoJobs">
-<div class="loading">Caricamento...</div>
+
+<div class="loading">
+Caricamento...
 </div>
 
 </div>
+
+</div>
+
 
 <div id="storePage" class="page">
 
@@ -1177,11 +1308,16 @@ onclick="cancellaRicerca()"
 
 <div class="store-topbar-left">
 
-<button class="back-button" onclick="showHome()">
+<button
+class="back-button"
+onclick="showHome()"
+>
 ← Indietro
 </button>
 
-<h2 class="page-title">Punto vendita</h2>
+<h2 class="page-title">
+Punto vendita
+</h2>
 
 </div>
 
@@ -1195,14 +1331,28 @@ onclick="toggleAddWorkForm()"
 
 </div>
 
-<div class="store-name" id="storePageName"></div>
-<div class="store-category" id="storePageCategory"></div>
+<div
+class="store-name"
+id="storePageName"
+></div>
 
-<div class="form-card add-work-form" id="addWorkForm">
+<div
+class="store-category"
+id="storePageCategory"
+></div>
 
-<h2>Aggiungi lavoro</h2>
+<div
+class="form-card add-work-form"
+id="addWorkForm"
+>
 
-<label>Lavoro</label>
+<h2>
+Aggiungi lavoro
+</h2>
+
+<label>
+Lavoro
+</label>
 
 <input
 id="lavoroInput"
@@ -1210,7 +1360,9 @@ type="text"
 placeholder="Descrivi il lavoro da fare"
 >
 
-<label>Note</label>
+<label>
+Note
+</label>
 
 <textarea
 id="noteInput"
@@ -1224,7 +1376,9 @@ type="checkbox"
 id="urgenteInput"
 >
 
-<span>Lavoro urgente</span>
+<span>
+Lavoro urgente
+</span>
 
 </label>
 
@@ -1268,11 +1422,15 @@ Lavori del punto vendita
 
 </div>
 
+
 <div id="urgentPage" class="page">
 
 <div class="topbar">
 
-<button class="back-button" onclick="showHome()">
+<button
+class="back-button"
+onclick="showHome()"
+>
 ← Indietro
 </button>
 
@@ -1286,11 +1444,15 @@ Lavori urgenti
 
 </div>
 
+
 <div id="completedPage" class="page">
 
 <div class="topbar">
 
-<button class="back-button" onclick="showHome()">
+<button
+class="back-button"
+onclick="showHome()"
+>
 ← Indietro
 </button>
 
@@ -1300,14 +1462,37 @@ Lavori completati
 
 </div>
 
-<div class="completed-export-bar">
+<div class="completed-month-bar">
 
 <button
-class="completed-export-button"
-onclick="salvaElencoCompletati()"
+class="completed-month-button"
+onclick="cambiaMeseCompletati(-1)"
 >
-Salva elenco
+‹
 </button>
+
+<div
+id="completedMonthTitle"
+class="completed-month-title"
+></div>
+
+<button
+class="completed-month-button"
+onclick="cambiaMeseCompletati(1)"
+>
+›
+</button>
+
+</div>
+
+<div
+id="completedMonthCount"
+class="completed-month-count"
+>
+0 lavori completati
+</div>
+
+<div class="completed-export-bar">
 
 <button
 class="completed-export-button completed-share-button"
@@ -1322,6 +1507,7 @@ Condividi elenco
 
 </div>
 
+
 <div id="photoDetailPage" class="photo-detail-page">
 
 <div class="topbar">
@@ -1333,7 +1519,9 @@ onclick="chiudiSchedaLavoro()"
 ← Indietro
 </button>
 
-<h2 class="page-title">Lavoro</h2>
+<h2 class="page-title">
+Lavoro
+</h2>
 
 </div>
 
@@ -1427,13 +1615,17 @@ onclick="selezionaFoto()"
 
 </div>
 
-<div id="photoGrid" class="photo-grid"></div>
+<div
+id="photoGrid"
+class="photo-grid"
+></div>
 
 </div>
 
 </div>
 
 </div>
+
 
 <input
 id="newPhotoInput"
@@ -1457,6 +1649,7 @@ type="file"
 accept="image/*"
 hidden
 >
+
 
 <div
 id="photoModal"
@@ -1507,13 +1700,12 @@ Elimina
 
 </div>
 
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- ================= PDF ================= -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
 
@@ -1629,32 +1821,241 @@ const signedUrlCache=new Map();
 
 
 /* ==================================================
+   ARCHIVIO MENSILE
+================================================== */
+
+const oggiArchivio=new Date();
+
+let meseCompletatiVisualizzato=
+oggiArchivio.getMonth();
+
+let annoCompletatiVisualizzato=
+oggiArchivio.getFullYear();
+
+
+function nomeMeseCompletati(mese){
+
+const mesi=[
+"GENNAIO",
+"FEBBRAIO",
+"MARZO",
+"APRILE",
+"MAGGIO",
+"GIUGNO",
+"LUGLIO",
+"AGOSTO",
+"SETTEMBRE",
+"OTTOBRE",
+"NOVEMBRE",
+"DICEMBRE"
+];
+
+return mesi[mese];
+
+}
+
+
+function dataCompletamentoValida(lavoro){
+
+if(!lavoro.completatoIl)
+return null;
+
+if(
+lavoro.completatoIl &&
+typeof lavoro.completatoIl.toDate==="function"
+){
+
+return lavoro.completatoIl.toDate();
+
+}
+
+if(lavoro.completatoIl instanceof Date)
+return lavoro.completatoIl;
+
+const data=
+new Date(lavoro.completatoIl);
+
+if(isNaN(data.getTime()))
+return null;
+
+return data;
+
+}
+
+
+function listaCompletatiDelMese(){
+
+return lavori.filter(lavoro=>{
+
+if(
+lavoro.attivo!==true ||
+lavoro.completato!==true
+)
+return false;
+
+const data=
+dataCompletamentoValida(lavoro);
+
+if(!data)
+return false;
+
+return(
+data.getMonth()===
+meseCompletatiVisualizzato &&
+data.getFullYear()===
+annoCompletatiVisualizzato
+);
+
+});
+
+}
+
+
+function aggiornaTitoloMeseCompletati(){
+
+const titolo=
+document.getElementById(
+"completedMonthTitle"
+);
+
+const contatore=
+document.getElementById(
+"completedMonthCount"
+);
+
+const totale=
+document.getElementById(
+"totaleCompletati"
+);
+
+const lista=
+listaCompletatiDelMese();
+
+
+if(titolo){
+
+titolo.textContent=
+nomeMeseCompletati(
+meseCompletatiVisualizzato
+)+
+" "+
+annoCompletatiVisualizzato;
+
+}
+
+
+if(contatore){
+
+contatore.textContent=
+lista.length+
+(
+lista.length===1
+?" lavoro completato"
+:" lavori completati"
+);
+
+}
+
+
+if(totale){
+
+totale.textContent=
+lista.length;
+
+}
+
+}
+
+
+function cambiaMeseCompletati(direzione){
+
+meseCompletatiVisualizzato+=
+direzione;
+
+
+if(
+meseCompletatiVisualizzato>11
+){
+
+meseCompletatiVisualizzato=0;
+annoCompletatiVisualizzato++;
+
+}
+
+
+if(
+meseCompletatiVisualizzato<0
+){
+
+meseCompletatiVisualizzato=11;
+annoCompletatiVisualizzato--;
+
+}
+
+
+renderCompletedJobs(
+listaCompletatiDelMese()
+);
+
+}
+
+
+/* ==================================================
    DATA
 ================================================== */
 
 function formatDataOra(value){
 
-if(!value)return "";
+if(!value)
+return "";
 
 let data;
 
-if(value&&typeof value.toDate==="function"){
+if(
+value &&
+typeof value.toDate==="function"
+){
+
 data=value.toDate();
+
 }else if(value instanceof Date){
+
 data=value;
-}else if(typeof value==="string"||typeof value==="number"){
+
+}else if(
+typeof value==="string" ||
+typeof value==="number"
+){
+
 data=new Date(value);
+
 }else{
+
 return "";
+
 }
 
-if(isNaN(data.getTime()))return "";
+if(isNaN(data.getTime()))
+return "";
 
-const giorno=String(data.getDate()).padStart(2,"0");
-const mese=String(data.getMonth()+1).padStart(2,"0");
-const anno=data.getFullYear();
-const ore=String(data.getHours()).padStart(2,"0");
-const minuti=String(data.getMinutes()).padStart(2,"0");
+const giorno=
+String(data.getDate())
+.padStart(2,"0");
+
+const mese=
+String(data.getMonth()+1)
+.padStart(2,"0");
+
+const anno=
+data.getFullYear();
+
+const ore=
+String(data.getHours())
+.padStart(2,"0");
+
+const minuti=
+String(data.getMinutes())
+.padStart(2,"0");
 
 return `${giorno}/${mese}/${anno} alle ${ore}:${minuti}`;
 
@@ -1667,29 +2068,47 @@ return `${giorno}/${mese}/${anno} alle ${ore}:${minuti}`;
 
 function firebaseOk(){
 
-const s=document.getElementById("firebaseStatus");
+const s=
+document.getElementById(
+"firebaseStatus"
+);
 
-s.textContent="● Firebase collegato";
-s.className="firebase-status status-ok";
+s.textContent=
+"● Firebase collegato";
+
+s.className=
+"firebase-status status-ok";
 
 }
+
 
 function firebaseErrore(error){
 
-console.error("Firebase:",error);
+console.error(
+"Firebase:",
+error
+);
 
-const s=document.getElementById("firebaseStatus");
+const s=
+document.getElementById(
+"firebaseStatus"
+);
 
-s.textContent="● Errore Firebase";
-s.className="firebase-status status-error";
+s.textContent=
+"● Errore Firebase";
+
+s.className=
+"firebase-status status-error";
 
 }
+
 
 auth.signInAnonymously()
 
 .then(()=>{
 
 firebaseOk();
+
 ascoltaLavori();
 
 })
@@ -1703,50 +2122,119 @@ ascoltaLavori();
 
 function creaPuntiVendita(){
 
-const c=document.getElementById("puntiVendita");
+const c=
+document.getElementById(
+"puntiVendita"
+);
 
 c.innerHTML="";
 
-Object.keys(puntiVendita).forEach(categoria=>{
+Object.keys(
+puntiVendita
+).forEach(
+categoria=>{
 
-const gruppo=document.createElement("div");
+const gruppo=
+document.createElement(
+"div"
+);
 
-const titolo=document.createElement("div");
+const titolo=
+document.createElement(
+"div"
+);
 
-titolo.className="group-title";
-titolo.textContent=categoria;
+titolo.className=
+"group-title";
 
-gruppo.appendChild(titolo);
+titolo.textContent=
+categoria;
 
-const lista=document.createElement("div");
-lista.className="store-list";
+gruppo.appendChild(
+titolo
+);
 
-puntiVendita[categoria].forEach(punto=>{
+const lista=
+document.createElement(
+"div"
+);
 
-const b=document.createElement("button");
-b.className="store-button";
+lista.className=
+"store-list";
 
-const n=document.createElement("span");
-n.className="store-name-text";
-n.textContent=punto;
 
-const num=document.createElement("span");
-num.className="store-count";
-num.id="count-"+encodeURIComponent(punto);
+puntiVendita[
+categoria
+].forEach(
+punto=>{
+
+const b=
+document.createElement(
+"button"
+);
+
+b.className=
+"store-button";
+
+
+const n=
+document.createElement(
+"span"
+);
+
+n.className=
+"store-name-text";
+
+n.textContent=
+punto;
+
+
+const num=
+document.createElement(
+"span"
+);
+
+num.className=
+"store-count";
+
+num.id=
+"count-"+
+encodeURIComponent(
+punto
+);
+
 num.textContent="0";
 
-b.append(n,num);
+
+b.append(
+n,
+num
+);
 
 b.onclick=()=>{
-apriPuntoVendita(punto,categoria);
+
+apriPuntoVendita(
+punto,
+categoria
+);
+
 };
 
-lista.appendChild(b);
+
+lista.appendChild(
+b
+);
 
 });
 
-gruppo.appendChild(lista);
-c.appendChild(gruppo);
+
+gruppo.appendChild(
+lista
+);
+
+c.appendChild(
+gruppo
+);
 
 });
 
@@ -1765,21 +2253,31 @@ db.collection("lavori")
 
 snapshot=>{
 
-lavori=snapshot.docs.map(doc=>({
+lavori=
+snapshot.docs.map(
+doc=>({
+
 id:doc.id,
 ...doc.data()
-}));
+
+})
+);
 
 aggiornaTutto();
+
 
 if(lavoroFotoAperto){
 
 const aggiornato=
-lavori.find(x=>x.id===lavoroFotoAperto.id);
+lavori.find(
+x=>x.id===
+lavoroFotoAperto.id
+);
 
 if(aggiornato){
 
-lavoroFotoAperto=aggiornato;
+lavoroFotoAperto=
+aggiornato;
 
 aggiornaSchedaAperta();
 
@@ -1802,30 +2300,61 @@ firebaseErrore
 
 function aggiornaTutto(){
 
-const daFare=lavori.filter(
-x=>x.attivo===true&&x.completato!==true
+const daFare=
+lavori.filter(
+x=>
+x.attivo===true &&
+x.completato!==true
 );
 
-const urgenti=daFare.filter(
+const urgenti=
+daFare.filter(
 x=>x.urgente===true
 );
 
-const completati=lavori.filter(
-x=>x.attivo===true&&x.completato===true
-);
+const completatiDelMese=
+listaCompletatiDelMese();
 
-document.getElementById("totaleDaFare").textContent=daFare.length;
-document.getElementById("totaleUrgenti").textContent=urgenti.length;
-document.getElementById("totaleCompletati").textContent=completati.length;
+
+document.getElementById(
+"totaleDaFare"
+).textContent=
+daFare.length;
+
+
+document.getElementById(
+"totaleUrgenti"
+).textContent=
+urgenti.length;
+
+
+document.getElementById(
+"totaleCompletati"
+).textContent=
+completatiDelMese.length;
+
 
 aggiornaNumeriPuntiVendita();
 
-renderTodoJobs(daFare);
-renderUrgentJobs(urgenti);
-renderCompletedJobs(completati);
+renderTodoJobs(
+daFare
+);
+
+renderUrgentJobs(
+urgenti
+);
+
+renderCompletedJobs(
+completatiDelMese
+);
+
 
 if(puntoSelezionato){
-renderStoreJobs(puntoSelezionato);
+
+renderStoreJobs(
+puntoSelezionato
+);
+
 }
 
 }
@@ -1837,22 +2366,36 @@ renderStoreJobs(puntoSelezionato);
 
 function aggiornaNumeriPuntiVendita(){
 
-Object.keys(puntiVendita).forEach(cat=>{
+Object.keys(
+puntiVendita
+).forEach(
+cat=>{
 
-puntiVendita[cat].forEach(punto=>{
+puntiVendita[
+cat
+].forEach(
+punto=>{
 
-const n=lavori.filter(
+const n=
+lavori.filter(
 x=>
-x.attivo===true&&
-x.punto===punto&&
+x.attivo===true &&
+x.punto===punto &&
 x.completato!==true
 ).length;
 
-const e=document.getElementById(
-"count-"+encodeURIComponent(punto)
+
+const e=
+document.getElementById(
+"count-"+
+encodeURIComponent(
+punto
+)
 );
 
-if(e)e.textContent=n;
+
+if(e)
+e.textContent=n;
 
 });
 
@@ -1869,15 +2412,30 @@ function mostraPagina(id){
 
 document.querySelectorAll(
 ".page,.photo-detail-page"
-).forEach(p=>{
-p.classList.remove("active");
-});
+).forEach(
+p=>{
+p.classList.remove(
+"active"
+);
+}
+);
 
-const p=document.getElementById(id);
+const p=
+document.getElementById(
+id
+);
 
 if(p){
-p.classList.add("active");
-window.scrollTo(0,0);
+
+p.classList.add(
+"active"
+);
+
+window.scrollTo(
+0,
+0
+);
+
 }
 
 }
@@ -1891,18 +2449,31 @@ function showHome(){
 
 addFormAperto=false;
 
-const form=document.getElementById("addWorkForm");
+const form=
+document.getElementById(
+"addWorkForm"
+);
 
-if(form)form.classList.remove("active");
+if(form)
+form.classList.remove(
+"active"
+);
 
-const toggle=document.getElementById("addWorkToggle");
+const toggle=
+document.getElementById(
+"addWorkToggle"
+);
 
-if(toggle)toggle.textContent="+";
+if(toggle)
+toggle.textContent="+";
 
 fotoNuovoLavoro=[];
+
 renderAnteprimeNuovoLavoro();
 
-mostraPagina("homePage");
+mostraPagina(
+"homePage"
+);
 
 }
 
@@ -1913,23 +2484,45 @@ mostraPagina("homePage");
 
 function toggleAddWorkForm(){
 
-const form=document.getElementById("addWorkForm");
-const button=document.getElementById("addWorkToggle");
+const form=
+document.getElementById(
+"addWorkForm"
+);
 
-addFormAperto=!addFormAperto;
+const button=
+document.getElementById(
+"addWorkToggle"
+);
+
+addFormAperto=
+!addFormAperto;
+
 
 if(addFormAperto){
 
-form.classList.add("active");
+form.classList.add(
+"active"
+);
+
 button.textContent="−";
 
-setTimeout(()=>{
-document.getElementById("lavoroInput").focus();
-},100);
+setTimeout(
+()=>{
+
+document.getElementById(
+"lavoroInput"
+).focus();
+
+},
+100
+);
 
 }else{
 
-form.classList.remove("active");
+form.classList.remove(
+"active"
+);
+
 button.textContent="+";
 
 }
@@ -1943,45 +2536,98 @@ button.textContent="+";
 
 function filtraLavori(){
 
-const input=document.getElementById("searchLavori");
-const clear=document.getElementById("clearSearch");
+const input=
+document.getElementById(
+"searchLavori"
+);
 
-ricercaLavori=input.value.trim().toLowerCase();
+const clear=
+document.getElementById(
+"clearSearch"
+);
 
-clear.style.display=ricercaLavori?"block":"none";
+ricercaLavori=
+input.value
+.trim()
+.toLowerCase();
+
+clear.style.display=
+ricercaLavori
+?"block"
+:"none";
+
 
 renderTodoJobs(
 
-lavori.filter(x=>{
+lavori.filter(
+x=>{
 
-if(x.attivo!==true||x.completato===true)
+if(
+x.attivo!==true ||
+x.completato===true
+)
 return false;
 
-if(!ricercaLavori)return true;
+if(!ricercaLavori)
+return true;
 
 return(
-(x.punto||"").toLowerCase().includes(ricercaLavori)||
-(x.testo||"").toLowerCase().includes(ricercaLavori)||
-(x.note||"").toLowerCase().includes(ricercaLavori)
-);
 
-})
+(x.punto||"")
+.toLowerCase()
+.includes(
+ricercaLavori
+)
+
+||
+
+(x.testo||"")
+.toLowerCase()
+.includes(
+ricercaLavori
+)
+
+||
+
+(x.note||"")
+.toLowerCase()
+.includes(
+ricercaLavori
+)
 
 );
 
 }
 
+)
+
+);
+
+}
+
+
 function cancellaRicerca(){
 
-document.getElementById("searchLavori").value="";
+document.getElementById(
+"searchLavori"
+).value="";
+
 ricercaLavori="";
 
-document.getElementById("clearSearch").style.display="none";
+document.getElementById(
+"clearSearch"
+).style.display=
+"none";
+
 
 renderTodoJobs(
+
 lavori.filter(
-x=>x.attivo===true&&x.completato!==true
+x=>
+x.attivo===true &&
+x.completato!==true
 )
+
 );
 
 }
@@ -1993,9 +2639,13 @@ x=>x.attivo===true&&x.completato!==true
 
 function renderTodoJobs(lista){
 
-const c=document.getElementById("todoJobs");
+const c=
+document.getElementById(
+"todoJobs"
+);
 
 c.innerHTML="";
+
 
 if(!lista.length){
 
@@ -2010,48 +2660,116 @@ return;
 
 }
 
-Object.keys(puntiVendita).forEach(cat=>{
 
-const punti=puntiVendita[cat];
+Object.keys(
+puntiVendita
+).forEach(
+cat=>{
 
-const catJobs=lista.filter(
-x=>punti.includes(x.punto)
+const punti=
+puntiVendita[
+cat
+];
+
+const catJobs=
+lista.filter(
+x=>
+punti.includes(
+x.punto
+)
 );
 
-if(!catJobs.length)return;
+if(!catJobs.length)
+return;
 
-const t=document.createElement("div");
-t.className="group-title";
-t.textContent=cat;
+
+const t=
+document.createElement(
+"div"
+);
+
+t.className=
+"group-title";
+
+t.textContent=
+cat;
 
 c.appendChild(t);
 
-punti.forEach(punto=>{
 
-const jobs=catJobs.filter(x=>x.punto===punto);
+punti.forEach(
+punto=>{
 
-if(!jobs.length)return;
+const jobs=
+catJobs.filter(
+x=>x.punto===punto
+);
 
-const g=document.createElement("div");
-g.className="todo-store-group";
+if(!jobs.length)
+return;
 
-const h=document.createElement("div");
-h.className="todo-store-header";
 
-const n=document.createElement("div");
-n.className="todo-store-name";
-n.textContent=punto;
+const g=
+document.createElement(
+"div"
+);
 
-const num=document.createElement("div");
-num.className="todo-store-count";
-num.textContent=jobs.length;
+g.className=
+"todo-store-group";
 
-h.append(n,num);
+
+const h=
+document.createElement(
+"div"
+);
+
+h.className=
+"todo-store-header";
+
+
+const n=
+document.createElement(
+"div"
+);
+
+n.className=
+"todo-store-name";
+
+n.textContent=
+punto;
+
+
+const num=
+document.createElement(
+"div"
+);
+
+num.className=
+"todo-store-count";
+
+num.textContent=
+jobs.length;
+
+
+h.append(
+n,
+num
+);
+
 g.appendChild(h);
 
-jobs.forEach(job=>{
-g.appendChild(creaTodoJobRow(job));
+
+jobs.forEach(
+job=>{
+
+g.appendChild(
+creaTodoJobRow(
+job
+)
+);
+
 });
+
 
 c.appendChild(g);
 
@@ -2068,97 +2786,246 @@ c.appendChild(g);
 
 function creaTodoJobRow(lavoro){
 
-const r=document.createElement("div");
-r.className="todo-job-row";
+const r=
+document.createElement(
+"div"
+);
 
-const main=document.createElement("div");
-main.className="todo-job-main job-clickable";
+r.className=
+"todo-job-row";
 
-const dot=document.createElement("div");
-dot.className="todo-job-dot";
 
-const content=document.createElement("div");
-content.className="todo-job-content";
+const main=
+document.createElement(
+"div"
+);
 
-const text=document.createElement("div");
-text.className="todo-job-text";
-text.textContent=lavoro.testo||"";
+main.className=
+"todo-job-main job-clickable";
 
-content.appendChild(text);
+
+const dot=
+document.createElement(
+"div"
+);
+
+dot.className=
+"todo-job-dot";
+
+
+const content=
+document.createElement(
+"div"
+);
+
+content.className=
+"todo-job-content";
+
+
+const text=
+document.createElement(
+"div"
+);
+
+text.className=
+"todo-job-text";
+
+text.textContent=
+lavoro.testo||"";
+
+content.appendChild(
+text
+);
+
 
 if(lavoro.note){
 
-const note=document.createElement("div");
-note.className="todo-job-note";
-note.textContent="Note: "+lavoro.note;
+const note=
+document.createElement(
+"div"
+);
 
-content.appendChild(note);
+note.className=
+"todo-job-note";
+
+note.textContent=
+"Note: "+
+lavoro.note;
+
+content.appendChild(
+note
+);
 
 }
+
 
 if(lavoro.urgente===true){
 
-const badge=document.createElement("div");
-badge.className="todo-job-urgent";
-badge.textContent="URGENTE";
+const badge=
+document.createElement(
+"div"
+);
 
-content.appendChild(badge);
+badge.className=
+"todo-job-urgent";
+
+badge.textContent=
+"URGENTE";
+
+content.appendChild(
+badge
+);
 
 }
 
-main.append(dot,content);
+
+main.append(
+dot,
+content
+);
+
 
 main.onclick=()=>{
-apriSchedaLavoro(lavoro.id,"todoPage");
+
+apriSchedaLavoro(
+lavoro.id,
+"todoPage"
+);
+
 };
 
-r.appendChild(main);
 
-const actions=document.createElement("div");
-actions.className="symbol-actions";
+r.appendChild(
+main
+);
 
-const complete=document.createElement("button");
-complete.className="symbol-btn symbol-complete";
-complete.title="Completato";
-complete.textContent="✓";
+
+const actions=
+document.createElement(
+"div"
+);
+
+actions.className=
+"symbol-actions";
+
+
+const complete=
+document.createElement(
+"button"
+);
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.title=
+"Completato";
+
+complete.textContent=
+"✓";
+
 
 complete.onclick=e=>{
+
 e.stopPropagation();
-completaLavoro(lavoro.id);
+
+completaLavoro(
+lavoro.id
+);
+
 };
 
-const urgent=document.createElement("button");
-urgent.className="symbol-btn symbol-urgent";
-urgent.title=lavoro.urgente?"Togli urgente":"Segna urgente";
-urgent.textContent="!";
+
+const urgent=
+document.createElement(
+"button"
+);
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.title=
+lavoro.urgente
+?"Togli urgente"
+:"Segna urgente";
+
+urgent.textContent=
+"!";
+
 
 urgent.onclick=e=>{
+
 e.stopPropagation();
-cambiaUrgente(lavoro.id,lavoro.urgente===true);
+
+cambiaUrgente(
+lavoro.id,
+lavoro.urgente===true
+);
+
 };
 
-const del=document.createElement("button");
-del.className="symbol-btn symbol-delete";
-del.title="Elimina";
-del.textContent="×";
+
+const del=
+document.createElement(
+"button"
+);
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.title=
+"Elimina";
+
+del.textContent=
+"×";
+
 
 del.onclick=e=>{
+
 e.stopPropagation();
-eliminaLavoro(lavoro.id);
+
+eliminaLavoro(
+lavoro.id
+);
+
 };
 
-const share=document.createElement("button");
-share.className="symbol-btn symbol-share";
-share.title="Invia";
-share.textContent="↗";
+
+const share=
+document.createElement(
+"button"
+);
+
+share.className=
+"symbol-btn symbol-share";
+
+share.title=
+"Invia";
+
+share.textContent=
+"↗";
+
 
 share.onclick=e=>{
+
 e.stopPropagation();
-inviaLavoro(lavoro);
+
+inviaLavoro(
+lavoro
+);
+
 };
 
-actions.append(complete,urgent,del,share);
-r.appendChild(actions);
+
+actions.append(
+complete,
+urgent,
+del,
+share
+);
+
+r.appendChild(
+actions
+);
 
 return r;
 
@@ -2169,31 +3036,71 @@ return r;
    PUNTO VENDITA
 ================================================== */
 
-function apriPuntoVendita(punto,categoria){
+function apriPuntoVendita(
+punto,
+categoria
+){
 
-puntoSelezionato=punto;
-categoriaSelezionata=categoria;
+puntoSelezionato=
+punto;
+
+categoriaSelezionata=
+categoria;
 
 addFormAperto=false;
 
-document.getElementById("storePageName").textContent=punto;
-document.getElementById("storePageCategory").textContent=categoria;
 
-document.getElementById("lavoroInput").value="";
-document.getElementById("noteInput").value="";
-document.getElementById("urgenteInput").checked=false;
+document.getElementById(
+"storePageName"
+).textContent=
+punto;
+
+
+document.getElementById(
+"storePageCategory"
+).textContent=
+categoria;
+
+
+document.getElementById(
+"lavoroInput"
+).value="";
+
+
+document.getElementById(
+"noteInput"
+).value="";
+
+
+document.getElementById(
+"urgenteInput"
+).checked=false;
+
 
 fotoNuovoLavoro=[];
+
 renderAnteprimeNuovoLavoro();
 
-document.getElementById("addWorkForm")
-.classList.remove("active");
 
-document.getElementById("addWorkToggle").textContent="+";
+document.getElementById(
+"addWorkForm"
+).classList.remove(
+"active"
+);
 
-renderStoreJobs(punto);
 
-mostraPagina("storePage");
+document.getElementById(
+"addWorkToggle"
+).textContent="+";
+
+
+renderStoreJobs(
+punto
+);
+
+mostraPagina(
+"storePage"
+);
 
 }
 
@@ -2204,27 +3111,42 @@ mostraPagina("storePage");
 
 function renderStoreJobs(punto){
 
-const c=document.getElementById("storeJobs");
+const c=
+document.getElementById(
+"storeJobs"
+);
 
 c.innerHTML="";
 
-const lista=lavori.filter(
+
+const lista=
+lavori.filter(
 x=>
-x.attivo===true&&
-x.punto===punto&&
+x.attivo===true &&
+x.punto===punto &&
 x.completato!==true
 );
 
+
 if(!lista.length){
 
-c.innerHTML='<div class="empty">Nessun lavoro</div>';
+c.innerHTML=
+'<div class="empty">Nessun lavoro</div>';
 
 return;
 
 }
 
-lista.forEach(job=>{
-c.appendChild(creaStoreJobCard(job));
+
+lista.forEach(
+job=>{
+
+c.appendChild(
+creaStoreJobCard(
+job
+)
+);
+
 });
 
 }
@@ -2232,65 +3154,164 @@ c.appendChild(creaStoreJobCard(job));
 
 function creaStoreJobCard(lavoro){
 
-const card=document.createElement("div");
-card.className="job-card job-clickable";
+const card=
+document.createElement(
+"div"
+);
+
+card.className=
+"job-card job-clickable";
+
 
 card.onclick=()=>{
-apriSchedaLavoro(lavoro.id,"storePage");
+
+apriSchedaLavoro(
+lavoro.id,
+"storePage"
+);
+
 };
 
-const text=document.createElement("div");
-text.className="job-text";
-text.textContent=lavoro.testo||"";
 
-card.appendChild(text);
+const text=
+document.createElement(
+"div"
+);
+
+text.className=
+"job-text";
+
+text.textContent=
+lavoro.testo||"";
+
+card.appendChild(
+text
+);
+
 
 if(lavoro.note){
 
-const note=document.createElement("div");
-note.className="job-note";
-note.textContent="Note: "+lavoro.note;
+const note=
+document.createElement(
+"div"
+);
 
-card.appendChild(note);
+note.className=
+"job-note";
+
+note.textContent=
+"Note: "+
+lavoro.note;
+
+card.appendChild(
+note
+);
 
 }
 
-const actions=document.createElement("div");
-actions.className="symbol-actions";
-actions.style.marginTop="12px";
 
-const complete=document.createElement("button");
-complete.className="symbol-btn symbol-complete";
-complete.title="Completato";
-complete.textContent="✓";
+const actions=
+document.createElement(
+"div"
+);
+
+actions.className=
+"symbol-actions";
+
+actions.style.marginTop=
+"12px";
+
+
+const complete=
+document.createElement(
+"button"
+);
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.title=
+"Completato";
+
+complete.textContent=
+"✓";
+
 
 complete.onclick=e=>{
+
 e.stopPropagation();
-completaLavoro(lavoro.id);
+
+completaLavoro(
+lavoro.id
+);
+
 };
 
-const urgent=document.createElement("button");
-urgent.className="symbol-btn symbol-urgent";
-urgent.title=lavoro.urgente?"Togli urgente":"Segna urgente";
-urgent.textContent="!";
+
+const urgent=
+document.createElement(
+"button"
+);
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.title=
+lavoro.urgente
+?"Togli urgente"
+:"Segna urgente";
+
+urgent.textContent=
+"!";
+
 
 urgent.onclick=e=>{
+
 e.stopPropagation();
-cambiaUrgente(lavoro.id,lavoro.urgente===true);
+
+cambiaUrgente(
+lavoro.id,
+lavoro.urgente===true
+);
+
 };
 
-const del=document.createElement("button");
-del.className="symbol-btn symbol-delete";
-del.title="Elimina";
-del.textContent="×";
+
+const del=
+document.createElement(
+"button"
+);
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.title=
+"Elimina";
+
+del.textContent=
+"×";
+
 
 del.onclick=e=>{
+
 e.stopPropagation();
-eliminaLavoro(lavoro.id);
+
+eliminaLavoro(
+lavoro.id
+);
+
 };
 
-actions.append(complete,urgent,del);
-card.appendChild(actions);
+
+actions.append(
+complete,
+urgent,
+del
+);
+
+card.appendChild(
+actions
+);
 
 return card;
 
@@ -2303,11 +3324,15 @@ return card;
 
 function selezionaFotoNuovoLavoro(){
 
-const input=document.getElementById("newPhotoInput");
+const input=
+document.getElementById(
+"newPhotoInput"
+);
 
 input.value="";
 
-input.onchange=eventoFotoNuovoLavoro;
+input.onchange=
+eventoFotoNuovoLavoro;
 
 input.click();
 
@@ -2316,18 +3341,32 @@ input.click();
 
 function eventoFotoNuovoLavoro(e){
 
-const files=[...(e.target.files||[])];
+const files=
+[
+...(e.target.files||[])
+];
 
-if(!files.length)return;
 
-files.forEach(file=>{
-
-if(!file.type.startsWith("image/"))
+if(!files.length)
 return;
 
-fotoNuovoLavoro.push(file);
+
+files.forEach(
+file=>{
+
+if(
+!file.type.startsWith(
+"image/"
+)
+)
+return;
+
+fotoNuovoLavoro.push(
+file
+);
 
 });
+
 
 renderAnteprimeNuovoLavoro();
 
@@ -2336,41 +3375,85 @@ renderAnteprimeNuovoLavoro();
 
 function renderAnteprimeNuovoLavoro(){
 
-const container=document.getElementById("addPhotoPreview");
+const container=
+document.getElementById(
+"addPhotoPreview"
+);
 
-if(!container)return;
+if(!container)
+return;
 
 container.innerHTML="";
 
-fotoNuovoLavoro.forEach((file,index)=>{
 
-const item=document.createElement("div");
-item.className="add-photo-item";
+fotoNuovoLavoro.forEach(
+(file,index)=>{
 
-const img=document.createElement("img");
+const item=
+document.createElement(
+"div"
+);
 
-const url=URL.createObjectURL(file);
+item.className=
+"add-photo-item";
+
+
+const img=
+document.createElement(
+"img"
+);
+
+const url=
+URL.createObjectURL(
+file
+);
 
 img.src=url;
 
 img.onload=()=>{
-URL.revokeObjectURL(url);
+
+URL.revokeObjectURL(
+url
+);
+
 };
 
-const remove=document.createElement("button");
 
-remove.className="add-photo-remove";
-remove.textContent="×";
-remove.title="Rimuovi foto";
+const remove=
+document.createElement(
+"button"
+);
+
+remove.className=
+"add-photo-remove";
+
+remove.textContent=
+"×";
+
+remove.title=
+"Rimuovi foto";
+
 
 remove.onclick=()=>{
-fotoNuovoLavoro.splice(index,1);
+
+fotoNuovoLavoro.splice(
+index,
+1
+);
+
 renderAnteprimeNuovoLavoro();
+
 };
 
-item.append(img,remove);
 
-container.appendChild(item);
+item.append(
+img,
+remove
+);
+
+container.appendChild(
+item
+);
 
 });
 
@@ -2383,35 +3466,73 @@ container.appendChild(item);
 
 async function aggiungiLavoro(){
 
-if(!puntoSelezionato)return;
+if(!puntoSelezionato)
+return;
 
-const lavoroInput=document.getElementById("lavoroInput");
-const noteInput=document.getElementById("noteInput");
-const urgentInput=document.getElementById("urgenteInput");
-const button=document.getElementById("addWorkButton");
 
-const testo=lavoroInput.value.trim();
-const note=noteInput.value.trim();
-const urgente=urgentInput.checked;
+const lavoroInput=
+document.getElementById(
+"lavoroInput"
+);
+
+const noteInput=
+document.getElementById(
+"noteInput"
+);
+
+const urgentInput=
+document.getElementById(
+"urgenteInput"
+);
+
+const button=
+document.getElementById(
+"addWorkButton"
+);
+
+
+const testo=
+lavoroInput.value.trim();
+
+const note=
+noteInput.value.trim();
+
+const urgente=
+urgentInput.checked;
+
 
 if(!testo){
 
-alert("Inserisci il lavoro da fare.");
+alert(
+"Inserisci il lavoro da fare."
+);
+
 lavoroInput.focus();
+
 return;
 
 }
 
+
 button.disabled=true;
-button.textContent="Salvataggio...";
+
+button.textContent=
+"Salvataggio...";
+
 
 try{
 
 if(!auth.currentUser){
+
 await auth.signInAnonymously();
+
 }
 
-const riferimento=await db.collection("lavori").add({
+
+const riferimento=
+await db.collection(
+"lavori"
+).add({
 
 punto:puntoSelezionato,
 testo,
@@ -2419,22 +3540,36 @@ note,
 completato:false,
 attivo:true,
 urgente,
-creatoDa:auth.currentUser?
-auth.currentUser.uid:"",
+
+creatoDa:
+auth.currentUser
+?auth.currentUser.uid
+:"",
+
 creatoIl:
 firebase.firestore.FieldValue.serverTimestamp(),
+
 completatoIl:null,
+
 foto:[]
 
 });
 
+
 const fotoCaricate=[];
 
-for(const file of fotoNuovoLavoro){
+
+for(
+const file of fotoNuovoLavoro
+){
 
 try{
 
-const blob=await comprimiFoto(file);
+const blob=
+await comprimiFoto(
+file
+);
+
 
 const path=
 "lavori/"+
@@ -2447,24 +3582,34 @@ Math.random()
 .slice(2,10)+
 ".jpg";
 
+
 const up=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
+.from(
+SUPABASE_BUCKET
+)
 .upload(
 path,
 blob,
 {
-contentType:"image/jpeg",
-cacheControl:"3600",
+contentType:
+"image/jpeg",
+cacheControl:
+"3600",
 upsert:false
 }
 );
 
+
 if(up.error)
 throw up.error;
 
-fotoCaricate.push(path);
+
+fotoCaricate.push(
+path
+);
+
 
 }catch(photoError){
 
@@ -2477,33 +3622,54 @@ photoError
 
 }
 
+
 if(fotoCaricate.length){
 
-await db.collection("lavori")
-.doc(riferimento.id)
+await db.collection(
+"lavori"
+)
+.doc(
+riferimento.id
+)
 .update({
-foto:fotoCaricate
+
+foto:
+fotoCaricate
+
 });
 
 }
+
 
 lavoroInput.value="";
 noteInput.value="";
 urgentInput.checked=false;
 
 fotoNuovoLavoro=[];
+
 renderAnteprimeNuovoLavoro();
 
 addFormAperto=false;
 
-document.getElementById("addWorkForm")
-.classList.remove("active");
 
-document.getElementById("addWorkToggle")
-.textContent="+";
+document.getElementById(
+"addWorkForm"
+)
+.classList.remove(
+"active"
+);
+
+
+document.getElementById(
+"addWorkToggle"
+).textContent="+";
+
 
 button.disabled=false;
-button.textContent="+ Aggiungi lavoro";
+
+button.textContent=
+"+ Aggiungi lavoro";
+
 
 }catch(error){
 
@@ -2514,7 +3680,9 @@ alert(
 );
 
 button.disabled=false;
-button.textContent="+ Aggiungi lavoro";
+
+button.textContent=
+"+ Aggiungi lavoro";
 
 }
 
@@ -2527,7 +3695,9 @@ button.textContent="+ Aggiungi lavoro";
 
 function completaLavoro(id){
 
-db.collection("lavori")
+db.collection(
+"lavori"
+)
 .doc(id)
 .update({
 
@@ -2538,7 +3708,11 @@ firebase.firestore.FieldValue.serverTimestamp()
 
 })
 .catch(()=>{
-alert("Errore nel completare il lavoro.");
+
+alert(
+"Errore nel completare il lavoro."
+);
+
 });
 
 }
@@ -2546,7 +3720,9 @@ alert("Errore nel completare il lavoro.");
 
 function daRifare(id){
 
-db.collection("lavori")
+db.collection(
+"lavori"
+)
 .doc(id)
 .update({
 
@@ -2555,21 +3731,37 @@ completatoIl:null
 
 })
 .catch(()=>{
-alert("Errore nel modificare il lavoro.");
+
+alert(
+"Errore nel modificare il lavoro."
+);
+
 });
 
 }
 
 
-function cambiaUrgente(id,giaUrgente){
+function cambiaUrgente(
+id,
+giaUrgente
+){
 
-db.collection("lavori")
+db.collection(
+"lavori"
+)
 .doc(id)
 .update({
-urgente:!giaUrgente
+
+urgente:
+!giaUrgente
+
 })
 .catch(()=>{
-alert("Errore nella modifica dell'urgenza.");
+
+alert(
+"Errore nella modifica dell'urgenza."
+);
+
 });
 
 }
@@ -2577,16 +3769,29 @@ alert("Errore nella modifica dell'urgenza.");
 
 function eliminaLavoro(id){
 
-if(!confirm("Vuoi eliminare questo lavoro?"))
+if(
+!confirm(
+"Vuoi eliminare questo lavoro?"
+)
+)
 return;
 
-db.collection("lavori")
+
+db.collection(
+"lavori"
+)
 .doc(id)
 .update({
+
 attivo:false
+
 })
 .catch(()=>{
-alert("Errore nell'eliminazione.");
+
+alert(
+"Errore nell'eliminazione."
+);
+
 });
 
 }
@@ -2598,139 +3803,337 @@ alert("Errore nell'eliminazione.");
 
 function renderUrgentJobs(lista){
 
-const c=document.getElementById("urgentJobs");
+const c=
+document.getElementById(
+"urgentJobs"
+);
 
 c.innerHTML="";
 
+
 if(!lista.length){
 
-c.innerHTML='<div class="empty">Nessun lavoro urgente.</div>';
+c.innerHTML=
+'<div class="empty">Nessun lavoro urgente.</div>';
+
 return;
 
 }
 
-Object.keys(puntiVendita).forEach(cat=>{
 
-const punti=puntiVendita[cat];
+Object.keys(
+puntiVendita
+).forEach(
+cat=>{
 
-const catJobs=lista.filter(
-x=>punti.includes(x.punto)
+const punti=
+puntiVendita[
+cat
+];
+
+const catJobs=
+lista.filter(
+x=>
+punti.includes(
+x.punto
+)
 );
 
-if(!catJobs.length)return;
+if(!catJobs.length)
+return;
 
-const t=document.createElement("div");
-t.className="group-title";
-t.textContent=cat;
+
+const t=
+document.createElement(
+"div"
+);
+
+t.className=
+"group-title";
+
+t.textContent=
+cat;
 
 c.appendChild(t);
 
-punti.forEach(punto=>{
 
-const jobs=catJobs.filter(x=>x.punto===punto);
+punti.forEach(
+punto=>{
 
-if(!jobs.length)return;
+const jobs=
+catJobs.filter(
+x=>x.punto===punto
+);
 
-const g=document.createElement("div");
-g.className="todo-store-group";
+if(!jobs.length)
+return;
 
-const h=document.createElement("div");
-h.className="urgent-store-header";
 
-const n=document.createElement("div");
-n.className="urgent-store-name";
-n.textContent=punto;
+const g=
+document.createElement(
+"div"
+);
 
-const num=document.createElement("div");
-num.className="urgent-store-count";
-num.textContent=jobs.length;
+g.className=
+"todo-store-group";
 
-h.append(n,num);
+
+const h=
+document.createElement(
+"div"
+);
+
+h.className=
+"urgent-store-header";
+
+
+const n=
+document.createElement(
+"div"
+);
+
+n.className=
+"urgent-store-name";
+
+n.textContent=
+punto;
+
+
+const num=
+document.createElement(
+"div"
+);
+
+num.className=
+"urgent-store-count";
+
+num.textContent=
+jobs.length;
+
+
+h.append(
+n,
+num
+);
+
 g.appendChild(h);
 
-jobs.forEach(job=>{
 
-const r=document.createElement("div");
-r.className="urgent-job-row job-clickable";
+jobs.forEach(
+job=>{
+
+const r=
+document.createElement(
+"div"
+);
+
+r.className=
+"urgent-job-row job-clickable";
+
 
 r.onclick=()=>{
-apriSchedaLavoro(job.id,"urgentPage");
+
+apriSchedaLavoro(
+job.id,
+"urgentPage"
+);
+
 };
 
-const dot=document.createElement("div");
-dot.className="urgent-job-dot";
 
-const content=document.createElement("div");
-content.className="urgent-job-content";
+const dot=
+document.createElement(
+"div"
+);
 
-const text=document.createElement("div");
-text.className="urgent-job-text";
-text.textContent=job.testo||"";
+dot.className=
+"urgent-job-dot";
 
-content.appendChild(text);
+
+const content=
+document.createElement(
+"div"
+);
+
+content.className=
+"urgent-job-content";
+
+
+const text=
+document.createElement(
+"div"
+);
+
+text.className=
+"urgent-job-text";
+
+text.textContent=
+job.testo||"";
+
+content.appendChild(
+text
+);
+
 
 if(job.note){
 
-const note=document.createElement("div");
-note.className="urgent-job-note";
-note.textContent="Note: "+job.note;
+const note=
+document.createElement(
+"div"
+);
 
-content.appendChild(note);
+note.className=
+"urgent-job-note";
+
+note.textContent=
+"Note: "+
+job.note;
+
+content.appendChild(
+note
+);
 
 }
 
-const actions=document.createElement("div");
-actions.className="symbol-actions";
 
-const complete=document.createElement("button");
-complete.className="symbol-btn symbol-complete";
-complete.textContent="✓";
-complete.title="Completato";
+const actions=
+document.createElement(
+"div"
+);
+
+actions.className=
+"symbol-actions";
+
+
+const complete=
+document.createElement(
+"button"
+);
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.textContent=
+"✓";
+
+complete.title=
+"Completato";
+
 
 complete.onclick=e=>{
+
 e.stopPropagation();
-completaLavoro(job.id);
+
+completaLavoro(
+job.id
+);
+
 };
 
-const urgent=document.createElement("button");
-urgent.className="symbol-btn symbol-urgent";
-urgent.textContent="!";
-urgent.title="Togli urgente";
+
+const urgent=
+document.createElement(
+"button"
+);
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.textContent=
+"!";
+
+urgent.title=
+"Togli urgente";
+
 
 urgent.onclick=e=>{
+
 e.stopPropagation();
-cambiaUrgente(job.id,true);
+
+cambiaUrgente(
+job.id,
+true
+);
+
 };
 
-const del=document.createElement("button");
-del.className="symbol-btn symbol-delete";
-del.textContent="×";
-del.title="Elimina";
+
+const del=
+document.createElement(
+"button"
+);
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.textContent=
+"×";
+
+del.title=
+"Elimina";
+
 
 del.onclick=e=>{
+
 e.stopPropagation();
-eliminaLavoro(job.id);
+
+eliminaLavoro(
+job.id
+);
+
 };
 
-const share=document.createElement("button");
-share.className="symbol-btn symbol-share";
-share.textContent="↗";
-share.title="Invia";
+
+const share=
+document.createElement(
+"button"
+);
+
+share.className=
+"symbol-btn symbol-share";
+
+share.textContent=
+"↗";
+
+share.title=
+"Invia";
+
 
 share.onclick=e=>{
+
 e.stopPropagation();
-inviaLavoro(job);
+
+inviaLavoro(
+job
+);
+
 };
 
-actions.append(complete,urgent,del,share);
 
-r.append(dot,content,actions);
+actions.append(
+complete,
+urgent,
+del,
+share
+);
 
-g.appendChild(r);
+
+r.append(
+dot,
+content,
+actions
+);
+
+g.appendChild(
+r
+);
 
 });
 
-c.appendChild(g);
+
+c.appendChild(
+g
+);
 
 });
 
@@ -2743,483 +4146,442 @@ c.appendChild(g);
    COMPLETATI
 ================================================== */
 
-function listaCompletatiPerPunto(){
+function renderCompletedJobs(lista){
 
-const completati=lavori.filter(
-x=>x.attivo===true&&x.completato===true
+const c=
+document.getElementById(
+"completedJobs"
 );
 
-const gruppi=new Map();
+c.innerHTML="";
 
-Object.keys(puntiVendita).forEach(cat=>{
+aggiornaTitoloMeseCompletati();
 
-puntiVendita[cat].forEach(punto=>{
 
-const jobs=completati.filter(
+if(!lista.length){
+
+c.innerHTML=
+'<div class="empty">Nessun lavoro completato in questo mese.</div>';
+
+return;
+
+}
+
+
+Object.keys(
+puntiVendita
+).forEach(
+cat=>{
+
+const punti=
+puntiVendita[
+cat
+];
+
+const catJobs=
+lista.filter(
+x=>
+punti.includes(
+x.punto
+)
+);
+
+if(!catJobs.length)
+return;
+
+
+const t=
+document.createElement(
+"div"
+);
+
+t.className=
+"group-title";
+
+t.textContent=
+cat;
+
+c.appendChild(t);
+
+
+punti.forEach(
+punto=>{
+
+const jobs=
+catJobs.filter(
 x=>x.punto===punto
 );
 
-if(jobs.length)
-gruppi.set(punto,jobs);
+if(!jobs.length)
+return;
+
+
+const g=
+document.createElement(
+"div"
+);
+
+g.className=
+"completed-job";
+
+
+const h=
+document.createElement(
+"div"
+);
+
+h.className=
+"completed-store-header";
+
+
+const n=
+document.createElement(
+"div"
+);
+
+n.className=
+"completed-store-name";
+
+n.textContent=
+punto;
+
+
+const num=
+document.createElement(
+"div"
+);
+
+num.className=
+"completed-store-count";
+
+num.textContent=
+jobs.length;
+
+
+h.append(
+n,
+num
+);
+
+g.appendChild(
+h
+);
+
+
+jobs.forEach(
+job=>{
+
+const r=
+document.createElement(
+"div"
+);
+
+r.className=
+"completed-job-row job-clickable";
+
+
+r.onclick=()=>{
+
+apriSchedaLavoro(
+job.id,
+"completedPage"
+);
+
+};
+
+
+const check=
+document.createElement(
+"div"
+);
+
+check.className=
+"completed-check";
+
+check.textContent=
+"✓";
+
+
+const content=
+document.createElement(
+"div"
+);
+
+content.className=
+"completed-job-content";
+
+
+const text=
+document.createElement(
+"div"
+);
+
+text.className=
+"completed-job-text";
+
+text.textContent=
+job.testo||"";
+
+content.appendChild(
+text
+);
+
+
+if(job.note){
+
+const note=
+document.createElement(
+"div"
+);
+
+note.className=
+"completed-job-note";
+
+note.textContent=
+"Note: "+
+job.note;
+
+content.appendChild(
+note
+);
+
+}
+
+
+const actions=
+document.createElement(
+"div"
+);
+
+actions.className=
+"symbol-actions";
+
+
+const redo=
+document.createElement(
+"button"
+);
+
+redo.className=
+"symbol-btn symbol-redo";
+
+redo.title=
+"Da rifare";
+
+redo.textContent=
+"↻";
+
+
+redo.onclick=e=>{
+
+e.stopPropagation();
+
+daRifare(
+job.id
+);
+
+};
+
+
+const del=
+document.createElement(
+"button"
+);
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.title=
+"Elimina";
+
+del.textContent=
+"×";
+
+
+del.onclick=e=>{
+
+e.stopPropagation();
+
+eliminaLavoro(
+job.id
+);
+
+};
+
+
+actions.append(
+redo,
+del
+);
+
+
+r.append(
+check,
+content,
+actions
+);
+
+g.appendChild(
+r
+);
+
+});
+
+
+c.appendChild(
+g
+);
 
 });
 
 });
-
-return gruppi;
 
 }
 
 
 /* ==================================================
-   CREA PDF LAVORI COMPLETATI
-================================================== */
-
-async function creaPDFCompletati(){
-
-if(!window.jspdf){
-
-alert("Sistema PDF non disponibile. Ricarica la pagina.");
-
-return null;
-
-}
-
-const {jsPDF}=window.jspdf;
-
-const pdf=new jsPDF({
-orientation:"portrait",
-unit:"mm",
-format:"a4"
-});
-
-const gruppi=listaCompletatiPerPunto();
-
-const margine=15;
-const larghezzaPagina=210;
-const larghezza=180;
-
-let y=20;
-let pagina=1;
-
-function footer(){
-
-pdf.setFont("helvetica","normal");
-pdf.setFontSize(8);
-pdf.setTextColor(130,130,130);
-
-pdf.text(
-"EDISERVICE - Lavori completati",
-margine,
-288
-);
-
-pdf.text(
-"Pagina "+pagina,
-195,
-288,
-{align:"right"}
-);
-
-}
-
-function controllaSpazio(altezza){
-
-if(y+altezza>275){
-
-footer();
-
-pdf.addPage();
-
-pagina++;
-
-y=20;
-
-}
-
-}
-
-
-/* INTESTAZIONE */
-
-pdf.setFont("helvetica","bold");
-pdf.setFontSize(24);
-pdf.setTextColor(46,125,50);
-
-pdf.text(
-"EDISERVICE",
-margine,
-y
-);
-
-y+=9;
-
-pdf.setFontSize(16);
-pdf.setTextColor(35,35,35);
-
-pdf.text(
-"LAVORI COMPLETATI",
-margine,
-y
-);
-
-y+=7;
-
-const oggi=new Date();
-
-const data=
-String(oggi.getDate()).padStart(2,"0")+
-"/"+
-String(oggi.getMonth()+1).padStart(2,"0")+
-"/"+
-oggi.getFullYear()+
-" alle "+
-String(oggi.getHours()).padStart(2,"0")+
-":"+
-String(oggi.getMinutes()).padStart(2,"0");
-
-pdf.setFont("helvetica","normal");
-pdf.setFontSize(9);
-pdf.setTextColor(110,110,110);
-
-pdf.text(
-"Elenco generato il "+data,
-margine,
-y
-);
-
-y+=8;
-
-pdf.setDrawColor(210,210,210);
-
-pdf.line(
-margine,
-y,
-larghezzaPagina-margine,
-y
-);
-
-y+=10;
-
-
-/* NESSUN LAVORO */
-
-if(!gruppi.size){
-
-pdf.setFont("helvetica","normal");
-pdf.setFontSize(12);
-pdf.setTextColor(100,100,100);
-
-pdf.text(
-"Nessun lavoro completato.",
-margine,
-y
-);
-
-footer();
-
-return pdf;
-
-}
-
-
-/* PUNTI VENDITA */
-
-for(const [punto,jobs] of gruppi){
-
-controllaSpazio(20);
-
-pdf.setFillColor(232,245,233);
-
-pdf.roundedRect(
-margine,
-y-6,
-larghezza,
-11,
-3,
-3,
-"F"
-);
-
-pdf.setFont("helvetica","bold");
-pdf.setFontSize(14);
-pdf.setTextColor(46,125,50);
-
-pdf.text(
-punto,
-margine+5,
-y+1
-);
-
-pdf.setFont("helvetica","normal");
-pdf.setFontSize(9);
-pdf.setTextColor(80,80,80);
-
-pdf.text(
-jobs.length+
-(jobs.length===1?" lavoro":" lavori"),
-195,
-y+1,
-{align:"right"}
-);
-
-y+=13;
-
-
-/* LAVORI */
-
-jobs.forEach((job,index)=>{
-
-const testo=
-(job.testo||"").trim()||
-"Lavoro senza descrizione";
-
-const testoRighe=
-pdf.splitTextToSize(
-testo,
-larghezza-20
-);
-
-let altezza=
-10+
-testoRighe.length*5;
-
-let noteRighe=[];
-
-if((job.note||"").trim()){
-
-noteRighe=
-pdf.splitTextToSize(
-"Note: "+job.note.trim(),
-larghezza-20
-);
-
-altezza+=
-5+
-noteRighe.length*4;
-
-}
-
-if(job.creatoIl)
-altezza+=5;
-
-if(job.completatoIl)
-altezza+=5;
-
-altezza+=7;
-
-controllaSpazio(altezza);
-
-
-/* BOX */
-
-pdf.setDrawColor(225,225,225);
-
-pdf.roundedRect(
-margine,
-y-4,
-larghezza,
-altezza,
-3,
-3,
-"S"
-);
-
-
-/* NUMERO */
-
-pdf.setFillColor(46,125,50);
-
-pdf.circle(
-margine+7,
-y+3,
-3.2,
-"F"
-);
-
-pdf.setFont("helvetica","bold");
-pdf.setFontSize(8);
-pdf.setTextColor(255,255,255);
-
-pdf.text(
-String(index+1),
-margine+7,
-y+5.5,
-{align:"center"}
-);
-
-
-/* TESTO */
-
-let testoY=y+2;
-
-pdf.setFont("helvetica","bold");
-pdf.setFontSize(11);
-pdf.setTextColor(35,35,35);
-
-pdf.text(
-testoRighe,
-margine+13,
-testoY
-);
-
-testoY+=
-testoRighe.length*5+
-3;
-
-
-/* NOTE */
-
-if(noteRighe.length){
-
-pdf.setFont("helvetica","normal");
-pdf.setFontSize(9);
-pdf.setTextColor(100,100,100);
-
-pdf.text(
-noteRighe,
-margine+13,
-testoY
-);
-
-testoY+=
-noteRighe.length*4+
-3;
-
-}
-
-
-/* DATE */
-
-pdf.setFont("helvetica","normal");
-pdf.setFontSize(8);
-pdf.setTextColor(120,120,120);
-
-if(job.creatoIl){
-
-pdf.text(
-"Inserito: "+
-formatDataOra(job.creatoIl),
-margine+13,
-testoY
-);
-
-testoY+=5;
-
-}
-
-if(job.completatoIl){
-
-pdf.text(
-"Completato: "+
-formatDataOra(job.completatoIl),
-margine+13,
-testoY
-);
-
-testoY+=5;
-
-}
-
-y+=altezza+6;
-
-});
-
-y+=4;
-
-}
-
-footer();
-
-return pdf;
-
-}
-
-
-/* ==================================================
-   SALVA ELENCO PDF
-================================================== */
-
-async function salvaElencoCompletati(){
-
-try{
-
-const pdf=await creaPDFCompletati();
-
-if(!pdf)return;
-
-const oggi=new Date();
-
-const data=
-String(oggi.getDate()).padStart(2,"0")+
-"-"+
-String(oggi.getMonth()+1).padStart(2,"0")+
-"-"+
-oggi.getFullYear();
-
-pdf.save(
-"EDISERVICE-Lavori-completati-"+data+".pdf"
-);
-
-}catch(error){
-
-console.error(
-"Errore PDF:",
-error
-);
-
-alert(
-"Errore nella creazione del PDF."
-);
-
-}
-
-}
-
-
-/* ==================================================
-   CONDIVIDI ELENCO PDF
+   CONDIVIDI ELENCO DEL MESE - SOLO TESTO
 ================================================== */
 
 async function condividiElencoCompletati(){
 
-try{
+const lista=
+listaCompletatiDelMese();
 
-const pdf=await creaPDFCompletati();
-
-if(!pdf)return;
-
-const oggi=new Date();
-
-const data=
-String(oggi.getDate()).padStart(2,"0")+
-"-"+
-String(oggi.getMonth()+1).padStart(2,"0")+
-"-"+
-oggi.getFullYear();
-
-const nomeFile=
-"EDISERVICE-Lavori-completati-"+data+".pdf";
-
-const blob=pdf.output("blob");
-
-const file=new File(
-[blob],
-nomeFile,
-{
-type:"application/pdf"
-}
+const mese=
+nomeMeseCompletati(
+meseCompletatiVisualizzato
 );
 
 
-/* IPHONE / SAFARI */
+let testo=
+"EDISERVICE\n"+
+"LAVORI COMPLETATI\n\n"+
+mese+
+" "+
+annoCompletatiVisualizzato+
+"\n\n";
+
+
+if(!lista.length){
+
+testo+=
+"Nessun lavoro completato in questo mese.\n\n"+
+"Totale: 0 lavori completati";
+
+}else{
+
+
+Object.keys(
+puntiVendita
+).forEach(
+cat=>{
+
+const punti=
+puntiVendita[
+cat
+];
+
+const catJobs=
+lista.filter(
+x=>
+punti.includes(
+x.punto
+)
+);
+
+if(!catJobs.length)
+return;
+
+
+testo+=
+cat+
+"\n\n";
+
+
+punti.forEach(
+punto=>{
+
+const jobs=
+catJobs.filter(
+x=>x.punto===punto
+);
+
+if(!jobs.length)
+return;
+
+
+testo+=
+punto+
+" ("+
+jobs.length+
+")\n";
+
+
+jobs.forEach(
+job=>{
+
+testo+=
+"✓ "+
+(
+job.testo||
+"Lavoro senza descrizione"
+);
+
 
 if(
-navigator.share &&
-navigator.canShare &&
-navigator.canShare({
-files:[file]
-})
+(job.note||"").trim()
+){
+
+testo+=
+"\n  Note: "+
+job.note.trim();
+
+}
+
+
+if(job.completatoIl){
+
+testo+=
+"\n  Completato il: "+
+formatDataOra(
+job.completatoIl
+);
+
+}
+
+
+testo+=
+"\n";
+
+});
+
+
+testo+=
+"\n";
+
+});
+
+});
+
+
+testo+=
+"Totale: "+
+lista.length+
+(
+lista.length===1
+?" lavoro completato"
+:" lavori completati"
+);
+
+}
+
+
+try{
+
+
+if(
+navigator.share
 ){
 
 await navigator.share({
@@ -3228,9 +4590,7 @@ title:
 "EDISERVICE - Lavori completati",
 
 text:
-"Elenco lavori completati EDISERVICE",
-
-files:[file]
+testo
 
 });
 
@@ -3239,31 +4599,31 @@ return;
 }
 
 
-/* FALLBACK */
+if(
+navigator.clipboard
+){
 
-const url=
-URL.createObjectURL(blob);
+await navigator.clipboard.writeText(
+testo
+);
 
-const link=
-document.createElement("a");
+alert(
+"Elenco copiato negli appunti."
+);
 
-link.href=url;
+return;
 
-link.download=nomeFile;
+}
 
-document.body.appendChild(link);
 
-link.click();
+prompt(
+"Copia questo elenco:",
+testo
+);
 
-link.remove();
-
-setTimeout(()=>{
-
-URL.revokeObjectURL(url);
-
-},1000);
 
 }catch(error){
+
 
 if(
 error &&
@@ -3274,146 +4634,44 @@ return;
 
 }
 
+
 console.error(
-"Errore condivisione PDF:",
+"Errore condivisione:",
 error
 );
 
-alert(
-"Errore nella creazione del PDF."
+
+try{
+
+if(
+navigator.clipboard
+){
+
+await navigator.clipboard.writeText(
+testo
 );
 
-}
-
-}
-
-
-/* ==================================================
-   RENDER COMPLETATI
-================================================== */
-
-function renderCompletedJobs(lista){
-
-const c=document.getElementById("completedJobs");
-
-c.innerHTML="";
-
-if(!lista.length){
-
-c.innerHTML=
-'<div class="empty">Nessun lavoro completato.</div>';
+alert(
+"Elenco copiato negli appunti."
+);
 
 return;
 
 }
 
-Object.keys(puntiVendita).forEach(cat=>{
+}catch(e){
 
-const punti=puntiVendita[cat];
-
-const catJobs=lista.filter(
-x=>punti.includes(x.punto)
-);
-
-if(!catJobs.length)return;
-
-const t=document.createElement("div");
-t.className="group-title";
-t.textContent=cat;
-
-c.appendChild(t);
-
-punti.forEach(punto=>{
-
-const jobs=catJobs.filter(x=>x.punto===punto);
-
-if(!jobs.length)return;
-
-const g=document.createElement("div");
-g.className="completed-job";
-
-const h=document.createElement("div");
-h.className="completed-store-header";
-
-const n=document.createElement("div");
-n.className="completed-store-name";
-n.textContent=punto;
-
-const num=document.createElement("div");
-num.className="completed-store-count";
-num.textContent=jobs.length;
-
-h.append(n,num);
-g.appendChild(h);
-
-jobs.forEach(job=>{
-
-const r=document.createElement("div");
-r.className="completed-job-row job-clickable";
-
-r.onclick=()=>{
-apriSchedaLavoro(job.id,"completedPage");
-};
-
-const check=document.createElement("div");
-check.className="completed-check";
-check.textContent="✓";
-
-const content=document.createElement("div");
-content.className="completed-job-content";
-
-const text=document.createElement("div");
-text.className="completed-job-text";
-text.textContent=job.testo||"";
-
-content.appendChild(text);
-
-if(job.note){
-
-const note=document.createElement("div");
-note.className="completed-job-note";
-note.textContent="Note: "+job.note;
-
-content.appendChild(note);
+console.error(e);
 
 }
 
-const actions=document.createElement("div");
-actions.className="symbol-actions";
 
-const redo=document.createElement("button");
-redo.className="symbol-btn symbol-redo";
-redo.title="Da rifare";
-redo.textContent="↻";
+prompt(
+"Copia questo elenco:",
+testo
+);
 
-redo.onclick=e=>{
-e.stopPropagation();
-daRifare(job.id);
-};
-
-const del=document.createElement("button");
-del.className="symbol-btn symbol-delete";
-del.title="Elimina";
-del.textContent="×";
-
-del.onclick=e=>{
-e.stopPropagation();
-eliminaLavoro(job.id);
-};
-
-actions.append(redo,del);
-
-r.append(check,content,actions);
-
-g.appendChild(r);
-
-});
-
-c.appendChild(g);
-
-});
-
-});
+}
 
 }
 
@@ -3422,47 +4680,97 @@ c.appendChild(g);
    SCHEDA LAVORO
 ================================================== */
 
-function apriSchedaLavoro(id,origine){
+function apriSchedaLavoro(
+id,
+origine
+){
 
-const lavoro=lavori.find(x=>x.id===id);
+const lavoro=
+lavori.find(
+x=>x.id===id
+);
 
-if(!lavoro)return;
+if(!lavoro)
+return;
 
-lavoroFotoAperto=lavoro;
 
-paginaPrecedenteScheda=origine||"todoPage";
+lavoroFotoAperto=
+lavoro;
 
-modificaSchedaAttiva=false;
+paginaPrecedenteScheda=
+origine||
+"todoPage";
 
-document.getElementById("photoDetailStore")
-.textContent=lavoro.punto||"";
+modificaSchedaAttiva=
+false;
 
-document.getElementById("photoDetailTitle")
-.textContent=lavoro.testo||"";
 
-document.getElementById("photoDetailCreated")
-.textContent=lavoro.creatoIl
-?"Inserito il "+formatDataOra(lavoro.creatoIl)
-:"Inserito il: data non ancora disponibile";
-
-document.getElementById("photoDetailCompleted")
+document.getElementById(
+"photoDetailStore"
+)
 .textContent=
-lavoro.completato===true&&lavoro.completatoIl
-?"Completato il "+formatDataOra(lavoro.completatoIl)
+lavoro.punto||"";
+
+
+document.getElementById(
+"photoDetailTitle"
+)
+.textContent=
+lavoro.testo||"";
+
+
+document.getElementById(
+"photoDetailCreated"
+)
+.textContent=
+lavoro.creatoIl
+?
+"Inserito il "+
+formatDataOra(
+lavoro.creatoIl
+)
+:
+"Inserito il: data non ancora disponibile";
+
+
+document.getElementById(
+"photoDetailCompleted"
+)
+.textContent=
+lavoro.completato===true &&
+lavoro.completatoIl
+?
+"Completato il "+
+formatDataOra(
+lavoro.completatoIl
+)
 :"";
 
-document.getElementById("photoDetailNoteRead")
-.textContent=
-lavoro.note&&lavoro.note.trim()
-?lavoro.note
-:"Nessuna nota.";
 
-document.getElementById("photoDetailNoteInput")
-.value=lavoro.note||"";
+document.getElementById(
+"photoDetailNoteRead"
+)
+.textContent=
+lavoro.note &&
+lavoro.note.trim()
+?
+lavoro.note
+:
+"Nessuna nota.";
+
+
+document.getElementById(
+"photoDetailNoteInput"
+)
+.value=
+lavoro.note||"";
+
 
 impostaVisualizzazioneScheda();
 
-mostraPagina("photoDetailPage");
+mostraPagina(
+"photoDetailPage"
+);
 
 renderFotoLavoro();
 
@@ -3475,39 +4783,78 @@ renderFotoLavoro();
 
 function aggiornaSchedaAperta(){
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
 
-const lavoro=lavoroFotoAperto;
 
-document.getElementById("photoDetailStore")
-.textContent=lavoro.punto||"";
+const lavoro=
+lavoroFotoAperto;
 
-document.getElementById("photoDetailTitle")
-.textContent=lavoro.testo||"";
 
-document.getElementById("photoDetailCreated")
-.textContent=lavoro.creatoIl
-?"Inserito il "+formatDataOra(lavoro.creatoIl)
-:"Inserito il: data non ancora disponibile";
-
-document.getElementById("photoDetailCompleted")
+document.getElementById(
+"photoDetailStore"
+)
 .textContent=
-lavoro.completato===true&&lavoro.completatoIl
-?"Completato il "+formatDataOra(lavoro.completatoIl)
+lavoro.punto||"";
+
+
+document.getElementById(
+"photoDetailTitle"
+)
+.textContent=
+lavoro.testo||"";
+
+
+document.getElementById(
+"photoDetailCreated"
+)
+.textContent=
+lavoro.creatoIl
+?
+"Inserito il "+
+formatDataOra(
+lavoro.creatoIl
+)
+:
+"Inserito il: data non ancora disponibile";
+
+
+document.getElementById(
+"photoDetailCompleted"
+)
+.textContent=
+lavoro.completato===true &&
+lavoro.completatoIl
+?
+"Completato il "+
+formatDataOra(
+lavoro.completatoIl
+)
 :"";
+
 
 if(!modificaSchedaAttiva){
 
-document.getElementById("photoDetailNoteRead")
+document.getElementById(
+"photoDetailNoteRead"
+)
 .textContent=
-lavoro.note&&lavoro.note.trim()
-?lavoro.note
-:"Nessuna nota.";
+lavoro.note &&
+lavoro.note.trim()
+?
+lavoro.note
+:
+"Nessuna nota.";
 
-document.getElementById("photoDetailNoteInput")
-.value=lavoro.note||"";
+
+document.getElementById(
+"photoDetailNoteInput"
+)
+.value=
+lavoro.note||"";
 
 }
+
 
 renderFotoLavoro();
 
@@ -3520,24 +4867,52 @@ renderFotoLavoro();
 
 function attivaModificaScheda(){
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
 
-modificaSchedaAttiva=true;
 
-document.getElementById("photoDetailNoteInput")
-.classList.add("editing");
+modificaSchedaAttiva=
+true;
 
-document.getElementById("photoToolbar")
-.classList.add("editing");
 
-document.getElementById("photoEditActions")
-.classList.add("active");
+document.getElementById(
+"photoDetailNoteInput"
+)
+.classList.add(
+"editing"
+);
 
-document.getElementById("photoEditButton")
-.style.display="none";
 
-document.getElementById("photoModalActions")
-.classList.add("editing");
+document.getElementById(
+"photoToolbar"
+)
+.classList.add(
+"editing"
+);
+
+
+document.getElementById(
+"photoEditActions"
+)
+.classList.add(
+"active"
+);
+
+
+document.getElementById(
+"photoEditButton"
+)
+.style.display=
+"none";
+
+
+document.getElementById(
+"photoModalActions"
+)
+.classList.add(
+"editing"
+);
+
 
 renderFotoLavoro();
 
@@ -3546,22 +4921,48 @@ renderFotoLavoro();
 
 function impostaVisualizzazioneScheda(){
 
-modificaSchedaAttiva=false;
+modificaSchedaAttiva=
+false;
 
-document.getElementById("photoDetailNoteInput")
-.classList.remove("editing");
 
-document.getElementById("photoToolbar")
-.classList.remove("editing");
+document.getElementById(
+"photoDetailNoteInput"
+)
+.classList.remove(
+"editing"
+);
 
-document.getElementById("photoEditActions")
-.classList.remove("active");
 
-document.getElementById("photoEditButton")
-.style.display="block";
+document.getElementById(
+"photoToolbar"
+)
+.classList.remove(
+"editing"
+);
 
-document.getElementById("photoModalActions")
-.classList.remove("editing");
+
+document.getElementById(
+"photoEditActions"
+)
+.classList.remove(
+"active"
+);
+
+
+document.getElementById(
+"photoEditButton"
+)
+.style.display=
+"block";
+
+
+document.getElementById(
+"photoModalActions"
+)
+.classList.remove(
+"editing"
+);
+
 
 renderFotoLavoro();
 
@@ -3570,10 +4971,16 @@ renderFotoLavoro();
 
 function annullaModificaScheda(){
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
 
-document.getElementById("photoDetailNoteInput")
-.value=lavoroFotoAperto.note||"";
+
+document.getElementById(
+"photoDetailNoteInput"
+)
+.value=
+lavoroFotoAperto.note||"";
+
 
 impostaVisualizzazioneScheda();
 
@@ -3582,28 +4989,52 @@ impostaVisualizzazioneScheda();
 
 async function salvaModificheScheda(){
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
 
-const input=document.getElementById("photoDetailNoteInput");
 
-const note=input.value.trim();
+const input=
+document.getElementById(
+"photoDetailNoteInput"
+);
+
+const note=
+input.value.trim();
+
 
 try{
 
-await db.collection("lavori")
-.doc(lavoroFotoAperto.id)
+await db.collection(
+"lavori"
+)
+.doc(
+lavoroFotoAperto.id
+)
 .update({
+
 note:note
+
 });
 
-lavoroFotoAperto.note=note;
 
-document.getElementById("photoDetailNoteRead")
-.textContent=note||"Nessuna nota.";
+lavoroFotoAperto.note=
+note;
+
+
+document.getElementById(
+"photoDetailNoteRead"
+)
+.textContent=
+note||
+"Nessuna nota.";
+
 
 impostaVisualizzazioneScheda();
 
-alert("Modifiche salvate.");
+alert(
+"Modifiche salvate."
+);
+
 
 }catch(error){
 
@@ -3624,26 +5055,48 @@ alert(
 
 function chiudiSchedaLavoro(){
 
-const pagina=paginaPrecedenteScheda||"todoPage";
+const pagina=
+paginaPrecedenteScheda||
+"todoPage";
 
-lavoroFotoAperto=null;
-fotoCorrente=null;
-modificaSchedaAttiva=false;
+
+lavoroFotoAperto=
+null;
+
+fotoCorrente=
+null;
+
+modificaSchedaAttiva=
+false;
+
 
 chiudiFotoGrande();
 
-if(pagina==="storePage"){
 
-if(puntoSelezionato)
-renderStoreJobs(puntoSelezionato);
+if(
+pagina==="storePage"
+){
 
-mostraPagina("storePage");
+if(puntoSelezionato){
+
+renderStoreJobs(
+puntoSelezionato
+);
+
+}
+
+mostraPagina(
+"storePage"
+);
 
 return;
 
 }
 
-mostraPagina(pagina);
+
+mostraPagina(
+pagina
+);
 
 }
 
@@ -3654,22 +5107,36 @@ mostraPagina(pagina);
 
 function fotoPaths(lavoro){
 
-return Array.isArray(lavoro.foto)
-?lavoro.foto
-:[];
+return Array.isArray(
+lavoro.foto
+)
+?
+lavoro.foto
+:
+[];
 
 }
 
 
 function renderFotoLavoro(){
 
-const grid=document.getElementById("photoGrid");
+const grid=
+document.getElementById(
+"photoGrid"
+);
 
 grid.innerHTML="";
 
-if(!lavoroFotoAperto)return;
 
-const paths=fotoPaths(lavoroFotoAperto);
+if(!lavoroFotoAperto)
+return;
+
+
+const paths=
+fotoPaths(
+lavoroFotoAperto
+);
+
 
 if(!paths.length){
 
@@ -3680,48 +5147,100 @@ return;
 
 }
 
-paths.forEach((path,index)=>{
 
-const box=document.createElement("div");
-box.className="photo-thumb";
+paths.forEach(
+(path,index)=>{
 
-const img=document.createElement("img");
-img.alt="Foto "+(index+1);
+const box=
+document.createElement(
+"div"
+);
 
-box.appendChild(img);
+box.className=
+"photo-thumb";
 
-const del=document.createElement("button");
+
+const img=
+document.createElement(
+"img"
+);
+
+img.alt=
+"Foto "+
+(index+1);
+
+
+box.appendChild(
+img
+);
+
+
+const del=
+document.createElement(
+"button"
+);
 
 del.className=
 "photo-thumb-delete"+
-(modificaSchedaAttiva?" editing":"");
+(
+modificaSchedaAttiva
+?
+" editing"
+:
+""
+);
 
-del.textContent="×";
-del.title="Elimina foto";
+del.textContent=
+"×";
+
+del.title=
+"Elimina foto";
+
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-if(!modificaSchedaAttiva)return;
+if(!modificaSchedaAttiva)
+return;
 
-eliminaFoto(path);
+eliminaFoto(
+path
+);
 
 };
 
-box.appendChild(del);
+
+box.appendChild(
+del
+);
+
 
 box.onclick=()=>{
-apriFotoGrande(path);
+
+apriFotoGrande(
+path
+);
+
 };
 
-grid.appendChild(box);
 
-getSignedUrl(path).then(url=>{
+grid.appendChild(
+box
+);
 
-if(url)img.src=url;
 
-});
+getSignedUrl(
+path
+)
+.then(
+url=>{
+
+if(url)
+img.src=url;
+
+}
+);
 
 });
 
@@ -3734,33 +5253,60 @@ if(url)img.src=url;
 
 async function getSignedUrl(path){
 
-if(!path)return null;
+if(!path)
+return null;
 
-const cached=signedUrlCache.get(path);
 
-if(cached&&cached.expires>Date.now())
+const cached=
+signedUrlCache.get(
+path
+);
+
+
+if(
+cached &&
+cached.expires>Date.now()
+)
 return cached.url;
 
-const {data,error}=
+
+const {
+data,
+error
+}=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
-.createSignedUrl(path,3600);
+.from(
+SUPABASE_BUCKET
+)
+.createSignedUrl(
+path,
+3600
+);
+
 
 if(error){
 
-console.error("Signed URL:",error);
+console.error(
+"Signed URL:",
+error
+);
+
 return null;
 
 }
+
 
 signedUrlCache.set(
 path,
 {
 url:data.signedUrl,
-expires:Date.now()+3500*1000
+expires:
+Date.now()+
+3500*1000
 }
 );
+
 
 return data.signedUrl;
 
@@ -3773,13 +5319,23 @@ return data.signedUrl;
 
 function selezionaFoto(){
 
-if(!lavoroFotoAperto||!modificaSchedaAttiva)
+if(
+!lavoroFotoAperto ||
+!modificaSchedaAttiva
+)
 return;
 
-const input=document.getElementById("photoInput");
+
+const input=
+document.getElementById(
+"photoInput"
+);
 
 input.value="";
-input.onchange=caricaFoto;
+
+input.onchange=
+caricaFoto;
+
 input.click();
 
 }
@@ -3787,23 +5343,41 @@ input.click();
 
 async function caricaFoto(e){
 
-const files=[...(e.target.files||[])];
+const files=
+[
+...(e.target.files||[])
+];
 
-if(!files.length||!lavoroFotoAperto)
+
+if(
+!files.length ||
+!lavoroFotoAperto
+)
 return;
+
 
 if(!modificaSchedaAttiva)
 return;
 
-const lavoro=lavoroFotoAperto;
+
+const lavoro=
+lavoroFotoAperto;
+
 
 try{
 
 let aggiunte=0;
 
-for(const file of files){
 
-const blob=await comprimiFoto(file);
+for(
+const file of files
+){
+
+const blob=
+await comprimiFoto(
+file
+);
+
 
 const path=
 "lavori/"+
@@ -3816,48 +5390,76 @@ Math.random()
 .slice(2,10)+
 ".jpg";
 
-const {error}=
+
+const {
+error
+}=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
+.from(
+SUPABASE_BUCKET
+)
 .upload(
 path,
 blob,
 {
-contentType:"image/jpeg",
-cacheControl:"3600",
+contentType:
+"image/jpeg",
+cacheControl:
+"3600",
 upsert:false
 }
 );
 
-if(error)throw error;
 
-await db.collection("lavori")
-.doc(lavoro.id)
+if(error)
+throw error;
+
+
+await db.collection(
+"lavori"
+)
+.doc(
+lavoro.id
+)
 .update({
 
 foto:
-firebase.firestore.FieldValue.arrayUnion(path)
+firebase.firestore.FieldValue
+.arrayUnion(
+path
+)
 
 });
+
 
 aggiunte++;
 
 }
 
+
 alert(
 aggiunte===1
-?"Foto aggiunta."
-:aggiunte+" foto aggiunte."
+?
+"Foto aggiunta."
+:
+aggiunte+
+" foto aggiunte."
 );
+
 
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
 alert(
 "Errore nel caricamento: "+
-(error.message||error)
+(
+error.message||
+error
+)
 );
 
 }
@@ -3871,54 +5473,97 @@ alert(
 
 async function comprimiFoto(file){
 
-if(!file.type.startsWith("image/"))
-throw new Error("Seleziona un'immagine.");
+if(
+!file.type.startsWith(
+"image/"
+)
+)
+throw new Error(
+"Seleziona un'immagine."
+);
 
-const url=URL.createObjectURL(file);
 
-const img=new Image();
+const url=
+URL.createObjectURL(
+file
+);
+
+const img=
+new Image();
+
 
 try{
 
-await new Promise((res,rej)=>{
+await new Promise(
+(res,rej)=>{
 
 img.onload=res;
 img.onerror=rej;
 img.src=url;
 
-});
+}
+);
 
-let w=img.naturalWidth;
-let h=img.naturalHeight;
+
+let w=
+img.naturalWidth;
+
+let h=
+img.naturalHeight;
 
 const max=1600;
 
-if(w>max||h>max){
+
+if(
+w>max ||
+h>max
+){
 
 if(w>=h){
 
-h=Math.round(h*max/w);
+h=
+Math.round(
+h*max/w
+);
+
 w=max;
 
 }else{
 
-w=Math.round(w*max/h);
+w=
+Math.round(
+w*max/h
+);
+
 h=max;
 
 }
 
 }
 
-const canvas=document.createElement("canvas");
+
+const canvas=
+document.createElement(
+"canvas"
+);
 
 canvas.width=w;
 canvas.height=h;
 
+
 canvas
 .getContext("2d")
-.drawImage(img,0,0,w,h);
+.drawImage(
+img,
+0,
+0,
+w,
+h
+);
 
-return await new Promise(resolve=>
+
+return await new Promise(
+resolve=>
 canvas.toBlob(
 resolve,
 "image/jpeg",
@@ -3926,9 +5571,12 @@ resolve,
 )
 );
 
+
 }finally{
 
-URL.revokeObjectURL(url);
+URL.revokeObjectURL(
+url
+);
 
 }
 
@@ -3941,23 +5589,42 @@ URL.revokeObjectURL(url);
 
 async function apriFotoGrande(path){
 
-fotoCorrente=path;
+fotoCorrente=
+path;
 
-const url=await getSignedUrl(path);
 
-if(!url)return;
+const url=
+await getSignedUrl(
+path
+);
 
-document.getElementById("photoModalImage")
-.src=url;
 
-document.getElementById("photoModalActions")
+if(!url)
+return;
+
+
+document.getElementById(
+"photoModalImage"
+)
+.src=
+url;
+
+
+document.getElementById(
+"photoModalActions"
+)
 .classList.toggle(
 "editing",
 modificaSchedaAttiva
 );
 
-document.getElementById("photoModal")
-.classList.add("active");
+
+document.getElementById(
+"photoModal"
+)
+.classList.add(
+"active"
+);
 
 }
 
@@ -3965,18 +5632,28 @@ document.getElementById("photoModal")
 function chiudiFotoGrande(event){
 
 if(
-event&&
+event &&
 event.target!==event.currentTarget
 )
 return;
 
-document.getElementById("photoModal")
-.classList.remove("active");
 
-document.getElementById("photoModalImage")
+document.getElementById(
+"photoModal"
+)
+.classList.remove(
+"active"
+);
+
+
+document.getElementById(
+"photoModalImage"
+)
 .src="";
 
-fotoCorrente=null;
+
+fotoCorrente=
+null;
 
 }
 
@@ -3988,18 +5665,23 @@ fotoCorrente=null;
 function sostituisciFotoCorrente(){
 
 if(
-!fotoCorrente||
-!lavoroFotoAperto||
+!fotoCorrente ||
+!lavoroFotoAperto ||
 !modificaSchedaAttiva
 )
 return;
 
-const input=document.getElementById(
+
+const input=
+document.getElementById(
 "replacePhotoInput"
 );
 
 input.value="";
-input.onchange=eseguiSostituzioneFoto;
+
+input.onchange=
+eseguiSostituzioneFoto;
+
 input.click();
 
 }
@@ -4007,22 +5689,33 @@ input.click();
 
 async function eseguiSostituzioneFoto(e){
 
-const file=e.target.files?.[0];
+const file=
+e.target.files?.[0];
+
 
 if(
-!file||
-!fotoCorrente||
-!lavoroFotoAperto||
+!file ||
+!fotoCorrente ||
+!lavoroFotoAperto ||
 !modificaSchedaAttiva
 )
 return;
 
-const oldPath=fotoCorrente;
-const lavoro=lavoroFotoAperto;
+
+const oldPath=
+fotoCorrente;
+
+const lavoro=
+lavoroFotoAperto;
+
 
 try{
 
-const blob=await comprimiFoto(file);
+const blob=
+await comprimiFoto(
+file
+);
+
 
 const newPath=
 "lavori/"+
@@ -4035,66 +5728,113 @@ Math.random()
 .slice(2,10)+
 ".jpg";
 
+
 const up=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
+.from(
+SUPABASE_BUCKET
+)
 .upload(
 newPath,
 blob,
 {
-contentType:"image/jpeg",
-cacheControl:"3600",
+contentType:
+"image/jpeg",
+cacheControl:
+"3600",
 upsert:false
 }
 );
 
+
 if(up.error)
 throw up.error;
 
-await db.collection("lavori")
-.doc(lavoro.id)
+
+await db.collection(
+"lavori"
+)
+.doc(
+lavoro.id
+)
 .update({
 
 foto:
-firebase.firestore.FieldValue.arrayUnion(newPath)
+firebase.firestore.FieldValue
+.arrayUnion(
+newPath
+)
 
 });
 
-await db.collection("lavori")
-.doc(lavoro.id)
+
+await db.collection(
+"lavori"
+)
+.doc(
+lavoro.id
+)
 .update({
 
 foto:
-firebase.firestore.FieldValue.arrayRemove(oldPath)
+firebase.firestore.FieldValue
+.arrayRemove(
+oldPath
+)
 
 });
+
 
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
-.remove([oldPath]);
+.from(
+SUPABASE_BUCKET
+)
+.remove(
+[oldPath]
+);
 
-signedUrlCache.delete(oldPath);
+
+signedUrlCache.delete(
+oldPath
+);
+
 
 lavoro.foto=
-fotoPaths(lavoro)
-.filter(x=>x!==oldPath)
-.concat(newPath);
+fotoPaths(
+lavoro
+)
+.filter(
+x=>x!==oldPath
+)
+.concat(
+newPath
+);
+
 
 chiudiFotoGrande();
 
 renderFotoLavoro();
 
-alert("Foto sostituita.");
+
+alert(
+"Foto sostituita."
+);
+
 
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
 alert(
 "Errore nella sostituzione: "+
-(error.message||error)
+(
+error.message||
+error
+)
 );
 
 }
@@ -4109,52 +5849,90 @@ alert(
 async function eliminaFoto(path){
 
 if(
-!lavoroFotoAperto||
-!modificaSchedaAttiva||
-!confirm("Vuoi eliminare questa foto?")
+!lavoroFotoAperto ||
+!modificaSchedaAttiva ||
+!confirm(
+"Vuoi eliminare questa foto?"
+)
 )
 return;
 
-const lavoro=lavoroFotoAperto;
+
+const lavoro=
+lavoroFotoAperto;
+
 
 try{
 
-const {error}=
+const {
+error
+}=
 await supabaseClient
 .storage
-.from(SUPABASE_BUCKET)
-.remove([path]);
+.from(
+SUPABASE_BUCKET
+)
+.remove(
+[path]
+);
+
 
 if(error)
 throw error;
 
-await db.collection("lavori")
-.doc(lavoro.id)
+
+await db.collection(
+"lavori"
+)
+.doc(
+lavoro.id
+)
 .update({
 
 foto:
-firebase.firestore.FieldValue.arrayRemove(path)
+firebase.firestore.FieldValue
+.arrayRemove(
+path
+)
 
 });
 
-signedUrlCache.delete(path);
+
+signedUrlCache.delete(
+path
+);
+
 
 lavoro.foto=
-fotoPaths(lavoro)
-.filter(x=>x!==path);
+fotoPaths(
+lavoro
+)
+.filter(
+x=>x!==path
+);
 
-if(fotoCorrente===path)
+
+if(
+fotoCorrente===path
+)
 chiudiFotoGrande();
+
 
 renderFotoLavoro();
 
+
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
 alert(
 "Errore nell'eliminazione della foto: "+
-(error.message||error)
+(
+error.message||
+error
+)
 );
 
 }
@@ -4167,8 +5945,11 @@ async function eliminaFotoCorrente(){
 if(!modificaSchedaAttiva)
 return;
 
+
 if(fotoCorrente)
-await eliminaFoto(fotoCorrente);
+await eliminaFoto(
+fotoCorrente
+);
 
 }
 
@@ -4179,79 +5960,148 @@ await eliminaFoto(fotoCorrente);
 
 async function inviaLavoro(lavoro){
 
-if(!lavoro)return;
+if(!lavoro)
+return;
+
 
 const stato=
 lavoro.urgente===true
-?"URGENTE"
-:lavoro.completato===true
-?"COMPLETATO"
-:"DA FARE";
+?
+"URGENTE"
+:
+lavoro.completato===true
+?
+"COMPLETATO"
+:
+"DA FARE";
 
-let testo="EDISERVICE\n\n";
 
-testo+="PUNTO VENDITA: "+
-(lavoro.punto||"Non specificato")+
+let testo=
+"EDISERVICE\n\n";
+
+
+testo+=
+"PUNTO VENDITA: "+
+(
+lavoro.punto||
+"Non specificato"
+)+
 "\n\n";
 
-testo+="LAVORO:\n"+
-(lavoro.testo||"");
 
-if((lavoro.note||"").trim()){
+testo+=
+"LAVORO:\n"+
+(
+lavoro.testo||
+""
+);
 
-testo+="\n\nNOTE:\n"+
+
+if(
+(lavoro.note||"").trim()
+){
+
+testo+=
+"\n\nNOTE:\n"+
 lavoro.note.trim();
 
 }
 
-testo+="\n\nSTATO: "+stato;
+
+testo+=
+"\n\nSTATO: "+
+stato;
+
 
 if(lavoro.creatoIl){
 
-testo+="\n\nINSERITO IL: "+
-formatDataOra(lavoro.creatoIl);
+testo+=
+"\n\nINSERITO IL: "+
+formatDataOra(
+lavoro.creatoIl
+);
 
 }
+
 
 if(lavoro.completatoIl){
 
-testo+="\nCOMPLETATO IL: "+
-formatDataOra(lavoro.completatoIl);
+testo+=
+"\nCOMPLETATO IL: "+
+formatDataOra(
+lavoro.completatoIl
+);
 
 }
 
+
 try{
+
 
 if(navigator.share){
 
 const files=[];
-const paths=Array.isArray(lavoro.foto)
-?lavoro.foto
-:[];
 
-for(let i=0;i<paths.length;i++){
+const paths=
+Array.isArray(
+lavoro.foto
+)
+?
+lavoro.foto
+:
+[];
+
+
+for(
+let i=0;
+i<paths.length;
+i++
+){
 
 try{
 
-const url=await getSignedUrl(paths[i]);
+const url=
+await getSignedUrl(
+paths[i]
+);
 
-if(!url)continue;
 
-const response=await fetch(url);
+if(!url)
+continue;
 
-if(!response.ok)continue;
 
-const blob=await response.blob();
+const response=
+await fetch(
+url
+);
 
-const file=new File(
+
+if(!response.ok)
+continue;
+
+
+const blob=
+await response.blob();
+
+
+const file=
+new File(
 [blob],
-"EDISERVICE_foto_"+(i+1)+".jpg",
+"EDISERVICE_foto_"+
+(i+1)+
+".jpg",
 {
-type:blob.type||"image/jpeg"
+type:
+blob.type||
+"image/jpeg"
 }
 );
 
-files.push(file);
+
+files.push(
+file
+);
+
 
 }catch(photoError){
 
@@ -4264,53 +6114,89 @@ photoError
 
 }
 
+
 if(
-files.length&&
-navigator.canShare&&
-navigator.canShare({files})
+files.length &&
+navigator.canShare &&
+navigator.canShare({
+files
+})
 ){
 
 await navigator.share({
-text:testo,
-files:files
+
+text:
+testo,
+
+files:
+files
+
 });
 
 }else{
 
 await navigator.share({
-text:testo
+
+text:
+testo
+
 });
 
 }
 
-}else if(navigator.clipboard){
+}else if(
+navigator.clipboard
+){
 
-await navigator.clipboard.writeText(testo);
+await navigator.clipboard.writeText(
+testo
+);
 
-alert("Lavoro copiato negli appunti.");
+alert(
+"Lavoro copiato negli appunti."
+);
 
 }else{
 
-prompt("Copia questo lavoro:",testo);
+prompt(
+"Copia questo lavoro:",
+testo
+);
 
 }
 
+
 }catch(error){
 
-if(error&&error.name==="AbortError")
+if(
+error &&
+error.name==="AbortError"
+)
 return;
 
-console.error(error);
+
+console.error(
+error
+);
+
 
 try{
 
-await navigator.clipboard.writeText(testo);
+await navigator.clipboard.writeText(
+testo
+);
 
-alert("Lavoro copiato negli appunti.");
+alert(
+"Lavoro copiato negli appunti."
+);
+
 
 }catch(e){
 
-prompt("Copia questo lavoro:",testo);
+prompt(
+"Copia questo lavoro:",
+testo
+);
 
 }
 
@@ -4323,23 +6209,62 @@ prompt("Copia questo lavoro:",testo);
    NAVIGAZIONE
 ================================================== */
 
-document.getElementById("btnLavoriDaFare")
-.addEventListener("click",()=>{
-mostraPagina("todoPage");
-});
+document.getElementById(
+"btnLavoriDaFare"
+)
+.addEventListener(
+"click",
+()=>{
 
-document.getElementById("btnUrgenti")
-.addEventListener("click",()=>{
-mostraPagina("urgentPage");
-});
+mostraPagina(
+"todoPage"
+);
 
-document.getElementById("btnCompletati")
-.addEventListener("click",()=>{
-mostraPagina("completedPage");
-});
+}
+);
 
-document.getElementById("clearSearch")
-.onclick=cancellaRicerca;
+
+document.getElementById(
+"btnUrgenti"
+)
+.addEventListener(
+"click",
+()=>{
+
+mostraPagina(
+"urgentPage"
+);
+
+}
+);
+
+
+document.getElementById(
+"btnCompletati"
+)
+.addEventListener(
+"click",
+()=>{
+
+aggiornaTitoloMeseCompletati();
+
+renderCompletedJobs(
+listaCompletatiDelMese()
+);
+
+mostraPagina(
+"completedPage"
+);
+
+}
+);
+
+
+document.getElementById(
+"clearSearch"
+)
+.onclick=
+cancellaRicerca;
 
 
 /* ==================================================
@@ -4347,6 +6272,8 @@ document.getElementById("clearSearch")
 ================================================== */
 
 creaPuntiVendita();
+
+aggiornaTitoloMeseCompletati();
 
 </script>
 
