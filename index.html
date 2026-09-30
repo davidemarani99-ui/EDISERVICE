@@ -714,16 +714,27 @@ text-align:center;
 font-size:13px;
 font-weight:700;
 color:#777;
-margin:0 0 8px
+margin:0 0 18px
 }
 
-/* MENU 3 PUNTINI */
+/* TITOLO + MENU COMPLETATI */
+
+.completed-title-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+margin-bottom:20px
+}
+
+.completed-title-row .page-title{
+flex:1;
+min-width:0
+}
 
 .completed-menu-wrap{
 position:relative;
-display:flex;
-justify-content:flex-end;
-margin:0 0 18px
+flex-shrink:0
 }
 
 .completed-menu-button{
@@ -733,7 +744,7 @@ border:0;
 border-radius:15px;
 background:#f1f1f1;
 color:#222;
-font-size:29px;
+font-size:30px;
 font-weight:900;
 line-height:1;
 display:flex;
@@ -750,14 +761,14 @@ transform:scale(.92)
 .completed-menu{
 position:absolute;
 right:0;
-top:56px;
+top:55px;
 width:190px;
 background:#fff;
 border-radius:16px;
 box-shadow:0 5px 20px rgba(0,0,0,.18);
 overflow:hidden;
 display:none;
-z-index:50
+z-index:100
 }
 
 .completed-menu.active{
@@ -773,20 +784,12 @@ text-align:left;
 font-size:16px;
 font-weight:750;
 color:#222;
-display:flex;
-align-items:center;
-gap:12px;
+display:block;
 cursor:pointer
 }
 
 .completed-menu-item:active{
 background:#f2f2f2
-}
-
-.completed-menu-icon{
-width:24px;
-text-align:center;
-font-size:19px
 }
 
 .completed-store-name{
@@ -1223,6 +1226,16 @@ height:42px;
 min-width:42px
 }
 
+.completed-title-row{
+margin-bottom:18px
+}
+
+.completed-menu-button{
+width:45px;
+height:45px;
+font-size:28px
+}
+
 }
 
 @media(max-width:380px){
@@ -1253,6 +1266,12 @@ font-size:16px
 width:40px;
 height:40px;
 min-width:40px
+}
+
+.completed-menu-button{
+width:43px;
+height:43px;
+font-size:27px
 }
 
 }
@@ -1529,7 +1548,9 @@ Lavori urgenti
 
 <div id="completedPage" class="page">
 
-<div class="topbar">
+<div class="completed-title-row">
+
+<div class="store-topbar-left">
 
 <button class="back-button" onclick="showHome()">
 ← Indietro
@@ -1540,6 +1561,49 @@ Lavori completati
 </h2>
 
 </div>
+
+<div class="completed-menu-wrap">
+
+<button
+class="completed-menu-button"
+onclick="toggleMenuCompletati(event)"
+aria-label="Menu"
+>
+⋮
+</button>
+
+<div
+id="completedMenu"
+class="completed-menu"
+>
+
+<button
+class="completed-menu-item"
+onclick="inoltraElencoCompletati()"
+>
+Inoltra
+</button>
+
+<button
+class="completed-menu-item"
+onclick="salvaElencoCompletati()"
+>
+Salva
+</button>
+
+<button
+class="completed-menu-item"
+onclick="scaricaElencoCompletati()"
+>
+Scarica
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="completed-month-bar">
 
@@ -1570,53 +1634,6 @@ class="completed-month-count"
 >
 0 lavori completati
 </div>
-
-
-<!-- MENU 3 PUNTINI -->
-
-<div class="completed-menu-wrap">
-
-<button
-class="completed-menu-button"
-onclick="toggleMenuCompletati(event)"
-aria-label="Menu"
->
-⋮
-</button>
-
-<div
-id="completedMenu"
-class="completed-menu"
->
-
-<button
-class="completed-menu-item"
-onclick="inoltraElencoCompletati()"
->
-<span class="completed-menu-icon">↗</span>
-<span>Inoltra</span>
-</button>
-
-<button
-class="completed-menu-item"
-onclick="salvaElencoCompletati()"
->
-<span class="completed-menu-icon">💾</span>
-<span>Salva</span>
-</button>
-
-<button
-class="completed-menu-item"
-onclick="scaricaElencoCompletati()"
->
-<span class="completed-menu-icon">⬇</span>
-<span>Scarica</span>
-</button>
-
-</div>
-
-</div>
-
 
 <div id="completedJobs"></div>
 
