@@ -6,6 +6,7 @@
 <title>EDISERVICE</title>
 <link rel="icon" type="image/png" href="ediservice-icon.png">
 <link rel="apple-touch-icon" href="ediservice-icon.png">
+
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;background:#fff;color:#222;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
@@ -17,124 +18,763 @@ button,input,textarea{font-family:inherit}
 .status-ok{color:#2e7d32}.status-error{color:#c62828}
 .page{display:none}.page.active{display:block}
 .photo-detail-page{display:none}.photo-detail-page.active{display:block}
-.summary,.urgent-folder,.completed-folder{min-height:190px;border-radius:28px;padding:28px;margin:25px 0;box-shadow:0 3px 12px rgba(0,0,0,.07);cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:.15s}
+
+.summary,.urgent-folder,.completed-folder{
+min-height:190px;
+border-radius:28px;
+padding:28px;
+margin:25px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.07);
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:space-between;
+transition:.15s
+}
+
 .summary:active,.urgent-folder:active,.completed-folder:active{transform:scale(.98)}
 .summary{background:#555;color:#fff}
 .urgent-folder{background:#ffebee;border:2px solid #e53935;color:#b71c1c}
 .completed-folder{background:#e8f5e9;border:2px solid #43a047;color:#1b5e20}
-.folder-text{flex:1}.folder-title{font-size:25px;font-weight:800;margin-bottom:12px}.folder-number{font-size:55px;line-height:1;font-weight:900}.folder-description{font-size:14px;margin-top:8px;opacity:.85}.folder-arrow{font-size:38px;margin-left:15px}
+.folder-text{flex:1}
+.folder-title{font-size:25px;font-weight:800;margin-bottom:12px}
+.folder-number{font-size:55px;line-height:1;font-weight:900}
+.folder-description{font-size:14px;margin-top:8px;opacity:.85}
+.folder-arrow{font-size:38px;margin-left:15px}
+
 .section-title{font-size:23px;font-weight:800;margin:35px 0 15px;color:#d32f2f}
-.group-title{display:block;width:100%;padding:11px 15px;margin:28px 0 12px;background:#f2f2f2;border-left:6px solid #d32f2f;border-radius:12px;color:#222;font-size:18px;font-weight:900;box-shadow:0 2px 7px rgba(0,0,0,.06)}
+.group-title{
+display:block;
+width:100%;
+padding:11px 15px;
+margin:28px 0 12px;
+background:#f2f2f2;
+border-left:6px solid #d32f2f;
+border-radius:12px;
+color:#222;
+font-size:18px;
+font-weight:900;
+box-shadow:0 2px 7px rgba(0,0,0,.06)
+}
+
 .store-list{display:flex;flex-direction:column;gap:10px}
-.store-button{width:100%;background:#fff;color:#222;border:1px solid #ddd;border-radius:16px;padding:17px 18px;text-align:left;font-size:17px;font-weight:650;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.04);display:flex;align-items:center;justify-content:space-between}
-.store-button:active{transform:scale(.98)}.store-name-text{color:#222}
-.store-count{min-width:34px;height:34px;padding:0 10px;border-radius:17px;background:#f1f1f1;color:#d32f2f;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;margin-left:12px}
+.store-button{
+width:100%;
+background:#fff;
+color:#222;
+border:1px solid #ddd;
+border-radius:16px;
+padding:17px 18px;
+text-align:left;
+font-size:17px;
+font-weight:650;
+cursor:pointer;
+box-shadow:0 2px 6px rgba(0,0,0,.04);
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.store-button:active{transform:scale(.98)}
+.store-name-text{color:#222}
+.store-count{
+min-width:34px;
+height:34px;
+padding:0 10px;
+border-radius:17px;
+background:#f1f1f1;
+color:#d32f2f;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:16px;
+font-weight:900;
+margin-left:12px
+}
+
 .topbar{display:flex;align-items:center;gap:10px;margin-bottom:20px}
-.back-button{background:#e9e9e9;color:#222;border:0;border-radius:12px;padding:11px 15px;font-weight:700;cursor:pointer}
+.back-button{
+background:#e9e9e9;
+color:#222;
+border:0;
+border-radius:12px;
+padding:11px 15px;
+font-weight:700;
+cursor:pointer
+}
 .page-title{font-size:24px;font-weight:850;margin:0}
-.store-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}
-.store-topbar-left{display:flex;align-items:center;gap:10px;min-width:0}
-.add-work-toggle{width:60px;height:60px;border:0;border-radius:18px;background:#222;color:#fff;font-size:42px;font-weight:300;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.18);flex-shrink:0}
+
+.store-topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-bottom:20px
+}
+
+.store-topbar-left{
+display:flex;
+align-items:center;
+gap:10px;
+min-width:0
+}
+
+.add-work-toggle{
+width:60px;
+height:60px;
+border:0;
+border-radius:18px;
+background:#222;
+color:#fff;
+font-size:42px;
+font-weight:300;
+line-height:1;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 4px 12px rgba(0,0,0,.18);
+flex-shrink:0
+}
+
 .add-work-toggle:active{transform:scale(.94)}
+
 .search-box{position:relative;margin:15px 0 20px}
-.search-box input{width:100%;height:52px;padding:0 48px 0 17px;border:1px solid #ddd;border-radius:15px;background:#f7f7f7;font-size:16px;outline:none;box-shadow:0 2px 7px rgba(0,0,0,.05)}
+.search-box input{
+width:100%;
+height:52px;
+padding:0 48px 0 17px;
+border:1px solid #ddd;
+border-radius:15px;
+background:#f7f7f7;
+font-size:16px;
+outline:none;
+box-shadow:0 2px 7px rgba(0,0,0,.05)
+}
 .search-box input:focus{border-color:#d32f2f;background:#fff}
-.search-box button{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:31px;height:31px;border:0;border-radius:50%;background:#ddd;color:#555;font-size:22px;line-height:29px;display:none;cursor:pointer}
-.store-name{color:#d32f2f;font-size:27px;font-weight:900}.store-category{color:#777;font-size:14px;margin-bottom:20px}
-.form-card{background:#fff;border-radius:20px;padding:20px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.06)}.form-card h2{margin-top:0}
-.add-work-form{display:none}.add-work-form.active{display:block}
+.search-box button{
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+width:31px;
+height:31px;
+border:0;
+border-radius:50%;
+background:#ddd;
+color:#555;
+font-size:22px;
+line-height:29px;
+display:none;
+cursor:pointer
+}
+
+.store-name{color:#d32f2f;font-size:27px;font-weight:900}
+.store-category{color:#777;font-size:14px;margin-bottom:20px}
+
+.form-card{
+background:#fff;
+border-radius:20px;
+padding:20px;
+margin:20px 0;
+box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.form-card h2{margin-top:0}
+.add-work-form{display:none}
+.add-work-form.active{display:block}
+
 label{display:block;font-weight:700;margin:15px 0 7px}
-input[type="text"],textarea{width:100%;border:1px solid #d5d5d5;border-radius:12px;padding:13px;font-size:16px;background:#fafafa;outline:none}
+
+input[type="text"],textarea{
+width:100%;
+border:1px solid #d5d5d5;
+border-radius:12px;
+padding:13px;
+font-size:16px;
+background:#fafafa;
+outline:none
+}
+
 textarea{min-height:90px;resize:vertical}
-.urgent-check{display:flex;align-items:center;gap:10px;margin:15px 0}.urgent-check input{width:20px;height:20px}
-.add-button{width:100%;background:#222;color:#fff;border:0;border-radius:13px;padding:15px;font-size:17px;font-weight:800;cursor:pointer}.add-button:disabled{opacity:.55;cursor:default}
-.add-photo-box{margin-top:15px;padding:15px;background:#f7f7f7;border-radius:14px}.add-photo-title{font-size:15px;font-weight:800;margin-bottom:10px}
-.add-photo-button{width:100%;border:0;border-radius:12px;padding:13px;background:#e9e9e9;color:#222;font-weight:800;cursor:pointer}
-.add-photo-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
-.add-photo-item{position:relative;aspect-ratio:1;border-radius:11px;overflow:hidden;background:#ddd}.add-photo-item img{width:100%;height:100%;object-fit:cover;display:block}
-.add-photo-remove{position:absolute;right:5px;top:5px;width:28px;height:28px;border:0;border-radius:50%;background:rgba(0,0,0,.72);color:#fff;font-size:19px;font-weight:800;cursor:pointer}
-.todo-store-group,.completed-job{background:#fff;border-radius:20px;margin:17px 0;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.07)}
-.todo-store-header,.completed-store-header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:#fafafa;border-bottom:1px solid #e8e8e8}
+
+.urgent-check{
+display:flex;
+align-items:center;
+gap:10px;
+margin:15px 0
+}
+.urgent-check input{width:20px;height:20px}
+
+.add-button{
+width:100%;
+background:#222;
+color:#fff;
+border:0;
+border-radius:13px;
+padding:15px;
+font-size:17px;
+font-weight:800;
+cursor:pointer
+}
+.add-button:disabled{opacity:.55;cursor:default}
+
+.add-photo-box{
+margin-top:15px;
+padding:15px;
+background:#f7f7f7;
+border-radius:14px
+}
+.add-photo-title{font-size:15px;font-weight:800;margin-bottom:10px}
+.add-photo-button{
+width:100%;
+border:0;
+border-radius:12px;
+padding:13px;
+background:#e9e9e9;
+color:#222;
+font-weight:800;
+cursor:pointer
+}
+.add-photo-preview{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+margin-top:12px
+}
+.add-photo-item{
+position:relative;
+aspect-ratio:1;
+border-radius:11px;
+overflow:hidden;
+background:#ddd
+}
+.add-photo-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block
+}
+.add-photo-remove{
+position:absolute;
+right:5px;
+top:5px;
+width:28px;
+height:28px;
+border:0;
+border-radius:50%;
+background:rgba(0,0,0,.72);
+color:#fff;
+font-size:19px;
+font-weight:800;
+cursor:pointer
+}
+
+.todo-store-group,.completed-job{
+background:#fff;
+border-radius:20px;
+margin:17px 0;
+overflow:hidden;
+box-shadow:0 3px 12px rgba(0,0,0,.07)
+}
+
+.todo-store-header,.completed-store-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 18px;
+background:#fafafa;
+border-bottom:1px solid #e8e8e8
+}
+
 .todo-store-name{color:#d32f2f;font-size:21px;font-weight:900}
-.todo-store-count,.completed-store-count,.urgent-store-count{min-width:32px;height:32px;padding:0 9px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900}
+.todo-store-count,.completed-store-count,.urgent-store-count{
+min-width:32px;
+height:32px;
+padding:0 9px;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+font-weight:900
+}
+
 .todo-store-count{background:#f1f1f1;color:#d32f2f}
-.todo-job-row{padding:14px;border-bottom:1px solid #eee}.todo-job-row:last-child{border-bottom:0}
-.todo-job-main{display:flex;align-items:center;gap:10px}.todo-job-dot{width:8px;height:8px;min-width:8px;border-radius:50%;background:#d32f2f}
-.todo-job-content{flex:1;min-width:0}.todo-job-text{font-size:16px;font-weight:700;line-height:1.35;word-break:break-word}
-.todo-job-note,.job-note,.completed-job-note,.urgent-job-note{margin-top:5px;color:#777;font-size:13px;line-height:1.35}
-.todo-job-urgent{display:inline-block;background:#e53935;color:#fff;border-radius:7px;padding:3px 7px;font-size:10px;font-weight:800;margin-top:7px}
-.symbol-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-left:8px}
-.symbol-btn{width:32px;height:32px;min-width:32px;border:0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.todo-job-row{padding:14px;border-bottom:1px solid #eee}
+.todo-job-row:last-child{border-bottom:0}
+.todo-job-main{display:flex;align-items:center;gap:10px}
+.todo-job-dot{
+width:8px;
+height:8px;
+min-width:8px;
+border-radius:50%;
+background:#d32f2f
+}
+.todo-job-content{flex:1;min-width:0}
+.todo-job-text{
+font-size:16px;
+font-weight:700;
+line-height:1.35;
+word-break:break-word
+}
+.todo-job-note,.job-note,.completed-job-note,.urgent-job-note{
+margin-top:5px;
+color:#777;
+font-size:13px;
+line-height:1.35
+}
+.todo-job-urgent{
+display:inline-block;
+background:#e53935;
+color:#fff;
+border-radius:7px;
+padding:3px 7px;
+font-size:10px;
+font-weight:800;
+margin-top:7px
+}
+
+.symbol-actions{
+display:flex;
+align-items:center;
+justify-content:flex-end;
+gap:6px;
+margin-left:8px
+}
+
+.symbol-btn{
+width:32px;
+height:32px;
+min-width:32px;
+border:0;
+border-radius:9px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:17px;
+font-weight:900;
+cursor:pointer;
+box-shadow:0 1px 3px rgba(0,0,0,.12)
+}
+
 .symbol-btn:active{transform:scale(.88)}
-.symbol-complete{background:#e8f5e9;color:#2e7d32}.symbol-urgent{background:#fff3e0;color:#ef6c00}.symbol-delete{background:#ffebee;color:#d32f2f}.symbol-redo{background:#e3f2fd;color:#1976d2}.symbol-share{background:#e3f2fd;color:#1565c0;font-size:15px}
-.job-card{background:#fff;border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 2px 8px rgba(0,0,0,.06)}.job-text{font-size:17px;font-weight:650;line-height:1.35}
+.symbol-complete{background:#e8f5e9;color:#2e7d32}
+.symbol-urgent{background:#fff3e0;color:#ef6c00}
+.symbol-delete{background:#ffebee;color:#d32f2f}
+.symbol-redo{background:#e3f2fd;color:#1976d2}
+.symbol-share{background:#e3f2fd;color:#1565c0;font-size:15px}
+
+.job-card{
+background:#fff;
+border-radius:18px;
+padding:18px;
+margin:12px 0;
+box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.job-text{font-size:17px;font-weight:650;line-height:1.35}
 .urgent-page-title{color:#d32f2f}
-.urgent-store-header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:#fff5f5;border-bottom:1px solid #f3d1d1}
-.urgent-store-name{color:#d32f2f;font-size:21px;font-weight:900}.urgent-store-count{background:#ffebee;color:#d32f2f}
-.urgent-job-row{display:flex;align-items:center;gap:10px;padding:14px;border-bottom:1px solid #eee}.urgent-job-row:last-child{border-bottom:0}
-.urgent-job-dot{width:8px;height:8px;min-width:8px;border-radius:50%;background:#e53935}.urgent-job-content{flex:1;min-width:0}
+
+.urgent-store-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 18px;
+background:#fff5f5;
+border-bottom:1px solid #f3d1d1
+}
+.urgent-store-name{color:#d32f2f;font-size:21px;font-weight:900}
+.urgent-store-count{background:#ffebee;color:#d32f2f}
+
+.urgent-job-row{
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px;
+border-bottom:1px solid #eee
+}
+.urgent-job-row:last-child{border-bottom:0}
+.urgent-job-dot{
+width:8px;
+height:8px;
+min-width:8px;
+border-radius:50%;
+background:#e53935
+}
+.urgent-job-content{flex:1;min-width:0}
+
 .completed-page-title{color:#2e7d32}
 
 /* ARCHIVIO MENSILE */
-.completed-month-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 8px;background:#e8f5e9;border:2px solid #43a047;border-radius:16px;padding:10px}
-.completed-month-button{width:45px;height:45px;min-width:45px;border:0;border-radius:12px;background:#fff;color:#2e7d32;font-size:30px;font-weight:900;line-height:1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.completed-month-bar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:0 0 8px;
+background:#e8f5e9;
+border:2px solid #43a047;
+border-radius:16px;
+padding:10px
+}
+
+.completed-month-button{
+width:45px;
+height:45px;
+min-width:45px;
+border:0;
+border-radius:12px;
+background:#fff;
+color:#2e7d32;
+font-size:30px;
+font-weight:900;
+line-height:1;
+cursor:pointer;
+box-shadow:0 2px 6px rgba(0,0,0,.08)
+}
 .completed-month-button:active{transform:scale(.92)}
-.completed-month-title{flex:1;text-align:center;font-size:20px;font-weight:900;color:#1b5e20}
-.completed-month-count{text-align:center;font-size:13px;font-weight:700;color:#777;margin:0 0 18px}
-.completed-export-bar{display:flex;gap:10px;margin:0 0 18px}
-.completed-export-button{flex:1;border:0;border-radius:12px;padding:13px 10px;background:#222;color:#fff;font-weight:800;font-size:15px;cursor:pointer}
-.completed-store-name{color:#2e7d32;font-size:21px;font-weight:900}.completed-store-count{background:#e8f5e9;color:#2e7d32}
-.completed-job-row{display:flex;align-items:center;gap:10px;padding:14px;border-bottom:1px solid #eee}
-.completed-check{color:#2e7d32;font-size:20px;font-weight:900}.completed-job-content{flex:1;min-width:0}
+
+.completed-month-title{
+flex:1;
+text-align:center;
+font-size:20px;
+font-weight:900;
+color:#1b5e20
+}
+
+.completed-month-count{
+text-align:center;
+font-size:13px;
+font-weight:700;
+color:#777;
+margin:0 0 18px
+}
+
+.completed-export-bar{
+display:flex;
+gap:10px;
+margin:0 0 18px
+}
+
+.completed-export-button{
+flex:1;
+border:0;
+border-radius:12px;
+padding:13px 10px;
+background:#222;
+color:#fff;
+font-weight:800;
+font-size:15px;
+cursor:pointer
+}
+
+.completed-store-name{color:#2e7d32;font-size:21px;font-weight:900}
+.completed-store-count{background:#e8f5e9;color:#2e7d32}
+
+.completed-job-row{
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px;
+border-bottom:1px solid #eee
+}
+.completed-check{color:#2e7d32;font-size:20px;font-weight:900}
+.completed-job-content{flex:1;min-width:0}
 .completed-job-text{font-size:16px;font-weight:650;line-height:1.35}
-.empty{background:#fff;border-radius:17px;padding:25px;color:#777;text-align:center;margin:15px 0}.loading{text-align:center;padding:30px;color:#777}
-.job-clickable{cursor:pointer}.job-clickable:active{opacity:.75}
-.photo-detail-card{background:#fff;border-radius:20px;padding:20px;margin:12px 0;box-shadow:0 3px 12px rgba(0,0,0,.07)}
-.photo-detail-store{color:#d32f2f;font-size:14px;font-weight:800;margin-bottom:7px}.photo-detail-title{font-size:21px;font-weight:800;line-height:1.35;white-space:pre-wrap}
-.photo-detail-date{margin-top:10px;color:#777;font-size:13px;line-height:1.5}.photo-detail-note{margin-top:18px;color:#777;font-size:14px;white-space:pre-wrap}
-.photo-edit-bar{display:flex;justify-content:flex-end;margin-top:18px}.photo-edit-button{border:0;border-radius:12px;padding:12px 18px;background:#222;color:#fff;font-weight:800;cursor:pointer}
-.photo-edit-actions{display:none;gap:8px;margin-top:15px}.photo-edit-actions.active{display:flex}
-.photo-edit-save{flex:1;border:0;border-radius:12px;padding:13px;background:#e8f5e9;color:#1b5e20;font-weight:800;cursor:pointer}.photo-edit-cancel{flex:1;border:0;border-radius:12px;padding:13px;background:#eee;color:#222;font-weight:800;cursor:pointer}
-.photo-notes-box{margin-top:18px}.photo-notes-label{display:block;font-size:16px;font-weight:800;margin:0 0 8px;color:#222}
-.photo-notes-input{width:100%;min-height:120px;border:1px solid #ddd;border-radius:13px;padding:13px;font-size:16px;background:#fafafa;outline:none;resize:vertical;display:none}.photo-notes-input.editing{display:block}
-.photo-notes-read{display:block;padding:13px;background:#f7f7f7;border-radius:13px;color:#555;font-size:15px;white-space:pre-wrap;min-height:50px}
-.photo-toolbar{display:none;gap:10px;margin:18px 0 10px}.photo-toolbar.editing{display:flex}.photo-add-button{flex:1;border:0;border-radius:12px;background:#222;color:#fff;padding:13px;font-weight:800;cursor:pointer}
-.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-.photo-thumb{position:relative;aspect-ratio:1;border-radius:13px;overflow:hidden;background:#f2f2f2;box-shadow:0 2px 7px rgba(0,0,0,.08);cursor:pointer}.photo-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.photo-thumb-delete{display:none;position:absolute;right:6px;top:6px;width:30px;height:30px;border:0;border-radius:50%;background:rgba(0,0,0,.68);color:#fff;font-size:20px;line-height:30px;cursor:pointer}.photo-thumb-delete.editing{display:block}
-.photo-empty{padding:28px 15px;text-align:center;color:#777;background:#f7f7f7;border-radius:13px;margin-top:12px}
-.photo-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:15px;z-index:1000}.photo-modal.active{display:flex}
-.photo-modal-content{position:relative;width:100%;max-width:900px;max-height:92vh;background:#fff;border-radius:18px;padding:12px;overflow:auto}
-.photo-modal-close{position:absolute;right:10px;top:10px;width:38px;height:38px;border:0;border-radius:50%;background:#eee;font-size:23px;font-weight:800;z-index:2}
-.photo-modal-image{display:block;width:100%;max-height:78vh;object-fit:contain;border-radius:12px;background:#111}
-.photo-modal-actions{display:none;gap:8px;margin-top:10px}.photo-modal-actions.editing{display:flex}.photo-modal-actions button{flex:1;border:0;border-radius:10px;padding:10px;font-weight:800}
-.replace-photo{background:#e3f2fd;color:#1976d2}.delete-photo{background:#ffebee;color:#d32f2f}
+
+.empty{
+background:#fff;
+border-radius:17px;
+padding:25px;
+color:#777;
+text-align:center;
+margin:15px 0
+}
+.loading{text-align:center;padding:30px;color:#777}
+.job-clickable{cursor:pointer}
+.job-clickable:active{opacity:.75}
+
+.photo-detail-card{
+background:#fff;
+border-radius:20px;
+padding:20px;
+margin:12px 0;
+box-shadow:0 3px 12px rgba(0,0,0,.07)
+}
+.photo-detail-store{
+color:#d32f2f;
+font-size:14px;
+font-weight:800;
+margin-bottom:7px
+}
+.photo-detail-title{
+font-size:21px;
+font-weight:800;
+line-height:1.35;
+white-space:pre-wrap
+}
+.photo-detail-date{
+margin-top:10px;
+color:#777;
+font-size:13px;
+line-height:1.5
+}
+.photo-detail-note{
+margin-top:18px;
+color:#777;
+font-size:14px;
+white-space:pre-wrap
+}
+
+.photo-edit-bar{
+display:flex;
+justify-content:flex-end;
+margin-top:18px
+}
+.photo-edit-button{
+border:0;
+border-radius:12px;
+padding:12px 18px;
+background:#222;
+color:#fff;
+font-weight:800;
+cursor:pointer
+}
+
+.photo-edit-actions{display:none;gap:8px;margin-top:15px}
+.photo-edit-actions.active{display:flex}
+.photo-edit-save{
+flex:1;
+border:0;
+border-radius:12px;
+padding:13px;
+background:#e8f5e9;
+color:#1b5e20;
+font-weight:800;
+cursor:pointer
+}
+.photo-edit-cancel{
+flex:1;
+border:0;
+border-radius:12px;
+padding:13px;
+background:#eee;
+color:#222;
+font-weight:800;
+cursor:pointer
+}
+
+.photo-notes-box{margin-top:18px}
+.photo-notes-label{
+display:block;
+font-size:16px;
+font-weight:800;
+margin:0 0 8px;
+color:#222
+}
+.photo-notes-input{
+width:100%;
+min-height:120px;
+border:1px solid #ddd;
+border-radius:13px;
+padding:13px;
+font-size:16px;
+background:#fafafa;
+outline:none;
+resize:vertical;
+display:none
+}
+.photo-notes-input.editing{display:block}
+.photo-notes-read{
+display:block;
+padding:13px;
+background:#f7f7f7;
+border-radius:13px;
+color:#555;
+font-size:15px;
+white-space:pre-wrap;
+min-height:50px
+}
+
+.photo-toolbar{display:none;gap:10px;margin:18px 0 10px}
+.photo-toolbar.editing{display:flex}
+.photo-add-button{
+flex:1;
+border:0;
+border-radius:12px;
+background:#222;
+color:#fff;
+padding:13px;
+font-weight:800;
+cursor:pointer
+}
+
+.photo-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:12px
+}
+.photo-thumb{
+position:relative;
+aspect-ratio:1;
+border-radius:13px;
+overflow:hidden;
+background:#f2f2f2;
+box-shadow:0 2px 7px rgba(0,0,0,.08);
+cursor:pointer
+}
+.photo-thumb img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block
+}
+
+.photo-thumb-delete{
+display:none;
+position:absolute;
+right:6px;
+top:6px;
+width:30px;
+height:30px;
+border:0;
+border-radius:50%;
+background:rgba(0,0,0,.68);
+color:#fff;
+font-size:20px;
+line-height:30px;
+cursor:pointer
+}
+.photo-thumb-delete.editing{display:block}
+
+.photo-empty{
+padding:28px 15px;
+text-align:center;
+color:#777;
+background:#f7f7f7;
+border-radius:13px;
+margin-top:12px
+}
+
+.photo-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.88);
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px;
+z-index:1000
+}
+.photo-modal.active{display:flex}
+.photo-modal-content{
+position:relative;
+width:100%;
+max-width:900px;
+max-height:92vh;
+background:#fff;
+border-radius:18px;
+padding:12px;
+overflow:auto
+}
+.photo-modal-close{
+position:absolute;
+right:10px;
+top:10px;
+width:38px;
+height:38px;
+border:0;
+border-radius:50%;
+background:#eee;
+font-size:23px;
+font-weight:800;
+z-index:2
+}
+.photo-modal-image{
+display:block;
+width:100%;
+max-height:78vh;
+object-fit:contain;
+border-radius:12px;
+background:#111
+}
+.photo-modal-actions{display:none;gap:8px;margin-top:10px}
+.photo-modal-actions.editing{display:flex}
+.photo-modal-actions button{
+flex:1;
+border:0;
+border-radius:10px;
+padding:10px;
+font-weight:800
+}
+.replace-photo{background:#e3f2fd;color:#1976d2}
+.delete-photo{background:#ffebee;color:#d32f2f}
 
 @media(max-width:600px){
-.container{padding:15px}.header img{width:230px;max-width:85%}
+.container{padding:15px}
+.header img{width:230px;max-width:85%}
 .summary,.urgent-folder,.completed-folder{min-height:180px;padding:24px}
-.folder-title{font-size:22px}.folder-number{font-size:50px}
-.group-title{font-size:17px;padding:11px 14px;margin-top:24px}.store-button{padding:16px;font-size:16px}
-.todo-store-group,.completed-job{border-radius:18px}.todo-store-header,.completed-store-header,.urgent-store-header{padding:15px}
-.todo-store-name,.completed-store-name,.urgent-store-name{font-size:19px}.todo-job-row,.completed-job-row,.urgent-job-row{padding:13px}
-.todo-job-text,.completed-job-text,.urgent-job-text{font-size:15px}.symbol-actions{gap:4px}
-.symbol-btn{width:30px;height:30px;min-width:30px;font-size:16px;border-radius:8px}
-.add-work-toggle{width:56px;height:56px;font-size:38px;border-radius:17px}
-.photo-grid,.add-photo-preview{grid-template-columns:repeat(3,1fr)}
-.completed-month-title{font-size:18px}.completed-month-button{width:42px;height:42px;min-width:42px}
+.folder-title{font-size:22px}
+.folder-number{font-size:50px}
+.group-title{font-size:17px;padding:11px 14px;margin-top:24px}
+.store-button{padding:16px;font-size:16px}
+.todo-store-group,.completed-job{border-radius:18px}
+.todo-store-header,.completed-store-header,.urgent-store-header{padding:15px}
+.todo-store-name,.completed-store-name,.urgent-store-name{font-size:19px}
+.todo-job-row,.completed-job-row,.urgent-job-row{padding:13px}
+.todo-job-text,.completed-job-text,.urgent-job-text{font-size:15px}
+.symbol-actions{gap:4px}
+.symbol-btn{
+width:30px;
+height:30px;
+min-width:30px;
+font-size:16px;
+border-radius:8px
 }
+.add-work-toggle{
+width:56px;
+height:56px;
+font-size:38px;
+border-radius:17px
+}
+.photo-grid,.add-photo-preview{grid-template-columns:repeat(3,1fr)}
+.completed-month-title{font-size:18px}
+.completed-month-button{
+width:42px;
+height:42px;
+min-width:42px
+}
+}
+
 @media(max-width:380px){
-.symbol-btn{width:28px;height:28px;min-width:28px;font-size:15px}.symbol-actions{gap:3px;margin-left:5px}
-.add-work-toggle{width:52px;height:52px;font-size:36px}.completed-month-title{font-size:16px}
-.completed-month-button{width:40px;height:40px;min-width:40px}
+.symbol-btn{
+width:28px;
+height:28px;
+min-width:28px;
+font-size:15px
+}
+.symbol-actions{gap:3px;margin-left:5px}
+.add-work-toggle{
+width:52px;
+height:52px;
+font-size:36px
+}
+.completed-month-title{font-size:16px}
+.completed-month-button{
+width:40px;
+height:40px;
+min-width:40px
+}
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
 <div id="homePage" class="page active">
+
 <div class="header">
 <img src="ediservice-icon.png" alt="EDISERVICE">
 <div id="firebaseStatus" class="firebase-status">Connessione Firebase...</div>
@@ -169,141 +809,308 @@ textarea{min-height:90px;resize:vertical}
 
 <div class="section-title">Punti vendita</div>
 <div id="puntiVendita"></div>
+
 </div>
 
+
 <div id="todoPage" class="page">
+
 <div class="topbar">
 <button class="back-button" onclick="showHome()">← Indietro</button>
 <h2 class="page-title">Lavori da fare</h2>
 </div>
+
 <div class="search-box">
 <input type="text" id="searchLavori" placeholder="Cerca punto vendita o lavoro..." oninput="filtraLavori()">
 <button type="button" id="clearSearch" onclick="cancellaRicerca()">×</button>
 </div>
-<div id="todoJobs"><div class="loading">Caricamento...</div></div>
+
+<div id="todoJobs">
+<div class="loading">Caricamento...</div>
 </div>
 
+</div>
+
+
 <div id="storePage" class="page">
+
 <div class="store-topbar">
+
 <div class="store-topbar-left">
 <button class="back-button" onclick="showHome()">← Indietro</button>
 <h2 class="page-title">Punto vendita</h2>
 </div>
+
 <button class="add-work-toggle" id="addWorkToggle" onclick="toggleAddWorkForm()">+</button>
+
 </div>
 
 <div class="store-name" id="storePageName"></div>
 <div class="store-category" id="storePageCategory"></div>
 
 <div class="form-card add-work-form" id="addWorkForm">
+
 <h2>Aggiungi lavoro</h2>
+
 <label>Lavoro</label>
 <input id="lavoroInput" type="text" placeholder="Descrivi il lavoro da fare">
+
 <label>Note</label>
 <textarea id="noteInput" placeholder="Eventuali note..."></textarea>
+
 <label class="urgent-check">
 <input type="checkbox" id="urgenteInput">
 <span>Lavoro urgente</span>
 </label>
 
 <div class="add-photo-box">
+
 <div class="add-photo-title">Foto del lavoro</div>
-<button type="button" class="add-photo-button" onclick="selezionaFotoNuovoLavoro()">+ Aggiungi foto</button>
+
+<button type="button" class="add-photo-button" onclick="selezionaFotoNuovoLavoro()">
++ Aggiungi foto
+</button>
+
 <div id="addPhotoPreview" class="add-photo-preview"></div>
+
 </div>
 
-<button class="add-button" id="addWorkButton" onclick="aggiungiLavoro()" style="margin-top:15px">+ Aggiungi lavoro</button>
+<button
+class="add-button"
+id="addWorkButton"
+onclick="aggiungiLavoro()"
+style="margin-top:15px"
+>
++ Aggiungi lavoro
+</button>
+
 </div>
 
 <div class="section-title">Lavori del punto vendita</div>
+
 <div id="storeJobs"></div>
+
 </div>
 
+
 <div id="urgentPage" class="page">
+
 <div class="topbar">
 <button class="back-button" onclick="showHome()">← Indietro</button>
 <h2 class="page-title urgent-page-title">Lavori urgenti</h2>
 </div>
+
 <div id="urgentJobs"></div>
+
 </div>
 
+
 <div id="completedPage" class="page">
+
 <div class="topbar">
 <button class="back-button" onclick="showHome()">← Indietro</button>
 <h2 class="page-title completed-page-title">Lavori completati</h2>
 </div>
 
 <div class="completed-month-bar">
-<button class="completed-month-button" onclick="cambiaMeseCompletati(-1)">‹</button>
+
+<button
+class="completed-month-button"
+onclick="cambiaMeseCompletati(-1)"
+>
+‹
+</button>
+
 <div id="completedMonthTitle" class="completed-month-title"></div>
-<button class="completed-month-button" onclick="cambiaMeseCompletati(1)">›</button>
+
+<button
+class="completed-month-button"
+onclick="cambiaMeseCompletati(1)"
+>
+›
+</button>
+
 </div>
 
-<div id="completedMonthCount" class="completed-month-count">0 lavori completati</div>
+<div id="completedMonthCount" class="completed-month-count">
+0 lavori completati
+</div>
 
 <div class="completed-export-bar">
-<button class="completed-export-button" onclick="condividiElencoCompletati()">Condividi elenco</button>
+
+<button
+class="completed-export-button"
+onclick="condividiElencoCompletati()"
+>
+Condividi elenco
+</button>
+
 </div>
 
 <div id="completedJobs"></div>
+
 </div>
 
+
 <div id="photoDetailPage" class="photo-detail-page">
+
 <div class="topbar">
 <button class="back-button" onclick="chiudiSchedaLavoro()">← Indietro</button>
 <h2 class="page-title">Lavoro</h2>
 </div>
 
 <div class="photo-detail-card">
+
 <div class="photo-detail-store" id="photoDetailStore"></div>
+
 <div class="photo-detail-title" id="photoDetailTitle"></div>
+
 <div class="photo-detail-date" id="photoDetailCreated"></div>
+
 <div class="photo-detail-date" id="photoDetailCompleted"></div>
 
 <div class="photo-notes-box">
+
 <label class="photo-notes-label">Note</label>
-<div id="photoDetailNoteRead" class="photo-notes-read">Nessuna nota.</div>
-<textarea id="photoDetailNoteInput" class="photo-notes-input" placeholder="Scrivi qui le note del lavoro..."></textarea>
+
+<div id="photoDetailNoteRead" class="photo-notes-read">
+Nessuna nota.
+</div>
+
+<textarea
+id="photoDetailNoteInput"
+class="photo-notes-input"
+placeholder="Scrivi qui le note del lavoro..."
+></textarea>
+
 </div>
 
 <div class="photo-edit-bar">
-<button id="photoEditButton" class="photo-edit-button" onclick="attivaModificaScheda()">Modifica</button>
+
+<button
+id="photoEditButton"
+class="photo-edit-button"
+onclick="attivaModificaScheda()"
+>
+Modifica
+</button>
+
 </div>
 
 <div id="photoEditActions" class="photo-edit-actions">
-<button class="photo-edit-save" onclick="salvaModificheScheda()">Salva modifiche</button>
-<button class="photo-edit-cancel" onclick="annullaModificaScheda()">Annulla</button>
+
+<button
+class="photo-edit-save"
+onclick="salvaModificheScheda()"
+>
+Salva modifiche
+</button>
+
+<button
+class="photo-edit-cancel"
+onclick="annullaModificaScheda()"
+>
+Annulla
+</button>
+
 </div>
 
 <div id="photoToolbar" class="photo-toolbar">
-<button class="photo-add-button" onclick="selezionaFoto()">+ Aggiungi foto</button>
+
+<button
+class="photo-add-button"
+onclick="selezionaFoto()"
+>
++ Aggiungi foto
+</button>
+
 </div>
 
 <div id="photoGrid" class="photo-grid"></div>
+
 </div>
+
 </div>
 
 </div>
 
-<input id="newPhotoInput" type="file" accept="image/*" multiple hidden>
-<input id="photoInput" type="file" accept="image/*" multiple hidden>
-<input id="replacePhotoInput" type="file" accept="image/*" hidden>
 
-<div id="photoModal" class="photo-modal" onclick="chiudiFotoGrande(event)">
-<div class="photo-modal-content" onclick="event.stopPropagation()">
-<button class="photo-modal-close" onclick="chiudiFotoGrande()">×</button>
-<img id="photoModalImage" class="photo-modal-image" alt="Foto lavoro">
+<input
+id="newPhotoInput"
+type="file"
+accept="image/*"
+multiple
+hidden
+>
+
+<input
+id="photoInput"
+type="file"
+accept="image/*"
+multiple
+hidden
+>
+
+<input
+id="replacePhotoInput"
+type="file"
+accept="image/*"
+hidden
+>
+
+
+<div
+id="photoModal"
+class="photo-modal"
+onclick="chiudiFotoGrande(event)"
+>
+
+<div
+class="photo-modal-content"
+onclick="event.stopPropagation()"
+>
+
+<button
+class="photo-modal-close"
+onclick="chiudiFotoGrande()"
+>
+×
+</button>
+
+<img
+id="photoModalImage"
+class="photo-modal-image"
+alt="Foto lavoro"
+>
+
 <div id="photoModalActions" class="photo-modal-actions">
-<button class="replace-photo" onclick="sostituisciFotoCorrente()">Sostituisci</button>
-<button class="delete-photo" onclick="eliminaFotoCorrente()">Elimina</button>
+
+<button
+class="replace-photo"
+onclick="sostituisciFotoCorrente()"
+>
+Sostituisci
+</button>
+
+<button
+class="delete-photo"
+onclick="eliminaFotoCorrente()"
+>
+Elimina
+</button>
+
 </div>
+
 </div>
+
 </div>
+
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
@@ -324,6 +1131,7 @@ firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth();
 const db=firebase.firestore();
 
+
 /* SUPABASE */
 
 const SUPABASE_URL="https://ncfznorfwniqykuxymxd.supabase.co";
@@ -335,6 +1143,7 @@ window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
+
 
 /* PUNTI VENDITA */
 
@@ -382,6 +1191,7 @@ PIM:[
 
 };
 
+
 /* VARIABILI */
 
 let lavori=[];
@@ -397,6 +1207,7 @@ let fotoNuovoLavoro=[];
 
 const signedUrlCache=new Map();
 
+
 /* ARCHIVIO MENSILE */
 
 const oggiArchivio=new Date();
@@ -404,6 +1215,7 @@ const oggiArchivio=new Date();
 let meseCompletatiVisualizzato=oggiArchivio.getMonth();
 let annoCompletatiVisualizzato=oggiArchivio.getFullYear();
 let archivioMeseInizializzato=false;
+
 
 function nomeMeseCompletati(mese){
 
@@ -426,6 +1238,7 @@ return mesi[mese];
 
 }
 
+
 function dataCompletamentoValida(lavoro){
 
 if(!lavoro.completatoIl)return null;
@@ -434,7 +1247,9 @@ if(
 lavoro.completatoIl &&
 typeof lavoro.completatoIl.toDate==="function"
 ){
+
 return lavoro.completatoIl.toDate();
+
 }
 
 const data=new Date(lavoro.completatoIl);
@@ -444,6 +1259,7 @@ if(isNaN(data.getTime()))return null;
 return data;
 
 }
+
 
 function listaCompletatiDelMese(){
 
@@ -457,8 +1273,13 @@ lavoro.completato!==true
 const data=dataCompletamentoValida(lavoro);
 
 /* I vecchi lavori completati senza data appartengono a SETTEMBRE 2026. */
+
 if(!data){
-return meseCompletatiVisualizzato===8 && annoCompletatiVisualizzato===2026;
+
+return
+meseCompletatiVisualizzato===8 &&
+annoCompletatiVisualizzato===2026;
+
 }
 
 return(
@@ -469,6 +1290,7 @@ data.getFullYear()===annoCompletatiVisualizzato
 });
 
 }
+
 
 function aggiornaTitoloMeseCompletati(){
 
@@ -500,10 +1322,13 @@ lista.length===1
 }
 
 if(totale){
+
 totale.textContent=lista.length;
+
 }
 
 }
+
 
 function cambiaMeseCompletati(direzione){
 
@@ -531,6 +1356,7 @@ aggiornaTitoloMeseCompletati();
 
 }
 
+
 /* DATA */
 
 function formatDataOra(value){
@@ -540,26 +1366,46 @@ if(!value)return "";
 let data;
 
 if(value&&typeof value.toDate==="function"){
+
 data=value.toDate();
+
 }else if(value instanceof Date){
+
 data=value;
-}else if(typeof value==="string"||typeof value==="number"){
+
+}else if(
+typeof value==="string"||
+typeof value==="number"
+){
+
 data=new Date(value);
+
 }else{
+
 return "";
+
 }
 
 if(isNaN(data.getTime()))return "";
 
-const giorno=String(data.getDate()).padStart(2,"0");
-const mese=String(data.getMonth()+1).padStart(2,"0");
+const giorno=
+String(data.getDate()).padStart(2,"0");
+
+const mese=
+String(data.getMonth()+1).padStart(2,"0");
+
 const anno=data.getFullYear();
-const ore=String(data.getHours()).padStart(2,"0");
-const minuti=String(data.getMinutes()).padStart(2,"0");
+
+const ore=
+String(data.getHours()).padStart(2,"0");
+
+const minuti=
+String(data.getMinutes()).padStart(2,"0");
 
 return `${giorno}/${mese}/${anno} alle ${ore}:${minuti}`;
 
 }
+
 
 /* FIREBASE */
 
@@ -572,6 +1418,7 @@ s.className="firebase-status status-ok";
 
 }
 
+
 function firebaseErrore(error){
 
 console.error("Firebase:",error);
@@ -583,6 +1430,7 @@ s.className="firebase-status status-error";
 
 }
 
+
 auth.signInAnonymously()
 
 .then(()=>{
@@ -593,6 +1441,7 @@ ascoltaLavori();
 })
 
 .catch(firebaseErrore);
+
 
 /* PUNTI VENDITA */
 
@@ -647,6 +1496,7 @@ c.appendChild(gruppo);
 
 }
 
+
 /* ASCOLTA LAVORI */
 
 function ascoltaLavori(){
@@ -670,16 +1520,33 @@ const dateCompletamenti=lavori
 .filter(Boolean);
 
 if(dateCompletamenti.length){
-const ultima=new Date(Math.max(...dateCompletamenti.map(d=>d.getTime())));
-meseCompletatiVisualizzato=ultima.getMonth();
-annoCompletatiVisualizzato=ultima.getFullYear();
+
+const ultima=
+new Date(
+Math.max(
+...dateCompletamenti.map(
+d=>d.getTime()
+)
+)
+);
+
+meseCompletatiVisualizzato=
+ultima.getMonth();
+
+annoCompletatiVisualizzato=
+ultima.getFullYear();
+
 }else{
+
 /* Se esistono solo vecchi completati senza data, settembre 2026. */
+
 meseCompletatiVisualizzato=8;
 annoCompletatiVisualizzato=2026;
+
 }
 
 archivioMeseInizializzato=true;
+
 }
 
 aggiornaTutto();
@@ -687,7 +1554,9 @@ aggiornaTutto();
 if(lavoroFotoAperto){
 
 const aggiornato=
-lavori.find(x=>x.id===lavoroFotoAperto.id);
+lavori.find(
+x=>x.id===lavoroFotoAperto.id
+);
 
 if(aggiornato){
 
@@ -706,24 +1575,32 @@ firebaseErrore
 
 }
 
+
 /* AGGIORNA TUTTO */
 
 function aggiornaTutto(){
 
-const daFare=lavori.filter(
+const daFare=
+lavori.filter(
 x=>x.attivo===true&&x.completato!==true
 );
 
-const urgenti=daFare.filter(
+const urgenti=
+daFare.filter(
 x=>x.urgente===true
 );
 
 const completatiDelMese=
 listaCompletatiDelMese();
 
-document.getElementById("totaleDaFare").textContent=daFare.length;
-document.getElementById("totaleUrgenti").textContent=urgenti.length;
-document.getElementById("totaleCompletati").textContent=completatiDelMese.length;
+document.getElementById("totaleDaFare").textContent=
+daFare.length;
+
+document.getElementById("totaleUrgenti").textContent=
+urgenti.length;
+
+document.getElementById("totaleCompletati").textContent=
+completatiDelMese.length;
 
 aggiornaNumeriPuntiVendita();
 
@@ -732,10 +1609,13 @@ renderUrgentJobs(urgenti);
 renderCompletedJobs(completatiDelMese);
 
 if(puntoSelezionato){
+
 renderStoreJobs(puntoSelezionato);
+
 }
 
 }
+
 
 /* NUMERI PUNTI */
 
@@ -764,6 +1644,7 @@ if(e)e.textContent=n;
 
 }
 
+
 /* PAGINE */
 
 function mostraPagina(id){
@@ -771,17 +1652,22 @@ function mostraPagina(id){
 document.querySelectorAll(
 ".page,.photo-detail-page"
 ).forEach(p=>{
+
 p.classList.remove("active");
+
 });
 
 const p=document.getElementById(id);
 
 if(p){
+
 p.classList.add("active");
 window.scrollTo(0,0);
+
 }
 
 }
+
 
 /* HOME */
 
@@ -791,25 +1677,33 @@ addFormAperto=false;
 
 const form=document.getElementById("addWorkForm");
 
-if(form)form.classList.remove("active");
+if(form)
+form.classList.remove("active");
 
-const toggle=document.getElementById("addWorkToggle");
+const toggle=
+document.getElementById("addWorkToggle");
 
-if(toggle)toggle.textContent="+";
+if(toggle)
+toggle.textContent="+";
 
 fotoNuovoLavoro=[];
+
 renderAnteprimeNuovoLavoro();
 
 mostraPagina("homePage");
 
 }
 
+
 /* FORM */
 
 function toggleAddWorkForm(){
 
-const form=document.getElementById("addWorkForm");
-const button=document.getElementById("addWorkToggle");
+const form=
+document.getElementById("addWorkForm");
+
+const button=
+document.getElementById("addWorkToggle");
 
 addFormAperto=!addFormAperto;
 
@@ -819,7 +1713,9 @@ form.classList.add("active");
 button.textContent="−";
 
 setTimeout(()=>{
+
 document.getElementById("lavoroInput").focus();
+
 },100);
 
 }else{
@@ -831,30 +1727,56 @@ button.textContent="+";
 
 }
 
+
 /* RICERCA */
 
 function filtraLavori(){
 
-const input=document.getElementById("searchLavori");
-const clear=document.getElementById("clearSearch");
+const input=
+document.getElementById("searchLavori");
 
-ricercaLavori=input.value.trim().toLowerCase();
+const clear=
+document.getElementById("clearSearch");
 
-clear.style.display=ricercaLavori?"block":"none";
+ricercaLavori=
+input.value.trim().toLowerCase();
+
+clear.style.display=
+ricercaLavori
+?"block"
+:"none";
 
 renderTodoJobs(
 
 lavori.filter(x=>{
 
-if(x.attivo!==true||x.completato===true)
+if(
+x.attivo!==true||
+x.completato===true
+)
 return false;
 
-if(!ricercaLavori)return true;
+if(!ricercaLavori)
+return true;
 
 return(
-(x.punto||"").toLowerCase().includes(ricercaLavori)||
-(x.testo||"").toLowerCase().includes(ricercaLavori)||
-(x.note||"").toLowerCase().includes(ricercaLavori)
+
+(x.punto||"")
+.toLowerCase()
+.includes(ricercaLavori)
+
+||
+
+(x.testo||"")
+.toLowerCase()
+.includes(ricercaLavori)
+
+||
+
+(x.note||"")
+.toLowerCase()
+.includes(ricercaLavori)
+
 );
 
 })
@@ -863,20 +1785,25 @@ return(
 
 }
 
+
 function cancellaRicerca(){
 
 document.getElementById("searchLavori").value="";
 ricercaLavori="";
 
-document.getElementById("clearSearch").style.display="none";
+document.getElementById(
+"clearSearch"
+).style.display="none";
 
 renderTodoJobs(
 lavori.filter(
-x=>x.attivo===true&&x.completato!==true
+x=>x.attivo===true&&
+x.completato!==true
 )
 );
 
 }
+
 
 /* TODO */
 
@@ -903,13 +1830,15 @@ Object.keys(puntiVendita).forEach(cat=>{
 
 const punti=puntiVendita[cat];
 
-const catJobs=lista.filter(
+const catJobs=
+lista.filter(
 x=>punti.includes(x.punto)
 );
 
 if(!catJobs.length)return;
 
 const t=document.createElement("div");
+
 t.className="group-title";
 t.textContent=cat;
 
@@ -917,29 +1846,41 @@ c.appendChild(t);
 
 punti.forEach(punto=>{
 
-const jobs=catJobs.filter(x=>x.punto===punto);
+const jobs=
+catJobs.filter(
+x=>x.punto===punto
+);
 
 if(!jobs.length)return;
 
 const g=document.createElement("div");
+
 g.className="todo-store-group";
 
 const h=document.createElement("div");
+
 h.className="todo-store-header";
 
 const n=document.createElement("div");
+
 n.className="todo-store-name";
 n.textContent=punto;
 
 const num=document.createElement("div");
+
 num.className="todo-store-count";
 num.textContent=jobs.length;
 
 h.append(n,num);
+
 g.appendChild(h);
 
 jobs.forEach(job=>{
-g.appendChild(creaTodoJobRow(job));
+
+g.appendChild(
+creaTodoJobRow(job)
+);
+
 });
 
 c.appendChild(g);
@@ -950,23 +1891,30 @@ c.appendChild(g);
 
 }
 
+
 /* RIGA TODO */
 
 function creaTodoJobRow(lavoro){
 
 const r=document.createElement("div");
+
 r.className="todo-job-row";
 
 const main=document.createElement("div");
-main.className="todo-job-main job-clickable";
+
+main.className=
+"todo-job-main job-clickable";
 
 const dot=document.createElement("div");
+
 dot.className="todo-job-dot";
 
 const content=document.createElement("div");
+
 content.className="todo-job-content";
 
 const text=document.createElement("div");
+
 text.className="todo-job-text";
 text.textContent=lavoro.testo||"";
 
@@ -975,8 +1923,10 @@ content.appendChild(text);
 if(lavoro.note){
 
 const note=document.createElement("div");
+
 note.className="todo-job-note";
-note.textContent="Note: "+lavoro.note;
+note.textContent=
+"Note: "+lavoro.note;
 
 content.appendChild(note);
 
@@ -984,7 +1934,9 @@ content.appendChild(note);
 
 if(lavoro.urgente===true){
 
-const badge=document.createElement("div");
+const badge=
+document.createElement("div");
+
 badge.className="todo-job-urgent";
 badge.textContent="URGENTE";
 
@@ -995,107 +1947,1432 @@ content.appendChild(badge);
 main.append(dot,content);
 
 main.onclick=()=>{
-apriSchedaLavoro(lavoro.id,"todoPage");
+
+apriSchedaLavoro(
+lavoro.id,
+"todoPage"
+);
+
 };
 
 r.appendChild(main);
 
-const actions=document.createElement("div");
+const actions=
+document.createElement("div");
+
 actions.className="symbol-actions";
 
-const complete=document.createElement("button");
-complete.className="symbol-btn symbol-complete";
+const complete=
+document.createElement("button");
+
+complete.className=
+"symbol-btn symbol-complete";
+
 complete.title="Completato";
 complete.textContent="✓";
 
 complete.onclick=e=>{
+
 e.stopPropagation();
+
 completaLavoro(lavoro.id);
+
 };
 
-const urgent=document.createElement("button");
-urgent.className="symbol-btn symbol-urgent";
-urgent.title=lavoro.urgente?"Togli urgente":"Segna urgente";
+const urgent=
+document.createElement("button");
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.title=
+lavoro.urgente
+?"Togli urgente"
+:"Segna urgente";
+
 urgent.textContent="!";
 
 urgent.onclick=e=>{
+
 e.stopPropagation();
-cambiaUrgente(lavoro.id,lavoro.urgente===true);
+
+cambiaUrgente(
+lavoro.id,
+lavoro.urgente===true
+);
+
 };
 
-const del=document.createElement("button");
-del.className="symbol-btn symbol-delete";
+const del=
+document.createElement("button");
+
+del.className=
+"symbol-btn symbol-delete";
+
 del.title="Elimina";
 del.textContent="×";
 
 del.onclick=e=>{
+
 e.stopPropagation();
+
 eliminaLavoro(lavoro.id);
+
 };
 
-const share=document.createElement("button");
-share.className="symbol-btn symbol-share";
+const share=
+document.createElement("button");
+
+share.className=
+"symbol-btn symbol-share";
+
 share.title="Invia";
 share.textContent="↗";
 
 share.onclick=e=>{
+
 e.stopPropagation();
+
 inviaLavoro(lavoro);
+
 };
 
-actions.append(complete,urgent,del,share);
+actions.append(
+complete,
+urgent,
+del,
+share
+);
+
 r.appendChild(actions);
 
 return r;
 
 }
 
-function apriSchedaLavoro(id,pagina){
+
+/* PUNTO VENDITA */
+
+function apriPuntoVendita(
+punto,
+categoria
+){
+
+puntoSelezionato=punto;
+categoriaSelezionata=categoria;
+
+addFormAperto=false;
+
+document.getElementById(
+"storePageName"
+).textContent=punto;
+
+document.getElementById(
+"storePageCategory"
+).textContent=categoria;
+
+document.getElementById(
+"lavoroInput"
+).value="";
+
+document.getElementById(
+"noteInput"
+).value="";
+
+document.getElementById(
+"urgenteInput"
+).checked=false;
+
+fotoNuovoLavoro=[];
+
+renderAnteprimeNuovoLavoro();
+
+document.getElementById(
+"addWorkForm"
+)
+.classList.remove("active");
+
+document.getElementById(
+"addWorkToggle"
+).textContent="+";
+
+renderStoreJobs(punto);
+
+mostraPagina("storePage");
+
+}
+
+
+/* LAVORI PUNTO */
+
+function renderStoreJobs(punto){
+
+const c=
+document.getElementById(
+"storeJobs"
+);
+
+c.innerHTML="";
+
+const lista=
+lavori.filter(
+x=>
+x.attivo===true&&
+x.punto===punto&&
+x.completato!==true
+);
+
+if(!lista.length){
+
+c.innerHTML=
+'<div class="empty">Nessun lavoro</div>';
+
+return;
+
+}
+
+lista.forEach(job=>{
+
+c.appendChild(
+creaStoreJobCard(job)
+);
+
+});
+
+}
+
+
+function creaStoreJobCard(lavoro){
+
+const card=
+document.createElement("div");
+
+card.className=
+"job-card job-clickable";
+
+card.onclick=()=>{
+
+apriSchedaLavoro(
+lavoro.id,
+"storePage"
+);
+
+};
+
+const text=
+document.createElement("div");
+
+text.className="job-text";
+
+text.textContent=
+lavoro.testo||"";
+
+card.appendChild(text);
+
+if(lavoro.note){
+
+const note=
+document.createElement("div");
+
+note.className="job-note";
+
+note.textContent=
+"Note: "+lavoro.note;
+
+card.appendChild(note);
+
+}
+
+const actions=
+document.createElement("div");
+
+actions.className="symbol-actions";
+
+actions.style.marginTop="12px";
+
+const complete=
+document.createElement("button");
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.title="Completato";
+complete.textContent="✓";
+
+complete.onclick=e=>{
+
+e.stopPropagation();
+
+completaLavoro(lavoro.id);
+
+};
+
+const urgent=
+document.createElement("button");
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.title=
+lavoro.urgente
+?"Togli urgente"
+:"Segna urgente";
+
+urgent.textContent="!";
+
+urgent.onclick=e=>{
+
+e.stopPropagation();
+
+cambiaUrgente(
+lavoro.id,
+lavoro.urgente===true
+);
+
+};
+
+const del=
+document.createElement("button");
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.title="Elimina";
+del.textContent="×";
+
+del.onclick=e=>{
+
+e.stopPropagation();
+
+eliminaLavoro(lavoro.id);
+
+};
+
+actions.append(
+complete,
+urgent,
+del
+);
+
+card.appendChild(actions);
+
+return card;
+
+}
+
+
+/* FOTO NUOVO LAVORO */
+
+function selezionaFotoNuovoLavoro(){
+
+const input=
+document.getElementById(
+"newPhotoInput"
+);
+
+input.value="";
+
+input.onchange=
+eventoFotoNuovoLavoro;
+
+input.click();
+
+}
+
+
+function eventoFotoNuovoLavoro(e){
+
+const files=[
+...(e.target.files||[])
+];
+
+if(!files.length)return;
+
+files.forEach(file=>{
+
+if(!file.type.startsWith("image/"))
+return;
+
+fotoNuovoLavoro.push(file);
+
+});
+
+renderAnteprimeNuovoLavoro();
+
+}
+
+
+function renderAnteprimeNuovoLavoro(){
+
+const container=
+document.getElementById(
+"addPhotoPreview"
+);
+
+if(!container)return;
+
+container.innerHTML="";
+
+fotoNuovoLavoro.forEach(
+(file,index)=>{
+
+const item=
+document.createElement("div");
+
+item.className=
+"add-photo-item";
+
+const img=
+document.createElement("img");
+
+const url=
+URL.createObjectURL(file);
+
+img.src=url;
+
+img.onload=()=>{
+
+URL.revokeObjectURL(url);
+
+};
+
+const remove=
+document.createElement("button");
+
+remove.className=
+"add-photo-remove";
+
+remove.textContent="×";
+remove.title="Rimuovi foto";
+
+remove.onclick=()=>{
+
+fotoNuovoLavoro.splice(
+index,
+1
+);
+
+renderAnteprimeNuovoLavoro();
+
+};
+
+item.append(
+img,
+remove
+);
+
+container.appendChild(item);
+
+});
+
+}
+
+
+/* AGGIUNGI LAVORO + FOTO */
+
+async function aggiungiLavoro(){
+
+if(!puntoSelezionato)return;
+
+const lavoroInput=
+document.getElementById(
+"lavoroInput"
+);
+
+const noteInput=
+document.getElementById(
+"noteInput"
+);
+
+const urgentInput=
+document.getElementById(
+"urgenteInput"
+);
+
+const button=
+document.getElementById(
+"addWorkButton"
+);
+
+const testo=
+lavoroInput.value.trim();
+
+const note=
+noteInput.value.trim();
+
+const urgente=
+urgentInput.checked;
+
+if(!testo){
+
+alert(
+"Inserisci il lavoro da fare."
+);
+
+lavoroInput.focus();
+
+return;
+
+}
+
+button.disabled=true;
+button.textContent="Salvataggio...";
+
+try{
+
+if(!auth.currentUser){
+
+await auth.signInAnonymously();
+
+}
+
+const riferimento=
+await db
+.collection("lavori")
+.add({
+
+punto:puntoSelezionato,
+testo,
+note,
+completato:false,
+attivo:true,
+urgente,
+
+creatoDa:
+auth.currentUser?
+auth.currentUser.uid:"",
+
+creatoIl:
+firebase.firestore
+.FieldValue
+.serverTimestamp(),
+
+completatoIl:null,
+
+foto:[]
+
+});
+
+const fotoCaricate=[];
+
+for(
+const file of fotoNuovoLavoro
+){
+
+try{
+
+const blob=
+await comprimiFoto(file);
+
+const path=
+"lavori/"+
+riferimento.id+
+"/"+
+Date.now()+
+"-"+
+Math.random()
+.toString(36)
+.slice(2,10)+
+".jpg";
+
+const up=
+await supabaseClient
+.storage
+.from(SUPABASE_BUCKET)
+.upload(
+path,
+blob,
+{
+contentType:"image/jpeg",
+cacheControl:"3600",
+upsert:false
+}
+);
+
+if(up.error)
+throw up.error;
+
+fotoCaricate.push(path);
+
+}catch(photoError){
+
+console.error(
+"Errore caricamento foto:",
+photoError
+);
+
+}
+
+}
+
+if(fotoCaricate.length){
+
+await db
+.collection("lavori")
+.doc(riferimento.id)
+.update({
+
+foto:fotoCaricate
+
+});
+
+}
+
+lavoroInput.value="";
+noteInput.value="";
+urgentInput.checked=false;
+
+fotoNuovoLavoro=[];
+
+renderAnteprimeNuovoLavoro();
+
+addFormAperto=false;
+
+document.getElementById(
+"addWorkForm"
+)
+.classList.remove("active");
+
+document.getElementById(
+"addWorkToggle"
+)
+.textContent="+";
+
+button.disabled=false;
+
+button.textContent=
+"+ Aggiungi lavoro";
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Errore nel salvataggio del lavoro."
+);
+
+button.disabled=false;
+
+button.textContent=
+"+ Aggiungi lavoro";
+
+}
+
+}
+
+
+/* COMPLETA / RIFAI / URGENTE / ELIMINA */
+
+function completaLavoro(id){
+
+db.collection("lavori")
+.doc(id)
+.update({
+
+completato:true,
+
+completatoIl:
+firebase.firestore
+.FieldValue
+.serverTimestamp()
+
+})
+.catch(()=>{
+
+alert(
+"Errore nel completare il lavoro."
+);
+
+});
+
+}
+
+
+function daRifare(id){
+
+db.collection("lavori")
+.doc(id)
+.update({
+
+completato:false,
+completatoIl:null
+
+})
+.catch(()=>{
+
+alert(
+"Errore nel modificare il lavoro."
+);
+
+});
+
+}
+
+
+function cambiaUrgente(
+id,
+giaUrgente
+){
+
+db.collection("lavori")
+.doc(id)
+.update({
+
+urgente:!giaUrgente
+
+})
+.catch(()=>{
+
+alert(
+"Errore nella modifica dell'urgenza."
+);
+
+});
+
+}
+
+
+function eliminaLavoro(id){
+
+if(
+!confirm(
+"Vuoi eliminare questo lavoro?"
+)
+)
+return;
+
+db.collection("lavori")
+.doc(id)
+.update({
+
+attivo:false
+
+})
+.catch(()=>{
+
+alert(
+"Errore nell'eliminazione."
+);
+
+});
+
+}
+
+
+/* URGENTI */
+
+function renderUrgentJobs(lista){
+
+const c=
+document.getElementById(
+"urgentJobs"
+);
+
+c.innerHTML="";
+
+if(!lista.length){
+
+c.innerHTML=
+'<div class="empty">Nessun lavoro urgente.</div>';
+
+return;
+
+}
+
+Object.keys(puntiVendita)
+.forEach(cat=>{
+
+const punti=
+puntiVendita[cat];
+
+const catJobs=
+lista.filter(
+x=>punti.includes(x.punto)
+);
+
+if(!catJobs.length)return;
+
+const t=
+document.createElement("div");
+
+t.className="group-title";
+t.textContent=cat;
+
+c.appendChild(t);
+
+punti.forEach(punto=>{
+
+const jobs=
+catJobs.filter(
+x=>x.punto===punto
+);
+
+if(!jobs.length)return;
+
+const g=
+document.createElement("div");
+
+g.className=
+"todo-store-group";
+
+const h=
+document.createElement("div");
+
+h.className=
+"urgent-store-header";
+
+const n=
+document.createElement("div");
+
+n.className=
+"urgent-store-name";
+
+n.textContent=punto;
+
+const num=
+document.createElement("div");
+
+num.className=
+"urgent-store-count";
+
+num.textContent=
+jobs.length;
+
+h.append(n,num);
+
+g.appendChild(h);
+
+jobs.forEach(job=>{
+
+const r=
+document.createElement("div");
+
+r.className=
+"urgent-job-row job-clickable";
+
+r.onclick=()=>{
+
+apriSchedaLavoro(
+job.id,
+"urgentPage"
+);
+
+};
+
+const dot=
+document.createElement("div");
+
+dot.className=
+"urgent-job-dot";
+
+const content=
+document.createElement("div");
+
+content.className=
+"urgent-job-content";
+
+const text=
+document.createElement("div");
+
+text.className=
+"urgent-job-text";
+
+text.textContent=
+job.testo||"";
+
+content.appendChild(text);
+
+if(job.note){
+
+const note=
+document.createElement("div");
+
+note.className=
+"urgent-job-note";
+
+note.textContent=
+"Note: "+job.note;
+
+content.appendChild(note);
+
+}
+
+const actions=
+document.createElement("div");
+
+actions.className=
+"symbol-actions";
+
+const complete=
+document.createElement("button");
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.textContent="✓";
+complete.title="Completato";
+
+complete.onclick=e=>{
+
+e.stopPropagation();
+
+completaLavoro(
+job.id
+);
+
+};
+
+const urgent=
+document.createElement("button");
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.textContent="!";
+urgent.title="Togli urgente";
+
+urgent.onclick=e=>{
+
+e.stopPropagation();
+
+cambiaUrgente(
+job.id,
+true
+);
+
+};
+
+const del=
+document.createElement("button");
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.textContent="×";
+del.title="Elimina";
+
+del.onclick=e=>{
+
+e.stopPropagation();
+
+eliminaLavoro(
+job.id
+);
+
+};
+
+const share=
+document.createElement("button");
+
+share.className=
+"symbol-btn symbol-share";
+
+share.textContent="↗";
+share.title="Invia";
+
+share.onclick=e=>{
+
+e.stopPropagation();
+
+inviaLavoro(job);
+
+};
+
+actions.append(
+complete,
+urgent,
+del,
+share
+);
+
+r.append(
+dot,
+content,
+actions
+);
+
+g.appendChild(r);
+
+});
+
+c.appendChild(g);
+
+});
+
+});
+
+}
+
+
+/* COMPLETATI */
+
+function renderCompletedJobs(lista){
+
+const c=
+document.getElementById(
+"completedJobs"
+);
+
+c.innerHTML="";
+
+aggiornaTitoloMeseCompletati();
+
+if(!lista.length){
+
+c.innerHTML=
+'<div class="empty">Nessun lavoro completato in questo mese.</div>';
+
+return;
+
+}
+
+Object.keys(puntiVendita)
+.forEach(cat=>{
+
+const punti=
+puntiVendita[cat];
+
+const catJobs=
+lista.filter(
+x=>punti.includes(x.punto)
+);
+
+if(!catJobs.length)return;
+
+const t=
+document.createElement("div");
+
+t.className=
+"group-title";
+
+t.textContent=cat;
+
+c.appendChild(t);
+
+punti.forEach(punto=>{
+
+const jobs=
+catJobs.filter(
+x=>x.punto===punto
+);
+
+if(!jobs.length)return;
+
+const g=
+document.createElement("div");
+
+g.className=
+"completed-job";
+
+const h=
+document.createElement("div");
+
+h.className=
+"completed-store-header";
+
+const n=
+document.createElement("div");
+
+n.className=
+"completed-store-name";
+
+n.textContent=punto;
+
+const num=
+document.createElement("div");
+
+num.className=
+"completed-store-count";
+
+num.textContent=
+jobs.length;
+
+h.append(n,num);
+
+g.appendChild(h);
+
+jobs.forEach(job=>{
+
+const r=
+document.createElement("div");
+
+r.className=
+"completed-job-row job-clickable";
+
+r.onclick=()=>{
+
+apriSchedaLavoro(
+job.id,
+"completedPage"
+);
+
+};
+
+const check=
+document.createElement("div");
+
+check.className=
+"completed-check";
+
+check.textContent="✓";
+
+const content=
+document.createElement("div");
+
+content.className=
+"completed-job-content";
+
+const text=
+document.createElement("div");
+
+text.className=
+"completed-job-text";
+
+text.textContent=
+job.testo||"";
+
+content.appendChild(text);
+
+if(job.note){
+
+const note=
+document.createElement("div");
+
+note.className=
+"completed-job-note";
+
+note.textContent=
+"Note: "+job.note;
+
+content.appendChild(note);
+
+}
+
+const actions=
+document.createElement("div");
+
+actions.className=
+"symbol-actions";
+
+const redo=
+document.createElement("button");
+
+redo.className=
+"symbol-btn symbol-redo";
+
+redo.title="Da rifare";
+redo.textContent="↻";
+
+redo.onclick=e=>{
+
+e.stopPropagation();
+
+daRifare(
+job.id
+);
+
+};
+
+const del=
+document.createElement("button");
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.title="Elimina";
+del.textContent="×";
+
+del.onclick=e=>{
+
+e.stopPropagation();
+
+eliminaLavoro(
+job.id
+);
+
+};
+
+actions.append(
+redo,
+del
+);
+
+r.append(
+check,
+content,
+actions
+);
+
+g.appendChild(r);
+
+});
+
+c.appendChild(g);
+
+});
+
+});
+
+}
+
+
+/* CONDIVIDI ELENCO DEL MESE - SOLO TESTO */
+
+async function condividiElencoCompletati(){
+
+const lista=
+listaCompletatiDelMese();
+
+const mese=
+nomeMeseCompletati(
+meseCompletatiVisualizzato
+);
+
+let testo=
+"EDISERVICE\n"+
+"LAVORI COMPLETATI\n\n"+
+mese+
+" "+
+annoCompletatiVisualizzato+
+"\n\n";
+
+if(!lista.length){
+
+testo+=
+"Nessun lavoro completato in questo mese.\n\n"+
+"Totale: 0 lavori completati";
+
+}else{
+
+Object.keys(puntiVendita)
+.forEach(cat=>{
+
+const punti=
+puntiVendita[cat];
+
+const catJobs=
+lista.filter(
+x=>punti.includes(x.punto)
+);
+
+if(!catJobs.length)return;
+
+testo+=
+cat+
+"\n\n";
+
+punti.forEach(punto=>{
+
+const jobs=
+catJobs.filter(
+x=>x.punto===punto
+);
+
+if(!jobs.length)return;
+
+testo+=
+punto+
+" ("+
+jobs.length+
+")\n";
+
+jobs.forEach(job=>{
+
+testo+=
+"✓ "+
+(job.testo||
+"Lavoro senza descrizione");
+
+if(
+(job.note||"").trim()
+){
+
+testo+=
+"\n  Note: "+
+job.note.trim();
+
+}
+
+if(job.completatoIl){
+
+testo+=
+"\n  Completato il: "+
+formatDataOra(
+job.completatoIl
+);
+
+}
+
+testo+="\n";
+
+});
+
+testo+="\n";
+
+});
+
+});
+
+testo+=
+"Totale: "+
+lista.length+
+(
+lista.length===1
+?" lavoro completato"
+:" lavori completati"
+);
+
+}
+
+try{
+
+if(navigator.share){
+
+await navigator.share({
+
+title:
+"EDISERVICE - Lavori completati",
+
+text:testo
+
+});
+
+return;
+
+}
+
+if(navigator.clipboard){
+
+await navigator.clipboard.writeText(
+testo
+);
+
+alert(
+"Elenco copiato negli appunti."
+);
+
+return;
+
+}
+
+prompt(
+"Copia questo elenco:",
+testo
+);
+
+}catch(error){
+
+if(
+error&&
+error.name==="AbortError"
+)
+return;
+
+console.error(
+"Errore condivisione:",
+error
+);
+
+try{
+
+await navigator.clipboard.writeText(
+testo
+);
+
+alert(
+"Elenco copiato negli appunti."
+);
+
+}catch(e){
+
+prompt(
+"Copia questo elenco:",
+testo
+);
+
+}
+
+}
+
+}
+
+
+/* SCHEDA LAVORO */
+
+function apriSchedaLavoro(
+id,
+origine
+){
 
 const lavoro=
-lavori.find(x=>x.id===id);
+lavori.find(
+x=>x.id===id
+);
 
 if(!lavoro)return;
 
 lavoroFotoAperto=lavoro;
+
 paginaPrecedenteScheda=
-pagina||"todoPage";
+origine||
+"todoPage";
 
 modificaSchedaAttiva=false;
 
 document.getElementById(
 "photoDetailStore"
-).textContent=
+)
+.textContent=
 lavoro.punto||"";
 
 document.getElementById(
 "photoDetailTitle"
-).textContent=
+)
+.textContent=
 lavoro.testo||"";
 
 document.getElementById(
 "photoDetailCreated"
-).textContent=
+)
+.textContent=
 lavoro.creatoIl
-?"Inserito il "+formatDataOra(lavoro.creatoIl)
-:"";
+?
+"Inserito il "+
+formatDataOra(
+lavoro.creatoIl
+)
+:
+"Inserito il: data non ancora disponibile";
 
 document.getElementById(
 "photoDetailCompleted"
-).textContent=
+)
+.textContent=
+lavoro.completato===true&&
 lavoro.completatoIl
-?"Completato il "+formatDataOra(lavoro.completatoIl)
+?
+"Completato il "+
+formatDataOra(
+lavoro.completatoIl
+)
 :"";
 
 document.getElementById(
-"photoDetailNoteInput"
-).value=
-lavoro.note||"";
+"photoDetailNoteRead"
+)
+.textContent=
+lavoro.note&&
+lavoro.note.trim()
+?
+lavoro.note
+:
+"Nessuna nota.";
 
 document.getElementById(
-"photoDetailNoteRead"
-).textContent=
-lavoro.note||"Nessuna nota.";
+"photoDetailNoteInput"
+)
+.value=
+lavoro.note||"";
 
 impostaVisualizzazioneScheda();
 
@@ -1103,58 +3380,89 @@ mostraPagina(
 "photoDetailPage"
 );
 
+renderFotoLavoro();
+
 }
+
+
+/* AGGIORNA SCHEDA */
 
 function aggiornaSchedaAperta(){
 
-if(!lavoroFotoAperto)
-return;
+if(!lavoroFotoAperto)return;
+
+const lavoro=
+lavoroFotoAperto;
 
 document.getElementById(
 "photoDetailStore"
-).textContent=
-lavoroFotoAperto.punto||"";
+)
+.textContent=
+lavoro.punto||"";
 
 document.getElementById(
 "photoDetailTitle"
-).textContent=
-lavoroFotoAperto.testo||"";
+)
+.textContent=
+lavoro.testo||"";
 
 document.getElementById(
 "photoDetailCreated"
-).textContent=
-lavoroFotoAperto.creatoIl
-?"Inserito il "+
-formatDataOra(lavoroFotoAperto.creatoIl)
-:"";
+)
+.textContent=
+lavoro.creatoIl
+?
+"Inserito il "+
+formatDataOra(
+lavoro.creatoIl
+)
+:
+"Inserito il: data non ancora disponibile";
 
 document.getElementById(
 "photoDetailCompleted"
-).textContent=
-lavoroFotoAperto.completatoIl
-?"Completato il "+
-formatDataOra(lavoroFotoAperto.completatoIl)
+)
+.textContent=
+lavoro.completato===true&&
+lavoro.completatoIl
+?
+"Completato il "+
+formatDataOra(
+lavoro.completatoIl
+)
 :"";
 
-document.getElementById(
-"photoDetailNoteInput"
-).value=
-lavoroFotoAperto.note||"";
+if(!modificaSchedaAttiva){
 
 document.getElementById(
 "photoDetailNoteRead"
-).textContent=
-lavoroFotoAperto.note||
+)
+.textContent=
+lavoro.note&&
+lavoro.note.trim()
+?
+lavoro.note
+:
 "Nessuna nota.";
+
+document.getElementById(
+"photoDetailNoteInput"
+)
+.value=
+lavoro.note||"";
+
+}
 
 renderFotoLavoro();
 
 }
 
+
+/* MODIFICA */
+
 function attivaModificaScheda(){
 
-if(!lavoroFotoAperto)
-return;
+if(!lavoroFotoAperto)return;
 
 modificaSchedaAttiva=true;
 
@@ -1186,6 +3494,7 @@ document.getElementById(
 renderFotoLavoro();
 
 }
+
 
 function impostaVisualizzazioneScheda(){
 
@@ -1220,24 +3529,25 @@ renderFotoLavoro();
 
 }
 
+
 function annullaModificaScheda(){
 
-if(!lavoroFotoAperto)
-return;
+if(!lavoroFotoAperto)return;
 
 document.getElementById(
 "photoDetailNoteInput"
-).value=
+)
+.value=
 lavoroFotoAperto.note||"";
 
 impostaVisualizzazioneScheda();
 
 }
 
+
 async function salvaModificheScheda(){
 
-if(!lavoroFotoAperto)
-return;
+if(!lavoroFotoAperto)return;
 
 const input=
 document.getElementById(
@@ -1249,19 +3559,21 @@ input.value.trim();
 
 try{
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoroFotoAperto.id)
 .update({
 note:note
 });
 
-lavoroFotoAperto.note=
-note;
+lavoroFotoAperto.note=note;
 
 document.getElementById(
 "photoDetailNoteRead"
-).textContent=
-note||"Nessuna nota.";
+)
+.textContent=
+note||
+"Nessuna nota.";
 
 impostaVisualizzazioneScheda();
 
@@ -1280,6 +3592,9 @@ alert(
 }
 
 }
+
+
+/* CHIUDI SCHEDA */
 
 function chiudiSchedaLavoro(){
 
@@ -1322,19 +3637,25 @@ return;
 
 }
 
-mostraPagina(
-pagina
-);
+mostraPagina(pagina);
 
 }
+
+
+/* FOTO */
 
 function fotoPaths(lavoro){
 
-return Array.isArray(lavoro.foto)
-?lavoro.foto
-:[];
+return Array.isArray(
+lavoro.foto
+)
+?
+lavoro.foto
+:
+[];
 
 }
+
 
 function renderFotoLavoro(){
 
@@ -1386,14 +3707,14 @@ del.className=
 "photo-thumb-delete"+
 (
 modificaSchedaAttiva
-?" editing"
-:""
+?
+" editing"
+:
+""
 );
 
 del.textContent="×";
-
-del.title=
-"Elimina foto";
+del.title="Elimina foto";
 
 del.onclick=e=>{
 
@@ -1428,16 +3749,18 @@ img.src=url;
 
 }
 
+
+/* SIGNED URL */
+
 async function getSignedUrl(path){
 
-if(!path)
-return null;
+if(!path)return null;
 
 const cached=
 signedUrlCache.get(path);
 
 if(
-cached &&
+cached&&
 cached.expires>Date.now()
 )
 return cached.url;
@@ -1466,7 +3789,8 @@ signedUrlCache.set(
 path,
 {
 url:data.signedUrl,
-expires:Date.now()+3500*1000
+expires:
+Date.now()+3500*1000
 }
 );
 
@@ -1474,10 +3798,13 @@ return data.signedUrl;
 
 }
 
+
+/* AGGIUNGI FOTO */
+
 function selezionaFoto(){
 
 if(
-!lavoroFotoAperto ||
+!lavoroFotoAperto||
 !modificaSchedaAttiva
 )
 return;
@@ -1496,13 +3823,15 @@ input.click();
 
 }
 
+
 async function caricaFoto(e){
 
-const files=
-[...(e.target.files||[])];
+const files=[
+...(e.target.files||[])
+];
 
 if(
-!files.length ||
+!files.length||
 !lavoroFotoAperto
 )
 return;
@@ -1517,9 +3846,7 @@ try{
 
 let aggiunte=0;
 
-for(
-const file of files
-){
+for(const file of files){
 
 const blob=
 await comprimiFoto(file);
@@ -1552,12 +3879,14 @@ upsert:false
 if(error)
 throw error;
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayUnion(path)
 
 });
@@ -1568,8 +3897,11 @@ aggiunte++;
 
 alert(
 aggiunte===1
-?"Foto aggiunta."
-:aggiunte+" foto aggiunte."
+?
+"Foto aggiunta."
+:
+aggiunte+
+" foto aggiunte."
 );
 
 }catch(error){
@@ -1585,9 +3917,13 @@ alert(
 
 }
 
+
+/* COMPRESSIONE */
+
 async function comprimiFoto(file){
 
 if(!file.type.startsWith("image/"))
+
 throw new Error(
 "Seleziona un'immagine."
 );
@@ -1607,7 +3943,8 @@ img.onload=res;
 img.onerror=rej;
 img.src=url;
 
-});
+}
+);
 
 let w=
 img.naturalWidth;
@@ -1617,7 +3954,10 @@ img.naturalHeight;
 
 const max=1600;
 
-if(w>max||h>max){
+if(
+w>max||
+h>max
+){
 
 if(w>=h){
 
@@ -1676,6 +4016,9 @@ URL.revokeObjectURL(url);
 
 }
 
+
+/* FOTO GRANDE */
+
 async function apriFotoGrande(path){
 
 fotoCorrente=path;
@@ -1683,55 +4026,59 @@ fotoCorrente=path;
 const url=
 await getSignedUrl(path);
 
-if(!url)
-return;
+if(!url)return;
 
 document.getElementById(
 "photoModalImage"
-).src=url;
+)
+.src=url;
 
 document.getElementById(
 "photoModalActions"
-).classList.toggle(
+)
+.classList.toggle(
 "editing",
 modificaSchedaAttiva
 );
 
 document.getElementById(
 "photoModal"
-).classList.add(
-"active"
-);
+)
+.classList.add("active");
 
 }
+
 
 function chiudiFotoGrande(event){
 
 if(
-event &&
+event&&
 event.target!==event.currentTarget
 )
 return;
 
 document.getElementById(
 "photoModal"
-).classList.remove(
-"active"
-);
+)
+.classList.remove("active");
 
 document.getElementById(
 "photoModalImage"
-).src="";
+)
+.src="";
 
 fotoCorrente=null;
 
 }
 
+
+/* SOSTITUISCI FOTO */
+
 function sostituisciFotoCorrente(){
 
 if(
-!fotoCorrente ||
-!lavoroFotoAperto ||
+!fotoCorrente||
+!lavoroFotoAperto||
 !modificaSchedaAttiva
 )
 return;
@@ -1750,15 +4097,16 @@ input.click();
 
 }
 
+
 async function eseguiSostituzioneFoto(e){
 
 const file=
 e.target.files?.[0];
 
 if(
-!file ||
-!fotoCorrente ||
-!lavoroFotoAperto ||
+!file||
+!fotoCorrente||
+!lavoroFotoAperto||
 !modificaSchedaAttiva
 )
 return;
@@ -1802,22 +4150,26 @@ upsert:false
 if(up.error)
 throw up.error;
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayUnion(newPath)
 
 });
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayRemove(oldPath)
 
 });
@@ -1825,9 +4177,9 @@ firebase.firestore.FieldValue
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
-.remove(
-[oldPath]
-);
+.remove([
+oldPath
+]);
 
 signedUrlCache.delete(
 oldPath
@@ -1861,11 +4213,14 @@ alert(
 
 }
 
+
+/* ELIMINA FOTO */
+
 async function eliminaFoto(path){
 
 if(
-!lavoroFotoAperto ||
-!modificaSchedaAttiva ||
+!lavoroFotoAperto||
+!modificaSchedaAttiva||
 !confirm(
 "Vuoi eliminare questa foto?"
 )
@@ -1881,26 +4236,26 @@ const {error}=
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
-.remove(
-[path]
-);
+.remove([
+path
+]);
 
 if(error)
 throw error;
 
-await db.collection("lavori")
+await db
+.collection("lavori")
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore.FieldValue
+firebase.firestore
+.FieldValue
 .arrayRemove(path)
 
 });
 
-signedUrlCache.delete(
-path
-);
+signedUrlCache.delete(path);
 
 lavoro.foto=
 fotoPaths(lavoro)
@@ -1908,7 +4263,9 @@ fotoPaths(lavoro)
 x=>x!==path
 );
 
-if(fotoCorrente===path)
+if(
+fotoCorrente===path
+)
 chiudiFotoGrande();
 
 renderFotoLavoro();
@@ -1926,6 +4283,7 @@ alert(
 
 }
 
+
 async function eliminaFotoCorrente(){
 
 if(!modificaSchedaAttiva)
@@ -1938,24 +4296,31 @@ fotoCorrente
 
 }
 
+
+/* CONDIVIDI LAVORO */
+
 async function inviaLavoro(lavoro){
 
-if(!lavoro)
-return;
+if(!lavoro)return;
 
 const stato=
 lavoro.urgente===true
-?"URGENTE"
-:lavoro.completato===true
-?"COMPLETATO"
-:"DA FARE";
+?
+"URGENTE"
+:
+lavoro.completato===true
+?
+"COMPLETATO"
+:
+"DA FARE";
 
 let testo=
 "EDISERVICE\n\n";
 
 testo+=
 "PUNTO VENDITA: "+
-(lavoro.punto||"Non specificato")+
+(lavoro.punto||
+"Non specificato")+
 "\n\n";
 
 testo+=
@@ -2004,8 +4369,10 @@ const files=[];
 
 const paths=
 Array.isArray(lavoro.foto)
-?lavoro.foto
-:[];
+?
+lavoro.foto
+:
+[];
 
 for(
 let i=0;
@@ -2020,8 +4387,7 @@ await getSignedUrl(
 paths[i]
 );
 
-if(!url)
-continue;
+if(!url)continue;
 
 const response=
 await fetch(url);
@@ -2059,25 +4425,33 @@ photoError
 }
 
 if(
-files.length &&
-navigator.canShare &&
-navigator.canShare({files})
+files.length&&
+navigator.canShare&&
+navigator.canShare({
+files
+})
 ){
 
 await navigator.share({
+
 text:testo,
 files:files
+
 });
 
 }else{
 
 await navigator.share({
+
 text:testo
+
 });
 
 }
 
-}else if(navigator.clipboard){
+}else if(
+navigator.clipboard
+){
 
 await navigator.clipboard
 .writeText(testo);
@@ -2098,7 +4472,7 @@ testo
 }catch(error){
 
 if(
-error &&
+error&&
 error.name==="AbortError"
 )
 return;
@@ -2127,6 +4501,9 @@ testo
 
 }
 
+
+/* NAVIGAZIONE */
+
 document.getElementById(
 "btnLavoriDaFare"
 )
@@ -2138,7 +4515,9 @@ mostraPagina(
 "todoPage"
 );
 
-});
+}
+);
+
 
 document.getElementById(
 "btnUrgenti"
@@ -2151,7 +4530,9 @@ mostraPagina(
 "urgentPage"
 );
 
-});
+}
+);
+
 
 document.getElementById(
 "btnCompletati"
@@ -2170,13 +4551,18 @@ mostraPagina(
 "completedPage"
 );
 
-});
+}
+);
+
 
 document.getElementById(
 "clearSearch"
 )
 .onclick=
 cancellaRicerca;
+
+
+/* AVVIO */
 
 creaPuntiVendita();
 
