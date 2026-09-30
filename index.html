@@ -1270,6 +1270,80 @@ lavoro.attivo!==true ||
 lavoro.completato!==true
 )return false;
 
+
+/* DATA DI COMPLETAMENTO */
+const dataCompletamento=
+dataCompletamentoValida(lavoro);
+
+
+/*
+Se il lavoro ha la data di completamento,
+usiamo quella.
+*/
+if(dataCompletamento){
+
+return(
+dataCompletamento.getMonth()===
+meseCompletatiVisualizzato &&
+dataCompletamento.getFullYear()===
+annoCompletatiVisualizzato
+);
+
+}
+
+
+/*
+I lavori completati prima dell'introduzione
+della data completamento:
+
+se hanno la data di inserimento,
+usiamo quella come riferimento.
+*/
+let dataInserimento=null;
+
+if(lavoro.creatoIl){
+
+if(typeof lavoro.creatoIl.toDate==="function"){
+
+dataInserimento=lavoro.creatoIl.toDate();
+
+}else{
+
+dataInserimento=new Date(lavoro.creatoIl);
+
+}
+
+}
+
+
+if(
+dataInserimento &&
+!isNaN(dataInserimento.getTime())
+){
+
+return(
+dataInserimento.getMonth()===
+meseCompletatiVisualizzato &&
+dataInserimento.getFullYear()===
+annoCompletatiVisualizzato
+);
+
+}
+
+
+/*
+Vecchi lavori completati senza
+nessuna data: settembre 2026.
+*/
+return(
+meseCompletatiVisualizzato===8 &&
+annoCompletatiVisualizzato===2026
+);
+
+});
+
+}
+
 const data=dataCompletamentoValida(lavoro);
 
 /* I vecchi lavori completati senza data appartengono a SETTEMBRE 2026. */
