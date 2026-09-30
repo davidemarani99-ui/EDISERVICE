@@ -714,25 +714,79 @@ text-align:center;
 font-size:13px;
 font-weight:700;
 color:#777;
-margin:0 0 18px
+margin:0 0 8px
 }
 
-.completed-export-bar{
+/* MENU 3 PUNTINI */
+
+.completed-menu-wrap{
+position:relative;
 display:flex;
-gap:10px;
+justify-content:flex-end;
 margin:0 0 18px
 }
 
-.completed-export-button{
-flex:1;
+.completed-menu-button{
+width:48px;
+height:48px;
 border:0;
-border-radius:12px;
-padding:13px 10px;
-background:#222;
-color:#fff;
-font-weight:800;
-font-size:15px;
+border-radius:15px;
+background:#f1f1f1;
+color:#222;
+font-size:29px;
+font-weight:900;
+line-height:1;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 2px 7px rgba(0,0,0,.08)
+}
+
+.completed-menu-button:active{
+transform:scale(.92)
+}
+
+.completed-menu{
+position:absolute;
+right:0;
+top:56px;
+width:190px;
+background:#fff;
+border-radius:16px;
+box-shadow:0 5px 20px rgba(0,0,0,.18);
+overflow:hidden;
+display:none;
+z-index:50
+}
+
+.completed-menu.active{
+display:block
+}
+
+.completed-menu-item{
+width:100%;
+border:0;
+background:#fff;
+padding:15px 17px;
+text-align:left;
+font-size:16px;
+font-weight:750;
+color:#222;
+display:flex;
+align-items:center;
+gap:12px;
 cursor:pointer
+}
+
+.completed-menu-item:active{
+background:#f2f2f2
+}
+
+.completed-menu-icon{
+width:24px;
+text-align:center;
+font-size:19px
 }
 
 .completed-store-name{
@@ -1517,16 +1571,52 @@ class="completed-month-count"
 0 lavori completati
 </div>
 
-<div class="completed-export-bar">
+
+<!-- MENU 3 PUNTINI -->
+
+<div class="completed-menu-wrap">
 
 <button
-class="completed-export-button"
-onclick="condividiElencoCompletati()"
+class="completed-menu-button"
+onclick="toggleMenuCompletati(event)"
+aria-label="Menu"
 >
-Condividi elenco
+⋮
+</button>
+
+<div
+id="completedMenu"
+class="completed-menu"
+>
+
+<button
+class="completed-menu-item"
+onclick="inoltraElencoCompletati()"
+>
+<span class="completed-menu-icon">↗</span>
+<span>Inoltra</span>
+</button>
+
+<button
+class="completed-menu-item"
+onclick="salvaElencoCompletati()"
+>
+<span class="completed-menu-icon">💾</span>
+<span>Salva</span>
+</button>
+
+<button
+class="completed-menu-item"
+onclick="scaricaElencoCompletati()"
+>
+<span class="completed-menu-icon">⬇</span>
+<span>Scarica</span>
 </button>
 
 </div>
+
+</div>
+
 
 <div id="completedJobs"></div>
 
@@ -1738,7 +1828,7 @@ Elimina
 
 const firebaseConfig={
 
-apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+apiKey:"AIzaSyC4XklYPSktX4SlolgQRlkkQG4vveJ_xY",
 
 authDomain:"ediservice-bb88c.firebaseapp.com",
 
@@ -2302,8 +2392,6 @@ annoCompletatiVisualizzato=
 ultima.getFullYear();
 
 }else{
-
-/* Se esistono solo vecchi completati senza data, settembre 2026. */
 
 meseCompletatiVisualizzato=8;
 
@@ -4196,9 +4284,43 @@ c.appendChild(g);
 }
 
 
-/* CONDIVIDI ELENCO DEL MESE */
+/* MENU ELENCO COMPLETATI */
 
-async function condividiElencoCompletati(){
+function toggleMenuCompletati(event){
+
+if(event)
+event.stopPropagation();
+
+const menu=
+document.getElementById(
+"completedMenu"
+);
+
+if(menu)
+menu.classList.toggle("active");
+
+}
+
+
+document.addEventListener(
+"click",
+function(){
+
+const menu=
+document.getElementById(
+"completedMenu"
+);
+
+if(menu)
+menu.classList.remove("active");
+
+}
+);
+
+
+/* CREA TESTO ELENCO COMPLETATI */
+
+function creaTestoElencoCompletati(){
 
 const lista=
 listaCompletatiDelMese();
@@ -4207,7 +4329,6 @@ const mese=
 nomeMeseCompletati(
 meseCompletatiVisualizzato
 );
-
 
 let testo=
 "EDISERVICE\n"+
@@ -4319,6 +4440,136 @@ lista.length===1
 
 }
 
+return testo;
+
+}
+
+
+/* CHIUDI MENU */
+
+function chiudiMenuCompletati(){
+
+const menu=
+document.getElementById(
+"completedMenu"
+);
+
+if(menu)
+menu.classList.remove("active");
+
+}
+
+
+/* INOLTRA */
+
+async function inoltraElencoCompletati(){
+
+chiudiMenuCompletati();
+
+await condividiElencoCompletati();
+
+}
+
+
+/* SALVA */
+
+async function salvaElencoCompletati(){
+
+chiudiMenuCompletati();
+
+const testo=
+creaTestoElencoCompletati();
+
+try{
+
+localStorage.setItem(
+"ediservice_elenco_completati",
+testo
+);
+
+alert(
+"Elenco salvato."
+);
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Impossibile salvare l'elenco."
+);
+
+}
+
+}
+
+
+/* SCARICA */
+
+function scaricaElencoCompletati(){
+
+chiudiMenuCompletati();
+
+const testo=
+creaTestoElencoCompletati();
+
+const mese=
+nomeMeseCompletati(
+meseCompletatiVisualizzato
+);
+
+const nomeFile=
+"EDISERVICE_Lavori_Completati_"+
+mese+
+"_"+ 
+annoCompletatiVisualizzato+
+".txt";
+
+
+const blob=
+new Blob(
+[testo],
+{
+type:"text/plain;charset=utf-8"
+}
+);
+
+
+const url=
+URL.createObjectURL(blob);
+
+
+const link=
+document.createElement("a");
+
+link.href=
+url;
+
+link.download=
+nomeFile;
+
+document.body.appendChild(
+link
+);
+
+link.click();
+
+link.remove();
+
+setTimeout(
+()=>URL.revokeObjectURL(url),
+1000
+);
+
+}
+
+
+/* CONDIVIDI ELENCO DEL MESE */
+
+async function condividiElencoCompletati(){
+
+const testo=
+creaTestoElencoCompletati();
 
 try{
 
