@@ -4,22 +4,78 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>EDISERVICE</title>
+
 <link rel="icon" type="image/png" href="ediservice-icon.png">
 <link rel="apple-touch-icon" href="ediservice-icon.png">
 
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0;background:#fff;color:#222;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-button,input,textarea{font-family:inherit}
-.container{max-width:850px;margin:auto;padding:20px}
-.header{text-align:center;padding:10px 0 5px;background:#fff}
-.header img{display:block;width:250px;max-width:80%;height:auto;margin:0 auto 10px;background:#fff}
-.firebase-status{margin-top:8px;font-size:13px;font-weight:600}
-.status-ok{color:#2e7d32}.status-error{color:#c62828}
-.page{display:none}.page.active{display:block}
-.photo-detail-page{display:none}.photo-detail-page.active{display:block}
 
-.summary,.urgent-folder,.completed-folder{
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent
+}
+
+html,body{
+margin:0;
+padding:0;
+background:#fff;
+color:#222;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
+}
+
+button,input,textarea{
+font-family:inherit
+}
+
+.container{
+max-width:850px;
+margin:auto;
+padding:20px
+}
+
+.header{
+text-align:center;
+padding:10px 0 5px;
+background:#fff
+}
+
+.header img{
+display:block;
+width:250px;
+max-width:80%;
+height:auto;
+margin:0 auto 10px;
+background:#fff
+}
+
+.firebase-status{
+margin-top:8px;
+font-size:13px;
+font-weight:600
+}
+
+.status-ok{color:#2e7d32}
+.status-error{color:#c62828}
+
+.page{
+display:none
+}
+
+.page.active{
+display:block
+}
+
+.photo-detail-page{
+display:none
+}
+
+.photo-detail-page.active{
+display:block
+}
+
+.summary,
+.urgent-folder,
+.completed-folder{
 min-height:190px;
 border-radius:28px;
 padding:28px;
@@ -32,17 +88,63 @@ justify-content:space-between;
 transition:.15s
 }
 
-.summary:active,.urgent-folder:active,.completed-folder:active{transform:scale(.98)}
-.summary{background:#555;color:#fff}
-.urgent-folder{background:#ffebee;border:2px solid #e53935;color:#b71c1c}
-.completed-folder{background:#e8f5e9;border:2px solid #43a047;color:#1b5e20}
-.folder-text{flex:1}
-.folder-title{font-size:25px;font-weight:800;margin-bottom:12px}
-.folder-number{font-size:55px;line-height:1;font-weight:900}
-.folder-description{font-size:14px;margin-top:8px;opacity:.85}
-.folder-arrow{font-size:38px;margin-left:15px}
+.summary:active,
+.urgent-folder:active,
+.completed-folder:active{
+transform:scale(.98)
+}
 
-.section-title{font-size:23px;font-weight:800;margin:35px 0 15px;color:#d32f2f}
+.summary{
+background:#555;
+color:#fff
+}
+
+.urgent-folder{
+background:#ffebee;
+border:2px solid #e53935;
+color:#b71c1c
+}
+
+.completed-folder{
+background:#e8f5e9;
+border:2px solid #43a047;
+color:#1b5e20
+}
+
+.folder-text{
+flex:1
+}
+
+.folder-title{
+font-size:25px;
+font-weight:800;
+margin-bottom:12px
+}
+
+.folder-number{
+font-size:55px;
+line-height:1;
+font-weight:900
+}
+
+.folder-description{
+font-size:14px;
+margin-top:8px;
+opacity:.85
+}
+
+.folder-arrow{
+font-size:38px;
+margin-left:15px
+}
+
+.section-title{
+font-size:23px;
+font-weight:800;
+margin:35px 0 15px;
+color:#d32f2f
+}
+
 .group-title{
 display:block;
 width:100%;
@@ -57,7 +159,12 @@ font-weight:900;
 box-shadow:0 2px 7px rgba(0,0,0,.06)
 }
 
-.store-list{display:flex;flex-direction:column;gap:10px}
+.store-list{
+display:flex;
+flex-direction:column;
+gap:10px
+}
+
 .store-button{
 width:100%;
 background:#fff;
@@ -75,8 +182,14 @@ align-items:center;
 justify-content:space-between
 }
 
-.store-button:active{transform:scale(.98)}
-.store-name-text{color:#222}
+.store-button:active{
+transform:scale(.98)
+}
+
+.store-name-text{
+color:#222
+}
+
 .store-count{
 min-width:34px;
 height:34px;
@@ -92,7 +205,13 @@ font-weight:900;
 margin-left:12px
 }
 
-.topbar{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.topbar{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:20px
+}
+
 .back-button{
 background:#e9e9e9;
 color:#222;
@@ -102,7 +221,12 @@ padding:11px 15px;
 font-weight:700;
 cursor:pointer
 }
-.page-title{font-size:24px;font-weight:850;margin:0}
+
+.page-title{
+font-size:24px;
+font-weight:850;
+margin:0
+}
 
 .store-topbar{
 display:flex;
@@ -137,9 +261,15 @@ box-shadow:0 4px 12px rgba(0,0,0,.18);
 flex-shrink:0
 }
 
-.add-work-toggle:active{transform:scale(.94)}
+.add-work-toggle:active{
+transform:scale(.94)
+}
 
-.search-box{position:relative;margin:15px 0 20px}
+.search-box{
+position:relative;
+margin:15px 0 20px
+}
+
 .search-box input{
 width:100%;
 height:52px;
@@ -151,7 +281,12 @@ font-size:16px;
 outline:none;
 box-shadow:0 2px 7px rgba(0,0,0,.05)
 }
-.search-box input:focus{border-color:#d32f2f;background:#fff}
+
+.search-box input:focus{
+border-color:#d32f2f;
+background:#fff
+}
+
 .search-box button{
 position:absolute;
 right:10px;
@@ -169,8 +304,17 @@ display:none;
 cursor:pointer
 }
 
-.store-name{color:#d32f2f;font-size:27px;font-weight:900}
-.store-category{color:#777;font-size:14px;margin-bottom:20px}
+.store-name{
+color:#d32f2f;
+font-size:27px;
+font-weight:900
+}
+
+.store-category{
+color:#777;
+font-size:14px;
+margin-bottom:20px
+}
 
 .form-card{
 background:#fff;
@@ -179,13 +323,27 @@ padding:20px;
 margin:20px 0;
 box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
-.form-card h2{margin-top:0}
-.add-work-form{display:none}
-.add-work-form.active{display:block}
 
-label{display:block;font-weight:700;margin:15px 0 7px}
+.form-card h2{
+margin-top:0
+}
 
-input[type="text"],textarea{
+.add-work-form{
+display:none
+}
+
+.add-work-form.active{
+display:block
+}
+
+label{
+display:block;
+font-weight:700;
+margin:15px 0 7px
+}
+
+input[type="text"],
+textarea{
 width:100%;
 border:1px solid #d5d5d5;
 border-radius:12px;
@@ -195,7 +353,10 @@ background:#fafafa;
 outline:none
 }
 
-textarea{min-height:90px;resize:vertical}
+textarea{
+min-height:90px;
+resize:vertical
+}
 
 .urgent-check{
 display:flex;
@@ -203,7 +364,11 @@ align-items:center;
 gap:10px;
 margin:15px 0
 }
-.urgent-check input{width:20px;height:20px}
+
+.urgent-check input{
+width:20px;
+height:20px
+}
 
 .add-button{
 width:100%;
@@ -216,7 +381,11 @@ font-size:17px;
 font-weight:800;
 cursor:pointer
 }
-.add-button:disabled{opacity:.55;cursor:default}
+
+.add-button:disabled{
+opacity:.55;
+cursor:default
+}
 
 .add-photo-box{
 margin-top:15px;
@@ -224,7 +393,13 @@ padding:15px;
 background:#f7f7f7;
 border-radius:14px
 }
-.add-photo-title{font-size:15px;font-weight:800;margin-bottom:10px}
+
+.add-photo-title{
+font-size:15px;
+font-weight:800;
+margin-bottom:10px
+}
+
 .add-photo-button{
 width:100%;
 border:0;
@@ -235,12 +410,14 @@ color:#222;
 font-weight:800;
 cursor:pointer
 }
+
 .add-photo-preview{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:9px;
 margin-top:12px
 }
+
 .add-photo-item{
 position:relative;
 aspect-ratio:1;
@@ -248,12 +425,14 @@ border-radius:11px;
 overflow:hidden;
 background:#ddd
 }
+
 .add-photo-item img{
 width:100%;
 height:100%;
 object-fit:cover;
 display:block
 }
+
 .add-photo-remove{
 position:absolute;
 right:5px;
@@ -269,7 +448,8 @@ font-weight:800;
 cursor:pointer
 }
 
-.todo-store-group,.completed-job{
+.todo-store-group,
+.completed-job{
 background:#fff;
 border-radius:20px;
 margin:17px 0;
@@ -277,7 +457,8 @@ overflow:hidden;
 box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
 
-.todo-store-header,.completed-store-header{
+.todo-store-header,
+.completed-store-header{
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -286,8 +467,15 @@ background:#fafafa;
 border-bottom:1px solid #e8e8e8
 }
 
-.todo-store-name{color:#d32f2f;font-size:21px;font-weight:900}
-.todo-store-count,.completed-store-count,.urgent-store-count{
+.todo-store-name{
+color:#d32f2f;
+font-size:21px;
+font-weight:900
+}
+
+.todo-store-count,
+.completed-store-count,
+.urgent-store-count{
 min-width:32px;
 height:32px;
 padding:0 9px;
@@ -299,10 +487,26 @@ font-size:14px;
 font-weight:900
 }
 
-.todo-store-count{background:#f1f1f1;color:#d32f2f}
-.todo-job-row{padding:14px;border-bottom:1px solid #eee}
-.todo-job-row:last-child{border-bottom:0}
-.todo-job-main{display:flex;align-items:center;gap:10px}
+.todo-store-count{
+background:#f1f1f1;
+color:#d32f2f
+}
+
+.todo-job-row{
+padding:14px;
+border-bottom:1px solid #eee
+}
+
+.todo-job-row:last-child{
+border-bottom:0
+}
+
+.todo-job-main{
+display:flex;
+align-items:center;
+gap:10px
+}
+
 .todo-job-dot{
 width:8px;
 height:8px;
@@ -310,19 +514,29 @@ min-width:8px;
 border-radius:50%;
 background:#d32f2f
 }
-.todo-job-content{flex:1;min-width:0}
+
+.todo-job-content{
+flex:1;
+min-width:0
+}
+
 .todo-job-text{
 font-size:16px;
 font-weight:700;
 line-height:1.35;
 word-break:break-word
 }
-.todo-job-note,.job-note,.completed-job-note,.urgent-job-note{
+
+.todo-job-note,
+.job-note,
+.completed-job-note,
+.urgent-job-note{
 margin-top:5px;
 color:#777;
 font-size:13px;
 line-height:1.35
 }
+
 .todo-job-urgent{
 display:inline-block;
 background:#e53935;
@@ -357,12 +571,35 @@ cursor:pointer;
 box-shadow:0 1px 3px rgba(0,0,0,.12)
 }
 
-.symbol-btn:active{transform:scale(.88)}
-.symbol-complete{background:#e8f5e9;color:#2e7d32}
-.symbol-urgent{background:#fff3e0;color:#ef6c00}
-.symbol-delete{background:#ffebee;color:#d32f2f}
-.symbol-redo{background:#e3f2fd;color:#1976d2}
-.symbol-share{background:#e3f2fd;color:#1565c0;font-size:15px}
+.symbol-btn:active{
+transform:scale(.88)
+}
+
+.symbol-complete{
+background:#e8f5e9;
+color:#2e7d32
+}
+
+.symbol-urgent{
+background:#fff3e0;
+color:#ef6c00
+}
+
+.symbol-delete{
+background:#ffebee;
+color:#d32f2f
+}
+
+.symbol-redo{
+background:#e3f2fd;
+color:#1976d2
+}
+
+.symbol-share{
+background:#e3f2fd;
+color:#1565c0;
+font-size:15px
+}
 
 .job-card{
 background:#fff;
@@ -371,8 +608,16 @@ padding:18px;
 margin:12px 0;
 box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
-.job-text{font-size:17px;font-weight:650;line-height:1.35}
-.urgent-page-title{color:#d32f2f}
+
+.job-text{
+font-size:17px;
+font-weight:650;
+line-height:1.35
+}
+
+.urgent-page-title{
+color:#d32f2f
+}
 
 .urgent-store-header{
 display:flex;
@@ -382,8 +627,17 @@ padding:16px 18px;
 background:#fff5f5;
 border-bottom:1px solid #f3d1d1
 }
-.urgent-store-name{color:#d32f2f;font-size:21px;font-weight:900}
-.urgent-store-count{background:#ffebee;color:#d32f2f}
+
+.urgent-store-name{
+color:#d32f2f;
+font-size:21px;
+font-weight:900
+}
+
+.urgent-store-count{
+background:#ffebee;
+color:#d32f2f
+}
 
 .urgent-job-row{
 display:flex;
@@ -392,7 +646,11 @@ gap:10px;
 padding:14px;
 border-bottom:1px solid #eee
 }
-.urgent-job-row:last-child{border-bottom:0}
+
+.urgent-job-row:last-child{
+border-bottom:0
+}
+
 .urgent-job-dot{
 width:8px;
 height:8px;
@@ -400,11 +658,18 @@ min-width:8px;
 border-radius:50%;
 background:#e53935
 }
-.urgent-job-content{flex:1;min-width:0}
 
-.completed-page-title{color:#2e7d32}
+.urgent-job-content{
+flex:1;
+min-width:0
+}
+
+.completed-page-title{
+color:#2e7d32
+}
 
 /* ARCHIVIO MENSILE */
+
 .completed-month-bar{
 display:flex;
 align-items:center;
@@ -431,7 +696,10 @@ line-height:1;
 cursor:pointer;
 box-shadow:0 2px 6px rgba(0,0,0,.08)
 }
-.completed-month-button:active{transform:scale(.92)}
+
+.completed-month-button:active{
+transform:scale(.92)
+}
 
 .completed-month-title{
 flex:1;
@@ -467,8 +735,16 @@ font-size:15px;
 cursor:pointer
 }
 
-.completed-store-name{color:#2e7d32;font-size:21px;font-weight:900}
-.completed-store-count{background:#e8f5e9;color:#2e7d32}
+.completed-store-name{
+color:#2e7d32;
+font-size:21px;
+font-weight:900
+}
+
+.completed-store-count{
+background:#e8f5e9;
+color:#2e7d32
+}
 
 .completed-job-row{
 display:flex;
@@ -477,9 +753,23 @@ gap:10px;
 padding:14px;
 border-bottom:1px solid #eee
 }
-.completed-check{color:#2e7d32;font-size:20px;font-weight:900}
-.completed-job-content{flex:1;min-width:0}
-.completed-job-text{font-size:16px;font-weight:650;line-height:1.35}
+
+.completed-check{
+color:#2e7d32;
+font-size:20px;
+font-weight:900
+}
+
+.completed-job-content{
+flex:1;
+min-width:0
+}
+
+.completed-job-text{
+font-size:16px;
+font-weight:650;
+line-height:1.35
+}
 
 .empty{
 background:#fff;
@@ -489,9 +779,20 @@ color:#777;
 text-align:center;
 margin:15px 0
 }
-.loading{text-align:center;padding:30px;color:#777}
-.job-clickable{cursor:pointer}
-.job-clickable:active{opacity:.75}
+
+.loading{
+text-align:center;
+padding:30px;
+color:#777
+}
+
+.job-clickable{
+cursor:pointer
+}
+
+.job-clickable:active{
+opacity:.75
+}
 
 .photo-detail-card{
 background:#fff;
@@ -500,24 +801,28 @@ padding:20px;
 margin:12px 0;
 box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
+
 .photo-detail-store{
 color:#d32f2f;
 font-size:14px;
 font-weight:800;
 margin-bottom:7px
 }
+
 .photo-detail-title{
 font-size:21px;
 font-weight:800;
 line-height:1.35;
 white-space:pre-wrap
 }
+
 .photo-detail-date{
 margin-top:10px;
 color:#777;
 font-size:13px;
 line-height:1.5
 }
+
 .photo-detail-note{
 margin-top:18px;
 color:#777;
@@ -530,6 +835,7 @@ display:flex;
 justify-content:flex-end;
 margin-top:18px
 }
+
 .photo-edit-button{
 border:0;
 border-radius:12px;
@@ -540,8 +846,16 @@ font-weight:800;
 cursor:pointer
 }
 
-.photo-edit-actions{display:none;gap:8px;margin-top:15px}
-.photo-edit-actions.active{display:flex}
+.photo-edit-actions{
+display:none;
+gap:8px;
+margin-top:15px
+}
+
+.photo-edit-actions.active{
+display:flex
+}
+
 .photo-edit-save{
 flex:1;
 border:0;
@@ -552,6 +866,7 @@ color:#1b5e20;
 font-weight:800;
 cursor:pointer
 }
+
 .photo-edit-cancel{
 flex:1;
 border:0;
@@ -563,7 +878,10 @@ font-weight:800;
 cursor:pointer
 }
 
-.photo-notes-box{margin-top:18px}
+.photo-notes-box{
+margin-top:18px
+}
+
 .photo-notes-label{
 display:block;
 font-size:16px;
@@ -571,6 +889,7 @@ font-weight:800;
 margin:0 0 8px;
 color:#222
 }
+
 .photo-notes-input{
 width:100%;
 min-height:120px;
@@ -583,7 +902,11 @@ outline:none;
 resize:vertical;
 display:none
 }
-.photo-notes-input.editing{display:block}
+
+.photo-notes-input.editing{
+display:block
+}
+
 .photo-notes-read{
 display:block;
 padding:13px;
@@ -595,8 +918,16 @@ white-space:pre-wrap;
 min-height:50px
 }
 
-.photo-toolbar{display:none;gap:10px;margin:18px 0 10px}
-.photo-toolbar.editing{display:flex}
+.photo-toolbar{
+display:none;
+gap:10px;
+margin:18px 0 10px
+}
+
+.photo-toolbar.editing{
+display:flex
+}
+
 .photo-add-button{
 flex:1;
 border:0;
@@ -614,6 +945,7 @@ grid-template-columns:repeat(3,1fr);
 gap:10px;
 margin-top:12px
 }
+
 .photo-thumb{
 position:relative;
 aspect-ratio:1;
@@ -623,6 +955,7 @@ background:#f2f2f2;
 box-shadow:0 2px 7px rgba(0,0,0,.08);
 cursor:pointer
 }
+
 .photo-thumb img{
 width:100%;
 height:100%;
@@ -645,7 +978,10 @@ font-size:20px;
 line-height:30px;
 cursor:pointer
 }
-.photo-thumb-delete.editing{display:block}
+
+.photo-thumb-delete.editing{
+display:block
+}
 
 .photo-empty{
 padding:28px 15px;
@@ -666,7 +1002,11 @@ justify-content:center;
 padding:15px;
 z-index:1000
 }
-.photo-modal.active{display:flex}
+
+.photo-modal.active{
+display:flex
+}
+
 .photo-modal-content{
 position:relative;
 width:100%;
@@ -677,6 +1017,7 @@ border-radius:18px;
 padding:12px;
 overflow:auto
 }
+
 .photo-modal-close{
 position:absolute;
 right:10px;
@@ -690,6 +1031,7 @@ font-size:23px;
 font-weight:800;
 z-index:2
 }
+
 .photo-modal-image{
 display:block;
 width:100%;
@@ -698,8 +1040,17 @@ object-fit:contain;
 border-radius:12px;
 background:#111
 }
-.photo-modal-actions{display:none;gap:8px;margin-top:10px}
-.photo-modal-actions.editing{display:flex}
+
+.photo-modal-actions{
+display:none;
+gap:8px;
+margin-top:10px
+}
+
+.photo-modal-actions.editing{
+display:flex
+}
+
 .photo-modal-actions button{
 flex:1;
 border:0;
@@ -707,23 +1058,87 @@ border-radius:10px;
 padding:10px;
 font-weight:800
 }
-.replace-photo{background:#e3f2fd;color:#1976d2}
-.delete-photo{background:#ffebee;color:#d32f2f}
+
+.replace-photo{
+background:#e3f2fd;
+color:#1976d2
+}
+
+.delete-photo{
+background:#ffebee;
+color:#d32f2f
+}
 
 @media(max-width:600px){
-.container{padding:15px}
-.header img{width:230px;max-width:85%}
-.summary,.urgent-folder,.completed-folder{min-height:180px;padding:24px}
-.folder-title{font-size:22px}
-.folder-number{font-size:50px}
-.group-title{font-size:17px;padding:11px 14px;margin-top:24px}
-.store-button{padding:16px;font-size:16px}
-.todo-store-group,.completed-job{border-radius:18px}
-.todo-store-header,.completed-store-header,.urgent-store-header{padding:15px}
-.todo-store-name,.completed-store-name,.urgent-store-name{font-size:19px}
-.todo-job-row,.completed-job-row,.urgent-job-row{padding:13px}
-.todo-job-text,.completed-job-text,.urgent-job-text{font-size:15px}
-.symbol-actions{gap:4px}
+
+.container{
+padding:15px
+}
+
+.header img{
+width:230px;
+max-width:85%
+}
+
+.summary,
+.urgent-folder,
+.completed-folder{
+min-height:180px;
+padding:24px
+}
+
+.folder-title{
+font-size:22px
+}
+
+.folder-number{
+font-size:50px
+}
+
+.group-title{
+font-size:17px;
+padding:11px 14px;
+margin-top:24px
+}
+
+.store-button{
+padding:16px;
+font-size:16px
+}
+
+.todo-store-group,
+.completed-job{
+border-radius:18px
+}
+
+.todo-store-header,
+.completed-store-header,
+.urgent-store-header{
+padding:15px
+}
+
+.todo-store-name,
+.completed-store-name,
+.urgent-store-name{
+font-size:19px
+}
+
+.todo-job-row,
+.completed-job-row,
+.urgent-job-row{
+padding:13px
+}
+
+.todo-job-text,
+.completed-job-text,
+.urgent-job-text{
+font-size:15px
+}
+
+.symbol-actions{
+gap:4px
+}
+
 .symbol-btn{
 width:30px;
 height:30px;
@@ -731,41 +1146,63 @@ min-width:30px;
 font-size:16px;
 border-radius:8px
 }
+
 .add-work-toggle{
 width:56px;
 height:56px;
 font-size:38px;
 border-radius:17px
 }
-.photo-grid,.add-photo-preview{grid-template-columns:repeat(3,1fr)}
-.completed-month-title{font-size:18px}
+
+.photo-grid,
+.add-photo-preview{
+grid-template-columns:repeat(3,1fr)
+}
+
+.completed-month-title{
+font-size:18px
+}
+
 .completed-month-button{
 width:42px;
 height:42px;
 min-width:42px
 }
+
 }
 
 @media(max-width:380px){
+
 .symbol-btn{
 width:28px;
 height:28px;
 min-width:28px;
 font-size:15px
 }
-.symbol-actions{gap:3px;margin-left:5px}
+
+.symbol-actions{
+gap:3px;
+margin-left:5px
+}
+
 .add-work-toggle{
 width:52px;
 height:52px;
 font-size:36px
 }
-.completed-month-title{font-size:16px}
+
+.completed-month-title{
+font-size:16px
+}
+
 .completed-month-button{
 width:40px;
 height:40px;
 min-width:40px
 }
+
 }
+
 </style>
 </head>
 
@@ -776,38 +1213,91 @@ min-width:40px
 <div id="homePage" class="page active">
 
 <div class="header">
+
 <img src="ediservice-icon.png" alt="EDISERVICE">
-<div id="firebaseStatus" class="firebase-status">Connessione Firebase...</div>
+
+<div id="firebaseStatus" class="firebase-status">
+Connessione Firebase...
+</div>
+
 </div>
 
 <div class="summary" id="btnLavoriDaFare">
+
 <div class="folder-text">
-<div class="folder-title">Lavori da fare</div>
-<div class="folder-number" id="totaleDaFare">0</div>
-<div class="folder-description">Lavori ancora da completare</div>
+
+<div class="folder-title">
+Lavori da fare
 </div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-number" id="totaleDaFare">
+0
+</div>
+
+<div class="folder-description">
+Lavori ancora da completare
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
 </div>
 
 <div class="urgent-folder" id="btnUrgenti">
+
 <div class="folder-text">
-<div class="folder-title">Lavori urgenti</div>
-<div class="folder-number" id="totaleUrgenti">0</div>
-<div class="folder-description">Interventi urgenti da completare</div>
+
+<div class="folder-title">
+Lavori urgenti
 </div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-number" id="totaleUrgenti">
+0
+</div>
+
+<div class="folder-description">
+Interventi urgenti da completare
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
 </div>
 
 <div class="completed-folder" id="btnCompletati">
+
 <div class="folder-text">
-<div class="folder-title">Lavori completati</div>
-<div class="folder-number" id="totaleCompletati">0</div>
-<div class="folder-description">Lavori già completati</div>
-</div>
-<div class="folder-arrow">→</div>
+
+<div class="folder-title">
+Lavori completati
 </div>
 
-<div class="section-title">Punti vendita</div>
+<div class="folder-number" id="totaleCompletati">
+0
+</div>
+
+<div class="folder-description">
+Lavori già completati
+</div>
+
+</div>
+
+<div class="folder-arrow">
+→
+</div>
+
+</div>
+
+<div class="section-title">
+Punti vendita
+</div>
+
 <div id="puntiVendita"></div>
 
 </div>
@@ -816,17 +1306,40 @@ min-width:40px
 <div id="todoPage" class="page">
 
 <div class="topbar">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title">Lavori da fare</h2>
+
+<button class="back-button" onclick="showHome()">
+← Indietro
+</button>
+
+<h2 class="page-title">
+Lavori da fare
+</h2>
+
 </div>
 
 <div class="search-box">
-<input type="text" id="searchLavori" placeholder="Cerca punto vendita o lavoro..." oninput="filtraLavori()">
-<button type="button" id="clearSearch" onclick="cancellaRicerca()">×</button>
+
+<input
+type="text"
+id="searchLavori"
+placeholder="Cerca punto vendita o lavoro..."
+oninput="filtraLavori()"
+>
+
+<button
+type="button"
+id="clearSearch"
+onclick="cancellaRicerca()"
+>
+×
+</button>
+
 </div>
 
 <div id="todoJobs">
-<div class="loading">Caricamento...</div>
+<div class="loading">
+Caricamento...
+</div>
 </div>
 
 </div>
@@ -837,41 +1350,87 @@ min-width:40px
 <div class="store-topbar">
 
 <div class="store-topbar-left">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title">Punto vendita</h2>
+
+<button class="back-button" onclick="showHome()">
+← Indietro
+</button>
+
+<h2 class="page-title">
+Punto vendita
+</h2>
+
 </div>
 
-<button class="add-work-toggle" id="addWorkToggle" onclick="toggleAddWorkForm()">+</button>
+<button
+class="add-work-toggle"
+id="addWorkToggle"
+onclick="toggleAddWorkForm()"
+>
++
+</button>
 
 </div>
 
 <div class="store-name" id="storePageName"></div>
+
 <div class="store-category" id="storePageCategory"></div>
 
 <div class="form-card add-work-form" id="addWorkForm">
 
-<h2>Aggiungi lavoro</h2>
+<h2>
+Aggiungi lavoro
+</h2>
 
-<label>Lavoro</label>
-<input id="lavoroInput" type="text" placeholder="Descrivi il lavoro da fare">
+<label>
+Lavoro
+</label>
 
-<label>Note</label>
-<textarea id="noteInput" placeholder="Eventuali note..."></textarea>
+<input
+id="lavoroInput"
+type="text"
+placeholder="Descrivi il lavoro da fare"
+>
+
+<label>
+Note
+</label>
+
+<textarea
+id="noteInput"
+placeholder="Eventuali note..."
+></textarea>
 
 <label class="urgent-check">
-<input type="checkbox" id="urgenteInput">
-<span>Lavoro urgente</span>
+
+<input
+type="checkbox"
+id="urgenteInput"
+>
+
+<span>
+Lavoro urgente
+</span>
+
 </label>
 
 <div class="add-photo-box">
 
-<div class="add-photo-title">Foto del lavoro</div>
+<div class="add-photo-title">
+Foto del lavoro
+</div>
 
-<button type="button" class="add-photo-button" onclick="selezionaFotoNuovoLavoro()">
+<button
+type="button"
+class="add-photo-button"
+onclick="selezionaFotoNuovoLavoro()"
+>
 + Aggiungi foto
 </button>
 
-<div id="addPhotoPreview" class="add-photo-preview"></div>
+<div
+id="addPhotoPreview"
+class="add-photo-preview"
+></div>
 
 </div>
 
@@ -886,7 +1445,9 @@ style="margin-top:15px"
 
 </div>
 
-<div class="section-title">Lavori del punto vendita</div>
+<div class="section-title">
+Lavori del punto vendita
+</div>
 
 <div id="storeJobs"></div>
 
@@ -896,8 +1457,15 @@ style="margin-top:15px"
 <div id="urgentPage" class="page">
 
 <div class="topbar">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title urgent-page-title">Lavori urgenti</h2>
+
+<button class="back-button" onclick="showHome()">
+← Indietro
+</button>
+
+<h2 class="page-title urgent-page-title">
+Lavori urgenti
+</h2>
+
 </div>
 
 <div id="urgentJobs"></div>
@@ -908,8 +1476,15 @@ style="margin-top:15px"
 <div id="completedPage" class="page">
 
 <div class="topbar">
-<button class="back-button" onclick="showHome()">← Indietro</button>
-<h2 class="page-title completed-page-title">Lavori completati</h2>
+
+<button class="back-button" onclick="showHome()">
+← Indietro
+</button>
+
+<h2 class="page-title completed-page-title">
+Lavori completati
+</h2>
+
 </div>
 
 <div class="completed-month-bar">
@@ -921,7 +1496,10 @@ onclick="cambiaMeseCompletati(-1)"
 ‹
 </button>
 
-<div id="completedMonthTitle" class="completed-month-title"></div>
+<div
+id="completedMonthTitle"
+class="completed-month-title"
+></div>
 
 <button
 class="completed-month-button"
@@ -932,7 +1510,10 @@ onclick="cambiaMeseCompletati(1)"
 
 </div>
 
-<div id="completedMonthCount" class="completed-month-count">
+<div
+id="completedMonthCount"
+class="completed-month-count"
+>
 0 lavori completati
 </div>
 
@@ -955,25 +1536,52 @@ Condividi elenco
 <div id="photoDetailPage" class="photo-detail-page">
 
 <div class="topbar">
-<button class="back-button" onclick="chiudiSchedaLavoro()">← Indietro</button>
-<h2 class="page-title">Lavoro</h2>
+
+<button
+class="back-button"
+onclick="chiudiSchedaLavoro()"
+>
+← Indietro
+</button>
+
+<h2 class="page-title">
+Lavoro
+</h2>
+
 </div>
 
 <div class="photo-detail-card">
 
-<div class="photo-detail-store" id="photoDetailStore"></div>
+<div
+class="photo-detail-store"
+id="photoDetailStore"
+></div>
 
-<div class="photo-detail-title" id="photoDetailTitle"></div>
+<div
+class="photo-detail-title"
+id="photoDetailTitle"
+></div>
 
-<div class="photo-detail-date" id="photoDetailCreated"></div>
+<div
+class="photo-detail-date"
+id="photoDetailCreated"
+></div>
 
-<div class="photo-detail-date" id="photoDetailCompleted"></div>
+<div
+class="photo-detail-date"
+id="photoDetailCompleted"
+></div>
 
 <div class="photo-notes-box">
 
-<label class="photo-notes-label">Note</label>
+<label class="photo-notes-label">
+Note
+</label>
 
-<div id="photoDetailNoteRead" class="photo-notes-read">
+<div
+id="photoDetailNoteRead"
+class="photo-notes-read"
+>
 Nessuna nota.
 </div>
 
@@ -997,7 +1605,10 @@ Modifica
 
 </div>
 
-<div id="photoEditActions" class="photo-edit-actions">
+<div
+id="photoEditActions"
+class="photo-edit-actions"
+>
 
 <button
 class="photo-edit-save"
@@ -1015,7 +1626,10 @@ Annulla
 
 </div>
 
-<div id="photoToolbar" class="photo-toolbar">
+<div
+id="photoToolbar"
+class="photo-toolbar"
+>
 
 <button
 class="photo-add-button"
@@ -1026,7 +1640,10 @@ onclick="selezionaFoto()"
 
 </div>
 
-<div id="photoGrid" class="photo-grid"></div>
+<div
+id="photoGrid"
+class="photo-grid"
+></div>
 
 </div>
 
@@ -1083,7 +1700,10 @@ class="photo-modal-image"
 alt="Foto lavoro"
 >
 
-<div id="photoModalActions" class="photo-modal-actions">
+<div
+id="photoModalActions"
+class="photo-modal-actions"
+>
 
 <button
 class="replace-photo"
@@ -1117,25 +1737,36 @@ Elimina
 /* FIREBASE */
 
 const firebaseConfig={
+
 apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+
 authDomain:"ediservice-bb88c.firebaseapp.com",
+
 projectId:"ediservice-bb88c",
+
 storageBucket:"ediservice-bb88c.firebasestorage.app",
+
 messagingSenderId:"420418885149",
+
 appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
+
 measurementId:"G-BM489YWSY4"
+
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const auth=firebase.auth();
+
 const db=firebase.firestore();
 
 
 /* SUPABASE */
 
 const SUPABASE_URL="https://ncfznorfwniqykuxymxd.supabase.co";
+
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
+
 const SUPABASE_BUCKET="foto-lavori";
 
 const supabaseClient=
@@ -1150,6 +1781,7 @@ SUPABASE_PUBLISHABLE_KEY
 const puntiVendita={
 
 PIM:[
+
 "Torresina",
 "Fontanile",
 "Torrevecchia 313",
@@ -1166,7 +1798,7 @@ PIM:[
 "Parioli",
 "Newton",
 "Biolchini",
-"Oderisi",
+"oderisi",
 "Tripoli",
 "Labaro",
 "San Paolo",
@@ -1175,18 +1807,23 @@ PIM:[
 "Casal Palocco",
 "Guidonia",
 "Nepi"
+
 ],
 
 "AGORÀ":[
+
 "Taverna",
 "Boccea",
 "Gregorio",
 "San Basilio",
 "Laurentina"
+
 ],
 
 "IPERFAMILY":[
+
 "Iperfamily"
+
 ]
 
 };
@@ -1195,14 +1832,23 @@ PIM:[
 /* VARIABILI */
 
 let lavori=[];
+
 let puntoSelezionato=null;
+
 let categoriaSelezionata=null;
+
 let ricercaLavori="";
+
 let lavoroFotoAperto=null;
+
 let fotoCorrente=null;
+
 let addFormAperto=false;
+
 let paginaPrecedenteScheda="todoPage";
+
 let modificaSchedaAttiva=false;
+
 let fotoNuovoLavoro=[];
 
 const signedUrlCache=new Map();
@@ -1212,14 +1858,19 @@ const signedUrlCache=new Map();
 
 const oggiArchivio=new Date();
 
-let meseCompletatiVisualizzato=oggiArchivio.getMonth();
-let annoCompletatiVisualizzato=oggiArchivio.getFullYear();
+let meseCompletatiVisualizzato=
+oggiArchivio.getMonth();
+
+let annoCompletatiVisualizzato=
+oggiArchivio.getFullYear();
+
 let archivioMeseInizializzato=false;
 
 
 function nomeMeseCompletati(mese){
 
 const mesi=[
+
 "GENNAIO",
 "FEBBRAIO",
 "MARZO",
@@ -1232,6 +1883,7 @@ const mesi=[
 "OTTOBRE",
 "NOVEMBRE",
 "DICEMBRE"
+
 ];
 
 return mesi[mese];
@@ -1241,7 +1893,8 @@ return mesi[mese];
 
 function dataCompletamentoValida(lavoro){
 
-if(!lavoro.completatoIl)return null;
+if(!lavoro.completatoIl)
+return null;
 
 if(
 lavoro.completatoIl &&
@@ -1252,14 +1905,19 @@ return lavoro.completatoIl.toDate();
 
 }
 
-const data=new Date(lavoro.completatoIl);
+const data=new Date(
+lavoro.completatoIl
+);
 
-if(isNaN(data.getTime()))return null;
+if(isNaN(data.getTime()))
+return null;
 
 return data;
 
 }
 
+
+/* ARCHIVIO MENSILE CORRETTO */
 
 function listaCompletatiDelMese(){
 
@@ -1270,89 +1928,16 @@ lavoro.attivo!==true ||
 lavoro.completato!==true
 )return false;
 
-
-/* DATA DI COMPLETAMENTO */
-const dataCompletamento=
-dataCompletamentoValida(lavoro);
-
-
-/*
-Se il lavoro ha la data di completamento,
-usiamo quella.
-*/
-if(dataCompletamento){
-
-return(
-dataCompletamento.getMonth()===
-meseCompletatiVisualizzato &&
-dataCompletamento.getFullYear()===
-annoCompletatiVisualizzato
-);
-
-}
-
-
-/*
-I lavori completati prima dell'introduzione
-della data completamento:
-
-se hanno la data di inserimento,
-usiamo quella come riferimento.
-*/
-let dataInserimento=null;
-
-if(lavoro.creatoIl){
-
-if(typeof lavoro.creatoIl.toDate==="function"){
-
-dataInserimento=lavoro.creatoIl.toDate();
-
-}else{
-
-dataInserimento=new Date(lavoro.creatoIl);
-
-}
-
-}
-
-
-if(
-dataInserimento &&
-!isNaN(dataInserimento.getTime())
-){
-
-return(
-dataInserimento.getMonth()===
-meseCompletatiVisualizzato &&
-dataInserimento.getFullYear()===
-annoCompletatiVisualizzato
-);
-
-}
-
-
-/*
-Vecchi lavori completati senza
-nessuna data: settembre 2026.
-*/
-return(
-meseCompletatiVisualizzato===8 &&
-annoCompletatiVisualizzato===2026
-);
-
-});
-
-}
-
 const data=dataCompletamentoValida(lavoro);
 
 /* I vecchi lavori completati senza data appartengono a SETTEMBRE 2026. */
 
 if(!data){
 
-return
+return(
 meseCompletatiVisualizzato===8 &&
-annoCompletatiVisualizzato===2026;
+annoCompletatiVisualizzato===2026
+);
 
 }
 
@@ -1368,16 +1953,30 @@ data.getFullYear()===annoCompletatiVisualizzato
 
 function aggiornaTitoloMeseCompletati(){
 
-const titolo=document.getElementById("completedMonthTitle");
-const contatore=document.getElementById("completedMonthCount");
-const totale=document.getElementById("totaleCompletati");
+const titolo=
+document.getElementById(
+"completedMonthTitle"
+);
 
-const lista=listaCompletatiDelMese();
+const contatore=
+document.getElementById(
+"completedMonthCount"
+);
+
+const totale=
+document.getElementById(
+"totaleCompletati"
+);
+
+const lista=
+listaCompletatiDelMese();
 
 if(titolo){
 
 titolo.textContent=
-nomeMeseCompletati(meseCompletatiVisualizzato)+
+nomeMeseCompletati(
+meseCompletatiVisualizzato
+)+
 " "+
 annoCompletatiVisualizzato;
 
@@ -1397,7 +1996,8 @@ lista.length===1
 
 if(totale){
 
-totale.textContent=lista.length;
+totale.textContent=
+lista.length;
 
 }
 
@@ -1406,11 +2006,13 @@ totale.textContent=lista.length;
 
 function cambiaMeseCompletati(direzione){
 
-meseCompletatiVisualizzato+=direzione;
+meseCompletatiVisualizzato+=
+direzione;
 
 if(meseCompletatiVisualizzato>11){
 
 meseCompletatiVisualizzato=0;
+
 annoCompletatiVisualizzato++;
 
 }
@@ -1418,6 +2020,7 @@ annoCompletatiVisualizzato++;
 if(meseCompletatiVisualizzato<0){
 
 meseCompletatiVisualizzato=11;
+
 annoCompletatiVisualizzato--;
 
 }
@@ -1435,20 +2038,26 @@ aggiornaTitoloMeseCompletati();
 
 function formatDataOra(value){
 
-if(!value)return "";
+if(!value)
+return "";
 
 let data;
 
-if(value&&typeof value.toDate==="function"){
+if(
+value &&
+typeof value.toDate==="function"
+){
 
 data=value.toDate();
 
-}else if(value instanceof Date){
+}else if(
+value instanceof Date
+){
 
 data=value;
 
 }else if(
-typeof value==="string"||
+typeof value==="string" ||
 typeof value==="number"
 ){
 
@@ -1460,21 +2069,27 @@ return "";
 
 }
 
-if(isNaN(data.getTime()))return "";
+if(isNaN(data.getTime()))
+return "";
 
 const giorno=
-String(data.getDate()).padStart(2,"0");
+String(data.getDate())
+.padStart(2,"0");
 
 const mese=
-String(data.getMonth()+1).padStart(2,"0");
+String(data.getMonth()+1)
+.padStart(2,"0");
 
-const anno=data.getFullYear();
+const anno=
+data.getFullYear();
 
 const ore=
-String(data.getHours()).padStart(2,"0");
+String(data.getHours())
+.padStart(2,"0");
 
 const minuti=
-String(data.getMinutes()).padStart(2,"0");
+String(data.getMinutes())
+.padStart(2,"0");
 
 return `${giorno}/${mese}/${anno} alle ${ore}:${minuti}`;
 
@@ -1485,22 +2100,37 @@ return `${giorno}/${mese}/${anno} alle ${ore}:${minuti}`;
 
 function firebaseOk(){
 
-const s=document.getElementById("firebaseStatus");
+const s=
+document.getElementById(
+"firebaseStatus"
+);
 
-s.textContent="● Firebase collegato";
-s.className="firebase-status status-ok";
+s.textContent=
+"● Firebase collegato";
+
+s.className=
+"firebase-status status-ok";
 
 }
 
 
 function firebaseErrore(error){
 
-console.error("Firebase:",error);
+console.error(
+"Firebase:",
+error
+);
 
-const s=document.getElementById("firebaseStatus");
+const s=
+document.getElementById(
+"firebaseStatus"
+);
 
-s.textContent="● Errore Firebase";
-s.className="firebase-status status-error";
+s.textContent=
+"● Errore Firebase";
+
+s.className=
+"firebase-status status-error";
 
 }
 
@@ -1510,6 +2140,7 @@ auth.signInAnonymously()
 .then(()=>{
 
 firebaseOk();
+
 ascoltaLavori();
 
 })
@@ -1521,42 +2152,79 @@ ascoltaLavori();
 
 function creaPuntiVendita(){
 
-const c=document.getElementById("puntiVendita");
+const c=
+document.getElementById(
+"puntiVendita"
+);
 
 c.innerHTML="";
 
-Object.keys(puntiVendita).forEach(categoria=>{
+Object.keys(puntiVendita)
+.forEach(categoria=>{
 
-const gruppo=document.createElement("div");
+const gruppo=
+document.createElement("div");
 
-const titolo=document.createElement("div");
+const titolo=
+document.createElement("div");
 
-titolo.className="group-title";
-titolo.textContent=categoria;
+titolo.className=
+"group-title";
 
-gruppo.appendChild(titolo);
+titolo.textContent=
+categoria;
 
-const lista=document.createElement("div");
-lista.className="store-list";
+gruppo.appendChild(
+titolo
+);
 
-puntiVendita[categoria].forEach(punto=>{
+const lista=
+document.createElement("div");
 
-const b=document.createElement("button");
-b.className="store-button";
+lista.className=
+"store-list";
 
-const n=document.createElement("span");
-n.className="store-name-text";
-n.textContent=punto;
+puntiVendita[categoria]
+.forEach(punto=>{
 
-const num=document.createElement("span");
-num.className="store-count";
-num.id="count-"+encodeURIComponent(punto);
+const b=
+document.createElement("button");
+
+b.className=
+"store-button";
+
+const n=
+document.createElement("span");
+
+n.className=
+"store-name-text";
+
+n.textContent=
+punto;
+
+const num=
+document.createElement("span");
+
+num.className=
+"store-count";
+
+num.id=
+"count-"+encodeURIComponent(punto);
+
 num.textContent="0";
 
-b.append(n,num);
+b.append(
+n,
+num
+);
 
 b.onclick=()=>{
-apriPuntoVendita(punto,categoria);
+
+apriPuntoVendita(
+punto,
+categoria
+);
+
 };
 
 lista.appendChild(b);
@@ -1564,6 +2232,7 @@ lista.appendChild(b);
 });
 
 gruppo.appendChild(lista);
+
 c.appendChild(gruppo);
 
 });
@@ -1576,22 +2245,44 @@ c.appendChild(gruppo);
 function ascoltaLavori(){
 
 db.collection("lavori")
-.where("attivo","==",true)
+
+.where(
+"attivo",
+"==",
+true
+)
+
 .onSnapshot(
 
 snapshot=>{
 
-lavori=snapshot.docs.map(doc=>({
+lavori=
+snapshot.docs.map(doc=>({
+
 id:doc.id,
+
 ...doc.data()
+
 }));
+
 
 if(!archivioMeseInizializzato){
 
-const dateCompletamenti=lavori
-.filter(x=>x.attivo===true&&x.completato===true)
-.map(dataCompletamentoValida)
+const dateCompletamenti=
+lavori
+
+.filter(
+x=>
+x.attivo===true &&
+x.completato===true
+)
+
+.map(
+dataCompletamentoValida
+)
+
 .filter(Boolean);
+
 
 if(dateCompletamenti.length){
 
@@ -1615,6 +2306,7 @@ ultima.getFullYear();
 /* Se esistono solo vecchi completati senza data, settembre 2026. */
 
 meseCompletatiVisualizzato=8;
+
 annoCompletatiVisualizzato=2026;
 
 }
@@ -1623,7 +2315,9 @@ archivioMeseInizializzato=true;
 
 }
 
+
 aggiornaTutto();
+
 
 if(lavoroFotoAperto){
 
@@ -1634,7 +2328,9 @@ x=>x.id===lavoroFotoAperto.id
 
 if(aggiornato){
 
-lavoroFotoAperto=aggiornato;
+lavoroFotoAperto=
+aggiornato;
+
 aggiornaSchedaAperta();
 
 }
@@ -1656,7 +2352,9 @@ function aggiornaTutto(){
 
 const daFare=
 lavori.filter(
-x=>x.attivo===true&&x.completato!==true
+x=>
+x.attivo===true &&
+x.completato!==true
 );
 
 const urgenti=
@@ -1667,24 +2365,43 @@ x=>x.urgente===true
 const completatiDelMese=
 listaCompletatiDelMese();
 
-document.getElementById("totaleDaFare").textContent=
+
+document.getElementById(
+"totaleDaFare"
+).textContent=
 daFare.length;
 
-document.getElementById("totaleUrgenti").textContent=
+document.getElementById(
+"totaleUrgenti"
+).textContent=
 urgenti.length;
 
-document.getElementById("totaleCompletati").textContent=
+document.getElementById(
+"totaleCompletati"
+).textContent=
 completatiDelMese.length;
+
 
 aggiornaNumeriPuntiVendita();
 
-renderTodoJobs(daFare);
-renderUrgentJobs(urgenti);
-renderCompletedJobs(completatiDelMese);
+renderTodoJobs(
+daFare
+);
+
+renderUrgentJobs(
+urgenti
+);
+
+renderCompletedJobs(
+completatiDelMese
+);
+
 
 if(puntoSelezionato){
 
-renderStoreJobs(puntoSelezionato);
+renderStoreJobs(
+puntoSelezionato
+);
 
 }
 
@@ -1695,22 +2412,27 @@ renderStoreJobs(puntoSelezionato);
 
 function aggiornaNumeriPuntiVendita(){
 
-Object.keys(puntiVendita).forEach(cat=>{
+Object.keys(puntiVendita)
+.forEach(cat=>{
 
-puntiVendita[cat].forEach(punto=>{
+puntiVendita[cat]
+.forEach(punto=>{
 
-const n=lavori.filter(
+const n=
+lavori.filter(
 x=>
-x.attivo===true&&
-x.punto===punto&&
+x.attivo===true &&
+x.punto===punto &&
 x.completato!==true
 ).length;
 
-const e=document.getElementById(
+const e=
+document.getElementById(
 "count-"+encodeURIComponent(punto)
 );
 
-if(e)e.textContent=n;
+if(e)
+e.textContent=n;
 
 });
 
@@ -1725,18 +2447,28 @@ function mostraPagina(id){
 
 document.querySelectorAll(
 ".page,.photo-detail-page"
-).forEach(p=>{
+)
+.forEach(p=>{
 
-p.classList.remove("active");
+p.classList.remove(
+"active"
+);
 
 });
 
-const p=document.getElementById(id);
+const p=
+document.getElementById(id);
 
 if(p){
 
-p.classList.add("active");
-window.scrollTo(0,0);
+p.classList.add(
+"active"
+);
+
+window.scrollTo(
+0,
+0
+);
 
 }
 
@@ -1749,13 +2481,20 @@ function showHome(){
 
 addFormAperto=false;
 
-const form=document.getElementById("addWorkForm");
+const form=
+document.getElementById(
+"addWorkForm"
+);
 
 if(form)
-form.classList.remove("active");
+form.classList.remove(
+"active"
+);
 
 const toggle=
-document.getElementById("addWorkToggle");
+document.getElementById(
+"addWorkToggle"
+);
 
 if(toggle)
 toggle.textContent="+";
@@ -1764,7 +2503,9 @@ fotoNuovoLavoro=[];
 
 renderAnteprimeNuovoLavoro();
 
-mostraPagina("homePage");
+mostraPagina(
+"homePage"
+);
 
 }
 
@@ -1774,27 +2515,40 @@ mostraPagina("homePage");
 function toggleAddWorkForm(){
 
 const form=
-document.getElementById("addWorkForm");
+document.getElementById(
+"addWorkForm"
+);
 
 const button=
-document.getElementById("addWorkToggle");
+document.getElementById(
+"addWorkToggle"
+);
 
-addFormAperto=!addFormAperto;
+addFormAperto=
+!addFormAperto;
 
 if(addFormAperto){
 
-form.classList.add("active");
+form.classList.add(
+"active"
+);
+
 button.textContent="−";
 
 setTimeout(()=>{
 
-document.getElementById("lavoroInput").focus();
+document.getElementById(
+"lavoroInput"
+).focus();
 
 },100);
 
 }else{
 
-form.classList.remove("active");
+form.classList.remove(
+"active"
+);
+
 button.textContent="+";
 
 }
@@ -1807,25 +2561,32 @@ button.textContent="+";
 function filtraLavori(){
 
 const input=
-document.getElementById("searchLavori");
+document.getElementById(
+"searchLavori"
+);
 
 const clear=
-document.getElementById("clearSearch");
+document.getElementById(
+"clearSearch"
+);
 
 ricercaLavori=
-input.value.trim().toLowerCase();
+input.value
+.trim()
+.toLowerCase();
 
 clear.style.display=
 ricercaLavori
 ?"block"
 :"none";
 
+
 renderTodoJobs(
 
 lavori.filter(x=>{
 
 if(
-x.attivo!==true||
+x.attivo!==true ||
 x.completato===true
 )
 return false;
@@ -1862,7 +2623,10 @@ return(
 
 function cancellaRicerca(){
 
-document.getElementById("searchLavori").value="";
+document.getElementById(
+"searchLavori"
+).value="";
+
 ricercaLavori="";
 
 document.getElementById(
@@ -1870,10 +2634,13 @@ document.getElementById(
 ).style.display="none";
 
 renderTodoJobs(
+
 lavori.filter(
-x=>x.attivo===true&&
+x=>
+x.attivo===true &&
 x.completato!==true
 )
+
 );
 
 }
@@ -1883,7 +2650,10 @@ x.completato!==true
 
 function renderTodoJobs(lista){
 
-const c=document.getElementById("todoJobs");
+const c=
+document.getElementById(
+"todoJobs"
+);
 
 c.innerHTML="";
 
@@ -1900,23 +2670,32 @@ return;
 
 }
 
-Object.keys(puntiVendita).forEach(cat=>{
 
-const punti=puntiVendita[cat];
+Object.keys(puntiVendita)
+.forEach(cat=>{
+
+const punti=
+puntiVendita[cat];
 
 const catJobs=
 lista.filter(
 x=>punti.includes(x.punto)
 );
 
-if(!catJobs.length)return;
+if(!catJobs.length)
+return;
 
-const t=document.createElement("div");
+const t=
+document.createElement("div");
 
-t.className="group-title";
-t.textContent=cat;
+t.className=
+"group-title";
+
+t.textContent=
+cat;
 
 c.appendChild(t);
+
 
 punti.forEach(punto=>{
 
@@ -1925,29 +2704,46 @@ catJobs.filter(
 x=>x.punto===punto
 );
 
-if(!jobs.length)return;
+if(!jobs.length)
+return;
 
-const g=document.createElement("div");
+const g=
+document.createElement("div");
 
-g.className="todo-store-group";
+g.className=
+"todo-store-group";
 
-const h=document.createElement("div");
+const h=
+document.createElement("div");
 
-h.className="todo-store-header";
+h.className=
+"todo-store-header";
 
-const n=document.createElement("div");
+const n=
+document.createElement("div");
 
-n.className="todo-store-name";
-n.textContent=punto;
+n.className=
+"todo-store-name";
 
-const num=document.createElement("div");
+n.textContent=
+punto;
 
-num.className="todo-store-count";
-num.textContent=jobs.length;
+const num=
+document.createElement("div");
 
-h.append(n,num);
+num.className=
+"todo-store-count";
+
+num.textContent=
+jobs.length;
+
+h.append(
+n,
+num
+);
 
 g.appendChild(h);
+
 
 jobs.forEach(job=>{
 
@@ -1970,35 +2766,50 @@ c.appendChild(g);
 
 function creaTodoJobRow(lavoro){
 
-const r=document.createElement("div");
+const r=
+document.createElement("div");
 
-r.className="todo-job-row";
+r.className=
+"todo-job-row";
 
-const main=document.createElement("div");
+const main=
+document.createElement("div");
 
 main.className=
 "todo-job-main job-clickable";
 
-const dot=document.createElement("div");
+const dot=
+document.createElement("div");
 
-dot.className="todo-job-dot";
+dot.className=
+"todo-job-dot";
 
-const content=document.createElement("div");
+const content=
+document.createElement("div");
 
-content.className="todo-job-content";
+content.className=
+"todo-job-content";
 
-const text=document.createElement("div");
+const text=
+document.createElement("div");
 
-text.className="todo-job-text";
-text.textContent=lavoro.testo||"";
+text.className=
+"todo-job-text";
+
+text.textContent=
+lavoro.testo||"";
 
 content.appendChild(text);
 
+
 if(lavoro.note){
 
-const note=document.createElement("div");
+const note=
+document.createElement("div");
 
-note.className="todo-job-note";
+note.className=
+"todo-job-note";
+
 note.textContent=
 "Note: "+lavoro.note;
 
@@ -2006,19 +2817,27 @@ content.appendChild(note);
 
 }
 
+
 if(lavoro.urgente===true){
 
 const badge=
 document.createElement("div");
 
-badge.className="todo-job-urgent";
-badge.textContent="URGENTE";
+badge.className=
+"todo-job-urgent";
+
+badge.textContent=
+"URGENTE";
 
 content.appendChild(badge);
 
 }
 
-main.append(dot,content);
+
+main.append(
+dot,
+content
+);
 
 main.onclick=()=>{
 
@@ -2031,10 +2850,13 @@ lavoro.id,
 
 r.appendChild(main);
 
+
 const actions=
 document.createElement("div");
 
-actions.className="symbol-actions";
+actions.className=
+"symbol-actions";
+
 
 const complete=
 document.createElement("button");
@@ -2042,16 +2864,21 @@ document.createElement("button");
 complete.className=
 "symbol-btn symbol-complete";
 
-complete.title="Completato";
+complete.title=
+"Completato";
+
 complete.textContent="✓";
 
 complete.onclick=e=>{
 
 e.stopPropagation();
 
-completaLavoro(lavoro.id);
+completaLavoro(
+lavoro.id
+);
 
 };
+
 
 const urgent=
 document.createElement("button");
@@ -2077,22 +2904,28 @@ lavoro.urgente===true
 
 };
 
+
 const del=
 document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
 
-del.title="Elimina";
+del.title=
+"Elimina";
+
 del.textContent="×";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(lavoro.id);
+eliminaLavoro(
+lavoro.id
+);
 
 };
+
 
 const share=
 document.createElement("button");
@@ -2100,16 +2933,21 @@ document.createElement("button");
 share.className=
 "symbol-btn symbol-share";
 
-share.title="Invia";
+share.title=
+"Invia";
+
 share.textContent="↗";
 
 share.onclick=e=>{
 
 e.stopPropagation();
 
-inviaLavoro(lavoro);
+inviaLavoro(
+lavoro
+);
 
 };
+
 
 actions.append(
 complete,
@@ -2132,18 +2970,25 @@ punto,
 categoria
 ){
 
-puntoSelezionato=punto;
-categoriaSelezionata=categoria;
+puntoSelezionato=
+punto;
+
+categoriaSelezionata=
+categoria;
 
 addFormAperto=false;
 
+
 document.getElementById(
 "storePageName"
-).textContent=punto;
+).textContent=
+punto;
 
 document.getElementById(
 "storePageCategory"
-).textContent=categoria;
+).textContent=
+categoria;
+
 
 document.getElementById(
 "lavoroInput"
@@ -2157,22 +3002,32 @@ document.getElementById(
 "urgenteInput"
 ).checked=false;
 
+
 fotoNuovoLavoro=[];
 
 renderAnteprimeNuovoLavoro();
 
+
 document.getElementById(
 "addWorkForm"
 )
-.classList.remove("active");
+.classList.remove(
+"active"
+);
 
 document.getElementById(
 "addWorkToggle"
-).textContent="+";
+)
+.textContent="+";
 
-renderStoreJobs(punto);
 
-mostraPagina("storePage");
+renderStoreJobs(
+punto
+);
+
+mostraPagina(
+"storePage"
+);
 
 }
 
@@ -2191,10 +3046,11 @@ c.innerHTML="";
 const lista=
 lavori.filter(
 x=>
-x.attivo===true&&
-x.punto===punto&&
+x.attivo===true &&
+x.punto===punto &&
 x.completato!==true
 );
+
 
 if(!lista.length){
 
@@ -2204,6 +3060,7 @@ c.innerHTML=
 return;
 
 }
+
 
 lista.forEach(job=>{
 
@@ -2233,22 +3090,26 @@ lavoro.id,
 
 };
 
+
 const text=
 document.createElement("div");
 
-text.className="job-text";
+text.className=
+"job-text";
 
 text.textContent=
 lavoro.testo||"";
 
 card.appendChild(text);
 
+
 if(lavoro.note){
 
 const note=
 document.createElement("div");
 
-note.className="job-note";
+note.className=
+"job-note";
 
 note.textContent=
 "Note: "+lavoro.note;
@@ -2257,12 +3118,16 @@ card.appendChild(note);
 
 }
 
+
 const actions=
 document.createElement("div");
 
-actions.className="symbol-actions";
+actions.className=
+"symbol-actions";
 
-actions.style.marginTop="12px";
+actions.style.marginTop=
+"12px";
+
 
 const complete=
 document.createElement("button");
@@ -2270,16 +3135,21 @@ document.createElement("button");
 complete.className=
 "symbol-btn symbol-complete";
 
-complete.title="Completato";
+complete.title=
+"Completato";
+
 complete.textContent="✓";
 
 complete.onclick=e=>{
 
 e.stopPropagation();
 
-completaLavoro(lavoro.id);
+completaLavoro(
+lavoro.id
+);
 
 };
+
 
 const urgent=
 document.createElement("button");
@@ -2305,22 +3175,28 @@ lavoro.urgente===true
 
 };
 
+
 const del=
 document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
 
-del.title="Elimina";
+del.title=
+"Elimina";
+
 del.textContent="×";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(lavoro.id);
+eliminaLavoro(
+lavoro.id
+);
 
 };
+
 
 actions.append(
 complete,
@@ -2360,7 +3236,9 @@ const files=[
 ...(e.target.files||[])
 ];
 
-if(!files.length)return;
+if(!files.length)
+return;
+
 
 files.forEach(file=>{
 
@@ -2370,6 +3248,7 @@ return;
 fotoNuovoLavoro.push(file);
 
 });
+
 
 renderAnteprimeNuovoLavoro();
 
@@ -2383,9 +3262,11 @@ document.getElementById(
 "addPhotoPreview"
 );
 
-if(!container)return;
+if(!container)
+return;
 
 container.innerHTML="";
+
 
 fotoNuovoLavoro.forEach(
 (file,index)=>{
@@ -2395,6 +3276,7 @@ document.createElement("div");
 
 item.className=
 "add-photo-item";
+
 
 const img=
 document.createElement("img");
@@ -2410,6 +3292,7 @@ URL.revokeObjectURL(url);
 
 };
 
+
 const remove=
 document.createElement("button");
 
@@ -2417,7 +3300,9 @@ remove.className=
 "add-photo-remove";
 
 remove.textContent="×";
-remove.title="Rimuovi foto";
+
+remove.title=
+"Rimuovi foto";
 
 remove.onclick=()=>{
 
@@ -2429,6 +3314,7 @@ index,
 renderAnteprimeNuovoLavoro();
 
 };
+
 
 item.append(
 img,
@@ -2446,7 +3332,9 @@ container.appendChild(item);
 
 async function aggiungiLavoro(){
 
-if(!puntoSelezionato)return;
+if(!puntoSelezionato)
+return;
+
 
 const lavoroInput=
 document.getElementById(
@@ -2468,6 +3356,7 @@ document.getElementById(
 "addWorkButton"
 );
 
+
 const testo=
 lavoroInput.value.trim();
 
@@ -2476,6 +3365,7 @@ noteInput.value.trim();
 
 const urgente=
 urgentInput.checked;
+
 
 if(!testo){
 
@@ -2489,8 +3379,12 @@ return;
 
 }
 
+
 button.disabled=true;
-button.textContent="Salvataggio...";
+
+button.textContent=
+"Salvataggio...";
+
 
 try{
 
@@ -2500,26 +3394,32 @@ await auth.signInAnonymously();
 
 }
 
-const riferimento=
-await db
-.collection("lavori")
-.add({
 
-punto:puntoSelezionato,
+const riferimento=
+await db.collection(
+"lavori"
+).add({
+
+punto:
+puntoSelezionato,
+
 testo,
+
 note,
+
 completato:false,
+
 attivo:true,
+
 urgente,
 
 creatoDa:
-auth.currentUser?
-auth.currentUser.uid:"",
+auth.currentUser
+?auth.currentUser.uid
+:"",
 
 creatoIl:
-firebase.firestore
-.FieldValue
-.serverTimestamp(),
+firebase.firestore.FieldValue.serverTimestamp(),
 
 completatoIl:null,
 
@@ -2527,7 +3427,9 @@ foto:[]
 
 });
 
+
 const fotoCaricate=[];
+
 
 for(
 const file of fotoNuovoLavoro
@@ -2537,6 +3439,7 @@ try{
 
 const blob=
 await comprimiFoto(file);
+
 
 const path=
 "lavori/"+
@@ -2549,6 +3452,7 @@ Math.random()
 .slice(2,10)+
 ".jpg";
 
+
 const up=
 await supabaseClient
 .storage
@@ -2557,16 +3461,21 @@ await supabaseClient
 path,
 blob,
 {
-contentType:"image/jpeg",
-cacheControl:"3600",
+contentType:
+"image/jpeg",
+cacheControl:
+"3600",
 upsert:false
 }
 );
 
+
 if(up.error)
 throw up.error;
 
+
 fotoCaricate.push(path);
+
 
 }catch(photoError){
 
@@ -2579,43 +3488,54 @@ photoError
 
 }
 
+
 if(fotoCaricate.length){
 
-await db
-.collection("lavori")
+await db.collection(
+"lavori"
+)
 .doc(riferimento.id)
 .update({
 
-foto:fotoCaricate
+foto:
+fotoCaricate
 
 });
 
 }
 
+
 lavoroInput.value="";
+
 noteInput.value="";
+
 urgentInput.checked=false;
 
 fotoNuovoLavoro=[];
 
 renderAnteprimeNuovoLavoro();
 
+
 addFormAperto=false;
 
 document.getElementById(
 "addWorkForm"
 )
-.classList.remove("active");
+.classList.remove(
+"active"
+);
 
 document.getElementById(
 "addWorkToggle"
 )
 .textContent="+";
 
+
 button.disabled=false;
 
 button.textContent=
 "+ Aggiungi lavoro";
+
 
 }catch(error){
 
@@ -2639,18 +3559,19 @@ button.textContent=
 
 function completaLavoro(id){
 
-db.collection("lavori")
+db.collection(
+"lavori"
+)
 .doc(id)
 .update({
 
 completato:true,
 
 completatoIl:
-firebase.firestore
-.FieldValue
-.serverTimestamp()
+firebase.firestore.FieldValue.serverTimestamp()
 
 })
+
 .catch(()=>{
 
 alert(
@@ -2664,14 +3585,18 @@ alert(
 
 function daRifare(id){
 
-db.collection("lavori")
+db.collection(
+"lavori"
+)
 .doc(id)
 .update({
 
 completato:false,
+
 completatoIl:null
 
 })
+
 .catch(()=>{
 
 alert(
@@ -2688,13 +3613,17 @@ id,
 giaUrgente
 ){
 
-db.collection("lavori")
+db.collection(
+"lavori"
+)
 .doc(id)
 .update({
 
-urgente:!giaUrgente
+urgente:
+!giaUrgente
 
 })
+
 .catch(()=>{
 
 alert(
@@ -2715,13 +3644,17 @@ if(
 )
 return;
 
-db.collection("lavori")
+
+db.collection(
+"lavori"
+)
 .doc(id)
 .update({
 
 attivo:false
 
 })
+
 .catch(()=>{
 
 alert(
@@ -2744,6 +3677,7 @@ document.getElementById(
 
 c.innerHTML="";
 
+
 if(!lista.length){
 
 c.innerHTML=
@@ -2752,6 +3686,7 @@ c.innerHTML=
 return;
 
 }
+
 
 Object.keys(puntiVendita)
 .forEach(cat=>{
@@ -2764,15 +3699,21 @@ lista.filter(
 x=>punti.includes(x.punto)
 );
 
-if(!catJobs.length)return;
+if(!catJobs.length)
+return;
+
 
 const t=
 document.createElement("div");
 
-t.className="group-title";
-t.textContent=cat;
+t.className=
+"group-title";
+
+t.textContent=
+cat;
 
 c.appendChild(t);
+
 
 punti.forEach(punto=>{
 
@@ -2781,7 +3722,9 @@ catJobs.filter(
 x=>x.punto===punto
 );
 
-if(!jobs.length)return;
+if(!jobs.length)
+return;
+
 
 const g=
 document.createElement("div");
@@ -2789,11 +3732,13 @@ document.createElement("div");
 g.className=
 "todo-store-group";
 
+
 const h=
 document.createElement("div");
 
 h.className=
 "urgent-store-header";
+
 
 const n=
 document.createElement("div");
@@ -2801,7 +3746,9 @@ document.createElement("div");
 n.className=
 "urgent-store-name";
 
-n.textContent=punto;
+n.textContent=
+punto;
+
 
 const num=
 document.createElement("div");
@@ -2812,9 +3759,14 @@ num.className=
 num.textContent=
 jobs.length;
 
-h.append(n,num);
+
+h.append(
+n,
+num
+);
 
 g.appendChild(h);
+
 
 jobs.forEach(job=>{
 
@@ -2833,17 +3785,20 @@ job.id,
 
 };
 
+
 const dot=
 document.createElement("div");
 
 dot.className=
 "urgent-job-dot";
 
+
 const content=
 document.createElement("div");
 
 content.className=
 "urgent-job-content";
+
 
 const text=
 document.createElement("div");
@@ -2855,6 +3810,7 @@ text.textContent=
 job.testo||"";
 
 content.appendChild(text);
+
 
 if(job.note){
 
@@ -2871,11 +3827,13 @@ content.appendChild(note);
 
 }
 
+
 const actions=
 document.createElement("div");
 
 actions.className=
 "symbol-actions";
+
 
 const complete=
 document.createElement("button");
@@ -2884,7 +3842,9 @@ complete.className=
 "symbol-btn symbol-complete";
 
 complete.textContent="✓";
-complete.title="Completato";
+
+complete.title=
+"Completato";
 
 complete.onclick=e=>{
 
@@ -2896,6 +3856,7 @@ job.id
 
 };
 
+
 const urgent=
 document.createElement("button");
 
@@ -2903,7 +3864,9 @@ urgent.className=
 "symbol-btn symbol-urgent";
 
 urgent.textContent="!";
-urgent.title="Togli urgente";
+
+urgent.title=
+"Togli urgente";
 
 urgent.onclick=e=>{
 
@@ -2916,6 +3879,7 @@ true
 
 };
 
+
 const del=
 document.createElement("button");
 
@@ -2923,7 +3887,9 @@ del.className=
 "symbol-btn symbol-delete";
 
 del.textContent="×";
-del.title="Elimina";
+
+del.title=
+"Elimina";
 
 del.onclick=e=>{
 
@@ -2935,6 +3901,7 @@ job.id
 
 };
 
+
 const share=
 document.createElement("button");
 
@@ -2942,15 +3909,20 @@ share.className=
 "symbol-btn symbol-share";
 
 share.textContent="↗";
-share.title="Invia";
+
+share.title=
+"Invia";
 
 share.onclick=e=>{
 
 e.stopPropagation();
 
-inviaLavoro(job);
+inviaLavoro(
+job
+);
 
 };
+
 
 actions.append(
 complete,
@@ -2958,6 +3930,7 @@ urgent,
 del,
 share
 );
+
 
 r.append(
 dot,
@@ -2968,6 +3941,7 @@ actions
 g.appendChild(r);
 
 });
+
 
 c.appendChild(g);
 
@@ -2989,7 +3963,9 @@ document.getElementById(
 
 c.innerHTML="";
 
+
 aggiornaTitoloMeseCompletati();
+
 
 if(!lista.length){
 
@@ -2999,6 +3975,7 @@ c.innerHTML=
 return;
 
 }
+
 
 Object.keys(puntiVendita)
 .forEach(cat=>{
@@ -3011,7 +3988,9 @@ lista.filter(
 x=>punti.includes(x.punto)
 );
 
-if(!catJobs.length)return;
+if(!catJobs.length)
+return;
+
 
 const t=
 document.createElement("div");
@@ -3019,9 +3998,11 @@ document.createElement("div");
 t.className=
 "group-title";
 
-t.textContent=cat;
+t.textContent=
+cat;
 
 c.appendChild(t);
+
 
 punti.forEach(punto=>{
 
@@ -3030,7 +4011,9 @@ catJobs.filter(
 x=>x.punto===punto
 );
 
-if(!jobs.length)return;
+if(!jobs.length)
+return;
+
 
 const g=
 document.createElement("div");
@@ -3038,11 +4021,13 @@ document.createElement("div");
 g.className=
 "completed-job";
 
+
 const h=
 document.createElement("div");
 
 h.className=
 "completed-store-header";
+
 
 const n=
 document.createElement("div");
@@ -3050,7 +4035,9 @@ document.createElement("div");
 n.className=
 "completed-store-name";
 
-n.textContent=punto;
+n.textContent=
+punto;
+
 
 const num=
 document.createElement("div");
@@ -3061,9 +4048,14 @@ num.className=
 num.textContent=
 jobs.length;
 
-h.append(n,num);
+
+h.append(
+n,
+num
+);
 
 g.appendChild(h);
+
 
 jobs.forEach(job=>{
 
@@ -3082,6 +4074,7 @@ job.id,
 
 };
 
+
 const check=
 document.createElement("div");
 
@@ -3090,11 +4083,13 @@ check.className=
 
 check.textContent="✓";
 
+
 const content=
 document.createElement("div");
 
 content.className=
 "completed-job-content";
+
 
 const text=
 document.createElement("div");
@@ -3106,6 +4101,7 @@ text.textContent=
 job.testo||"";
 
 content.appendChild(text);
+
 
 if(job.note){
 
@@ -3122,11 +4118,13 @@ content.appendChild(note);
 
 }
 
+
 const actions=
 document.createElement("div");
 
 actions.className=
 "symbol-actions";
+
 
 const redo=
 document.createElement("button");
@@ -3134,7 +4132,9 @@ document.createElement("button");
 redo.className=
 "symbol-btn symbol-redo";
 
-redo.title="Da rifare";
+redo.title=
+"Da rifare";
+
 redo.textContent="↻";
 
 redo.onclick=e=>{
@@ -3147,13 +4147,16 @@ job.id
 
 };
 
+
 const del=
 document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
 
-del.title="Elimina";
+del.title=
+"Elimina";
+
 del.textContent="×";
 
 del.onclick=e=>{
@@ -3166,10 +4169,12 @@ job.id
 
 };
 
+
 actions.append(
 redo,
 del
 );
+
 
 r.append(
 check,
@@ -3181,6 +4186,7 @@ g.appendChild(r);
 
 });
 
+
 c.appendChild(g);
 
 });
@@ -3190,7 +4196,7 @@ c.appendChild(g);
 }
 
 
-/* CONDIVIDI ELENCO DEL MESE - SOLO TESTO */
+/* CONDIVIDI ELENCO DEL MESE */
 
 async function condividiElencoCompletati(){
 
@@ -3202,6 +4208,7 @@ nomeMeseCompletati(
 meseCompletatiVisualizzato
 );
 
+
 let testo=
 "EDISERVICE\n"+
 "LAVORI COMPLETATI\n\n"+
@@ -3209,6 +4216,7 @@ mese+
 " "+
 annoCompletatiVisualizzato+
 "\n\n";
+
 
 if(!lista.length){
 
@@ -3229,11 +4237,14 @@ lista.filter(
 x=>punti.includes(x.punto)
 );
 
-if(!catJobs.length)return;
+if(!catJobs.length)
+return;
+
 
 testo+=
 cat+
 "\n\n";
+
 
 punti.forEach(punto=>{
 
@@ -3242,7 +4253,9 @@ catJobs.filter(
 x=>x.punto===punto
 );
 
-if(!jobs.length)return;
+if(!jobs.length)
+return;
+
 
 testo+=
 punto+
@@ -3250,12 +4263,16 @@ punto+
 jobs.length+
 ")\n";
 
+
 jobs.forEach(job=>{
 
 testo+=
 "✓ "+
-(job.testo||
-"Lavoro senza descrizione");
+(
+job.testo||
+"Lavoro senza descrizione"
+);
+
 
 if(
 (job.note||"").trim()
@@ -3267,6 +4284,7 @@ job.note.trim();
 
 }
 
+
 if(job.completatoIl){
 
 testo+=
@@ -3277,15 +4295,18 @@ job.completatoIl
 
 }
 
-testo+="\n";
-
-});
 
 testo+="\n";
 
 });
 
+
+testo+="\n";
+
 });
+
+});
+
 
 testo+=
 "Totale: "+
@@ -3298,6 +4319,7 @@ lista.length===1
 
 }
 
+
 try{
 
 if(navigator.share){
@@ -3307,13 +4329,15 @@ await navigator.share({
 title:
 "EDISERVICE - Lavori completati",
 
-text:testo
+text:
+testo
 
 });
 
 return;
 
 }
+
 
 if(navigator.clipboard){
 
@@ -3329,23 +4353,27 @@ return;
 
 }
 
+
 prompt(
 "Copia questo elenco:",
 testo
 );
 
+
 }catch(error){
 
 if(
-error&&
+error &&
 error.name==="AbortError"
 )
 return;
+
 
 console.error(
 "Errore condivisione:",
 error
 );
+
 
 try{
 
@@ -3383,15 +4411,20 @@ lavori.find(
 x=>x.id===id
 );
 
-if(!lavoro)return;
+if(!lavoro)
+return;
 
-lavoroFotoAperto=lavoro;
+
+lavoroFotoAperto=
+lavoro;
 
 paginaPrecedenteScheda=
 origine||
 "todoPage";
 
-modificaSchedaAttiva=false;
+modificaSchedaAttiva=
+false;
+
 
 document.getElementById(
 "photoDetailStore"
@@ -3399,54 +4432,55 @@ document.getElementById(
 .textContent=
 lavoro.punto||"";
 
+
 document.getElementById(
 "photoDetailTitle"
 )
 .textContent=
 lavoro.testo||"";
 
+
 document.getElementById(
 "photoDetailCreated"
 )
 .textContent=
 lavoro.creatoIl
-?
-"Inserito il "+
+?"Inserito il "+
 formatDataOra(
 lavoro.creatoIl
 )
-:
-"Inserito il: data non ancora disponibile";
+:"Inserito il: data non ancora disponibile";
+
 
 document.getElementById(
 "photoDetailCompleted"
 )
 .textContent=
-lavoro.completato===true&&
+lavoro.completato===true &&
 lavoro.completatoIl
-?
-"Completato il "+
+?"Completato il "+
 formatDataOra(
 lavoro.completatoIl
 )
 :"";
 
+
 document.getElementById(
 "photoDetailNoteRead"
 )
 .textContent=
-lavoro.note&&
+lavoro.note &&
 lavoro.note.trim()
-?
-lavoro.note
-:
-"Nessuna nota.";
+?lavoro.note
+:"Nessuna nota.";
+
 
 document.getElementById(
 "photoDetailNoteInput"
 )
 .value=
 lavoro.note||"";
+
 
 impostaVisualizzazioneScheda();
 
@@ -3463,10 +4497,13 @@ renderFotoLavoro();
 
 function aggiornaSchedaAperta(){
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
+
 
 const lavoro=
 lavoroFotoAperto;
+
 
 document.getElementById(
 "photoDetailStore"
@@ -3474,37 +4511,38 @@ document.getElementById(
 .textContent=
 lavoro.punto||"";
 
+
 document.getElementById(
 "photoDetailTitle"
 )
 .textContent=
 lavoro.testo||"";
 
+
 document.getElementById(
 "photoDetailCreated"
 )
 .textContent=
 lavoro.creatoIl
-?
-"Inserito il "+
+?"Inserito il "+
 formatDataOra(
 lavoro.creatoIl
 )
-:
-"Inserito il: data non ancora disponibile";
+:"Inserito il: data non ancora disponibile";
+
 
 document.getElementById(
 "photoDetailCompleted"
 )
 .textContent=
-lavoro.completato===true&&
+lavoro.completato===true &&
 lavoro.completatoIl
-?
-"Completato il "+
+?"Completato il "+
 formatDataOra(
 lavoro.completatoIl
 )
 :"";
+
 
 if(!modificaSchedaAttiva){
 
@@ -3512,12 +4550,11 @@ document.getElementById(
 "photoDetailNoteRead"
 )
 .textContent=
-lavoro.note&&
+lavoro.note &&
 lavoro.note.trim()
-?
-lavoro.note
-:
-"Nessuna nota.";
+?lavoro.note
+:"Nessuna nota.";
+
 
 document.getElementById(
 "photoDetailNoteInput"
@@ -3526,6 +4563,7 @@ document.getElementById(
 lavoro.note||"";
 
 }
+
 
 renderFotoLavoro();
 
@@ -3536,34 +4574,52 @@ renderFotoLavoro();
 
 function attivaModificaScheda(){
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
 
-modificaSchedaAttiva=true;
+
+modificaSchedaAttiva=
+true;
+
 
 document.getElementById(
 "photoDetailNoteInput"
 )
-.classList.add("editing");
+.classList.add(
+"editing"
+);
+
 
 document.getElementById(
 "photoToolbar"
 )
-.classList.add("editing");
+.classList.add(
+"editing"
+);
+
 
 document.getElementById(
 "photoEditActions"
 )
-.classList.add("active");
+.classList.add(
+"active"
+);
+
 
 document.getElementById(
 "photoEditButton"
 )
-.style.display="none";
+.style.display=
+"none";
+
 
 document.getElementById(
 "photoModalActions"
 )
-.classList.add("editing");
+.classList.add(
+"editing"
+);
+
 
 renderFotoLavoro();
 
@@ -3572,32 +4628,48 @@ renderFotoLavoro();
 
 function impostaVisualizzazioneScheda(){
 
-modificaSchedaAttiva=false;
+modificaSchedaAttiva=
+false;
+
 
 document.getElementById(
 "photoDetailNoteInput"
 )
-.classList.remove("editing");
+.classList.remove(
+"editing"
+);
+
 
 document.getElementById(
 "photoToolbar"
 )
-.classList.remove("editing");
+.classList.remove(
+"editing"
+);
+
 
 document.getElementById(
 "photoEditActions"
 )
-.classList.remove("active");
+.classList.remove(
+"active"
+);
+
 
 document.getElementById(
 "photoEditButton"
 )
-.style.display="block";
+.style.display=
+"block";
+
 
 document.getElementById(
 "photoModalActions"
 )
-.classList.remove("editing");
+.classList.remove(
+"editing"
+);
+
 
 renderFotoLavoro();
 
@@ -3606,13 +4678,16 @@ renderFotoLavoro();
 
 function annullaModificaScheda(){
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
+
 
 document.getElementById(
 "photoDetailNoteInput"
 )
 .value=
 lavoroFotoAperto.note||"";
+
 
 impostaVisualizzazioneScheda();
 
@@ -3621,7 +4696,9 @@ impostaVisualizzazioneScheda();
 
 async function salvaModificheScheda(){
 
-if(!lavoroFotoAperto)return;
+if(!lavoroFotoAperto)
+return;
+
 
 const input=
 document.getElementById(
@@ -3631,16 +4708,23 @@ document.getElementById(
 const note=
 input.value.trim();
 
+
 try{
 
-await db
-.collection("lavori")
+await db.collection(
+"lavori"
+)
 .doc(lavoroFotoAperto.id)
 .update({
+
 note:note
+
 });
 
-lavoroFotoAperto.note=note;
+
+lavoroFotoAperto.note=
+note;
+
 
 document.getElementById(
 "photoDetailNoteRead"
@@ -3649,11 +4733,14 @@ document.getElementById(
 note||
 "Nessuna nota.";
 
+
 impostaVisualizzazioneScheda();
+
 
 alert(
 "Modifiche salvate."
 );
+
 
 }catch(error){
 
@@ -3676,11 +4763,19 @@ const pagina=
 paginaPrecedenteScheda||
 "todoPage";
 
-lavoroFotoAperto=null;
-fotoCorrente=null;
-modificaSchedaAttiva=false;
+
+lavoroFotoAperto=
+null;
+
+fotoCorrente=
+null;
+
+modificaSchedaAttiva=
+false;
+
 
 chiudiFotoGrande();
+
 
 if(pagina==="storePage"){
 
@@ -3697,6 +4792,7 @@ return;
 
 }
 
+
 if(pagina==="completedPage"){
 
 renderCompletedJobs(
@@ -3711,7 +4807,10 @@ return;
 
 }
 
-mostraPagina(pagina);
+
+mostraPagina(
+pagina
+);
 
 }
 
@@ -3723,10 +4822,8 @@ function fotoPaths(lavoro){
 return Array.isArray(
 lavoro.foto
 )
-?
-lavoro.foto
-:
-[];
+?lavoro.foto
+:[];
 
 }
 
@@ -3740,13 +4837,16 @@ document.getElementById(
 
 grid.innerHTML="";
 
+
 if(!lavoroFotoAperto)
 return;
+
 
 const paths=
 fotoPaths(
 lavoroFotoAperto
 );
+
 
 if(!paths.length){
 
@@ -3757,6 +4857,7 @@ return;
 
 }
 
+
 paths.forEach(
 (path,index)=>{
 
@@ -3766,13 +4867,16 @@ document.createElement("div");
 box.className=
 "photo-thumb";
 
+
 const img=
 document.createElement("img");
 
 img.alt=
 "Foto "+(index+1);
 
+
 box.appendChild(img);
+
 
 const del=
 document.createElement("button");
@@ -3781,14 +4885,15 @@ del.className=
 "photo-thumb-delete"+
 (
 modificaSchedaAttiva
-?
-" editing"
-:
-""
+?" editing"
+:""
 );
 
 del.textContent="×";
-del.title="Elimina foto";
+
+del.title=
+"Elimina foto";
+
 
 del.onclick=e=>{
 
@@ -3797,19 +4902,27 @@ e.stopPropagation();
 if(!modificaSchedaAttiva)
 return;
 
-eliminaFoto(path);
+eliminaFoto(
+path
+);
 
 };
+
 
 box.appendChild(del);
 
+
 box.onclick=()=>{
 
-apriFotoGrande(path);
+apriFotoGrande(
+path
+);
 
 };
 
+
 grid.appendChild(box);
+
 
 getSignedUrl(path)
 .then(url=>{
@@ -3828,18 +4941,27 @@ img.src=url;
 
 async function getSignedUrl(path){
 
-if(!path)return null;
+if(!path)
+return null;
+
 
 const cached=
-signedUrlCache.get(path);
+signedUrlCache.get(
+path
+);
+
 
 if(
-cached&&
+cached &&
 cached.expires>Date.now()
 )
 return cached.url;
 
-const {data,error}=
+
+const {
+data,
+error
+}=
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
@@ -3847,6 +4969,7 @@ await supabaseClient
 path,
 3600
 );
+
 
 if(error){
 
@@ -3859,6 +4982,7 @@ return null;
 
 }
 
+
 signedUrlCache.set(
 path,
 {
@@ -3867,6 +4991,7 @@ expires:
 Date.now()+3500*1000
 }
 );
+
 
 return data.signedUrl;
 
@@ -3878,15 +5003,17 @@ return data.signedUrl;
 function selezionaFoto(){
 
 if(
-!lavoroFotoAperto||
+!lavoroFotoAperto ||
 !modificaSchedaAttiva
 )
 return;
+
 
 const input=
 document.getElementById(
 "photoInput"
 );
+
 
 input.value="";
 
@@ -3904,26 +5031,36 @@ const files=[
 ...(e.target.files||[])
 ];
 
+
 if(
-!files.length||
+!files.length ||
 !lavoroFotoAperto
 )
 return;
 
+
 if(!modificaSchedaAttiva)
 return;
 
+
 const lavoro=
 lavoroFotoAperto;
+
 
 try{
 
 let aggiunte=0;
 
-for(const file of files){
+
+for(
+const file of files
+){
 
 const blob=
-await comprimiFoto(file);
+await comprimiFoto(
+file
+);
+
 
 const path=
 "lavori/"+
@@ -3936,7 +5073,10 @@ Math.random()
 .slice(2,10)+
 ".jpg";
 
-const {error}=
+
+const {
+error
+}=
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
@@ -3944,39 +5084,45 @@ await supabaseClient
 path,
 blob,
 {
-contentType:"image/jpeg",
-cacheControl:"3600",
+contentType:
+"image/jpeg",
+cacheControl:
+"3600",
 upsert:false
 }
 );
 
+
 if(error)
 throw error;
 
-await db
-.collection("lavori")
+
+await db.collection(
+"lavori"
+)
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore
-.FieldValue
-.arrayUnion(path)
+firebase.firestore.FieldValue.arrayUnion(
+path
+)
 
 });
+
 
 aggiunte++;
 
 }
 
+
 alert(
 aggiunte===1
-?
-"Foto aggiunta."
-:
-aggiunte+
+?"Foto aggiunta."
+:aggiunte+
 " foto aggiunte."
 );
+
 
 }catch(error){
 
@@ -3997,16 +5143,18 @@ alert(
 async function comprimiFoto(file){
 
 if(!file.type.startsWith("image/"))
-
 throw new Error(
 "Seleziona un'immagine."
 );
 
+
 const url=
 URL.createObjectURL(file);
 
+
 const img=
 new Image();
+
 
 try{
 
@@ -4014,11 +5162,14 @@ await new Promise(
 (res,rej)=>{
 
 img.onload=res;
+
 img.onerror=rej;
+
 img.src=url;
 
 }
 );
+
 
 let w=
 img.naturalWidth;
@@ -4026,12 +5177,11 @@ img.naturalWidth;
 let h=
 img.naturalHeight;
 
+
 const max=1600;
 
-if(
-w>max||
-h>max
-){
+
+if(w>max||h>max){
 
 if(w>=h){
 
@@ -4055,13 +5205,17 @@ h=max;
 
 }
 
+
 const canvas=
 document.createElement(
 "canvas"
 );
 
+
 canvas.width=w;
+
 canvas.height=h;
+
 
 canvas
 .getContext("2d")
@@ -4073,6 +5227,7 @@ w,
 h
 );
 
+
 return await new Promise(
 resolve=>
 canvas.toBlob(
@@ -4082,9 +5237,12 @@ resolve,
 )
 );
 
+
 }finally{
 
-URL.revokeObjectURL(url);
+URL.revokeObjectURL(
+url
+);
 
 }
 
@@ -4095,17 +5253,25 @@ URL.revokeObjectURL(url);
 
 async function apriFotoGrande(path){
 
-fotoCorrente=path;
+fotoCorrente=
+path;
+
 
 const url=
-await getSignedUrl(path);
+await getSignedUrl(
+path
+);
 
-if(!url)return;
+
+if(!url)
+return;
+
 
 document.getElementById(
 "photoModalImage"
 )
 .src=url;
+
 
 document.getElementById(
 "photoModalActions"
@@ -4115,10 +5281,13 @@ document.getElementById(
 modificaSchedaAttiva
 );
 
+
 document.getElementById(
 "photoModal"
 )
-.classList.add("active");
+.classList.add(
+"active"
+);
 
 }
 
@@ -4126,22 +5295,28 @@ document.getElementById(
 function chiudiFotoGrande(event){
 
 if(
-event&&
+event &&
 event.target!==event.currentTarget
 )
 return;
 
+
 document.getElementById(
 "photoModal"
 )
-.classList.remove("active");
+.classList.remove(
+"active"
+);
+
 
 document.getElementById(
 "photoModalImage"
 )
 .src="";
 
-fotoCorrente=null;
+
+fotoCorrente=
+null;
 
 }
 
@@ -4151,16 +5326,18 @@ fotoCorrente=null;
 function sostituisciFotoCorrente(){
 
 if(
-!fotoCorrente||
-!lavoroFotoAperto||
+!fotoCorrente ||
+!lavoroFotoAperto ||
 !modificaSchedaAttiva
 )
 return;
+
 
 const input=
 document.getElementById(
 "replacePhotoInput"
 );
+
 
 input.value="";
 
@@ -4177,13 +5354,15 @@ async function eseguiSostituzioneFoto(e){
 const file=
 e.target.files?.[0];
 
+
 if(
-!file||
-!fotoCorrente||
-!lavoroFotoAperto||
+!file ||
+!fotoCorrente ||
+!lavoroFotoAperto ||
 !modificaSchedaAttiva
 )
 return;
+
 
 const oldPath=
 fotoCorrente;
@@ -4191,10 +5370,14 @@ fotoCorrente;
 const lavoro=
 lavoroFotoAperto;
 
+
 try{
 
 const blob=
-await comprimiFoto(file);
+await comprimiFoto(
+file
+);
+
 
 const newPath=
 "lavori/"+
@@ -4207,6 +5390,7 @@ Math.random()
 .slice(2,10)+
 ".jpg";
 
+
 const up=
 await supabaseClient
 .storage
@@ -4215,38 +5399,46 @@ await supabaseClient
 newPath,
 blob,
 {
-contentType:"image/jpeg",
-cacheControl:"3600",
+contentType:
+"image/jpeg",
+cacheControl:
+"3600",
 upsert:false
 }
 );
 
+
 if(up.error)
 throw up.error;
 
-await db
-.collection("lavori")
+
+await db.collection(
+"lavori"
+)
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore
-.FieldValue
-.arrayUnion(newPath)
+firebase.firestore.FieldValue.arrayUnion(
+newPath
+)
 
 });
 
-await db
-.collection("lavori")
+
+await db.collection(
+"lavori"
+)
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore
-.FieldValue
-.arrayRemove(oldPath)
+firebase.firestore.FieldValue.arrayRemove(
+oldPath
+)
 
 });
+
 
 await supabaseClient
 .storage
@@ -4255,24 +5447,31 @@ await supabaseClient
 oldPath
 ]);
 
+
 signedUrlCache.delete(
 oldPath
 );
+
 
 lavoro.foto=
 fotoPaths(lavoro)
 .filter(
 x=>x!==oldPath
 )
-.concat(newPath);
+.concat(
+newPath
+);
+
 
 chiudiFotoGrande();
 
 renderFotoLavoro();
 
+
 alert(
 "Foto sostituita."
 );
+
 
 }catch(error){
 
@@ -4293,20 +5492,24 @@ alert(
 async function eliminaFoto(path){
 
 if(
-!lavoroFotoAperto||
-!modificaSchedaAttiva||
+!lavoroFotoAperto ||
+!modificaSchedaAttiva ||
 !confirm(
 "Vuoi eliminare questa foto?"
 )
 )
 return;
 
+
 const lavoro=
 lavoroFotoAperto;
 
+
 try{
 
-const {error}=
+const {
+error
+}=
 await supabaseClient
 .storage
 .from(SUPABASE_BUCKET)
@@ -4314,22 +5517,29 @@ await supabaseClient
 path
 ]);
 
+
 if(error)
 throw error;
 
-await db
-.collection("lavori")
+
+await db.collection(
+"lavori"
+)
 .doc(lavoro.id)
 .update({
 
 foto:
-firebase.firestore
-.FieldValue
-.arrayRemove(path)
+firebase.firestore.FieldValue.arrayRemove(
+path
+)
 
 });
 
-signedUrlCache.delete(path);
+
+signedUrlCache.delete(
+path
+);
+
 
 lavoro.foto=
 fotoPaths(lavoro)
@@ -4337,12 +5547,15 @@ fotoPaths(lavoro)
 x=>x!==path
 );
 
+
 if(
 fotoCorrente===path
 )
 chiudiFotoGrande();
 
+
 renderFotoLavoro();
+
 
 }catch(error){
 
@@ -4375,21 +5588,21 @@ fotoCorrente
 
 async function inviaLavoro(lavoro){
 
-if(!lavoro)return;
+if(!lavoro)
+return;
+
 
 const stato=
 lavoro.urgente===true
-?
-"URGENTE"
-:
-lavoro.completato===true
-?
-"COMPLETATO"
-:
-"DA FARE";
+?"URGENTE"
+:lavoro.completato===true
+?"COMPLETATO"
+:"DA FARE";
+
 
 let testo=
 "EDISERVICE\n\n";
+
 
 testo+=
 "PUNTO VENDITA: "+
@@ -4397,9 +5610,11 @@ testo+=
 "Non specificato")+
 "\n\n";
 
+
 testo+=
 "LAVORO:\n"+
 (lavoro.testo||"");
+
 
 if(
 (lavoro.note||"").trim()
@@ -4411,9 +5626,11 @@ lavoro.note.trim();
 
 }
 
+
 testo+=
 "\n\nSTATO: "+
 stato;
+
 
 if(lavoro.creatoIl){
 
@@ -4425,6 +5642,7 @@ lavoro.creatoIl
 
 }
 
+
 if(lavoro.completatoIl){
 
 testo+=
@@ -4435,6 +5653,7 @@ lavoro.completatoIl
 
 }
 
+
 try{
 
 if(navigator.share){
@@ -4443,10 +5662,9 @@ const files=[];
 
 const paths=
 Array.isArray(lavoro.foto)
-?
-lavoro.foto
-:
-[];
+?lavoro.foto
+:[];
+
 
 for(
 let i=0;
@@ -4461,31 +5679,43 @@ await getSignedUrl(
 paths[i]
 );
 
-if(!url)continue;
+
+if(!url)
+continue;
+
 
 const response=
 await fetch(url);
 
+
 if(!response.ok)
 continue;
+
 
 const blob=
 await response.blob();
 
+
 const file=
 new File(
+
 [blob],
+
 "EDISERVICE_foto_"+
 (i+1)+
 ".jpg",
+
 {
 type:
 blob.type||
 "image/jpeg"
 }
+
 );
 
+
 files.push(file);
+
 
 }catch(photoError){
 
@@ -4498,17 +5728,17 @@ photoError
 
 }
 
+
 if(
-files.length&&
-navigator.canShare&&
-navigator.canShare({
-files
-})
+files.length &&
+navigator.canShare &&
+navigator.canShare({files})
 ){
 
 await navigator.share({
 
 text:testo,
+
 files:files
 
 });
@@ -4523,12 +5753,11 @@ text:testo
 
 }
 
-}else if(
-navigator.clipboard
-){
+}else if(navigator.clipboard){
 
-await navigator.clipboard
-.writeText(testo);
+await navigator.clipboard.writeText(
+testo
+);
 
 alert(
 "Lavoro copiato negli appunti."
@@ -4543,20 +5772,24 @@ testo
 
 }
 
+
 }catch(error){
 
 if(
-error&&
+error &&
 error.name==="AbortError"
 )
 return;
 
+
 console.error(error);
+
 
 try{
 
-await navigator.clipboard
-.writeText(testo);
+await navigator.clipboard.writeText(
+testo
+);
 
 alert(
 "Lavoro copiato negli appunti."
