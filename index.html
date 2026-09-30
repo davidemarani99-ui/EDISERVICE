@@ -1,71 +1,23 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>EDISERVICE</title>
-
 <link rel="icon" type="image/png" href="ediservice-icon.png">
 <link rel="apple-touch-icon" href="ediservice-icon.png">
-
 <style>
-
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent
-}
-
-html,body{
-margin:0;
-padding:0;
-background:#fff;
-color:#222;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:#fff;color:#222;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
 button,input,textarea{font-family:inherit}
+.container{max-width:850px;margin:auto;padding:20px}
+.header{text-align:center;padding:10px 0 5px;background:#fff}
+.header img{display:block;width:250px;max-width:80%;height:auto;margin:0 auto 10px;background:#fff}
+.firebase-status{margin-top:8px;font-size:13px;font-weight:600}
+.status-ok{color:#2e7d32}.status-error{color:#c62828}
+.page{display:none}.page.active{display:block}
 
-.container{
-max-width:850px;
-margin:auto;
-padding:20px
-}
-
-.header{
-text-align:center;
-padding:10px 0 5px;
-background:#fff
-}
-
-.header img{
-display:block;
-width:250px;
-max-width:80%;
-height:auto;
-margin:0 auto 10px;
-background:#fff
-}
-
-.firebase-status{
-margin-top:8px;
-font-size:13px;
-font-weight:600
-}
-
-.status-ok{color:#2e7d32}
-.status-error{color:#c62828}
-
-.page{display:none}
-.page.active{display:block}
-
-.photo-detail-page{display:none}
-.photo-detail-page.active{display:block}
-
-.summary,
-.urgent-folder,
-.completed-folder{
+.summary,.urgent-folder,.completed-folder{
 min-height:190px;
 border-radius:28px;
 padding:28px;
@@ -78,53 +30,16 @@ justify-content:space-between;
 transition:.15s
 }
 
-.summary:active,
-.urgent-folder:active,
-.completed-folder:active{
-transform:scale(.98)
-}
-
-.summary{
-background:#555;
-color:#fff
-}
-
-.urgent-folder{
-background:#ffebee;
-border:2px solid #e53935;
-color:#b71c1c
-}
-
-.completed-folder{
-background:#e8f5e9;
-border:2px solid #43a047;
-color:#1b5e20
-}
+.summary:active,.urgent-folder:active,.completed-folder:active{transform:scale(.98)}
+.summary{background:#555;color:#fff}
+.urgent-folder{background:#ffebee;border:2px solid #e53935;color:#b71c1c}
+.completed-folder{background:#e8f5e9;border:2px solid #43a047;color:#1b5e20}
 
 .folder-text{flex:1}
-
-.folder-title{
-font-size:25px;
-font-weight:800;
-margin-bottom:12px
-}
-
-.folder-number{
-font-size:55px;
-line-height:1;
-font-weight:900
-}
-
-.folder-description{
-font-size:14px;
-margin-top:8px;
-opacity:.85
-}
-
-.folder-arrow{
-font-size:38px;
-margin-left:15px
-}
+.folder-title{font-size:25px;font-weight:800;margin-bottom:12px}
+.folder-number{font-size:55px;line-height:1;font-weight:900}
+.folder-description{font-size:14px;margin-top:8px;opacity:.85}
+.folder-arrow{font-size:38px;margin-left:15px}
 
 .section-title{
 font-size:23px;
@@ -171,7 +86,6 @@ justify-content:space-between
 }
 
 .store-button:active{transform:scale(.98)}
-
 .store-name-text{color:#222}
 
 .store-count{
@@ -211,41 +125,6 @@ font-size:24px;
 font-weight:850;
 margin:0
 }
-
-.store-topbar{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-margin-bottom:20px
-}
-
-.store-topbar-left{
-display:flex;
-align-items:center;
-gap:10px;
-min-width:0
-}
-
-.add-work-toggle{
-width:60px;
-height:60px;
-border:0;
-border-radius:18px;
-background:#222;
-color:#fff;
-font-size:42px;
-font-weight:300;
-line-height:1;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-box-shadow:0 4px 12px rgba(0,0,0,.18);
-flex-shrink:0
-}
-
-.add-work-toggle:active{transform:scale(.94)}
 
 .search-box{
 position:relative;
@@ -308,17 +187,13 @@ box-shadow:0 2px 8px rgba(0,0,0,.06)
 
 .form-card h2{margin-top:0}
 
-.add-work-form{display:none}
-.add-work-form.active{display:block}
-
 label{
 display:block;
 font-weight:700;
 margin:15px 0 7px
 }
 
-input[type="text"],
-textarea{
+input[type="text"],textarea{
 width:100%;
 border:1px solid #d5d5d5;
 border-radius:12px;
@@ -357,74 +232,7 @@ font-weight:800;
 cursor:pointer
 }
 
-.add-button:disabled{
-opacity:.55;
-cursor:default
-}
-
-.add-photo-box{
-margin-top:15px;
-padding:15px;
-background:#f7f7f7;
-border-radius:14px
-}
-
-.add-photo-title{
-font-size:15px;
-font-weight:800;
-margin-bottom:10px
-}
-
-.add-photo-button{
-width:100%;
-border:0;
-border-radius:12px;
-padding:13px;
-background:#e9e9e9;
-color:#222;
-font-weight:800;
-cursor:pointer
-}
-
-.add-photo-preview{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:9px;
-margin-top:12px
-}
-
-.add-photo-item{
-position:relative;
-aspect-ratio:1;
-border-radius:11px;
-overflow:hidden;
-background:#ddd
-}
-
-.add-photo-item img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block
-}
-
-.add-photo-remove{
-position:absolute;
-right:5px;
-top:5px;
-width:28px;
-height:28px;
-border:0;
-border-radius:50%;
-background:rgba(0,0,0,.72);
-color:#fff;
-font-size:19px;
-font-weight:800;
-cursor:pointer
-}
-
-.todo-store-group,
-.completed-job{
+.todo-store-group{
 background:#fff;
 border-radius:20px;
 margin:17px 0;
@@ -432,8 +240,7 @@ overflow:hidden;
 box-shadow:0 3px 12px rgba(0,0,0,.07)
 }
 
-.todo-store-header,
-.completed-store-header{
+.todo-store-header{
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -448,23 +255,18 @@ font-size:21px;
 font-weight:900
 }
 
-.todo-store-count,
-.completed-store-count,
-.urgent-store-count{
+.todo-store-count{
 min-width:32px;
 height:32px;
 padding:0 9px;
 border-radius:16px;
+background:#f1f1f1;
+color:#d32f2f;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:14px;
 font-weight:900
-}
-
-.todo-store-count{
-background:#f1f1f1;
-color:#d32f2f
 }
 
 .todo-job-row{
@@ -500,10 +302,7 @@ line-height:1.35;
 word-break:break-word
 }
 
-.todo-job-note,
-.job-note,
-.completed-job-note,
-.urgent-job-note{
+.todo-job-note{
 margin-top:5px;
 color:#777;
 font-size:13px;
@@ -546,31 +345,10 @@ box-shadow:0 1px 3px rgba(0,0,0,.12)
 
 .symbol-btn:active{transform:scale(.88)}
 
-.symbol-complete{
-background:#e8f5e9;
-color:#2e7d32
-}
-
-.symbol-urgent{
-background:#fff3e0;
-color:#ef6c00
-}
-
-.symbol-delete{
-background:#ffebee;
-color:#d32f2f
-}
-
-.symbol-redo{
-background:#e3f2fd;
-color:#1976d2
-}
-
-.symbol-share{
-background:#e3f2fd;
-color:#1565c0;
-font-size:15px
-}
+.symbol-complete{background:#e8f5e9;color:#2e7d32}
+.symbol-urgent{background:#fff3e0;color:#ef6c00}
+.symbol-delete{background:#ffebee;color:#d32f2f}
+.symbol-redo{background:#e3f2fd;color:#1976d2}
 
 .job-card{
 background:#fff;
@@ -584,6 +362,84 @@ box-shadow:0 2px 8px rgba(0,0,0,.06)
 font-size:17px;
 font-weight:650;
 line-height:1.35
+}
+
+.job-note{
+margin-top:7px;
+color:#777;
+font-size:14px
+}
+
+.completed-page-title{color:#2e7d32}
+
+.completed-job{
+background:#fff;
+border-radius:20px;
+margin:17px 0;
+overflow:hidden;
+box-shadow:0 3px 12px rgba(0,0,0,.07)
+}
+
+.completed-store-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:16px 18px;
+background:#fafafa;
+border-bottom:1px solid #e8e8e8
+}
+
+.completed-store-name{
+color:#2e7d32;
+font-size:21px;
+font-weight:900
+}
+
+.completed-store-count{
+min-width:32px;
+height:32px;
+padding:0 9px;
+border-radius:16px;
+background:#e8f5e9;
+color:#2e7d32;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+font-weight:900
+}
+
+.completed-job-row{
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px;
+border-bottom:1px solid #eee
+}
+
+.completed-job-row:last-child{border-bottom:0}
+
+.completed-check{
+color:#2e7d32;
+font-size:20px;
+font-weight:900
+}
+
+.completed-job-content{
+flex:1;
+min-width:0
+}
+
+.completed-job-text{
+font-size:16px;
+font-weight:650;
+line-height:1.35
+}
+
+.completed-job-note{
+color:#777;
+font-size:13px;
+margin-top:5px
 }
 
 .urgent-page-title{color:#d32f2f}
@@ -604,8 +460,17 @@ font-weight:900
 }
 
 .urgent-store-count{
+min-width:32px;
+height:32px;
+padding:0 9px;
+border-radius:16px;
 background:#ffebee;
-color:#d32f2f
+color:#d32f2f;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+font-weight:900
 }
 
 .urgent-job-row{
@@ -631,112 +496,16 @@ flex:1;
 min-width:0
 }
 
-.completed-page-title{color:#2e7d32}
-
-.completed-month-bar{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-margin:0 0 8px;
-background:#e8f5e9;
-border:2px solid #43a047;
-border-radius:16px;
-padding:10px
-}
-
-.completed-month-button{
-width:45px;
-height:45px;
-min-width:45px;
-border:0;
-border-radius:12px;
-background:#fff;
-color:#2e7d32;
-font-size:30px;
-font-weight:900;
-line-height:1;
-cursor:pointer;
-box-shadow:0 2px 6px rgba(0,0,0,.08)
-}
-
-.completed-month-button:active{
-transform:scale(.92)
-}
-
-.completed-month-title{
-flex:1;
-text-align:center;
-font-size:20px;
-font-weight:900;
-color:#1b5e20
-}
-
-.completed-month-count{
-text-align:center;
-font-size:13px;
-font-weight:700;
-color:#777;
-margin:0 0 18px
-}
-
-.completed-export-bar{
-display:flex;
-gap:10px;
-margin:0 0 18px
-}
-
-.completed-export-button{
-flex:1;
-border:0;
-border-radius:12px;
-padding:13px 10px;
-background:#222;
-color:#fff;
-font-weight:800;
-font-size:15px;
-cursor:pointer
-}
-
-.completed-share-button{
-background:#222;
-color:#fff
-}
-
-.completed-store-name{
-color:#2e7d32;
-font-size:21px;
-font-weight:900
-}
-
-.completed-store-count{
-background:#e8f5e9;
-color:#2e7d32
-}
-
-.completed-job-row{
-display:flex;
-align-items:center;
-gap:10px;
-padding:14px;
-border-bottom:1px solid #eee
-}
-
-.completed-check{
-color:#2e7d32;
-font-size:20px;
-font-weight:900
-}
-
-.completed-job-content{
-flex:1;
-min-width:0
-}
-
-.completed-job-text{
+.urgent-job-text{
 font-size:16px;
-font-weight:650;
+font-weight:700;
 line-height:1.35
+}
+
+.urgent-job-note{
+color:#777;
+font-size:13px;
+margin-top:5px
 }
 
 .empty{
@@ -754,8 +523,12 @@ padding:30px;
 color:#777
 }
 
+/* FOTO */
 .job-clickable{cursor:pointer}
 .job-clickable:active{opacity:.75}
+
+.photo-detail-page{display:none}
+.photo-detail-page.active{display:block}
 
 .photo-detail-card{
 background:#fff;
@@ -779,71 +552,14 @@ line-height:1.35;
 white-space:pre-wrap
 }
 
-.photo-detail-date{
-margin-top:10px;
-color:#777;
-font-size:13px;
-line-height:1.5
-}
-
 .photo-detail-note{
-margin-top:18px;
+margin-top:8px;
 color:#777;
 font-size:14px;
 white-space:pre-wrap
 }
 
-.photo-edit-bar{
-display:flex;
-justify-content:flex-end;
-margin-top:18px
-}
-
-.photo-edit-button{
-border:0;
-border-radius:12px;
-padding:12px 18px;
-background:#222;
-color:#fff;
-font-weight:800;
-cursor:pointer
-}
-
-.photo-edit-actions{
-display:none;
-gap:8px;
-margin-top:15px
-}
-
-.photo-edit-actions.active{
-display:flex
-}
-
-.photo-edit-save{
-flex:1;
-border:0;
-border-radius:12px;
-padding:13px;
-background:#e8f5e9;
-color:#1b5e20;
-font-weight:800;
-cursor:pointer
-}
-
-.photo-edit-cancel{
-flex:1;
-border:0;
-border-radius:12px;
-padding:13px;
-background:#eee;
-color:#222;
-font-weight:800;
-cursor:pointer
-}
-
-.photo-notes-box{
-margin-top:18px
-}
+.photo-notes-box{margin-top:18px}
 
 .photo-notes-label{
 display:block;
@@ -862,33 +578,32 @@ padding:13px;
 font-size:16px;
 background:#fafafa;
 outline:none;
-resize:vertical;
-display:none
+resize:vertical
 }
 
-.photo-notes-input.editing{
-display:block
+.photo-notes-input:focus{
+border-color:#222;
+background:#fff
 }
 
-.photo-notes-read{
-display:block;
-padding:13px;
-background:#f7f7f7;
-border-radius:13px;
-color:#555;
-font-size:15px;
-white-space:pre-wrap;
-min-height:50px
+.photo-save-notes{
+width:100%;
+margin-top:8px;
+border:0;
+border-radius:12px;
+background:#e9e9e9;
+color:#222;
+padding:12px;
+font-weight:800;
+cursor:pointer
 }
+
+.photo-save-notes:active{transform:scale(.98)}
 
 .photo-toolbar{
-display:none;
+display:flex;
 gap:10px;
 margin:18px 0 10px
-}
-
-.photo-toolbar.editing{
-display:flex
 }
 
 .photo-add-button{
@@ -901,6 +616,8 @@ padding:13px;
 font-weight:800;
 cursor:pointer
 }
+
+.photo-add-button:active{transform:scale(.98)}
 
 .photo-grid{
 display:grid;
@@ -927,7 +644,6 @@ display:block
 }
 
 .photo-thumb-delete{
-display:none;
 position:absolute;
 right:6px;
 top:6px;
@@ -940,10 +656,6 @@ color:#fff;
 font-size:20px;
 line-height:30px;
 cursor:pointer
-}
-
-.photo-thumb-delete.editing{
-display:block
 }
 
 .photo-empty{
@@ -1003,13 +715,9 @@ background:#111
 }
 
 .photo-modal-actions{
-display:none;
+display:flex;
 gap:8px;
 margin-top:10px
-}
-
-.photo-modal-actions.editing{
-display:flex
 }
 
 .photo-modal-actions button{
@@ -1030,6 +738,71 @@ background:#ffebee;
 color:#d32f2f
 }
 
+/* ARCHIVIO MENSILE COMPLETATI */
+
+.completed-month-bar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:0 0 8px;
+background:#e8f5e9;
+border:2px solid #43a047;
+border-radius:16px;
+padding:10px
+}
+
+.completed-month-button{
+width:45px;
+height:45px;
+min-width:45px;
+border:0;
+border-radius:12px;
+background:#fff;
+color:#2e7d32;
+font-size:30px;
+font-weight:900;
+line-height:1;
+cursor:pointer;
+box-shadow:0 2px 6px rgba(0,0,0,.08)
+}
+
+.completed-month-button:active{transform:scale(.92)}
+
+.completed-month-title{
+flex:1;
+text-align:center;
+font-size:20px;
+font-weight:900;
+color:#1b5e20
+}
+
+.completed-month-count{
+text-align:center;
+font-size:13px;
+font-weight:700;
+color:#777;
+margin:0 0 12px
+}
+
+.completed-export-bar{
+display:flex;
+justify-content:center;
+margin:0 0 18px
+}
+
+.completed-export-button{
+border:0;
+border-radius:12px;
+background:#2e7d32;
+color:#fff;
+padding:12px 18px;
+font-weight:800;
+cursor:pointer
+}
+
+.completed-export-button:active{transform:scale(.98)}
+
 @media(max-width:600px){
 
 .container{padding:15px}
@@ -1039,9 +812,7 @@ width:230px;
 max-width:85%
 }
 
-.summary,
-.urgent-folder,
-.completed-folder{
+.summary,.urgent-folder,.completed-folder{
 min-height:180px;
 padding:24px
 }
@@ -1060,32 +831,29 @@ padding:16px;
 font-size:16px
 }
 
-.todo-store-group,
-.completed-job{
+.store-count{
+min-width:32px;
+height:32px;
+font-size:15px
+}
+
+.todo-store-group,.completed-job{
 border-radius:18px
 }
 
-.todo-store-header,
-.completed-store-header,
-.urgent-store-header{
+.todo-store-header,.completed-store-header,.urgent-store-header{
 padding:15px
 }
 
-.todo-store-name,
-.completed-store-name,
-.urgent-store-name{
+.todo-store-name,.completed-store-name,.urgent-store-name{
 font-size:19px
 }
 
-.todo-job-row,
-.completed-job-row,
-.urgent-job-row{
+.todo-job-row,.completed-job-row,.urgent-job-row{
 padding:13px
 }
 
-.todo-job-text,
-.completed-job-text,
-.urgent-job-text{
+.todo-job-text,.completed-job-text,.urgent-job-text{
 font-size:15px
 }
 
@@ -1099,31 +867,28 @@ font-size:16px;
 border-radius:8px
 }
 
-.add-work-toggle{
-width:56px;
-height:56px;
-font-size:38px;
-border-radius:17px
-}
-
-.photo-grid,
-.add-photo-preview{
+.photo-grid{
 grid-template-columns:repeat(3,1fr)
 }
 
-.completed-month-title{
-font-size:18px
-}
+.completed-month-title{font-size:18px}
 
 .completed-month-button{
 width:42px;
 height:42px;
 min-width:42px
 }
-
 }
 
 @media(max-width:380px){
+
+.completed-month-title{font-size:16px}
+
+.completed-month-button{
+width:40px;
+height:40px;
+min-width:40px
+}
 
 .symbol-btn{
 width:28px;
@@ -1136,368 +901,145 @@ font-size:15px
 gap:3px;
 margin-left:5px
 }
-
-.add-work-toggle{
-width:52px;
-height:52px;
-font-size:36px
 }
-
-.completed-month-title{
-font-size:16px
-}
-
-.completed-month-button{
-width:40px;
-height:40px;
-min-width:40px
-}
-
-}
-
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <div id="homePage" class="page active">
 
 <div class="header">
-
 <img src="ediservice-icon.png" alt="EDISERVICE">
-
-<div id="firebaseStatus" class="firebase-status">
-Connessione Firebase...
-</div>
-
+<div id="firebaseStatus" class="firebase-status">Connessione Firebase...</div>
 </div>
 
 <div class="summary" id="btnLavoriDaFare">
-
 <div class="folder-text">
-
-<div class="folder-title">
-Lavori da fare
+<div class="folder-title">Lavori da fare</div>
+<div class="folder-number" id="totaleDaFare">0</div>
+<div class="folder-description">Lavori ancora da completare</div>
 </div>
-
-<div class="folder-number" id="totaleDaFare">
-0
-</div>
-
-<div class="folder-description">
-Lavori ancora da completare
-</div>
-
-</div>
-
-<div class="folder-arrow">
-→
-</div>
-
+<div class="folder-arrow">→</div>
 </div>
 
 <div class="urgent-folder" id="btnUrgenti">
-
 <div class="folder-text">
-
-<div class="folder-title">
-Lavori urgenti
+<div class="folder-title">Lavori urgenti</div>
+<div class="folder-number" id="totaleUrgenti">0</div>
+<div class="folder-description">Interventi urgenti da completare</div>
 </div>
-
-<div class="folder-number" id="totaleUrgenti">
-0
-</div>
-
-<div class="folder-description">
-Interventi urgenti da completare
-</div>
-
-</div>
-
-<div class="folder-arrow">
-→
-</div>
-
+<div class="folder-arrow">→</div>
 </div>
 
 <div class="completed-folder" id="btnCompletati">
-
 <div class="folder-text">
-
-<div class="folder-title">
-Lavori completati
+<div class="folder-title">Lavori completati</div>
+<div class="folder-number" id="totaleCompletati">0</div>
+<div class="folder-description">Lavori già completati</div>
+</div>
+<div class="folder-arrow">→</div>
 </div>
 
-<div class="folder-number" id="totaleCompletati">
-0
-</div>
-
-<div class="folder-description">
-Lavori già completati
-</div>
-
-</div>
-
-<div class="folder-arrow">
-→
-</div>
-
-</div>
-
-<div class="section-title">
-Punti vendita
-</div>
-
+<div class="section-title">Punti vendita</div>
 <div id="puntiVendita"></div>
 
 </div>
 
-
 <div id="todoPage" class="page">
 
 <div class="topbar">
-
-<button
-class="back-button"
-onclick="showHome()"
->
-← Indietro
-</button>
-
-<h2 class="page-title">
-Lavori da fare
-</h2>
-
+<button class="back-button" onclick="showHome()">← Indietro</button>
+<h2 class="page-title">Lavori da fare</h2>
 </div>
 
 <div class="search-box">
-
-<input
-type="text"
-id="searchLavori"
-placeholder="Cerca punto vendita o lavoro..."
-oninput="filtraLavori()"
->
-
-<button
-type="button"
-id="clearSearch"
-onclick="cancellaRicerca()"
->
-×
-</button>
-
+<input type="text" id="searchLavori" placeholder="Cerca punto vendita o lavoro..." oninput="filtraLavori()">
+<button type="button" id="clearSearch" onclick="cancellaRicerca()">×</button>
 </div>
 
 <div id="todoJobs">
-
-<div class="loading">
-Caricamento...
+<div class="loading">Caricamento...</div>
 </div>
 
 </div>
-
-</div>
-
 
 <div id="storePage" class="page">
 
-<div class="store-topbar">
-
-<div class="store-topbar-left">
-
-<button
-class="back-button"
-onclick="showHome()"
->
-← Indietro
-</button>
-
-<h2 class="page-title">
-Punto vendita
-</h2>
-
+<div class="topbar">
+<button class="back-button" onclick="showHome()">← Indietro</button>
+<h2 class="page-title">Punto vendita</h2>
 </div>
 
-<button
-class="add-work-toggle"
-id="addWorkToggle"
-onclick="toggleAddWorkForm()"
->
-+
-</button>
+<div class="store-name" id="storePageName"></div>
+<div class="store-category" id="storePageCategory"></div>
 
-</div>
+<div class="form-card">
 
-<div
-class="store-name"
-id="storePageName"
-></div>
+<h2>Aggiungi lavoro</h2>
 
-<div
-class="store-category"
-id="storePageCategory"
-></div>
+<label>Lavoro</label>
+<input id="lavoroInput" type="text" placeholder="Descrivi il lavoro da fare">
 
-<div
-class="form-card add-work-form"
-id="addWorkForm"
->
-
-<h2>
-Aggiungi lavoro
-</h2>
-
-<label>
-Lavoro
-</label>
-
-<input
-id="lavoroInput"
-type="text"
-placeholder="Descrivi il lavoro da fare"
->
-
-<label>
-Note
-</label>
-
-<textarea
-id="noteInput"
-placeholder="Eventuali note..."
-></textarea>
+<label>Note</label>
+<textarea id="noteInput" placeholder="Eventuali note..."></textarea>
 
 <label class="urgent-check">
-
-<input
-type="checkbox"
-id="urgenteInput"
->
-
-<span>
-Lavoro urgente
-</span>
-
+<input type="checkbox" id="urgenteInput">
+<span>Lavoro urgente</span>
 </label>
 
-<div class="add-photo-box">
-
-<div class="add-photo-title">
-Foto del lavoro
-</div>
-
-<button
-type="button"
-class="add-photo-button"
-onclick="selezionaFotoNuovoLavoro()"
->
-+ Aggiungi foto
-</button>
-
-<div
-id="addPhotoPreview"
-class="add-photo-preview"
-></div>
-
-</div>
-
-<button
-class="add-button"
-id="addWorkButton"
-onclick="aggiungiLavoro()"
-style="margin-top:15px"
->
+<button class="add-button" id="addWorkButton" onclick="aggiungiLavoro()">
 + Aggiungi lavoro
 </button>
 
 </div>
 
-<div class="section-title">
-Lavori del punto vendita
-</div>
-
+<div class="section-title">Lavori del punto vendita</div>
 <div id="storeJobs"></div>
 
 </div>
 
-
 <div id="urgentPage" class="page">
 
 <div class="topbar">
-
-<button
-class="back-button"
-onclick="showHome()"
->
-← Indietro
-</button>
-
-<h2 class="page-title urgent-page-title">
-Lavori urgenti
-</h2>
-
+<button class="back-button" onclick="showHome()">← Indietro</button>
+<h2 class="page-title urgent-page-title">Lavori urgenti</h2>
 </div>
 
 <div id="urgentJobs"></div>
 
 </div>
 
-
 <div id="completedPage" class="page">
 
 <div class="topbar">
-
-<button
-class="back-button"
-onclick="showHome()"
->
-← Indietro
-</button>
-
-<h2 class="page-title completed-page-title">
-Lavori completati
-</h2>
-
+<button class="back-button" onclick="showHome()">← Indietro</button>
+<h2 class="page-title completed-page-title">Lavori completati</h2>
 </div>
 
 <div class="completed-month-bar">
 
-<button
-class="completed-month-button"
-onclick="cambiaMeseCompletati(-1)"
->
+<button class="completed-month-button" onclick="cambiaMeseCompletati(-1)">
 ‹
 </button>
 
-<div
-id="completedMonthTitle"
-class="completed-month-title"
-></div>
+<div id="completedMonthTitle" class="completed-month-title"></div>
 
-<button
-class="completed-month-button"
-onclick="cambiaMeseCompletati(1)"
->
+<button class="completed-month-button" onclick="cambiaMeseCompletati(1)">
 ›
 </button>
 
 </div>
 
-<div
-id="completedMonthCount"
-class="completed-month-count"
->
+<div id="completedMonthCount" class="completed-month-count">
 0 lavori completati
 </div>
 
 <div class="completed-export-bar">
 
-<button
-class="completed-export-button completed-share-button"
-onclick="condividiElencoCompletati()"
->
+<button class="completed-export-button" onclick="condividiElencoCompletati()">
 Condividi elenco
 </button>
 
@@ -1507,58 +1049,26 @@ Condividi elenco
 
 </div>
 
+<!-- SCHEDA DEL SINGOLO LAVORO -->
 
 <div id="photoDetailPage" class="photo-detail-page">
 
 <div class="topbar">
-
-<button
-class="back-button"
-onclick="chiudiSchedaLavoro()"
->
-← Indietro
-</button>
-
-<h2 class="page-title">
-Lavoro
-</h2>
-
+<button class="back-button" onclick="chiudiSchedaLavoro()">← Indietro</button>
+<h2 class="page-title">Lavoro</h2>
 </div>
 
 <div class="photo-detail-card">
 
-<div
-class="photo-detail-store"
-id="photoDetailStore"
-></div>
+<div class="photo-detail-store" id="photoDetailStore"></div>
 
-<div
-class="photo-detail-title"
-id="photoDetailTitle"
-></div>
+<div class="photo-detail-title" id="photoDetailTitle"></div>
 
-<div
-class="photo-detail-date"
-id="photoDetailCreated"
-></div>
-
-<div
-class="photo-detail-date"
-id="photoDetailCompleted"
-></div>
+<div class="photo-detail-note" id="photoDetailNote"></div>
 
 <div class="photo-notes-box">
 
-<label class="photo-notes-label">
-Note
-</label>
-
-<div
-id="photoDetailNoteRead"
-class="photo-notes-read"
->
-Nessuna nota.
-</div>
+<label class="photo-notes-label">Note</label>
 
 <textarea
 id="photoDetailNoteInput"
@@ -1566,161 +1076,76 @@ class="photo-notes-input"
 placeholder="Scrivi qui le note del lavoro..."
 ></textarea>
 
-</div>
-
-<div class="photo-edit-bar">
-
-<button
-id="photoEditButton"
-class="photo-edit-button"
-onclick="attivaModificaScheda()"
->
-Modifica
+<button class="photo-save-notes" onclick="salvaNoteLavoro()">
+Salva note
 </button>
 
 </div>
 
-<div
-id="photoEditActions"
-class="photo-edit-actions"
->
+<div class="photo-toolbar">
 
-<button
-class="photo-edit-save"
-onclick="salvaModificheScheda()"
->
-Salva modifiche
-</button>
-
-<button
-class="photo-edit-cancel"
-onclick="annullaModificaScheda()"
->
-Annulla
-</button>
-
-</div>
-
-<div
-id="photoToolbar"
-class="photo-toolbar"
->
-
-<button
-class="photo-add-button"
-onclick="selezionaFoto()"
->
+<button class="photo-add-button" onclick="selezionaFoto()">
 + Aggiungi foto
 </button>
 
 </div>
 
-<div
-id="photoGrid"
-class="photo-grid"
-></div>
+<div id="photoGrid" class="photo-grid"></div>
 
+</div>
 </div>
 
 </div>
 
-</div>
+<input id="photoInput" type="file" accept="image/*" multiple hidden>
+<input id="replacePhotoInput" type="file" accept="image/*" hidden>
 
+<div id="photoModal" class="photo-modal" onclick="chiudiFotoGrande(event)">
 
-<input
-id="newPhotoInput"
-type="file"
-accept="image/*"
-multiple
-hidden
->
+<div class="photo-modal-content" onclick="event.stopPropagation()">
 
-<input
-id="photoInput"
-type="file"
-accept="image/*"
-multiple
-hidden
->
-
-<input
-id="replacePhotoInput"
-type="file"
-accept="image/*"
-hidden
->
-
-
-<div
-id="photoModal"
-class="photo-modal"
-onclick="chiudiFotoGrande(event)"
->
-
-<div
-class="photo-modal-content"
-onclick="event.stopPropagation()"
->
-
-<button
-class="photo-modal-close"
-onclick="chiudiFotoGrande()"
->
+<button class="photo-modal-close" onclick="chiudiFotoGrande()">
 ×
 </button>
 
-<img
-id="photoModalImage"
-class="photo-modal-image"
-alt="Foto lavoro"
->
+<img id="photoModalImage" class="photo-modal-image" alt="Foto lavoro">
 
-<div
-id="photoModalActions"
-class="photo-modal-actions"
->
+<div class="photo-modal-actions">
 
-<button
-class="replace-photo"
-onclick="sostituisciFotoCorrente()"
->
+<button class="replace-photo" onclick="sostituisciFotoCorrente()">
 Sostituisci
 </button>
 
-<button
-class="delete-photo"
-onclick="eliminaFotoCorrente()"
->
+<button class="delete-photo" onclick="eliminaFotoCorrente()">
 Elimina
 </button>
 
 </div>
 
 </div>
-
 </div>
-
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
-
-/* ==================================================
-   FIREBASE
-================================================== */
 
 const firebaseConfig={
 
 apiKey:"AIzaSyC4XklYPsSktX4SlolgQRlkkQG4vveJ_xY",
+
 authDomain:"ediservice-bb88c.firebaseapp.com",
+
 projectId:"ediservice-bb88c",
+
 storageBucket:"ediservice-bb88c.firebasestorage.app",
+
 messagingSenderId:"420418885149",
+
 appId:"1:420418885149:web:2a07ba2ddfdafd31c798f4",
+
 measurementId:"G-BM489YWSY4"
 
 };
@@ -1728,31 +1153,21 @@ measurementId:"G-BM489YWSY4"
 firebase.initializeApp(firebaseConfig);
 
 const auth=firebase.auth();
+
 const db=firebase.firestore();
 
 
-/* ==================================================
-   SUPABASE
-================================================== */
+const SUPABASE_URL="https://ncfznorfwniqykuxymxd.supabase.co";
 
-const SUPABASE_URL=
-"https://ncfznorfwniqykuxymxd.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY=
-"sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_G9Nz6xBE8pKw0KePs5soLw_KLcm1p1v";
 
 const SUPABASE_BUCKET="foto-lavori";
 
-const supabaseClient=
-window.supabase.createClient(
+const supabaseClient=window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
 
-
-/* ==================================================
-   PUNTI VENDITA
-================================================== */
 
 const puntiVendita={
 
@@ -1799,771 +1214,270 @@ PIM:[
 };
 
 
-/* ==================================================
-   VARIABILI
-================================================== */
-
 let lavori=[];
 let puntoSelezionato=null;
-let categoriaSelezionata=null;
 let ricercaLavori="";
+
 let lavoroFotoAperto=null;
 let fotoCorrente=null;
-let addFormAperto=false;
-
-let paginaPrecedenteScheda="todoPage";
-
-let modificaSchedaAttiva=false;
-
-let fotoNuovoLavoro=[];
 
 const signedUrlCache=new Map();
 
+let meseCompletatiVisualizzato=new Date().getMonth();
+let annoCompletatiVisualizzato=new Date().getFullYear();
 
-/* ==================================================
-   ARCHIVIO MENSILE
-================================================== */
+let archivioInizializzato=false;
 
-const oggiArchivio=new Date();
-
-let meseCompletatiVisualizzato=
-oggiArchivio.getMonth();
-
-let annoCompletatiVisualizzato=
-oggiArchivio.getFullYear();
-
-
-function nomeMeseCompletati(mese){
-
-const mesi=[
-"GENNAIO",
-"FEBBRAIO",
-"MARZO",
-"APRILE",
-"MAGGIO",
-"GIUGNO",
-"LUGLIO",
-"AGOSTO",
-"SETTEMBRE",
-"OTTOBRE",
-"NOVEMBRE",
-"DICEMBRE"
-];
-
-return mesi[mese];
-
-}
-
-
-function dataCompletamentoValida(lavoro){
-
-if(!lavoro.completatoIl)
-return null;
-
-if(
-lavoro.completatoIl &&
-typeof lavoro.completatoIl.toDate==="function"
-){
-
-return lavoro.completatoIl.toDate();
-
-}
-
-if(lavoro.completatoIl instanceof Date)
-return lavoro.completatoIl;
-
-const data=
-new Date(lavoro.completatoIl);
-
-if(isNaN(data.getTime()))
-return null;
-
-return data;
-
-}
-
-
-function listaCompletatiDelMese(){
-
-return lavori.filter(lavoro=>{
-
-if(
-lavoro.attivo!==true ||
-lavoro.completato!==true
-)
-return false;
-
-const data=
-dataCompletamentoValida(lavoro);
-
-if(!data)
-return false;
-
-return(
-data.getMonth()===
-meseCompletatiVisualizzato &&
-data.getFullYear()===
-annoCompletatiVisualizzato
-);
-
-});
-
-}
-
-
-function aggiornaTitoloMeseCompletati(){
-
-const titolo=
-document.getElementById(
-"completedMonthTitle"
-);
-
-const contatore=
-document.getElementById(
-"completedMonthCount"
-);
-
-const totale=
-document.getElementById(
-"totaleCompletati"
-);
-
-const lista=
-listaCompletatiDelMese();
-
-
-if(titolo){
-
-titolo.textContent=
-nomeMeseCompletati(
-meseCompletatiVisualizzato
-)+
-" "+
-annoCompletatiVisualizzato;
-
-}
-
-
-if(contatore){
-
-contatore.textContent=
-lista.length+
-(
-lista.length===1
-?" lavoro completato"
-:" lavori completati"
-);
-
-}
-
-
-if(totale){
-
-totale.textContent=
-lista.length;
-
-}
-
-}
-
-
-function cambiaMeseCompletati(direzione){
-
-meseCompletatiVisualizzato+=
-direzione;
-
-
-if(
-meseCompletatiVisualizzato>11
-){
-
-meseCompletatiVisualizzato=0;
-annoCompletatiVisualizzato++;
-
-}
-
-
-if(
-meseCompletatiVisualizzato<0
-){
-
-meseCompletatiVisualizzato=11;
-annoCompletatiVisualizzato--;
-
-}
-
-
-renderCompletedJobs(
-listaCompletatiDelMese()
-);
-
-}
-
-
-/* ==================================================
-   DATA
-================================================== */
-
-function formatDataOra(value){
-
-if(!value)
-return "";
-
-let data;
-
-if(
-value &&
-typeof value.toDate==="function"
-){
-
-data=value.toDate();
-
-}else if(value instanceof Date){
-
-data=value;
-
-}else if(
-typeof value==="string" ||
-typeof value==="number"
-){
-
-data=new Date(value);
-
-}else{
-
-return "";
-
-}
-
-if(isNaN(data.getTime()))
-return "";
-
-const giorno=
-String(data.getDate())
-.padStart(2,"0");
-
-const mese=
-String(data.getMonth()+1)
-.padStart(2,"0");
-
-const anno=
-data.getFullYear();
-
-const ore=
-String(data.getHours())
-.padStart(2,"0");
-
-const minuti=
-String(data.getMinutes())
-.padStart(2,"0");
-
-return `${giorno}/${mese}/${anno} alle ${ore}:${minuti}`;
-
-}
-
-
-/* ==================================================
-   FIREBASE
-================================================== */
 
 function firebaseOk(){
 
-const s=
-document.getElementById(
-"firebaseStatus"
-);
+const s=document.getElementById("firebaseStatus");
 
-s.textContent=
-"● Firebase collegato";
+s.textContent="● Firebase collegato";
 
-s.className=
-"firebase-status status-ok";
+s.className="firebase-status status-ok";
 
 }
 
 
 function firebaseErrore(error){
 
-console.error(
-"Firebase:",
-error
-);
+console.error("Firebase:",error);
 
-const s=
-document.getElementById(
-"firebaseStatus"
-);
+const s=document.getElementById("firebaseStatus");
 
-s.textContent=
-"● Errore Firebase";
+s.textContent="● Errore Firebase";
 
-s.className=
-"firebase-status status-error";
+s.className="firebase-status status-error";
 
 }
 
 
 auth.signInAnonymously()
-
 .then(()=>{
-
 firebaseOk();
-
 ascoltaLavori();
-
 })
-
 .catch(firebaseErrore);
 
 
-/* ==================================================
-   PUNTI VENDITA
-================================================== */
-
 function creaPuntiVendita(){
 
-const c=
-document.getElementById(
-"puntiVendita"
-);
+const c=document.getElementById("puntiVendita");
 
 c.innerHTML="";
 
-Object.keys(
-puntiVendita
-).forEach(
-categoria=>{
+Object.keys(puntiVendita).forEach(categoria=>{
 
-const gruppo=
-document.createElement(
-"div"
-);
+const gruppo=document.createElement("div");
 
-const titolo=
-document.createElement(
-"div"
-);
+const titolo=document.createElement("div");
 
-titolo.className=
-"group-title";
+titolo.className="group-title";
 
-titolo.textContent=
-categoria;
+titolo.textContent=categoria;
 
-gruppo.appendChild(
-titolo
-);
-
-const lista=
-document.createElement(
-"div"
-);
-
-lista.className=
-"store-list";
+gruppo.appendChild(titolo);
 
 
-puntiVendita[
-categoria
-].forEach(
-punto=>{
+const lista=document.createElement("div");
 
-const b=
-document.createElement(
-"button"
-);
-
-b.className=
-"store-button";
+lista.className="store-list";
 
 
-const n=
-document.createElement(
-"span"
-);
+puntiVendita[categoria].forEach(punto=>{
 
-n.className=
-"store-name-text";
+const b=document.createElement("button");
 
-n.textContent=
-punto;
+b.className="store-button";
 
 
-const num=
-document.createElement(
-"span"
-);
+const n=document.createElement("span");
 
-num.className=
-"store-count";
+n.className="store-name-text";
 
-num.id=
-"count-"+
-encodeURIComponent(
-punto
-);
+n.textContent=punto;
+
+
+const num=document.createElement("span");
+
+num.className="store-count";
+
+num.id="count-"+encodeURIComponent(punto);
 
 num.textContent="0";
 
 
-b.append(
-n,
-num
-);
+b.append(n,num);
 
-b.onclick=()=>{
+b.onclick=()=>apriPuntoVendita(punto,categoria);
 
-apriPuntoVendita(
-punto,
-categoria
-);
-
-};
-
-
-lista.appendChild(
-b
-);
+lista.appendChild(b);
 
 });
 
 
-gruppo.appendChild(
-lista
-);
+gruppo.appendChild(lista);
 
-c.appendChild(
-gruppo
-);
+c.appendChild(gruppo);
 
 });
 
 }
 
-
-/* ==================================================
-   ASCOLTA LAVORI
-================================================== */
 
 function ascoltaLavori(){
 
 db.collection("lavori")
 .where("attivo","==",true)
-.onSnapshot(
+.onSnapshot(snapshot=>{
 
-snapshot=>{
-
-lavori=
-snapshot.docs.map(
-doc=>({
-
+lavori=snapshot.docs.map(doc=>({
 id:doc.id,
 ...doc.data()
-
-})
-);
+}));
 
 aggiornaTutto();
 
-
-if(lavoroFotoAperto){
-
-const aggiornato=
-lavori.find(
-x=>x.id===
-lavoroFotoAperto.id
-);
-
-if(aggiornato){
-
-lavoroFotoAperto=
-aggiornato;
-
-aggiornaSchedaAperta();
+},firebaseErrore);
 
 }
 
-}
-
-},
-
-firebaseErrore
-
-);
-
-}
-
-
-/* ==================================================
-   AGGIORNA TUTTO
-================================================== */
 
 function aggiornaTutto(){
 
-const daFare=
-lavori.filter(
-x=>
-x.attivo===true &&
-x.completato!==true
+const daFare=lavori.filter(
+x=>x.attivo===true&&x.completato!==true
 );
 
-const urgenti=
-daFare.filter(
+const urgenti=daFare.filter(
 x=>x.urgente===true
 );
 
-const completatiDelMese=
-listaCompletatiDelMese();
+const completati=lavori.filter(
+x=>x.attivo===true&&x.completato===true
+);
 
 
-document.getElementById(
-"totaleDaFare"
-).textContent=
+if(!archivioInizializzato&&completati.length){
+
+const conData=completati
+.map(x=>dataCompletamentoValida(x))
+.filter(Boolean)
+.sort((a,b)=>b-a);
+
+if(conData.length){
+
+meseCompletatiVisualizzato=conData[0].getMonth();
+
+annoCompletatiVisualizzato=conData[0].getFullYear();
+
+}
+
+archivioInizializzato=true;
+
+}
+
+
+document.getElementById("totaleDaFare").textContent=
 daFare.length;
 
-
-document.getElementById(
-"totaleUrgenti"
-).textContent=
+document.getElementById("totaleUrgenti").textContent=
 urgenti.length;
 
 
-document.getElementById(
-"totaleCompletati"
-).textContent=
-completatiDelMese.length;
+const completatiMese=listaCompletatiDelMese();
+
+document.getElementById("totaleCompletati").textContent=
+completatiMese.length;
 
 
 aggiornaNumeriPuntiVendita();
 
-renderTodoJobs(
-daFare
-);
+renderTodoJobs(daFare);
 
-renderUrgentJobs(
-urgenti
-);
+renderUrgentJobs(urgenti);
 
-renderCompletedJobs(
-completatiDelMese
-);
+renderCompletedJobs(completatiMese);
+
+aggiornaTitoloMeseCompletati();
 
 
-if(puntoSelezionato){
-
-renderStoreJobs(
-puntoSelezionato
-);
+if(puntoSelezionato)
+renderStoreJobs(puntoSelezionato);
 
 }
 
-}
-
-
-/* ==================================================
-   NUMERI PUNTI
-================================================== */
 
 function aggiornaNumeriPuntiVendita(){
 
-Object.keys(
-puntiVendita
-).forEach(
-cat=>{
+Object.keys(puntiVendita).forEach(cat=>
 
-puntiVendita[
-cat
-].forEach(
-punto=>{
+puntiVendita[cat].forEach(punto=>{
 
-const n=
-lavori.filter(
-x=>
-x.attivo===true &&
-x.punto===punto &&
+const n=lavori.filter(
+x=>x.attivo===true&&
+x.punto===punto&&
 x.completato!==true
 ).length;
 
 
-const e=
-document.getElementById(
-"count-"+
-encodeURIComponent(
-punto
-)
+const e=document.getElementById(
+"count-"+encodeURIComponent(punto)
 );
-
 
 if(e)
 e.textContent=n;
 
-});
-
-});
+}));
 
 }
 
-
-/* ==================================================
-   PAGINE
-================================================== */
 
 function mostraPagina(id){
 
-document.querySelectorAll(
-".page,.photo-detail-page"
-).forEach(
-p=>{
-p.classList.remove(
-"active"
-);
-}
-);
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
-const p=
-document.getElementById(
-id
-);
+const p=document.getElementById(id);
 
 if(p){
 
-p.classList.add(
-"active"
-);
+p.classList.add("active");
 
-window.scrollTo(
-0,
-0
-);
+window.scrollTo(0,0);
 
 }
 
 }
 
-
-/* ==================================================
-   HOME
-================================================== */
 
 function showHome(){
 
-addFormAperto=false;
-
-const form=
-document.getElementById(
-"addWorkForm"
-);
-
-if(form)
-form.classList.remove(
-"active"
-);
-
-const toggle=
-document.getElementById(
-"addWorkToggle"
-);
-
-if(toggle)
-toggle.textContent="+";
-
-fotoNuovoLavoro=[];
-
-renderAnteprimeNuovoLavoro();
-
-mostraPagina(
-"homePage"
-);
+mostraPagina("homePage");
 
 }
 
-
-/* ==================================================
-   FORM
-================================================== */
-
-function toggleAddWorkForm(){
-
-const form=
-document.getElementById(
-"addWorkForm"
-);
-
-const button=
-document.getElementById(
-"addWorkToggle"
-);
-
-addFormAperto=
-!addFormAperto;
-
-
-if(addFormAperto){
-
-form.classList.add(
-"active"
-);
-
-button.textContent="−";
-
-setTimeout(
-()=>{
-
-document.getElementById(
-"lavoroInput"
-).focus();
-
-},
-100
-);
-
-}else{
-
-form.classList.remove(
-"active"
-);
-
-button.textContent="+";
-
-}
-
-}
-
-
-/* ==================================================
-   RICERCA
-================================================== */
 
 function filtraLavori(){
 
-const input=
-document.getElementById(
-"searchLavori"
-);
+const input=document.getElementById("searchLavori");
 
-const clear=
-document.getElementById(
-"clearSearch"
-);
+const clear=document.getElementById("clearSearch");
 
 ricercaLavori=
-input.value
-.trim()
-.toLowerCase();
+input.value.trim().toLowerCase();
 
 clear.style.display=
-ricercaLavori
-?"block"
-:"none";
+ricercaLavori?"block":"none";
 
 
 renderTodoJobs(
 
-lavori.filter(
-x=>{
+lavori.filter(x=>{
 
 if(
-x.attivo!==true ||
+x.attivo!==true||
 x.completato===true
 )
 return false;
@@ -2571,35 +1485,27 @@ return false;
 if(!ricercaLavori)
 return true;
 
-return(
 
-(x.punto||"")
-.toLowerCase()
-.includes(
-ricercaLavori
-)
+return (
+
+x.punto||""
+).toLowerCase().includes(ricercaLavori)
 
 ||
 
-(x.testo||"")
-.toLowerCase()
-.includes(
-ricercaLavori
-)
+(
+
+x.testo||""
+).toLowerCase().includes(ricercaLavori)
 
 ||
 
-(x.note||"")
-.toLowerCase()
-.includes(
-ricercaLavori
-)
+(
 
-);
+x.note||""
+).toLowerCase().includes(ricercaLavori);
 
-}
-
-)
+})
 
 );
 
@@ -2608,41 +1514,24 @@ ricercaLavori
 
 function cancellaRicerca(){
 
-document.getElementById(
-"searchLavori"
-).value="";
+document.getElementById("searchLavori").value="";
 
 ricercaLavori="";
 
-document.getElementById(
-"clearSearch"
-).style.display=
-"none";
-
+document.getElementById("clearSearch").style.display="none";
 
 renderTodoJobs(
-
 lavori.filter(
-x=>
-x.attivo===true &&
-x.completato!==true
+x=>x.attivo===true&&x.completato!==true
 )
-
 );
 
 }
 
 
-/* ==================================================
-   TODO
-================================================== */
-
 function renderTodoJobs(lista){
 
-const c=
-document.getElementById(
-"todoJobs"
-);
+const c=document.getElementById("todoJobs");
 
 c.innerHTML="";
 
@@ -2650,126 +1539,78 @@ c.innerHTML="";
 if(!lista.length){
 
 c.innerHTML=
-`<div class="empty">${
-ricercaLavori
-?"Nessun lavoro trovato."
-:"Nessun lavoro da fare."
-}</div>`;
+`<div class="empty">
+${ricercaLavori?
+"Nessun lavoro trovato.":
+"Nessun lavoro da fare."}
+</div>`;
 
 return;
 
 }
 
 
-Object.keys(
-puntiVendita
-).forEach(
-cat=>{
+Object.keys(puntiVendita).forEach(cat=>{
 
-const punti=
-puntiVendita[
-cat
-];
+const punti=puntiVendita[cat];
 
 const catJobs=
-lista.filter(
-x=>
-punti.includes(
-x.punto
-)
-);
+lista.filter(x=>punti.includes(x.punto));
 
 if(!catJobs.length)
 return;
 
 
-const t=
-document.createElement(
-"div"
-);
+const t=document.createElement("div");
 
-t.className=
-"group-title";
+t.className="group-title";
 
-t.textContent=
-cat;
+t.textContent=cat;
 
 c.appendChild(t);
 
 
-punti.forEach(
-punto=>{
+punti.forEach(punto=>{
 
 const jobs=
-catJobs.filter(
-x=>x.punto===punto
-);
+catJobs.filter(x=>x.punto===punto);
 
 if(!jobs.length)
 return;
 
 
-const g=
-document.createElement(
-"div"
-);
+const g=document.createElement("div");
 
-g.className=
-"todo-store-group";
+g.className="todo-store-group";
 
 
-const h=
-document.createElement(
-"div"
-);
+const h=document.createElement("div");
 
-h.className=
-"todo-store-header";
+h.className="todo-store-header";
 
 
-const n=
-document.createElement(
-"div"
-);
+const n=document.createElement("div");
 
-n.className=
-"todo-store-name";
+n.className="todo-store-name";
 
-n.textContent=
-punto;
+n.textContent=punto;
 
 
-const num=
-document.createElement(
-"div"
-);
+const num=document.createElement("div");
 
-num.className=
-"todo-store-count";
+num.className="todo-store-count";
 
-num.textContent=
-jobs.length;
+num.textContent=jobs.length;
 
 
-h.append(
-n,
-num
-);
+h.append(n,num);
 
 g.appendChild(h);
 
 
-jobs.forEach(
-job=>{
-
-g.appendChild(
-creaTodoJobRow(
-job
-)
+jobs.forEach(job=>
+g.appendChild(creaTodoJobRow(job))
 );
-
-});
-
 
 c.appendChild(g);
 
@@ -2780,177 +1621,106 @@ c.appendChild(g);
 }
 
 
-/* ==================================================
-   RIGA TODO
-================================================== */
-
 function creaTodoJobRow(lavoro){
 
-const r=
-document.createElement(
-"div"
-);
+const r=document.createElement("div");
 
-r.className=
-"todo-job-row";
+r.className="todo-job-row";
 
 
-const main=
-document.createElement(
-"div"
-);
+const main=document.createElement("div");
 
-main.className=
-"todo-job-main job-clickable";
+main.className="todo-job-main job-clickable";
 
 
-const dot=
-document.createElement(
-"div"
-);
+const dot=document.createElement("div");
 
-dot.className=
-"todo-job-dot";
+dot.className="todo-job-dot";
 
 
-const content=
-document.createElement(
-"div"
-);
+const content=document.createElement("div");
 
-content.className=
-"todo-job-content";
+content.className="todo-job-content";
 
 
-const text=
-document.createElement(
-"div"
-);
+const text=document.createElement("div");
 
-text.className=
-"todo-job-text";
+text.className="todo-job-text";
 
-text.textContent=
-lavoro.testo||"";
+text.textContent=lavoro.testo||"";
 
-content.appendChild(
-text
-);
+content.appendChild(text);
 
 
 if(lavoro.note){
 
-const note=
-document.createElement(
-"div"
-);
+const note=document.createElement("div");
 
-note.className=
-"todo-job-note";
+note.className="todo-job-note";
 
-note.textContent=
-"Note: "+
-lavoro.note;
+note.textContent="Note: "+lavoro.note;
 
-content.appendChild(
-note
-);
+content.appendChild(note);
 
 }
 
 
 if(lavoro.urgente===true){
 
-const badge=
-document.createElement(
-"div"
-);
+const badge=document.createElement("div");
 
-badge.className=
-"todo-job-urgent";
+badge.className="todo-job-urgent";
 
-badge.textContent=
-"URGENTE";
+badge.textContent="URGENTE";
 
-content.appendChild(
-badge
-);
+content.appendChild(badge);
 
 }
 
 
-main.append(
-dot,
-content
-);
+main.append(dot,content);
+
+main.onclick=()=>
+apriSchedaLavoro(lavoro.id);
 
 
-main.onclick=()=>{
-
-apriSchedaLavoro(
-lavoro.id,
-"todoPage"
-);
-
-};
+r.appendChild(main);
 
 
-r.appendChild(
-main
-);
+const actions=document.createElement("div");
+
+actions.className="symbol-actions";
 
 
-const actions=
-document.createElement(
-"div"
-);
-
-actions.className=
-"symbol-actions";
-
-
-const complete=
-document.createElement(
-"button"
-);
+const complete=document.createElement("button");
 
 complete.className=
 "symbol-btn symbol-complete";
 
-complete.title=
-"Completato";
+complete.title="Completato";
 
-complete.textContent=
-"✓";
-
+complete.textContent="✓";
 
 complete.onclick=e=>{
 
 e.stopPropagation();
 
-completaLavoro(
-lavoro.id
-);
+completaLavoro(lavoro.id);
 
 };
 
 
-const urgent=
-document.createElement(
-"button"
-);
+const urgent=document.createElement("button");
 
 urgent.className=
 "symbol-btn symbol-urgent";
 
 urgent.title=
-lavoro.urgente
-?"Togli urgente"
-:"Segna urgente";
+lavoro.urgente?
+"Togli urgente":
+"Segna urgente";
 
-urgent.textContent=
-"!";
-
+urgent.textContent="!";
 
 urgent.onclick=e=>{
 
@@ -2964,54 +1734,20 @@ lavoro.urgente===true
 };
 
 
-const del=
-document.createElement(
-"button"
-);
+const del=document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
 
-del.title=
-"Elimina";
+del.title="Elimina";
 
-del.textContent=
-"×";
-
+del.textContent="×";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(
-lavoro.id
-);
-
-};
-
-
-const share=
-document.createElement(
-"button"
-);
-
-share.className=
-"symbol-btn symbol-share";
-
-share.title=
-"Invia";
-
-share.textContent=
-"↗";
-
-
-share.onclick=e=>{
-
-e.stopPropagation();
-
-inviaLavoro(
-lavoro
-);
+eliminaLavoro(lavoro.id);
 
 };
 
@@ -3019,112 +1755,58 @@ lavoro
 actions.append(
 complete,
 urgent,
-del,
-share
+del
 );
 
-r.appendChild(
-actions
-);
+r.appendChild(actions);
 
 return r;
 
 }
 
 
-/* ==================================================
-   PUNTO VENDITA
-================================================== */
+function apriPuntoVendita(punto,categoria){
 
-function apriPuntoVendita(
-punto,
-categoria
-){
-
-puntoSelezionato=
-punto;
-
-categoriaSelezionata=
-categoria;
-
-addFormAperto=false;
-
+puntoSelezionato=punto;
 
 document.getElementById(
 "storePageName"
-).textContent=
-punto;
-
+).textContent=punto;
 
 document.getElementById(
 "storePageCategory"
-).textContent=
-categoria;
+).textContent=categoria;
 
 
 document.getElementById(
 "lavoroInput"
 ).value="";
 
-
 document.getElementById(
 "noteInput"
 ).value="";
-
 
 document.getElementById(
 "urgenteInput"
 ).checked=false;
 
 
-fotoNuovoLavoro=[];
+renderStoreJobs(punto);
 
-renderAnteprimeNuovoLavoro();
-
-
-document.getElementById(
-"addWorkForm"
-).classList.remove(
-"active"
-);
-
-
-document.getElementById(
-"addWorkToggle"
-).textContent="+";
-
-
-renderStoreJobs(
-punto
-);
-
-mostraPagina(
-"storePage"
-);
+mostraPagina("storePage");
 
 }
 
 
-/* ==================================================
-   LAVORI PUNTO
-================================================== */
-
 function renderStoreJobs(punto){
 
-const c=
-document.getElementById(
-"storeJobs"
-);
+const c=document.getElementById("storeJobs");
 
 c.innerHTML="";
 
 
-const lista=
-lavori.filter(
-x=>
-x.attivo===true &&
-x.punto===punto &&
-x.completato!==true
+const lista=lavori.filter(
+x=>x.attivo===true&&x.punto===punto
 );
 
 
@@ -3138,132 +1820,83 @@ return;
 }
 
 
-lista.forEach(
-job=>{
-
-c.appendChild(
-creaStoreJobCard(
-job
-)
+lista.forEach(job=>
+c.appendChild(creaStoreJobCard(job))
 );
-
-});
 
 }
 
 
 function creaStoreJobCard(lavoro){
 
-const card=
-document.createElement(
-"div"
-);
+const card=document.createElement("div");
 
 card.className=
 "job-card job-clickable";
 
-
-card.onclick=()=>{
-
-apriSchedaLavoro(
-lavoro.id,
-"storePage"
-);
-
-};
+card.onclick=()=>
+apriSchedaLavoro(lavoro.id);
 
 
-const text=
-document.createElement(
-"div"
-);
+const text=document.createElement("div");
 
-text.className=
-"job-text";
+text.className="job-text";
 
-text.textContent=
-lavoro.testo||"";
+text.textContent=lavoro.testo||"";
 
-card.appendChild(
-text
-);
+card.appendChild(text);
 
 
 if(lavoro.note){
 
-const note=
-document.createElement(
-"div"
-);
+const note=document.createElement("div");
 
-note.className=
-"job-note";
+note.className="job-note";
 
 note.textContent=
-"Note: "+
-lavoro.note;
+"Note: "+lavoro.note;
 
-card.appendChild(
-note
-);
+card.appendChild(note);
 
 }
 
 
-const actions=
-document.createElement(
-"div"
-);
+const actions=document.createElement("div");
 
-actions.className=
-"symbol-actions";
+actions.className="symbol-actions";
 
-actions.style.marginTop=
-"12px";
+actions.style.marginTop="12px";
 
 
-const complete=
-document.createElement(
-"button"
-);
+const complete=document.createElement("button");
 
 complete.className=
 "symbol-btn symbol-complete";
 
-complete.title=
-"Completato";
+complete.title="Completato";
 
-complete.textContent=
-"✓";
-
+complete.textContent="✓";
 
 complete.onclick=e=>{
 
 e.stopPropagation();
 
-completaLavoro(
-lavoro.id
-);
+completaLavoro(lavoro.id);
 
 };
 
 
-const urgent=
-document.createElement(
-"button"
-);
+const urgent=document.createElement("button");
 
 urgent.className=
 "symbol-btn symbol-urgent";
 
 urgent.title=
-lavoro.urgente
-?"Togli urgente"
-:"Segna urgente";
+lavoro.urgente?
+"Togli urgente":
+"Segna urgente";
 
-urgent.textContent=
-"!";
-
+urgent.textContent="!";
 
 urgent.onclick=e=>{
 
@@ -3277,28 +1910,20 @@ lavoro.urgente===true
 };
 
 
-const del=
-document.createElement(
-"button"
-);
+const del=document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
 
-del.title=
-"Elimina";
+del.title="Elimina";
 
-del.textContent=
-"×";
-
+del.textContent="×";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(
-lavoro.id
-);
+eliminaLavoro(lavoro.id);
 
 };
 
@@ -3309,186 +1934,30 @@ urgent,
 del
 );
 
-card.appendChild(
-actions
-);
+card.appendChild(actions);
 
 return card;
 
 }
 
 
-/* ==================================================
-   FOTO NUOVO LAVORO
-================================================== */
-
-function selezionaFotoNuovoLavoro(){
-
-const input=
-document.getElementById(
-"newPhotoInput"
-);
-
-input.value="";
-
-input.onchange=
-eventoFotoNuovoLavoro;
-
-input.click();
-
-}
-
-
-function eventoFotoNuovoLavoro(e){
-
-const files=
-[
-...(e.target.files||[])
-];
-
-
-if(!files.length)
-return;
-
-
-files.forEach(
-file=>{
-
-if(
-!file.type.startsWith(
-"image/"
-)
-)
-return;
-
-fotoNuovoLavoro.push(
-file
-);
-
-});
-
-
-renderAnteprimeNuovoLavoro();
-
-}
-
-
-function renderAnteprimeNuovoLavoro(){
-
-const container=
-document.getElementById(
-"addPhotoPreview"
-);
-
-if(!container)
-return;
-
-container.innerHTML="";
-
-
-fotoNuovoLavoro.forEach(
-(file,index)=>{
-
-const item=
-document.createElement(
-"div"
-);
-
-item.className=
-"add-photo-item";
-
-
-const img=
-document.createElement(
-"img"
-);
-
-const url=
-URL.createObjectURL(
-file
-);
-
-img.src=url;
-
-img.onload=()=>{
-
-URL.revokeObjectURL(
-url
-);
-
-};
-
-
-const remove=
-document.createElement(
-"button"
-);
-
-remove.className=
-"add-photo-remove";
-
-remove.textContent=
-"×";
-
-remove.title=
-"Rimuovi foto";
-
-
-remove.onclick=()=>{
-
-fotoNuovoLavoro.splice(
-index,
-1
-);
-
-renderAnteprimeNuovoLavoro();
-
-};
-
-
-item.append(
-img,
-remove
-);
-
-container.appendChild(
-item
-);
-
-});
-
-}
-
-
-/* ==================================================
-   AGGIUNGI LAVORO + FOTO
-================================================== */
-
-async function aggiungiLavoro(){
+function aggiungiLavoro(){
 
 if(!puntoSelezionato)
 return;
 
 
 const lavoroInput=
-document.getElementById(
-"lavoroInput"
-);
+document.getElementById("lavoroInput");
 
 const noteInput=
-document.getElementById(
-"noteInput"
-);
+document.getElementById("noteInput");
 
 const urgentInput=
-document.getElementById(
-"urgenteInput"
-);
+document.getElementById("urgenteInput");
 
 const button=
-document.getElementById(
-"addWorkButton"
-);
+document.getElementById("addWorkButton");
 
 
 const testo=
@@ -3503,9 +1972,7 @@ urgentInput.checked;
 
 if(!testo){
 
-alert(
-"Inserisci il lavoro da fare."
-);
+alert("Inserisci il lavoro da fare.");
 
 lavoroInput.focus();
 
@@ -3516,162 +1983,46 @@ return;
 
 button.disabled=true;
 
-button.textContent=
-"Salvataggio...";
+button.textContent="Salvataggio...";
 
 
-try{
-
-if(!auth.currentUser){
-
-await auth.signInAnonymously();
-
-}
-
-
-const riferimento=
-await db.collection(
-"lavori"
-).add({
+const salva=()=>db.collection("lavori").add({
 
 punto:puntoSelezionato,
+
 testo,
+
 note,
+
 completato:false,
+
 attivo:true,
+
 urgente,
 
 creatoDa:
-auth.currentUser
-?auth.currentUser.uid
-:"",
+auth.currentUser?
+auth.currentUser.uid:
+"",
 
 creatoIl:
 firebase.firestore.FieldValue.serverTimestamp(),
 
-completatoIl:null,
-
 foto:[]
 
-});
-
-
-const fotoCaricate=[];
-
-
-for(
-const file of fotoNuovoLavoro
-){
-
-try{
-
-const blob=
-await comprimiFoto(
-file
-);
-
-
-const path=
-"lavori/"+
-riferimento.id+
-"/"+
-Date.now()+
-"-"+
-Math.random()
-.toString(36)
-.slice(2,10)+
-".jpg";
-
-
-const up=
-await supabaseClient
-.storage
-.from(
-SUPABASE_BUCKET
-)
-.upload(
-path,
-blob,
-{
-contentType:
-"image/jpeg",
-cacheControl:
-"3600",
-upsert:false
-}
-);
-
-
-if(up.error)
-throw up.error;
-
-
-fotoCaricate.push(
-path
-);
-
-
-}catch(photoError){
-
-console.error(
-"Errore caricamento foto:",
-photoError
-);
-
-}
-
-}
-
-
-if(fotoCaricate.length){
-
-await db.collection(
-"lavori"
-)
-.doc(
-riferimento.id
-)
-.update({
-
-foto:
-fotoCaricate
-
-});
-
-}
-
+}).then(()=>{
 
 lavoroInput.value="";
+
 noteInput.value="";
+
 urgentInput.checked=false;
-
-fotoNuovoLavoro=[];
-
-renderAnteprimeNuovoLavoro();
-
-addFormAperto=false;
-
-
-document.getElementById(
-"addWorkForm"
-)
-.classList.remove(
-"active"
-);
-
-
-document.getElementById(
-"addWorkToggle"
-).textContent="+";
-
 
 button.disabled=false;
 
-button.textContent=
-"+ Aggiungi lavoro";
+button.textContent="+ Aggiungi lavoro";
 
-
-}catch(error){
+}).catch(error=>{
 
 console.error(error);
 
@@ -3681,23 +2032,22 @@ alert(
 
 button.disabled=false;
 
-button.textContent=
-"+ Aggiungi lavoro";
+button.textContent="+ Aggiungi lavoro";
+
+});
+
+
+if(auth.currentUser)
+salva();
+else
+auth.signInAnonymously().then(salva);
 
 }
 
-}
-
-
-/* ==================================================
-   COMPLETA / RIFAI / URGENTE / ELIMINA
-================================================== */
 
 function completaLavoro(id){
 
-db.collection(
-"lavori"
-)
+db.collection("lavori")
 .doc(id)
 .update({
 
@@ -3707,106 +2057,69 @@ completatoIl:
 firebase.firestore.FieldValue.serverTimestamp()
 
 })
-.catch(()=>{
 
-alert(
-"Errore nel completare il lavoro."
+.catch(()=>
+alert("Errore nel completare il lavoro.")
 );
-
-});
 
 }
 
 
 function daRifare(id){
 
-db.collection(
-"lavori"
-)
+db.collection("lavori")
 .doc(id)
 .update({
 
 completato:false,
+
 completatoIl:null
 
 })
-.catch(()=>{
 
-alert(
-"Errore nel modificare il lavoro."
+.catch(()=>
+alert("Errore nel modificare il lavoro.")
 );
-
-});
 
 }
 
 
-function cambiaUrgente(
-id,
-giaUrgente
-){
+function cambiaUrgente(id,giaUrgente){
 
-db.collection(
-"lavori"
-)
+db.collection("lavori")
 .doc(id)
 .update({
-
-urgente:
-!giaUrgente
-
+urgente:!giaUrgente
 })
-.catch(()=>{
 
-alert(
-"Errore nella modifica dell'urgenza."
+.catch(()=>
+alert("Errore nella modifica dell'urgenza.")
 );
-
-});
 
 }
 
 
 function eliminaLavoro(id){
 
-if(
-!confirm(
-"Vuoi eliminare questo lavoro?"
-)
-)
+if(!confirm("Vuoi eliminare questo lavoro?"))
 return;
 
-
-db.collection(
-"lavori"
-)
+db.collection("lavori")
 .doc(id)
 .update({
-
 attivo:false
-
 })
-.catch(()=>{
 
-alert(
-"Errore nell'eliminazione."
+.catch(()=>
+alert("Errore nell'eliminazione.")
 );
-
-});
 
 }
 
 
-/* ==================================================
-   URGENTI
-================================================== */
-
 function renderUrgentJobs(lista){
 
-const c=
-document.getElementById(
-"urgentJobs"
-);
+const c=document.getElementById("urgentJobs");
 
 c.innerHTML="";
 
@@ -3821,44 +2134,407 @@ return;
 }
 
 
-Object.keys(
-puntiVendita
-).forEach(
-cat=>{
+Object.keys(puntiVendita).forEach(cat=>{
+
+const punti=puntiVendita[cat];
+
+const catJobs=
+lista.filter(x=>punti.includes(x.punto));
+
+if(!catJobs.length)
+return;
+
+
+const t=document.createElement("div");
+
+t.className="group-title";
+
+t.textContent=cat;
+
+c.appendChild(t);
+
+
+punti.forEach(punto=>{
+
+const jobs=
+catJobs.filter(x=>x.punto===punto);
+
+if(!jobs.length)
+return;
+
+
+const g=document.createElement("div");
+
+g.className="todo-store-group";
+
+
+const h=document.createElement("div");
+
+h.className="urgent-store-header";
+
+
+const n=document.createElement("div");
+
+n.className="urgent-store-name";
+
+n.textContent=punto;
+
+
+const num=document.createElement("div");
+
+num.className="urgent-store-count";
+
+num.textContent=jobs.length;
+
+
+h.append(n,num);
+
+g.appendChild(h);
+
+
+jobs.forEach(job=>{
+
+const r=document.createElement("div");
+
+r.className=
+"urgent-job-row job-clickable";
+
+r.onclick=()=>
+apriSchedaLavoro(job.id);
+
+
+const dot=document.createElement("div");
+
+dot.className="urgent-job-dot";
+
+
+const content=document.createElement("div");
+
+content.className=
+"urgent-job-content";
+
+
+const text=document.createElement("div");
+
+text.className=
+"urgent-job-text";
+
+text.textContent=
+job.testo||"";
+
+content.appendChild(text);
+
+
+if(job.note){
+
+const note=document.createElement("div");
+
+note.className=
+"urgent-job-note";
+
+note.textContent=
+"Note: "+job.note;
+
+content.appendChild(note);
+
+}
+
+
+const actions=document.createElement("div");
+
+actions.className=
+"symbol-actions";
+
+
+const complete=
+document.createElement("button");
+
+complete.className=
+"symbol-btn symbol-complete";
+
+complete.textContent="✓";
+
+complete.title="Completato";
+
+complete.onclick=e=>{
+
+e.stopPropagation();
+
+completaLavoro(job.id);
+
+};
+
+
+const urgent=
+document.createElement("button");
+
+urgent.className=
+"symbol-btn symbol-urgent";
+
+urgent.textContent="!";
+
+urgent.title="Togli urgente";
+
+urgent.onclick=e=>{
+
+e.stopPropagation();
+
+cambiaUrgente(job.id,true);
+
+};
+
+
+const del=
+document.createElement("button");
+
+del.className=
+"symbol-btn symbol-delete";
+
+del.textContent="×";
+
+del.title="Elimina";
+
+del.onclick=e=>{
+
+e.stopPropagation();
+
+eliminaLavoro(job.id);
+
+};
+
+
+actions.append(
+complete,
+urgent,
+del
+);
+
+r.append(
+dot,
+content,
+actions
+);
+
+g.appendChild(r);
+
+});
+
+c.appendChild(g);
+
+});
+
+});
+
+}
+
+
+function dataCompletamentoValida(lavoro){
+
+if(!lavoro.completatoIl)
+return null;
+
+
+if(
+lavoro.completatoIl &&
+typeof lavoro.completatoIl.toDate==="function"
+)
+return lavoro.completatoIl.toDate();
+
+
+if(lavoro.completatoIl instanceof Date)
+return lavoro.completatoIl;
+
+
+const data=
+new Date(lavoro.completatoIl);
+
+
+return isNaN(data.getTime())?
+null:
+data;
+
+}
+
+
+function nomeMeseCompletati(mese){
+
+return [
+
+"GENNAIO",
+"FEBBRAIO",
+"MARZO",
+"APRILE",
+"MAGGIO",
+"GIUGNO",
+"LUGLIO",
+"AGOSTO",
+"SETTEMBRE",
+"OTTOBRE",
+"NOVEMBRE",
+"DICEMBRE"
+
+][mese];
+
+}
+
+
+function listaCompletatiDelMese(){
+
+const completati=
+lavori.filter(
+x=>x.attivo===true&&x.completato===true
+);
+
+
+const conData=
+completati.filter(x=>{
+
+const d=
+dataCompletamentoValida(x);
+
+return d &&
+d.getMonth()===
+meseCompletatiVisualizzato &&
+d.getFullYear()===
+annoCompletatiVisualizzato;
+
+});
+
+
+/* I vecchi completati che non hanno
+   completatoIl vengono mantenuti visibili. */
+
+const senzaData=
+completati.filter(
+x=>!dataCompletamentoValida(x)
+);
+
+
+return conData.concat(senzaData);
+
+}
+
+
+function aggiornaTitoloMeseCompletati(){
+
+const title=
+document.getElementById(
+"completedMonthTitle"
+);
+
+const count=
+document.getElementById(
+"completedMonthCount"
+);
+
+
+if(!title||!count)
+return;
+
+
+title.textContent=
+nomeMeseCompletati(
+meseCompletatiVisualizzato
+)
++" "+
+annoCompletatiVisualizzato;
+
+
+const n=
+listaCompletatiDelMese().length;
+
+
+count.textContent=
+n===1?
+"1 lavoro completato":
+n+" lavori completati";
+
+}
+
+
+function cambiaMeseCompletati(delta){
+
+meseCompletatiVisualizzato+=delta;
+
+
+if(meseCompletatiVisualizzato<0){
+
+meseCompletatiVisualizzato=11;
+
+annoCompletatiVisualizzato--;
+
+}
+
+
+if(meseCompletatiVisualizzato>11){
+
+meseCompletatiVisualizzato=0;
+
+annoCompletatiVisualizzato++;
+
+}
+
+
+renderCompletedJobs(
+listaCompletatiDelMese()
+);
+
+aggiornaTitoloMeseCompletati();
+
+
+document.getElementById(
+"totaleCompletati"
+).textContent=
+listaCompletatiDelMese().length;
+
+}
+
+
+async function condividiElencoCompletati(){
+
+const lista=
+listaCompletatiDelMese();
+
+
+if(!lista.length){
+
+alert(
+"Nessun lavoro completato da condividere in questo mese."
+);
+
+return;
+
+}
+
+
+let testo=
+"EDISERVICE\n"+
+"LAVORI COMPLETATI - "+
+nomeMeseCompletati(
+meseCompletatiVisualizzato
+)+" "+
+annoCompletatiVisualizzato+
+"\n\n";
+
+
+Object.keys(puntiVendita).forEach(cat=>{
 
 const punti=
-puntiVendita[
-cat
-];
+puntiVendita[cat];
 
 const catJobs=
 lista.filter(
-x=>
-punti.includes(
-x.punto
-)
+x=>punti.includes(x.punto)
 );
 
 if(!catJobs.length)
 return;
 
 
-const t=
-document.createElement(
-"div"
-);
-
-t.className=
-"group-title";
-
-t.textContent=
-cat;
-
-c.appendChild(t);
+testo+=cat+"\n";
 
 
-punti.forEach(
-punto=>{
+punti.forEach(punto=>{
 
 const jobs=
 catJobs.filter(
@@ -3869,282 +2545,84 @@ if(!jobs.length)
 return;
 
 
-const g=
-document.createElement(
-"div"
-);
+testo+="\n"+punto+"\n";
 
-g.className=
-"todo-store-group";
 
+jobs.forEach(job=>{
 
-const h=
-document.createElement(
-"div"
-);
+testo+="• "+
+(job.testo||"")+
+"\n";
 
-h.className=
-"urgent-store-header";
-
-
-const n=
-document.createElement(
-"div"
-);
-
-n.className=
-"urgent-store-name";
-
-n.textContent=
-punto;
-
-
-const num=
-document.createElement(
-"div"
-);
-
-num.className=
-"urgent-store-count";
-
-num.textContent=
-jobs.length;
-
-
-h.append(
-n,
-num
-);
-
-g.appendChild(h);
-
-
-jobs.forEach(
-job=>{
-
-const r=
-document.createElement(
-"div"
-);
-
-r.className=
-"urgent-job-row job-clickable";
-
-
-r.onclick=()=>{
-
-apriSchedaLavoro(
-job.id,
-"urgentPage"
-);
-
-};
-
-
-const dot=
-document.createElement(
-"div"
-);
-
-dot.className=
-"urgent-job-dot";
-
-
-const content=
-document.createElement(
-"div"
-);
-
-content.className=
-"urgent-job-content";
-
-
-const text=
-document.createElement(
-"div"
-);
-
-text.className=
-"urgent-job-text";
-
-text.textContent=
-job.testo||"";
-
-content.appendChild(
-text
-);
-
-
-if(job.note){
-
-const note=
-document.createElement(
-"div"
-);
-
-note.className=
-"urgent-job-note";
-
-note.textContent=
-"Note: "+
-job.note;
-
-content.appendChild(
-note
-);
-
-}
-
-
-const actions=
-document.createElement(
-"div"
-);
-
-actions.className=
-"symbol-actions";
-
-
-const complete=
-document.createElement(
-"button"
-);
-
-complete.className=
-"symbol-btn symbol-complete";
-
-complete.textContent=
-"✓";
-
-complete.title=
-"Completato";
-
-
-complete.onclick=e=>{
-
-e.stopPropagation();
-
-completaLavoro(
-job.id
-);
-
-};
-
-
-const urgent=
-document.createElement(
-"button"
-);
-
-urgent.className=
-"symbol-btn symbol-urgent";
-
-urgent.textContent=
-"!";
-
-urgent.title=
-"Togli urgente";
-
-
-urgent.onclick=e=>{
-
-e.stopPropagation();
-
-cambiaUrgente(
-job.id,
-true
-);
-
-};
-
-
-const del=
-document.createElement(
-"button"
-);
-
-del.className=
-"symbol-btn symbol-delete";
-
-del.textContent=
-"×";
-
-del.title=
-"Elimina";
-
-
-del.onclick=e=>{
-
-e.stopPropagation();
-
-eliminaLavoro(
-job.id
-);
-
-};
-
-
-const share=
-document.createElement(
-"button"
-);
-
-share.className=
-"symbol-btn symbol-share";
-
-share.textContent=
-"↗";
-
-share.title=
-"Invia";
-
-
-share.onclick=e=>{
-
-e.stopPropagation();
-
-inviaLavoro(
-job
-);
-
-};
-
-
-actions.append(
-complete,
-urgent,
-del,
-share
-);
-
-
-r.append(
-dot,
-content,
-actions
-);
-
-g.appendChild(
-r
-);
+});
 
 });
 
 
-c.appendChild(
-g
-);
+testo+="\n";
 
 });
+
+
+try{
+
+if(navigator.share){
+
+await navigator.share({
+
+title:
+"EDISERVICE - Lavori completati",
+
+text:testo
 
 });
 
 }
 
+else if(navigator.clipboard){
 
-/* ==================================================
-   COMPLETATI
-================================================== */
+await navigator.clipboard.writeText(testo);
+
+alert(
+"Elenco copiato negli appunti."
+);
+
+}
+
+else{
+
+const area=
+document.createElement("textarea");
+
+area.value=testo;
+
+document.body.appendChild(area);
+
+area.select();
+
+document.execCommand("copy");
+
+area.remove();
+
+alert(
+"Elenco copiato negli appunti."
+);
+
+}
+
+}
+catch(error){
+
+if(
+error &&
+error.name!=="AbortError"
+)
+console.error(error);
+
+}
+
+}
+
 
 function renderCompletedJobs(lista){
 
@@ -4154,8 +2632,6 @@ document.getElementById(
 );
 
 c.innerHTML="";
-
-aggiornaTitoloMeseCompletati();
 
 
 if(!lista.length){
@@ -4168,22 +2644,14 @@ return;
 }
 
 
-Object.keys(
-puntiVendita
-).forEach(
-cat=>{
+Object.keys(puntiVendita).forEach(cat=>{
 
 const punti=
-puntiVendita[
-cat
-];
+puntiVendita[cat];
 
 const catJobs=
 lista.filter(
-x=>
-punti.includes(
-x.punto
-)
+x=>punti.includes(x.punto)
 );
 
 if(!catJobs.length)
@@ -4191,21 +2659,16 @@ return;
 
 
 const t=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-t.className=
-"group-title";
+t.className="group-title";
 
-t.textContent=
-cat;
+t.textContent=cat;
 
 c.appendChild(t);
 
 
-punti.forEach(
-punto=>{
+punti.forEach(punto=>{
 
 const jobs=
 catJobs.filter(
@@ -4217,39 +2680,29 @@ return;
 
 
 const g=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-g.className=
-"completed-job";
+g.className="completed-job";
 
 
 const h=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 h.className=
 "completed-store-header";
 
 
 const n=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 n.className=
 "completed-store-name";
 
-n.textContent=
-punto;
+n.textContent=punto;
 
 
 const num=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 num.className=
 "completed-store-count";
@@ -4258,63 +2711,41 @@ num.textContent=
 jobs.length;
 
 
-h.append(
-n,
-num
-);
+h.append(n,num);
 
-g.appendChild(
-h
-);
+g.appendChild(h);
 
 
-jobs.forEach(
-job=>{
+jobs.forEach(job=>{
 
 const r=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 r.className=
 "completed-job-row job-clickable";
 
-
-r.onclick=()=>{
-
-apriSchedaLavoro(
-job.id,
-"completedPage"
-);
-
-};
+r.onclick=()=>
+apriSchedaLavoro(job.id);
 
 
 const check=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 check.className=
 "completed-check";
 
-check.textContent=
-"✓";
+check.textContent="✓";
 
 
 const content=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 content.className=
 "completed-job-content";
 
 
 const text=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 text.className=
 "completed-job-text";
@@ -4322,89 +2753,99 @@ text.className=
 text.textContent=
 job.testo||"";
 
-content.appendChild(
-text
-);
+content.appendChild(text);
+
+
+const data=
+dataCompletamentoValida(job);
+
+
+const dataText=
+document.createElement("div");
+
+dataText.className=
+"completed-job-note";
+
+
+dataText.textContent=
+data?
+
+"Completato il "+
+data.toLocaleDateString("it-IT")+
+" alle "+
+data.toLocaleTimeString(
+"it-IT",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+)
+
+:
+
+"Data di completamento non disponibile";
+
+
+content.appendChild(dataText);
 
 
 if(job.note){
 
 const note=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 note.className=
 "completed-job-note";
 
 note.textContent=
-"Note: "+
-job.note;
+"Note: "+job.note;
 
-content.appendChild(
-note
-);
+content.appendChild(note);
 
 }
 
 
 const actions=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 actions.className=
 "symbol-actions";
 
 
 const redo=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 redo.className=
 "symbol-btn symbol-redo";
 
-redo.title=
-"Da rifare";
+redo.title="Da rifare";
 
-redo.textContent=
-"↻";
-
+redo.textContent="↻";
 
 redo.onclick=e=>{
 
 e.stopPropagation();
 
-daRifare(
-job.id
-);
+daRifare(job.id);
 
 };
 
 
 const del=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 del.className=
 "symbol-btn symbol-delete";
 
-del.title=
-"Elimina";
+del.title="Elimina";
 
-del.textContent=
-"×";
-
+del.textContent="×";
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-eliminaLavoro(
-job.id
-);
+eliminaLavoro(job.id);
 
 };
 
@@ -4421,16 +2862,12 @@ content,
 actions
 );
 
-g.appendChild(
-r
-);
+g.appendChild(r);
 
 });
 
 
-c.appendChild(
-g
-);
+c.appendChild(g);
 
 });
 
@@ -4439,555 +2876,11 @@ g
 }
 
 
-/* ==================================================
-   CONDIVIDI ELENCO DEL MESE - SOLO TESTO
-================================================== */
-
-async function condividiElencoCompletati(){
-
-const lista=
-listaCompletatiDelMese();
-
-const mese=
-nomeMeseCompletati(
-meseCompletatiVisualizzato
-);
-
-
-let testo=
-"EDISERVICE\n"+
-"LAVORI COMPLETATI\n\n"+
-mese+
-" "+
-annoCompletatiVisualizzato+
-"\n\n";
-
-
-if(!lista.length){
-
-testo+=
-"Nessun lavoro completato in questo mese.\n\n"+
-"Totale: 0 lavori completati";
-
-}else{
-
-
-Object.keys(
-puntiVendita
-).forEach(
-cat=>{
-
-const punti=
-puntiVendita[
-cat
-];
-
-const catJobs=
-lista.filter(
-x=>
-punti.includes(
-x.punto
-)
-);
-
-if(!catJobs.length)
-return;
-
-
-testo+=
-cat+
-"\n\n";
-
-
-punti.forEach(
-punto=>{
-
-const jobs=
-catJobs.filter(
-x=>x.punto===punto
-);
-
-if(!jobs.length)
-return;
-
-
-testo+=
-punto+
-" ("+
-jobs.length+
-")\n";
-
-
-jobs.forEach(
-job=>{
-
-testo+=
-"✓ "+
-(
-job.testo||
-"Lavoro senza descrizione"
-);
-
-
-if(
-(job.note||"").trim()
-){
-
-testo+=
-"\n  Note: "+
-job.note.trim();
-
-}
-
-
-if(job.completatoIl){
-
-testo+=
-"\n  Completato il: "+
-formatDataOra(
-job.completatoIl
-);
-
-}
-
-
-testo+=
-"\n";
-
-});
-
-
-testo+=
-"\n";
-
-});
-
-});
-
-
-testo+=
-"Totale: "+
-lista.length+
-(
-lista.length===1
-?" lavoro completato"
-:" lavori completati"
-);
-
-}
-
-
-try{
-
-
-if(
-navigator.share
-){
-
-await navigator.share({
-
-title:
-"EDISERVICE - Lavori completati",
-
-text:
-testo
-
-});
-
-return;
-
-}
-
-
-if(
-navigator.clipboard
-){
-
-await navigator.clipboard.writeText(
-testo
-);
-
-alert(
-"Elenco copiato negli appunti."
-);
-
-return;
-
-}
-
-
-prompt(
-"Copia questo elenco:",
-testo
-);
-
-
-}catch(error){
-
-
-if(
-error &&
-error.name==="AbortError"
-){
-
-return;
-
-}
-
-
-console.error(
-"Errore condivisione:",
-error
-);
-
-
-try{
-
-if(
-navigator.clipboard
-){
-
-await navigator.clipboard.writeText(
-testo
-);
-
-alert(
-"Elenco copiato negli appunti."
-);
-
-return;
-
-}
-
-}catch(e){
-
-console.error(e);
-
-}
-
-
-prompt(
-"Copia questo elenco:",
-testo
-);
-
-}
-
-}
-
-
-/* ==================================================
-   SCHEDA LAVORO
-================================================== */
-
-function apriSchedaLavoro(
-id,
-origine
-){
-
-const lavoro=
-lavori.find(
-x=>x.id===id
-);
-
-if(!lavoro)
-return;
-
-
-lavoroFotoAperto=
-lavoro;
-
-paginaPrecedenteScheda=
-origine||
-"todoPage";
-
-modificaSchedaAttiva=
-false;
-
-
-document.getElementById(
-"photoDetailStore"
-)
-.textContent=
-lavoro.punto||"";
-
-
-document.getElementById(
-"photoDetailTitle"
-)
-.textContent=
-lavoro.testo||"";
-
-
-document.getElementById(
-"photoDetailCreated"
-)
-.textContent=
-lavoro.creatoIl
-?
-"Inserito il "+
-formatDataOra(
-lavoro.creatoIl
-)
-:
-"Inserito il: data non ancora disponibile";
-
-
-document.getElementById(
-"photoDetailCompleted"
-)
-.textContent=
-lavoro.completato===true &&
-lavoro.completatoIl
-?
-"Completato il "+
-formatDataOra(
-lavoro.completatoIl
-)
-:"";
-
-
-document.getElementById(
-"photoDetailNoteRead"
-)
-.textContent=
-lavoro.note &&
-lavoro.note.trim()
-?
-lavoro.note
-:
-"Nessuna nota.";
-
-
-document.getElementById(
-"photoDetailNoteInput"
-)
-.value=
-lavoro.note||"";
-
-
-impostaVisualizzazioneScheda();
-
-mostraPagina(
-"photoDetailPage"
-);
-
-renderFotoLavoro();
-
-}
-
-
-/* ==================================================
-   AGGIORNA SCHEDA
-================================================== */
-
-function aggiornaSchedaAperta(){
-
-if(!lavoroFotoAperto)
-return;
-
-
-const lavoro=
-lavoroFotoAperto;
-
-
-document.getElementById(
-"photoDetailStore"
-)
-.textContent=
-lavoro.punto||"";
-
-
-document.getElementById(
-"photoDetailTitle"
-)
-.textContent=
-lavoro.testo||"";
-
-
-document.getElementById(
-"photoDetailCreated"
-)
-.textContent=
-lavoro.creatoIl
-?
-"Inserito il "+
-formatDataOra(
-lavoro.creatoIl
-)
-:
-"Inserito il: data non ancora disponibile";
-
-
-document.getElementById(
-"photoDetailCompleted"
-)
-.textContent=
-lavoro.completato===true &&
-lavoro.completatoIl
-?
-"Completato il "+
-formatDataOra(
-lavoro.completatoIl
-)
-:"";
-
-
-if(!modificaSchedaAttiva){
-
-document.getElementById(
-"photoDetailNoteRead"
-)
-.textContent=
-lavoro.note &&
-lavoro.note.trim()
-?
-lavoro.note
-:
-"Nessuna nota.";
-
-
-document.getElementById(
-"photoDetailNoteInput"
-)
-.value=
-lavoro.note||"";
-
-}
-
-
-renderFotoLavoro();
-
-}
-
-
-/* ==================================================
-   MODALITA' MODIFICA
-================================================== */
-
-function attivaModificaScheda(){
-
-if(!lavoroFotoAperto)
-return;
-
-
-modificaSchedaAttiva=
-true;
-
-
-document.getElementById(
-"photoDetailNoteInput"
-)
-.classList.add(
-"editing"
-);
-
-
-document.getElementById(
-"photoToolbar"
-)
-.classList.add(
-"editing"
-);
-
-
-document.getElementById(
-"photoEditActions"
-)
-.classList.add(
-"active"
-);
-
-
-document.getElementById(
-"photoEditButton"
-)
-.style.display=
-"none";
-
-
-document.getElementById(
-"photoModalActions"
-)
-.classList.add(
-"editing"
-);
-
-
-renderFotoLavoro();
-
-}
-
-
-function impostaVisualizzazioneScheda(){
-
-modificaSchedaAttiva=
-false;
-
-
-document.getElementById(
-"photoDetailNoteInput"
-)
-.classList.remove(
-"editing"
-);
-
-
-document.getElementById(
-"photoToolbar"
-)
-.classList.remove(
-"editing"
-);
-
-
-document.getElementById(
-"photoEditActions"
-)
-.classList.remove(
-"active"
-);
-
-
-document.getElementById(
-"photoEditButton"
-)
-.style.display=
-"block";
-
-
-document.getElementById(
-"photoModalActions"
-)
-.classList.remove(
-"editing"
-);
-
-
-renderFotoLavoro();
-
-}
-
-
-function annullaModificaScheda(){
-
-if(!lavoroFotoAperto)
-return;
-
-
-document.getElementById(
-"photoDetailNoteInput"
-)
-.value=
-lavoroFotoAperto.note||"";
-
-
-impostaVisualizzazioneScheda();
-
-}
-
-
-async function salvaModificheScheda(){
+/* =========================
+   FOTO / SCHEDA LAVORO
+========================= */
+
+function salvaNoteLavoro(){
 
 if(!lavoroFotoAperto)
 return;
@@ -4998,122 +2891,107 @@ document.getElementById(
 "photoDetailNoteInput"
 );
 
-const note=
+const testo=
 input.value.trim();
 
 
-try{
-
-await db.collection(
-"lavori"
-)
-.doc(
-lavoroFotoAperto.id
-)
+db.collection("lavori")
+.doc(lavoroFotoAperto.id)
 .update({
+note:testo
+})
 
-note:note
+.then(()=>{
 
-});
+lavoroFotoAperto.note=testo;
 
+alert("Note salvate.");
 
-lavoroFotoAperto.note=
-note;
+})
 
-
-document.getElementById(
-"photoDetailNoteRead"
-)
-.textContent=
-note||
-"Nessuna nota.";
-
-
-impostaVisualizzazioneScheda();
-
-alert(
-"Modifiche salvate."
-);
-
-
-}catch(error){
+.catch(error=>{
 
 console.error(error);
 
 alert(
-"Errore nel salvataggio delle modifiche."
+"Errore nel salvataggio delle note."
 );
 
-}
+});
 
 }
 
-
-/* ==================================================
-   CHIUDI SCHEDA
-================================================== */
-
-function chiudiSchedaLavoro(){
-
-const pagina=
-paginaPrecedenteScheda||
-"todoPage";
-
-
-lavoroFotoAperto=
-null;
-
-fotoCorrente=
-null;
-
-modificaSchedaAttiva=
-false;
-
-
-chiudiFotoGrande();
-
-
-if(
-pagina==="storePage"
-){
-
-if(puntoSelezionato){
-
-renderStoreJobs(
-puntoSelezionato
-);
-
-}
-
-mostraPagina(
-"storePage"
-);
-
-return;
-
-}
-
-
-mostraPagina(
-pagina
-);
-
-}
-
-
-/* ==================================================
-   FOTO
-================================================== */
 
 function fotoPaths(lavoro){
 
-return Array.isArray(
-lavoro.foto
-)
-?
-lavoro.foto
-:
+return Array.isArray(lavoro.foto)?
+lavoro.foto:
 [];
+
+}
+
+
+function apriSchedaLavoro(id){
+
+const lavoro=
+lavori.find(
+x=>x.id===id
+);
+
+if(!lavoro)
+return;
+
+
+lavoroFotoAperto=lavoro;
+
+
+document.getElementById(
+"photoDetailStore"
+).textContent=
+lavoro.punto||"";
+
+
+document.getElementById(
+"photoDetailTitle"
+).textContent=
+lavoro.testo||"";
+
+
+document.getElementById(
+"photoDetailNoteInput"
+).value=
+lavoro.note||"";
+
+
+document.getElementById(
+"photoDetailNote"
+).textContent=
+lavoro.note?
+"Note: "+lavoro.note:
+"";
+
+
+mostraPagina(
+"photoDetailPage"
+);
+
+renderFotoLavoro();
+
+}
+
+
+function chiudiSchedaLavoro(){
+
+lavoroFotoAperto=null;
+
+fotoCorrente=null;
+
+
+if(puntoSelezionato)
+mostraPagina("storePage");
+
+else
+mostraPagina("todoPage");
 
 }
 
@@ -5133,123 +3011,79 @@ return;
 
 
 const paths=
-fotoPaths(
-lavoroFotoAperto
-);
+fotoPaths(lavoroFotoAperto);
 
 
 if(!paths.length){
 
 grid.innerHTML=
-'<div class="photo-empty" style="grid-column:1/-1">Nessuna foto ancora.</div>';
+'<div class="photo-empty" style="grid-column:1/-1">Nessuna foto ancora.<br>Premi “+ Aggiungi foto” per inserirne una.</div>';
 
 return;
 
 }
 
 
-paths.forEach(
-(path,index)=>{
+paths.forEach((path,index)=>{
 
 const box=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 box.className=
 "photo-thumb";
 
 
 const img=
-document.createElement(
-"img"
-);
+document.createElement("img");
 
 img.alt=
-"Foto "+
-(index+1);
+"Foto "+(index+1);
 
-
-box.appendChild(
-img
-);
+box.appendChild(img);
 
 
 const del=
-document.createElement(
-"button"
-);
+document.createElement("button");
 
 del.className=
-"photo-thumb-delete"+
-(
-modificaSchedaAttiva
-?
-" editing"
-:
-""
-);
+"photo-thumb-delete";
 
-del.textContent=
-"×";
+del.textContent="×";
 
 del.title=
 "Elimina foto";
-
 
 del.onclick=e=>{
 
 e.stopPropagation();
 
-if(!modificaSchedaAttiva)
-return;
-
-eliminaFoto(
-path
-);
+eliminaFoto(path);
 
 };
 
 
-box.appendChild(
-del
-);
+box.appendChild(del);
 
 
-box.onclick=()=>{
-
-apriFotoGrande(
-path
-);
-
-};
+box.onclick=()=>
+apriFotoGrande(path);
 
 
-grid.appendChild(
-box
-);
+grid.appendChild(box);
 
 
-getSignedUrl(
-path
-)
-.then(
-url=>{
+getSignedUrl(path)
+.then(url=>{
 
 if(url)
 img.src=url;
 
-}
-);
+});
 
 });
 
 }
 
-
-/* ==================================================
-   SIGNED URL
-================================================== */
 
 async function getSignedUrl(path){
 
@@ -5258,9 +3092,7 @@ return null;
 
 
 const cached=
-signedUrlCache.get(
-path
-);
+signedUrlCache.get(path);
 
 
 if(
@@ -5270,15 +3102,10 @@ cached.expires>Date.now()
 return cached.url;
 
 
-const {
-data,
-error
-}=
+const {data,error}=
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
+.from(SUPABASE_BUCKET)
 .createSignedUrl(
 path,
 3600
@@ -5301,9 +3128,7 @@ signedUrlCache.set(
 path,
 {
 url:data.signedUrl,
-expires:
-Date.now()+
-3500*1000
+expires:Date.now()+3500*1000
 }
 );
 
@@ -5313,16 +3138,9 @@ return data.signedUrl;
 }
 
 
-/* ==================================================
-   AGGIUNGI FOTO ALLA SCHEDA
-================================================== */
-
 function selezionaFoto(){
 
-if(
-!lavoroFotoAperto ||
-!modificaSchedaAttiva
-)
+if(!lavoroFotoAperto)
 return;
 
 
@@ -5341,155 +3159,18 @@ input.click();
 }
 
 
-async function caricaFoto(e){
-
-const files=
-[
-...(e.target.files||[])
-];
-
-
-if(
-!files.length ||
-!lavoroFotoAperto
-)
-return;
-
-
-if(!modificaSchedaAttiva)
-return;
-
-
-const lavoro=
-lavoroFotoAperto;
-
-
-try{
-
-let aggiunte=0;
-
-
-for(
-const file of files
-){
-
-const blob=
-await comprimiFoto(
-file
-);
-
-
-const path=
-"lavori/"+
-lavoro.id+
-"/"+
-Date.now()+
-"-"+
-Math.random()
-.toString(36)
-.slice(2,10)+
-".jpg";
-
-
-const {
-error
-}=
-await supabaseClient
-.storage
-.from(
-SUPABASE_BUCKET
-)
-.upload(
-path,
-blob,
-{
-contentType:
-"image/jpeg",
-cacheControl:
-"3600",
-upsert:false
-}
-);
-
-
-if(error)
-throw error;
-
-
-await db.collection(
-"lavori"
-)
-.doc(
-lavoro.id
-)
-.update({
-
-foto:
-firebase.firestore.FieldValue
-.arrayUnion(
-path
-)
-
-});
-
-
-aggiunte++;
-
-}
-
-
-alert(
-aggiunte===1
-?
-"Foto aggiunta."
-:
-aggiunte+
-" foto aggiunte."
-);
-
-
-}catch(error){
-
-console.error(
-error
-);
-
-alert(
-"Errore nel caricamento: "+
-(
-error.message||
-error
-)
-);
-
-}
-
-}
-
-
-/* ==================================================
-   COMPRESSIONE
-================================================== */
-
 async function comprimiFoto(file){
 
-if(
-!file.type.startsWith(
-"image/"
-)
-)
+if(!file.type.startsWith("image/"))
 throw new Error(
 "Seleziona un'immagine."
 );
 
 
 const url=
-URL.createObjectURL(
-file
-);
+URL.createObjectURL(file);
 
-const img=
-new Image();
+const img=new Image();
 
 
 try{
@@ -5498,42 +3179,34 @@ await new Promise(
 (res,rej)=>{
 
 img.onload=res;
+
 img.onerror=rej;
+
 img.src=url;
 
 }
 );
 
 
-let w=
-img.naturalWidth;
+let w=img.naturalWidth;
 
-let h=
-img.naturalHeight;
+let h=img.naturalHeight;
 
-const max=1600;
+let max=1600;
 
 
-if(
-w>max ||
-h>max
-){
+if(w>max||h>max){
 
 if(w>=h){
 
-h=
-Math.round(
-h*max/w
-);
+h=Math.round(h*max/w);
 
 w=max;
 
-}else{
+}
+else{
 
-w=
-Math.round(
-w*max/h
-);
+w=Math.round(w*max/h);
 
 h=max;
 
@@ -5543,11 +3216,10 @@ h=max;
 
 
 const canvas=
-document.createElement(
-"canvas"
-);
+document.createElement("canvas");
 
 canvas.width=w;
+
 canvas.height=h;
 
 
@@ -5571,32 +3243,114 @@ resolve,
 )
 );
 
+}
 
-}finally{
+finally{
 
-URL.revokeObjectURL(
-url
+URL.revokeObjectURL(url);
+
+}
+
+}
+
+
+async function caricaFoto(e){
+
+const files=
+[...(e.target.files||[])];
+
+if(
+!files.length||
+!lavoroFotoAperto
+)
+return;
+
+
+const lavoro=
+lavoroFotoAperto;
+
+
+try{
+
+for(const file of files){
+
+const blob=
+await comprimiFoto(file);
+
+
+const path=
+"lavori/"+
+lavoro.id+
+"/"+
+Date.now()+
+"-"+
+Math.random()
+.toString(36)
+.slice(2,10)+
+".jpg";
+
+
+const {error}=
+await supabaseClient
+.storage
+.from(SUPABASE_BUCKET)
+.upload(
+path,
+blob,
+{
+contentType:"image/jpeg",
+cacheControl:"3600",
+upsert:false
+}
+);
+
+
+if(error)
+throw error;
+
+
+await db.collection("lavori")
+.doc(lavoro.id)
+.update({
+
+foto:
+firebase.firestore.FieldValue
+.arrayUnion(path)
+
+});
+
+}
+
+
+alert(
+files.length===1?
+"Foto aggiunta.":
+files.length+" foto aggiunte."
+);
+
+}
+
+catch(error){
+
+console.error(error);
+
+alert(
+"Errore nel caricamento: "+
+(error.message||error)
 );
 
 }
 
 }
 
-
-/* ==================================================
-   FOTO GRANDE
-================================================== */
 
 async function apriFotoGrande(path){
 
-fotoCorrente=
-path;
+fotoCorrente=path;
 
 
 const url=
-await getSignedUrl(
-path
-);
+await getSignedUrl(path);
 
 
 if(!url)
@@ -5605,26 +3359,12 @@ return;
 
 document.getElementById(
 "photoModalImage"
-)
-.src=
-url;
-
-
-document.getElementById(
-"photoModalActions"
-)
-.classList.toggle(
-"editing",
-modificaSchedaAttiva
-);
+).src=url;
 
 
 document.getElementById(
 "photoModal"
-)
-.classList.add(
-"active"
-);
+).classList.add("active");
 
 }
 
@@ -5640,34 +3380,24 @@ return;
 
 document.getElementById(
 "photoModal"
-)
-.classList.remove(
-"active"
-);
+).classList.remove("active");
 
 
 document.getElementById(
 "photoModalImage"
-)
-.src="";
+).src="";
 
 
-fotoCorrente=
-null;
+fotoCorrente=null;
 
 }
 
 
-/* ==================================================
-   SOSTITUISCI FOTO
-================================================== */
-
 function sostituisciFotoCorrente(){
 
 if(
-!fotoCorrente ||
-!lavoroFotoAperto ||
-!modificaSchedaAttiva
+!fotoCorrente||
+!lavoroFotoAperto
 )
 return;
 
@@ -5692,29 +3422,23 @@ async function eseguiSostituzioneFoto(e){
 const file=
 e.target.files?.[0];
 
-
 if(
-!file ||
-!fotoCorrente ||
-!lavoroFotoAperto ||
-!modificaSchedaAttiva
+!file||
+!fotoCorrente||
+!lavoroFotoAperto
 )
 return;
 
 
-const oldPath=
-fotoCorrente;
+const oldPath=fotoCorrente;
 
-const lavoro=
-lavoroFotoAperto;
+const lavoro=lavoroFotoAperto;
 
 
 try{
 
 const blob=
-await comprimiFoto(
-file
-);
+await comprimiFoto(file);
 
 
 const newPath=
@@ -5732,17 +3456,13 @@ Math.random()
 const up=
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
+.from(SUPABASE_BUCKET)
 .upload(
 newPath,
 blob,
 {
-contentType:
-"image/jpeg",
-cacheControl:
-"3600",
+contentType:"image/jpeg",
+cacheControl:"3600",
 upsert:false
 }
 );
@@ -5752,108 +3472,77 @@ if(up.error)
 throw up.error;
 
 
-await db.collection(
-"lavori"
-)
-.doc(
-lavoro.id
-)
+await db.collection("lavori")
+.doc(lavoro.id)
 .update({
 
 foto:
 firebase.firestore.FieldValue
-.arrayUnion(
-newPath
-)
+.arrayUnion(newPath)
 
 });
 
 
-await db.collection(
-"lavori"
-)
-.doc(
-lavoro.id
-)
+await db.collection("lavori")
+.doc(lavoro.id)
 .update({
 
 foto:
 firebase.firestore.FieldValue
-.arrayRemove(
-oldPath
-)
+.arrayRemove(oldPath)
 
 });
 
 
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
-.remove(
-[oldPath]
-);
+.from(SUPABASE_BUCKET)
+.remove([oldPath]);
 
 
-signedUrlCache.delete(
-oldPath
-);
+signedUrlCache.delete(oldPath);
 
 
 lavoro.foto=
-fotoPaths(
-lavoro
-)
-.filter(
-x=>x!==oldPath
-)
-.concat(
-newPath
-);
+fotoPaths(lavoro)
+.filter(x=>x!==oldPath)
+.concat(newPath);
 
 
-chiudiFotoGrande();
+document.getElementById(
+"photoModal"
+).classList.remove("active");
+
+
+fotoCorrente=null;
+
 
 renderFotoLavoro();
 
 
-alert(
-"Foto sostituita."
-);
+alert("Foto sostituita.");
 
+}
 
-}catch(error){
+catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
 alert(
 "Errore nella sostituzione: "+
-(
-error.message||
-error
-)
+(error.message||error)
 );
 
 }
 
 }
 
-
-/* ==================================================
-   ELIMINA FOTO
-================================================== */
 
 async function eliminaFoto(path){
 
 if(
-!lavoroFotoAperto ||
-!modificaSchedaAttiva ||
-!confirm(
-"Vuoi eliminare questa foto?"
-)
+!lavoroFotoAperto||
+!confirm("Vuoi eliminare questa foto?")
 )
 return;
 
@@ -5864,75 +3553,55 @@ lavoroFotoAperto;
 
 try{
 
-const {
-error
-}=
+const {error}=
 await supabaseClient
 .storage
-.from(
-SUPABASE_BUCKET
-)
-.remove(
-[path]
-);
+.from(SUPABASE_BUCKET)
+.remove([path]);
 
 
 if(error)
 throw error;
 
 
-await db.collection(
-"lavori"
-)
-.doc(
-lavoro.id
-)
+await db.collection("lavori")
+.doc(lavoro.id)
 .update({
 
 foto:
 firebase.firestore.FieldValue
-.arrayRemove(
-path
-)
+.arrayRemove(path)
 
 });
 
 
-signedUrlCache.delete(
-path
-);
+signedUrlCache.delete(path);
 
 
 lavoro.foto=
-fotoPaths(
-lavoro
-)
-.filter(
-x=>x!==path
-);
+fotoPaths(lavoro)
+.filter(x=>x!==path);
 
 
-if(
-fotoCorrente===path
-)
-chiudiFotoGrande();
+document.getElementById(
+"photoModal"
+).classList.remove("active");
+
+
+fotoCorrente=null;
 
 
 renderFotoLavoro();
 
+}
 
-}catch(error){
+catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
 alert(
 "Errore nell'eliminazione della foto: "+
-(
-error.message||
-error
-)
+(error.message||error)
 );
 
 }
@@ -5942,307 +3611,31 @@ error
 
 async function eliminaFotoCorrente(){
 
-if(!modificaSchedaAttiva)
-return;
-
-
 if(fotoCorrente)
-await eliminaFoto(
-fotoCorrente
-);
+await eliminaFoto(fotoCorrente);
 
 }
 
-
-/* ==================================================
-   CONDIVIDI LAVORO
-================================================== */
-
-async function inviaLavoro(lavoro){
-
-if(!lavoro)
-return;
-
-
-const stato=
-lavoro.urgente===true
-?
-"URGENTE"
-:
-lavoro.completato===true
-?
-"COMPLETATO"
-:
-"DA FARE";
-
-
-let testo=
-"EDISERVICE\n\n";
-
-
-testo+=
-"PUNTO VENDITA: "+
-(
-lavoro.punto||
-"Non specificato"
-)+
-"\n\n";
-
-
-testo+=
-"LAVORO:\n"+
-(
-lavoro.testo||
-""
-);
-
-
-if(
-(lavoro.note||"").trim()
-){
-
-testo+=
-"\n\nNOTE:\n"+
-lavoro.note.trim();
-
-}
-
-
-testo+=
-"\n\nSTATO: "+
-stato;
-
-
-if(lavoro.creatoIl){
-
-testo+=
-"\n\nINSERITO IL: "+
-formatDataOra(
-lavoro.creatoIl
-);
-
-}
-
-
-if(lavoro.completatoIl){
-
-testo+=
-"\nCOMPLETATO IL: "+
-formatDataOra(
-lavoro.completatoIl
-);
-
-}
-
-
-try{
-
-
-if(navigator.share){
-
-const files=[];
-
-const paths=
-Array.isArray(
-lavoro.foto
-)
-?
-lavoro.foto
-:
-[];
-
-
-for(
-let i=0;
-i<paths.length;
-i++
-){
-
-try{
-
-const url=
-await getSignedUrl(
-paths[i]
-);
-
-
-if(!url)
-continue;
-
-
-const response=
-await fetch(
-url
-);
-
-
-if(!response.ok)
-continue;
-
-
-const blob=
-await response.blob();
-
-
-const file=
-new File(
-[blob],
-"EDISERVICE_foto_"+
-(i+1)+
-".jpg",
-{
-type:
-blob.type||
-"image/jpeg"
-}
-);
-
-
-files.push(
-file
-);
-
-
-}catch(photoError){
-
-console.error(
-"Foto da condividere:",
-photoError
-);
-
-}
-
-}
-
-
-if(
-files.length &&
-navigator.canShare &&
-navigator.canShare({
-files
-})
-){
-
-await navigator.share({
-
-text:
-testo,
-
-files:
-files
-
-});
-
-}else{
-
-await navigator.share({
-
-text:
-testo
-
-});
-
-}
-
-}else if(
-navigator.clipboard
-){
-
-await navigator.clipboard.writeText(
-testo
-);
-
-alert(
-"Lavoro copiato negli appunti."
-);
-
-}else{
-
-prompt(
-"Copia questo lavoro:",
-testo
-);
-
-}
-
-
-}catch(error){
-
-if(
-error &&
-error.name==="AbortError"
-)
-return;
-
-
-console.error(
-error
-);
-
-
-try{
-
-await navigator.clipboard.writeText(
-testo
-);
-
-alert(
-"Lavoro copiato negli appunti."
-);
-
-
-}catch(e){
-
-prompt(
-"Copia questo lavoro:",
-testo
-);
-
-}
-
-}
-
-}
-
-
-/* ==================================================
-   NAVIGAZIONE
-================================================== */
 
 document.getElementById(
 "btnLavoriDaFare"
-)
-.addEventListener(
+).addEventListener(
 "click",
-()=>{
-
-mostraPagina(
-"todoPage"
-);
-
-}
+()=>mostraPagina("todoPage")
 );
 
 
 document.getElementById(
 "btnUrgenti"
-)
-.addEventListener(
+).addEventListener(
 "click",
-()=>{
-
-mostraPagina(
-"urgentPage"
-);
-
-}
+()=>mostraPagina("urgentPage")
 );
 
 
 document.getElementById(
 "btnCompletati"
-)
-.addEventListener(
+).addEventListener(
 "click",
 ()=>{
 
@@ -6262,18 +3655,11 @@ mostraPagina(
 
 document.getElementById(
 "clearSearch"
-)
-.onclick=
+).onclick=
 cancellaRicerca;
 
 
-/* ==================================================
-   AVVIO
-================================================== */
-
 creaPuntiVendita();
-
-aggiornaTitoloMeseCompletati();
 
 </script>
 
