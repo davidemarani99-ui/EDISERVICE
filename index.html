@@ -231,8 +231,6 @@ flex:1;
 min-width:0
 }
 
-/* NUOVO PULSANTE + NELLE PAGINE LAVORI */
-
 .quick-add-button{
 width:48px;
 height:48px;
@@ -274,6 +272,47 @@ line-height:1.4
 
 .quick-add-info strong{
 color:#222
+}
+
+/* NUOVA BARRA RICERCA AGGIUNTA RAPIDA */
+
+.quick-add-search{
+position:relative;
+margin:15px 0 20px
+}
+
+.quick-add-search input{
+width:100%;
+height:52px;
+padding:0 48px 0 17px;
+border:1px solid #ddd;
+border-radius:15px;
+background:#f7f7f7;
+font-size:16px;
+outline:none;
+box-shadow:0 2px 7px rgba(0,0,0,.05)
+}
+
+.quick-add-search input:focus{
+border-color:#d32f2f;
+background:#fff
+}
+
+.quick-add-search button{
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+width:31px;
+height:31px;
+border:0;
+border-radius:50%;
+background:#ddd;
+color:#555;
+font-size:22px;
+line-height:29px;
+display:none;
+cursor:pointer
 }
 
 .store-topbar{
@@ -1342,8 +1381,6 @@ font-size:27px
 
 <div class="container">
 
-<!-- HOME -->
-
 <div id="homePage" class="page active">
 
 <div class="header">
@@ -1481,15 +1518,17 @@ onclick="cancellaRicerca()"
 </div>
 
 <div id="todoJobs">
+
 <div class="loading">
 Caricamento...
 </div>
-</div>
 
 </div>
 
+</div>
 
-<!-- PAGINA SCELTA PUNTO VENDITA PER AGGIUNTA RAPIDA -->
+
+<!-- SCELTA PUNTO VENDITA -->
 
 <div id="quickAddPage" class="page">
 
@@ -1502,6 +1541,27 @@ Caricamento...
 <h2 class="page-title">
 Scegli punto vendita
 </h2>
+
+</div>
+
+<div id="quickAddInfo" class="quick-add-info"></div>
+
+<div class="quick-add-search">
+
+<input
+type="text"
+id="quickAddSearch"
+placeholder="Cerca punto vendita..."
+oninput="filtraQuickAddPunti()"
+>
+
+<button
+type="button"
+id="clearQuickAddSearch"
+onclick="cancellaRicercaQuickAdd()"
+>
+×
+</button>
 
 </div>
 
@@ -2037,14 +2097,13 @@ let lavori=[];
 let puntoSelezionato=null;
 let categoriaSelezionata=null;
 let ricercaLavori="";
+let ricercaQuickAdd="";
 let lavoroFotoAperto=null;
 let fotoCorrente=null;
 let addFormAperto=false;
 let paginaPrecedenteScheda="todoPage";
 let modificaSchedaAttiva=false;
 let fotoNuovoLavoro=[];
-
-/* NUOVO SISTEMA DI NAVIGAZIONE */
 
 let cronologiaPagine=[];
 let quickAddUrgente=false;
@@ -2592,6 +2651,19 @@ puntoSelezionato
 
 }
 
+/* AGGIORNA ANCHE I CONTATORI DELLA RICERCA AGGIUNTA RAPIDA */
+
+if(
+document
+.getElementById("quickAddPage")
+?.classList
+.contains("active")
+){
+
+renderQuickAddPunti();
+
+}
+
 }
 
 
@@ -2631,7 +2703,7 @@ e.textContent=n;
 
 
 /* =========================
-   NAVIGAZIONE CON CRONOLOGIA
+   NAVIGAZIONE
 ========================= */
 
 function mostraPagina(id,salvaStoria=true){
@@ -2699,9 +2771,6 @@ document.querySelector(
 ".page.active,.photo-detail-page.active"
 );
 
-/* Se stiamo uscendo dalla scheda lavoro,
-   puliamo lo stato della scheda */
-
 if(
 paginaAttuale &&
 paginaAttuale.id==="photoDetailPage"
@@ -2713,9 +2782,6 @@ modificaSchedaAttiva=false;
 chiudiFotoGrande();
 
 }
-
-/* Se non c'è cronologia,
-   torniamo semplicemente alla home */
 
 if(!cronologiaPagine.length){
 
@@ -2798,23 +2864,82 @@ mostraPagina(
 
 }
 
-function creaListaQuickAdd(){
 
-const container=
+/* =========================
+   RICERCA PUNTI VENDITA
+========================= */
+
+function filtraQuickAddPunti(){
+
+const input=
 document.getElementById(
-"quickAddList"
+"quickAddSearch"
 );
 
-if(!container)
+if(!input)
 return;
 
-container.innerHTML="";
+ricercaQuickAdd=
+input.value
+.trim()
+.toLowerCase();
+
+const clear=
+document.getElementById(
+"clearQuickAddSearch"
+);
+
+if(clear){
+
+clear.style.display=
+ricercaQuickAdd
+?"block"
+:"none";
+
+}
+
+renderQuickAddPunti();
+
+}
+
+
+function cancellaRicercaQuickAdd(){
+
+const input=
+document.getElementById(
+"quickAddSearch"
+);
+
+if(input)
+input.value="";
+
+ricercaQuickAdd="";
+
+const clear=
+document.getElementById(
+"clearQuickAddSearch"
+);
+
+if(clear)
+clear.style.display="none";
+
+renderQuickAddPunti();
+
+}
+
+
+/* =========================
+   CREA LISTA AGGIUNTA RAPIDA
+========================= */
+
+function creaListaQuickAdd(){
 
 const info=
-document.createElement("div");
+document.getElementById(
+"quickAddInfo"
+);
 
-info.className=
-"quick-add-info";
+if(info){
 
 if(quickAddUrgente){
 
@@ -2828,13 +2953,89 @@ info.innerHTML=
 
 }
 
-container.appendChild(info);
+}
+
+const input=
+document.getElementById(
+"quickAddSearch"
+);
+
+if(input)
+input.value="";
+
+ricercaQuickAdd="";
+
+const clear=
+document.getElementById(
+"clearQuickAddSearch"
+);
+
+if(clear)
+clear.style.display="none";
+
+renderQuickAddPunti();
+
+}
+
+
+/* =========================
+   RENDER LISTA AGGIUNTA RAPIDA
+========================= */
+
+function renderQuickAddPunti(){
+
+const container=
+document.getElementById(
+"quickAddList"
+);
+
+if(!container)
+return;
+
+container.innerHTML="";
+
+let trovati=0;
 
 Object.keys(puntiVendita)
 .forEach(categoria=>{
 
+const puntiFiltrati=
+puntiVendita[categoria]
+.filter(punto=>{
+
+if(!ricercaQuickAdd)
+return true;
+
+return(
+
+punto
+.toLowerCase()
+.includes(
+ricercaQuickAdd
+)
+
+||
+
+categoria
+.toLowerCase()
+.includes(
+ricercaQuickAdd
+)
+
+);
+
+});
+
+if(!puntiFiltrati.length)
+return;
+
+trovati+=
+puntiFiltrati.length;
+
 const titolo=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 titolo.className=
 "group-title";
@@ -2847,22 +3048,28 @@ titolo
 );
 
 const lista=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 lista.className=
 "store-list";
 
-puntiVendita[categoria]
-.forEach(punto=>{
+puntiFiltrati.forEach(
+punto=>{
 
 const button=
-document.createElement("button");
+document.createElement(
+"button"
+);
 
 button.className=
 "store-button";
 
 const nome=
-document.createElement("span");
+document.createElement(
+"span"
+);
 
 nome.className=
 "store-name-text";
@@ -2871,7 +3078,9 @@ nome.textContent=
 punto;
 
 const numero=
-document.createElement("span");
+document.createElement(
+"span"
+);
 
 numero.className=
 "store-count";
@@ -2913,6 +3122,13 @@ lista
 );
 
 });
+
+if(!trovati){
+
+container.innerHTML=
+'<div class="empty">Nessun punto vendita trovato.</div>';
+
+}
 
 }
 
@@ -2978,13 +3194,6 @@ renderStoreJobs(
 punto
 );
 
-/*
-Non salviamo quickAddPage nella cronologia.
-Così, premendo indietro dal punto vendita,
-si torna direttamente a Lavori da fare
-oppure Lavori urgenti.
-*/
-
 mostraPagina(
 "storePage",
 false
@@ -3006,7 +3215,7 @@ input.focus();
 
 
 /* =========================
-   FORM AGGIUNGI LAVORO
+   FORM
 ========================= */
 
 function toggleAddWorkForm(){
@@ -3054,7 +3263,7 @@ button.textContent="+";
 
 
 /* =========================
-   RICERCA
+   RICERCA LAVORI
 ========================= */
 
 function filtraLavori(){
@@ -6228,7 +6437,6 @@ cancellaRicerca;
 
 /* =========================
    SWIPE IPHONE
-   DA SINISTRA VERSO DESTRA
 ========================= */
 
 let touchStartX=0;
@@ -6284,13 +6492,6 @@ const deltaY=
 touch.clientY-
 touchStartY;
 
-/*
-Swipe valido:
-- verso destra
-- almeno 80px
-- movimento principalmente orizzontale
-*/
-
 if(
 deltaX>80 &&
 Math.abs(deltaX)>
@@ -6307,11 +6508,6 @@ return;
 
 if(active.id==="homePage")
 return;
-
-/*
-Non interferiamo con i pulsanti,
-input, textarea e select.
-*/
 
 if(
 e.target.closest("button")||
