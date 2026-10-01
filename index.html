@@ -226,7 +226,54 @@ cursor:pointer
 .page-title{
 font-size:24px;
 font-weight:850;
-margin:0
+margin:0;
+flex:1;
+min-width:0
+}
+
+/* NUOVO PULSANTE + NELLE PAGINE LAVORI */
+
+.quick-add-button{
+width:48px;
+height:48px;
+min-width:48px;
+border:0;
+border-radius:15px;
+background:#222;
+color:#fff;
+font-size:32px;
+font-weight:400;
+line-height:1;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 3px 10px rgba(0,0,0,.15);
+margin-left:auto
+}
+
+.quick-add-button:active{
+transform:scale(.90)
+}
+
+/* PAGINA SCELTA PUNTO VENDITA */
+
+#quickAddList{
+padding-bottom:20px
+}
+
+.quick-add-info{
+background:#f7f7f7;
+border-radius:16px;
+padding:15px;
+margin-bottom:15px;
+color:#666;
+font-size:14px;
+line-height:1.4
+}
+
+.quick-add-info strong{
+color:#222
 }
 
 .store-topbar{
@@ -1208,6 +1255,14 @@ font-size:38px;
 border-radius:17px
 }
 
+.quick-add-button{
+width:46px;
+height:46px;
+min-width:46px;
+border-radius:14px;
+font-size:30px
+}
+
 .photo-grid,
 .add-photo-preview{
 grid-template-columns:repeat(3,1fr)
@@ -1255,6 +1310,13 @@ height:52px;
 font-size:36px
 }
 
+.quick-add-button{
+width:44px;
+height:44px;
+min-width:44px;
+font-size:29px
+}
+
 .completed-month-title{
 font-size:16px
 }
@@ -1279,6 +1341,8 @@ font-size:27px
 <body>
 
 <div class="container">
+
+<!-- HOME -->
 
 <div id="homePage" class="page active">
 
@@ -1372,17 +1436,28 @@ Punti vendita
 
 </div>
 
+
+<!-- LAVORI DA FARE -->
+
 <div id="todoPage" class="page">
 
 <div class="topbar">
 
-<button class="back-button" onclick="showHome()">
+<button class="back-button" onclick="tornaIndietro()">
 ← Indietro
 </button>
 
 <h2 class="page-title">
 Lavori da fare
 </h2>
+
+<button
+class="quick-add-button"
+onclick="apriSelettoreAggiunta(false)"
+aria-label="Aggiungi lavoro"
+>
++
+</button>
 
 </div>
 
@@ -1413,13 +1488,37 @@ Caricamento...
 
 </div>
 
+
+<!-- PAGINA SCELTA PUNTO VENDITA PER AGGIUNTA RAPIDA -->
+
+<div id="quickAddPage" class="page">
+
+<div class="topbar">
+
+<button class="back-button" onclick="tornaIndietro()">
+← Indietro
+</button>
+
+<h2 class="page-title">
+Scegli punto vendita
+</h2>
+
+</div>
+
+<div id="quickAddList"></div>
+
+</div>
+
+
+<!-- PUNTO VENDITA -->
+
 <div id="storePage" class="page">
 
 <div class="store-topbar">
 
 <div class="store-topbar-left">
 
-<button class="back-button" onclick="showHome()">
+<button class="back-button" onclick="tornaIndietro()">
 ← Indietro
 </button>
 
@@ -1521,11 +1620,14 @@ Lavori del punto vendita
 
 </div>
 
+
+<!-- LAVORI URGENTI -->
+
 <div id="urgentPage" class="page">
 
 <div class="topbar">
 
-<button class="back-button" onclick="showHome()">
+<button class="back-button" onclick="tornaIndietro()">
 ← Indietro
 </button>
 
@@ -1533,11 +1635,22 @@ Lavori del punto vendita
 Lavori urgenti
 </h2>
 
+<button
+class="quick-add-button"
+onclick="apriSelettoreAggiunta(true)"
+aria-label="Aggiungi lavoro urgente"
+>
++
+</button>
+
 </div>
 
 <div id="urgentJobs"></div>
 
 </div>
+
+
+<!-- COMPLETATI -->
 
 <div id="completedPage" class="page">
 
@@ -1545,7 +1658,7 @@ Lavori urgenti
 
 <div class="store-topbar-left">
 
-<button class="back-button" onclick="showHome()">
+<button class="back-button" onclick="tornaIndietro()">
 ← Indietro
 </button>
 
@@ -1630,6 +1743,9 @@ class="completed-month-count"
 <div id="completedJobs"></div>
 
 </div>
+
+
+<!-- SCHEDA LAVORO -->
 
 <div id="photoDetailPage" class="photo-detail-page">
 
@@ -1749,6 +1865,7 @@ class="photo-grid"
 
 </div>
 
+
 <input
 id="newPhotoInput"
 type="file"
@@ -1771,6 +1888,9 @@ type="file"
 accept="image/*"
 hidden
 >
+
+
+<!-- MODALE FOTO -->
 
 <div
 id="photoModal"
@@ -1820,6 +1940,7 @@ Elimina
 </div>
 
 </div>
+
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -1907,6 +2028,11 @@ PIM:[
 
 };
 
+
+/* =========================
+   STATO APP
+========================= */
+
 let lavori=[];
 let puntoSelezionato=null;
 let categoriaSelezionata=null;
@@ -1917,6 +2043,11 @@ let addFormAperto=false;
 let paginaPrecedenteScheda="todoPage";
 let modificaSchedaAttiva=false;
 let fotoNuovoLavoro=[];
+
+/* NUOVO SISTEMA DI NAVIGAZIONE */
+
+let cronologiaPagine=[];
+let quickAddUrgente=false;
 
 const signedUrlCache=new Map();
 
@@ -1929,6 +2060,11 @@ let annoCompletatiVisualizzato=
 oggiArchivio.getFullYear();
 
 let archivioMeseInizializzato=false;
+
+
+/* =========================
+   MESI
+========================= */
 
 function nomeMeseCompletati(mese){
 
@@ -1950,6 +2086,11 @@ const mesi=[
 return mesi[mese];
 
 }
+
+
+/* =========================
+   DATE
+========================= */
 
 function dataCompletamentoValida(lavoro){
 
@@ -2084,6 +2225,11 @@ aggiornaTitoloMeseCompletati();
 
 }
 
+
+/* =========================
+   FORMAT DATA
+========================= */
+
 function formatDataOra(value){
 
 if(!value)
@@ -2143,6 +2289,11 @@ return `${giorno}/${mese}/${anno} alle ${ore}:${minuti}`;
 
 }
 
+
+/* =========================
+   FIREBASE
+========================= */
+
 function firebaseOk(){
 
 const s=
@@ -2188,6 +2339,11 @@ ascoltaLavori();
 })
 
 .catch(firebaseErrore);
+
+
+/* =========================
+   PUNTI VENDITA HOME
+========================= */
 
 function creaPuntiVendita(){
 
@@ -2276,6 +2432,11 @@ c.appendChild(gruppo);
 });
 
 }
+
+
+/* =========================
+   ASCOLTA LAVORI
+========================= */
 
 function ascoltaLavori(){
 
@@ -2372,6 +2533,11 @@ firebaseErrore
 
 }
 
+
+/* =========================
+   AGGIORNA TUTTO
+========================= */
+
 function aggiornaTutto(){
 
 const daFare=
@@ -2428,6 +2594,11 @@ puntoSelezionato
 
 }
 
+
+/* =========================
+   NUMERI PUNTI VENDITA
+========================= */
+
 function aggiornaNumeriPuntiVendita(){
 
 Object.keys(puntiVendita)
@@ -2458,7 +2629,34 @@ e.textContent=n;
 
 }
 
-function mostraPagina(id){
+
+/* =========================
+   NAVIGAZIONE CON CRONOLOGIA
+========================= */
+
+function mostraPagina(id,salvaStoria=true){
+
+const paginaAttuale=
+document.querySelector(
+".page.active,.photo-detail-page.active"
+);
+
+const idAttuale=
+paginaAttuale
+?paginaAttuale.id
+:null;
+
+if(
+salvaStoria &&
+idAttuale &&
+idAttuale!==id
+){
+
+cronologiaPagine.push(
+idAttuale
+);
+
+}
 
 document.querySelectorAll(
 ".page,.photo-detail-page"
@@ -2489,7 +2687,67 @@ window.scrollTo(
 
 }
 
+
+/* =========================
+   TORNA INDIETRO
+========================= */
+
+function tornaIndietro(){
+
+const paginaAttuale=
+document.querySelector(
+".page.active,.photo-detail-page.active"
+);
+
+/* Se stiamo uscendo dalla scheda lavoro,
+   puliamo lo stato della scheda */
+
+if(
+paginaAttuale &&
+paginaAttuale.id==="photoDetailPage"
+){
+
+lavoroFotoAperto=null;
+fotoCorrente=null;
+modificaSchedaAttiva=false;
+chiudiFotoGrande();
+
+}
+
+/* Se non c'è cronologia,
+   torniamo semplicemente alla home */
+
+if(!cronologiaPagine.length){
+
+cronologiaPagine=[];
+
+mostraPagina(
+"homePage",
+false
+);
+
+return;
+
+}
+
+const paginaPrecedente=
+cronologiaPagine.pop();
+
+mostraPagina(
+paginaPrecedente,
+false
+);
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
 function showHome(){
+
+cronologiaPagine=[];
 
 addFormAperto=false;
 
@@ -2516,10 +2774,240 @@ fotoNuovoLavoro=[];
 renderAnteprimeNuovoLavoro();
 
 mostraPagina(
-"homePage"
+"homePage",
+false
 );
 
 }
+
+
+/* =========================
+   AGGIUNTA RAPIDA
+========================= */
+
+function apriSelettoreAggiunta(urgente){
+
+quickAddUrgente=
+urgente===true;
+
+creaListaQuickAdd();
+
+mostraPagina(
+"quickAddPage"
+);
+
+}
+
+function creaListaQuickAdd(){
+
+const container=
+document.getElementById(
+"quickAddList"
+);
+
+if(!container)
+return;
+
+container.innerHTML="";
+
+const info=
+document.createElement("div");
+
+info.className=
+"quick-add-info";
+
+if(quickAddUrgente){
+
+info.innerHTML=
+"<strong>Nuovo lavoro urgente</strong><br>Seleziona il punto vendita in cui vuoi inserire il lavoro.";
+
+}else{
+
+info.innerHTML=
+"<strong>Nuovo lavoro</strong><br>Seleziona il punto vendita in cui vuoi inserire il lavoro.";
+
+}
+
+container.appendChild(info);
+
+Object.keys(puntiVendita)
+.forEach(categoria=>{
+
+const titolo=
+document.createElement("div");
+
+titolo.className=
+"group-title";
+
+titolo.textContent=
+categoria;
+
+container.appendChild(
+titolo
+);
+
+const lista=
+document.createElement("div");
+
+lista.className=
+"store-list";
+
+puntiVendita[categoria]
+.forEach(punto=>{
+
+const button=
+document.createElement("button");
+
+button.className=
+"store-button";
+
+const nome=
+document.createElement("span");
+
+nome.className=
+"store-name-text";
+
+nome.textContent=
+punto;
+
+const numero=
+document.createElement("span");
+
+numero.className=
+"store-count";
+
+const count=
+lavori.filter(
+x=>
+x.attivo===true &&
+x.punto===punto &&
+x.completato!==true
+).length;
+
+numero.textContent=
+count;
+
+button.append(
+nome,
+numero
+);
+
+button.onclick=()=>{
+
+apriPuntoVenditaRapido(
+punto,
+categoria,
+quickAddUrgente
+);
+
+};
+
+lista.appendChild(
+button
+);
+
+});
+
+container.appendChild(
+lista
+);
+
+});
+
+}
+
+
+/* =========================
+   APERTURA PUNTO VENDITA RAPIDA
+========================= */
+
+function apriPuntoVenditaRapido(
+punto,
+categoria,
+urgente
+){
+
+puntoSelezionato=
+punto;
+
+categoriaSelezionata=
+categoria;
+
+document.getElementById(
+"storePageName"
+).textContent=
+punto;
+
+document.getElementById(
+"storePageCategory"
+).textContent=
+categoria;
+
+document.getElementById(
+"lavoroInput"
+).value="";
+
+document.getElementById(
+"noteInput"
+).value="";
+
+document.getElementById(
+"urgenteInput"
+).checked=
+urgente===true;
+
+fotoNuovoLavoro=[];
+
+renderAnteprimeNuovoLavoro();
+
+document.getElementById(
+"addWorkForm"
+)
+.classList.add(
+"active"
+);
+
+document.getElementById(
+"addWorkToggle"
+)
+.textContent="−";
+
+addFormAperto=true;
+
+renderStoreJobs(
+punto
+);
+
+/*
+Non salviamo quickAddPage nella cronologia.
+Così, premendo indietro dal punto vendita,
+si torna direttamente a Lavori da fare
+oppure Lavori urgenti.
+*/
+
+mostraPagina(
+"storePage",
+false
+);
+
+setTimeout(()=>{
+
+const input=
+document.getElementById(
+"lavoroInput"
+);
+
+if(input)
+input.focus();
+
+},150);
+
+}
+
+
+/* =========================
+   FORM AGGIUNGI LAVORO
+========================= */
 
 function toggleAddWorkForm(){
 
@@ -2563,6 +3051,11 @@ button.textContent="+";
 }
 
 }
+
+
+/* =========================
+   RICERCA
+========================= */
 
 function filtraLavori(){
 
@@ -2648,6 +3141,11 @@ x.completato!==true
 );
 
 }
+
+
+/* =========================
+   RENDER LAVORI DA FARE
+========================= */
 
 function renderTodoJobs(lista){
 
@@ -2758,6 +3256,11 @@ c.appendChild(g);
 });
 
 }
+
+
+/* =========================
+   RIGA LAVORO
+========================= */
 
 function creaTodoJobRow(lavoro){
 
@@ -2948,6 +3451,11 @@ return r;
 
 }
 
+
+/* =========================
+   APERTURA PUNTO VENDITA
+========================= */
+
 function apriPuntoVendita(
 punto,
 categoria
@@ -3008,6 +3516,11 @@ mostraPagina(
 );
 
 }
+
+
+/* =========================
+   LAVORI PUNTO VENDITA
+========================= */
 
 function renderStoreJobs(punto){
 
@@ -3175,6 +3688,11 @@ return card;
 
 }
 
+
+/* =========================
+   FOTO NUOVO LAVORO
+========================= */
+
 function selezionaFotoNuovoLavoro(){
 
 const input=
@@ -3280,6 +3798,11 @@ container.appendChild(item);
 });
 
 }
+
+
+/* =========================
+   AGGIUNGI LAVORO
+========================= */
 
 async function aggiungiLavoro(){
 
@@ -3484,6 +4007,11 @@ button.textContent=
 
 }
 
+
+/* =========================
+   AZIONI LAVORI
+========================= */
+
 function completaLavoro(id){
 
 db.collection(
@@ -3587,6 +4115,11 @@ alert(
 });
 
 }
+
+
+/* =========================
+   URGENTI
+========================= */
 
 function renderUrgentJobs(lista){
 
@@ -3849,6 +4382,11 @@ c.appendChild(g);
 
 }
 
+
+/* =========================
+   COMPLETATI
+========================= */
+
 function renderCompletedJobs(lista){
 
 const c=
@@ -4069,6 +4607,11 @@ c.appendChild(g);
 
 }
 
+
+/* =========================
+   MENU COMPLETATI
+========================= */
+
 function toggleMenuCompletati(event){
 
 if(event)
@@ -4098,6 +4641,11 @@ menu.classList.remove("active");
 
 }
 );
+
+
+/* =========================
+   ELENCO COMPLETATI
+========================= */
 
 function creaTestoElencoCompletati(){
 
@@ -4394,6 +4942,11 @@ testo
 }
 
 }
+
+
+/* =========================
+   SCHEDA LAVORO
+========================= */
 
 function apriSchedaLavoro(
 id,
@@ -4701,57 +5254,27 @@ alert(
 
 }
 
+
+/* =========================
+   CHIUDI SCHEDA
+========================= */
+
 function chiudiSchedaLavoro(){
 
-const pagina=
-paginaPrecedenteScheda||
-"todoPage";
-
-lavoroFotoAperto=
-null;
-
-fotoCorrente=
-null;
-
-modificaSchedaAttiva=
-false;
+lavoroFotoAperto=null;
+fotoCorrente=null;
+modificaSchedaAttiva=false;
 
 chiudiFotoGrande();
 
-if(pagina==="storePage"){
-
-if(puntoSelezionato)
-renderStoreJobs(
-puntoSelezionato
-);
-
-mostraPagina(
-"storePage"
-);
-
-return;
+tornaIndietro();
 
 }
 
-if(pagina==="completedPage"){
 
-renderCompletedJobs(
-listaCompletatiDelMese()
-);
-
-mostraPagina(
-"completedPage"
-);
-
-return;
-
-}
-
-mostraPagina(
-pagina
-);
-
-}
+/* =========================
+   FOTO
+========================= */
 
 function fotoPaths(lavoro){
 
@@ -4911,6 +5434,11 @@ return data.signedUrl;
 
 }
 
+
+/* =========================
+   AGGIUNTA FOTO
+========================= */
+
 function selezionaFoto(){
 
 if(
@@ -5033,6 +5561,11 @@ alert(
 
 }
 
+
+/* =========================
+   COMPRESSIONE FOTO
+========================= */
+
 async function comprimiFoto(file){
 
 if(!file.type.startsWith("image/"))
@@ -5127,6 +5660,11 @@ url
 
 }
 
+
+/* =========================
+   FOTO GRANDE
+========================= */
+
 async function apriFotoGrande(path){
 
 fotoCorrente=
@@ -5186,6 +5724,11 @@ fotoCorrente=
 null;
 
 }
+
+
+/* =========================
+   SOSTITUISCI FOTO
+========================= */
 
 function sostituisciFotoCorrente(){
 
@@ -5333,6 +5876,11 @@ alert(
 
 }
 
+
+/* =========================
+   ELIMINA FOTO
+========================= */
+
 async function eliminaFoto(path){
 
 if(
@@ -5416,6 +5964,11 @@ fotoCorrente
 );
 
 }
+
+
+/* =========================
+   INVIA LAVORO
+========================= */
 
 async function inviaLavoro(lavoro){
 
@@ -5613,6 +6166,11 @@ testo
 
 }
 
+
+/* =========================
+   HOME BUTTONS
+========================= */
+
 document.getElementById(
 "btnLavoriDaFare"
 )
@@ -5666,6 +6224,117 @@ document.getElementById(
 )
 .onclick=
 cancellaRicerca;
+
+
+/* =========================
+   SWIPE IPHONE
+   DA SINISTRA VERSO DESTRA
+========================= */
+
+let touchStartX=0;
+let touchStartY=0;
+
+document.addEventListener(
+"touchstart",
+e=>{
+
+if(
+document
+.getElementById("photoModal")
+.classList
+.contains("active")
+)
+return;
+
+const touch=
+e.touches[0];
+
+touchStartX=
+touch.clientX;
+
+touchStartY=
+touch.clientY;
+
+},
+{
+passive:true
+}
+);
+
+document.addEventListener(
+"touchend",
+e=>{
+
+if(
+document
+.getElementById("photoModal")
+.classList
+.contains("active")
+)
+return;
+
+const touch=
+e.changedTouches[0];
+
+const deltaX=
+touch.clientX-
+touchStartX;
+
+const deltaY=
+touch.clientY-
+touchStartY;
+
+/*
+Swipe valido:
+- verso destra
+- almeno 80px
+- movimento principalmente orizzontale
+*/
+
+if(
+deltaX>80 &&
+Math.abs(deltaX)>
+Math.abs(deltaY)*1.3
+){
+
+const active=
+document.querySelector(
+".page.active,.photo-detail-page.active"
+);
+
+if(!active)
+return;
+
+if(active.id==="homePage")
+return;
+
+/*
+Non interferiamo con i pulsanti,
+input, textarea e select.
+*/
+
+if(
+e.target.closest("button")||
+e.target.closest("input")||
+e.target.closest("textarea")||
+e.target.closest("select")
+)
+return;
+
+tornaIndietro();
+
+}
+
+},
+{
+passive:true
+}
+);
+
+
+/* =========================
+   AVVIO
+========================= */
 
 creaPuntiVendita();
 
