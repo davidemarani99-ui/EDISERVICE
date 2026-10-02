@@ -231,7 +231,17 @@ flex:1;
 min-width:0
 }
 
-.quick-add-button{
+/* =========================
+   MENU TRE PUNTINI
+========================= */
+
+.menu-wrap{
+position:relative;
+margin-left:auto;
+flex-shrink:0
+}
+
+.menu-button{
 width:48px;
 height:48px;
 min-width:48px;
@@ -239,22 +249,142 @@ border:0;
 border-radius:15px;
 background:#222;
 color:#fff;
-font-size:32px;
-font-weight:400;
+font-size:30px;
+font-weight:900;
 line-height:1;
 display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-box-shadow:0 3px 10px rgba(0,0,0,.15);
-margin-left:auto
+box-shadow:0 3px 10px rgba(0,0,0,.15)
 }
 
-.quick-add-button:active{
+.menu-button:active{
 transform:scale(.90)
 }
 
-/* PAGINA SCELTA PUNTO VENDITA */
+.action-menu{
+position:absolute;
+right:0;
+top:55px;
+width:205px;
+background:#fff;
+border-radius:16px;
+box-shadow:0 5px 22px rgba(0,0,0,.20);
+overflow:hidden;
+display:none;
+z-index:500
+}
+
+.action-menu.active{
+display:block
+}
+
+.action-menu-item{
+width:100%;
+border:0;
+background:#fff;
+padding:15px 17px;
+text-align:left;
+font-size:16px;
+font-weight:750;
+color:#222;
+display:block;
+cursor:pointer
+}
+
+.action-menu-item:active{
+background:#f2f2f2
+}
+
+.action-menu-separator{
+height:1px;
+background:#eee;
+margin:3px 0
+}
+
+/* =========================
+   MODALITÀ SELEZIONE
+========================= */
+
+.selection-toolbar{
+display:none;
+align-items:center;
+gap:8px;
+background:#f2f2f2;
+border-radius:15px;
+padding:10px;
+margin:-5px 0 15px;
+box-shadow:0 2px 7px rgba(0,0,0,.06)
+}
+
+.selection-toolbar.active{
+display:flex
+}
+
+.selection-info{
+flex:1;
+font-size:14px;
+font-weight:800;
+color:#222;
+min-width:0
+}
+
+.selection-cancel{
+border:0;
+border-radius:10px;
+background:#fff;
+color:#222;
+padding:10px 12px;
+font-size:14px;
+font-weight:800;
+cursor:pointer
+}
+
+.selection-action{
+border:0;
+border-radius:10px;
+background:#222;
+color:#fff;
+padding:10px 12px;
+font-size:14px;
+font-weight:800;
+cursor:pointer
+}
+
+.selection-action:disabled{
+opacity:.35;
+cursor:default
+}
+
+.selection-check{
+width:30px;
+height:30px;
+min-width:30px;
+border-radius:50%;
+border:2px solid #bbb;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:17px;
+font-weight:900;
+color:#fff;
+cursor:pointer
+}
+
+.selection-check.selected{
+background:#222;
+border-color:#222
+}
+
+.selection-row-selected{
+background:#f7f7f7 !important
+}
+
+/* =========================
+   PAGINA SCELTA PUNTO VENDITA
+========================= */
 
 #quickAddList{
 padding-bottom:20px
@@ -274,7 +404,9 @@ line-height:1.4
 color:#222
 }
 
-/* NUOVA BARRA RICERCA AGGIUNTA RAPIDA */
+/* =========================
+   RICERCA
+========================= */
 
 .quick-add-search{
 position:relative;
@@ -327,29 +459,30 @@ margin-bottom:20px
 display:flex;
 align-items:center;
 gap:10px;
-min-width:0
+min-width:0;
+flex:1
 }
 
 .add-work-toggle{
-width:60px;
-height:60px;
+width:48px;
+height:48px;
+min-width:48px;
 border:0;
-border-radius:18px;
+border-radius:15px;
 background:#222;
 color:#fff;
-font-size:42px;
-font-weight:300;
+font-size:30px;
+font-weight:900;
 line-height:1;
 display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-box-shadow:0 4px 12px rgba(0,0,0,.18);
-flex-shrink:0
+box-shadow:0 3px 10px rgba(0,0,0,.15)
 }
 
 .add-work-toggle:active{
-transform:scale(.94)
+transform:scale(.90)
 }
 
 .search-box{
@@ -677,15 +810,10 @@ background:#ffebee;
 color:#d32f2f
 }
 
+/* Il pulsante "Da rifare" non è più blu */
 .symbol-redo{
-background:#e3f2fd;
-color:#1976d2
-}
-
-.symbol-share{
-background:#e3f2fd;
-color:#1565c0;
-font-size:15px
+background:#f1f1f1;
+color:#555
 }
 
 .job-card{
@@ -825,8 +953,8 @@ width:48px;
 height:48px;
 border:0;
 border-radius:15px;
-background:#f1f1f1;
-color:#222;
+background:#222;
+color:#fff;
 font-size:30px;
 font-weight:900;
 line-height:1;
@@ -834,7 +962,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-box-shadow:0 2px 7px rgba(0,0,0,.08)
+box-shadow:0 3px 10px rgba(0,0,0,.15)
 }
 
 .completed-menu-button:active{
@@ -845,13 +973,13 @@ transform:scale(.92)
 position:absolute;
 right:0;
 top:55px;
-width:190px;
+width:205px;
 background:#fff;
 border-radius:16px;
 box-shadow:0 5px 20px rgba(0,0,0,.18);
 overflow:hidden;
 display:none;
-z-index:100
+z-index:500
 }
 
 .completed-menu.active{
@@ -1200,8 +1328,8 @@ font-weight:800
 }
 
 .replace-photo{
-background:#e3f2fd;
-color:#1976d2
+background:#f1f1f1;
+color:#222
 }
 
 .delete-photo{
@@ -1287,19 +1415,13 @@ font-size:16px;
 border-radius:8px
 }
 
-.add-work-toggle{
-width:56px;
-height:56px;
-font-size:38px;
-border-radius:17px
-}
-
-.quick-add-button{
+.add-work-toggle,
+.menu-button{
 width:46px;
 height:46px;
 min-width:46px;
-border-radius:14px;
-font-size:30px
+font-size:28px;
+border-radius:14px
 }
 
 .photo-grid,
@@ -1322,9 +1444,23 @@ margin-bottom:18px
 }
 
 .completed-menu-button{
-width:45px;
-height:45px;
+width:46px;
+height:46px;
 font-size:28px
+}
+
+.selection-toolbar{
+padding:8px
+}
+
+.selection-info{
+font-size:13px
+}
+
+.selection-cancel,
+.selection-action{
+padding:9px 10px;
+font-size:13px
 }
 
 }
@@ -1343,17 +1479,12 @@ gap:3px;
 margin-left:5px
 }
 
-.add-work-toggle{
-width:52px;
-height:52px;
-font-size:36px
-}
-
-.quick-add-button{
-width:44px;
-height:44px;
-min-width:44px;
-font-size:29px
+.add-work-toggle,
+.menu-button{
+width:43px;
+height:43px;
+min-width:43px;
+font-size:27px
 }
 
 .completed-month-title{
@@ -1488,12 +1619,74 @@ Punti vendita
 Lavori da fare
 </h2>
 
+<div class="menu-wrap">
+
 <button
-class="quick-add-button"
-onclick="apriSelettoreAggiunta(false)"
-aria-label="Aggiungi lavoro"
+class="menu-button"
+onclick="toggleActionMenu(event,'todoMenu')"
+aria-label="Menu"
 >
-+
+⋮
+</button>
+
+<div
+id="todoMenu"
+class="action-menu"
+>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('todoMenu');apriSelettoreAggiunta(false)"
+>
+Aggiungi lavoro
+</button>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('todoMenu');entraModalitaSelezione('modifica','todoPage')"
+>
+Modifica
+</button>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('todoMenu');entraModalitaSelezione('inoltra','todoPage')"
+>
+Inoltra
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+id="todoSelectionToolbar"
+class="selection-toolbar"
+>
+
+<div
+id="todoSelectionInfo"
+class="selection-info"
+>
+0 selezionati
+</div>
+
+<button
+class="selection-cancel"
+onclick="annullaModalitaSelezione()"
+>
+Annulla
+</button>
+
+<button
+id="todoSelectionAction"
+class="selection-action"
+onclick="eseguiAzioneSelezione()"
+disabled
+>
+Modifica
 </button>
 
 </div>
@@ -1588,12 +1781,74 @@ Punto vendita
 
 </div>
 
+<div class="menu-wrap">
+
 <button
 class="add-work-toggle"
-id="addWorkToggle"
-onclick="toggleAddWorkForm()"
+onclick="toggleActionMenu(event,'storeMenu')"
+aria-label="Menu"
 >
-+
+⋮
+</button>
+
+<div
+id="storeMenu"
+class="action-menu"
+>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('storeMenu');toggleAddWorkForm()"
+>
+Aggiungi lavoro
+</button>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('storeMenu');entraModalitaSelezione('modifica','storePage')"
+>
+Modifica
+</button>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('storeMenu');entraModalitaSelezione('inoltra','storePage')"
+>
+Inoltra
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+id="storeSelectionToolbar"
+class="selection-toolbar"
+>
+
+<div
+id="storeSelectionInfo"
+class="selection-info"
+>
+0 selezionati
+</div>
+
+<button
+class="selection-cancel"
+onclick="annullaModalitaSelezione()"
+>
+Annulla
+</button>
+
+<button
+id="storeSelectionAction"
+class="selection-action"
+onclick="eseguiAzioneSelezione()"
+disabled
+>
+Modifica
 </button>
 
 </div>
@@ -1695,12 +1950,74 @@ Lavori del punto vendita
 Lavori urgenti
 </h2>
 
+<div class="menu-wrap">
+
 <button
-class="quick-add-button"
-onclick="apriSelettoreAggiunta(true)"
-aria-label="Aggiungi lavoro urgente"
+class="menu-button"
+onclick="toggleActionMenu(event,'urgentMenu')"
+aria-label="Menu"
 >
-+
+⋮
+</button>
+
+<div
+id="urgentMenu"
+class="action-menu"
+>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('urgentMenu');apriSelettoreAggiunta(true)"
+>
+Aggiungi lavoro
+</button>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('urgentMenu');entraModalitaSelezione('modifica','urgentPage')"
+>
+Modifica
+</button>
+
+<button
+class="action-menu-item"
+onclick="chiudiMenuAzione('urgentMenu');entraModalitaSelezione('inoltra','urgentPage')"
+>
+Inoltra
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+id="urgentSelectionToolbar"
+class="selection-toolbar"
+>
+
+<div
+id="urgentSelectionInfo"
+class="selection-info"
+>
+0 selezionati
+</div>
+
+<button
+class="selection-cancel"
+onclick="annullaModalitaSelezione()"
+>
+Annulla
+</button>
+
+<button
+id="urgentSelectionAction"
+class="selection-action"
+onclick="eseguiAzioneSelezione()"
+disabled
+>
+Modifica
 </button>
 
 </div>
@@ -1745,9 +2062,32 @@ class="completed-menu"
 
 <button
 class="completed-menu-item"
-onclick="inoltraElencoCompletati()"
+onclick="chiudiMenuCompletati();apriSelettoreAggiunta(false)"
+>
+Aggiungi lavoro
+</button>
+
+<button
+class="completed-menu-item"
+onclick="chiudiMenuCompletati();entraModalitaSelezione('modifica','completedPage')"
+>
+Modifica
+</button>
+
+<button
+class="completed-menu-item"
+onclick="chiudiMenuCompletati();entraModalitaSelezione('inoltra','completedPage')"
 >
 Inoltra
+</button>
+
+<div class="action-menu-separator"></div>
+
+<button
+class="completed-menu-item"
+onclick="inoltraElencoCompletati()"
+>
+Inoltra elenco
 </button>
 
 <button
@@ -1767,6 +2107,36 @@ Scarica
 </div>
 
 </div>
+
+</div>
+
+<div
+id="completedSelectionToolbar"
+class="selection-toolbar"
+>
+
+<div
+id="completedSelectionInfo"
+class="selection-info"
+>
+0 selezionati
+</div>
+
+<button
+class="selection-cancel"
+onclick="annullaModalitaSelezione()"
+>
+Annulla
+</button>
+
+<button
+id="completedSelectionAction"
+class="selection-action"
+onclick="eseguiAzioneSelezione()"
+disabled
+>
+Modifica
+</button>
 
 </div>
 
@@ -2119,6 +2489,13 @@ let annoCompletatiVisualizzato=
 oggiArchivio.getFullYear();
 
 let archivioMeseInizializzato=false;
+
+/* =========================
+   STATO SELEZIONE
+========================= */
+
+let modalitaSelezione=null;
+let lavoriSelezionati=new Set();
 
 
 /* =========================
@@ -2651,8 +3028,6 @@ puntoSelezionato
 
 }
 
-/* AGGIORNA ANCHE I CONTATORI DELLA RICERCA AGGIUNTA RAPIDA */
-
 if(
 document
 .getElementById("quickAddPage")
@@ -2697,6 +3072,47 @@ e.textContent=n;
 
 });
 
+});
+
+}
+
+
+/* =========================
+   MENU GENERALI
+========================= */
+
+function toggleActionMenu(event,id){
+
+if(event)
+event.stopPropagation();
+
+chiudiTuttiMenu();
+
+const menu=
+document.getElementById(id);
+
+if(menu)
+menu.classList.toggle("active");
+
+}
+
+function chiudiMenuAzione(id){
+
+const menu=
+document.getElementById(id);
+
+if(menu)
+menu.classList.remove("active");
+
+}
+
+function chiudiTuttiMenu(){
+
+document.querySelectorAll(
+".action-menu,.completed-menu"
+)
+.forEach(menu=>{
+menu.classList.remove("active");
 });
 
 }
@@ -2766,6 +3182,8 @@ window.scrollTo(
 
 function tornaIndietro(){
 
+annullaModalitaSelezione();
+
 const paginaAttuale=
 document.querySelector(
 ".page.active,.photo-detail-page.active"
@@ -2813,6 +3231,8 @@ false
 
 function showHome(){
 
+annullaModalitaSelezione();
+
 cronologiaPagine=[];
 
 addFormAperto=false;
@@ -2833,7 +3253,7 @@ document.getElementById(
 );
 
 if(toggle)
-toggle.textContent="+";
+toggle.textContent="⋮";
 
 fotoNuovoLavoro=[];
 
@@ -3183,11 +3603,6 @@ document.getElementById(
 "active"
 );
 
-document.getElementById(
-"addWorkToggle"
-)
-.textContent="−";
-
 addFormAperto=true;
 
 renderStoreJobs(
@@ -3225,11 +3640,6 @@ document.getElementById(
 "addWorkForm"
 );
 
-const button=
-document.getElementById(
-"addWorkToggle"
-);
-
 addFormAperto=
 !addFormAperto;
 
@@ -3238,8 +3648,6 @@ if(addFormAperto){
 form.classList.add(
 "active"
 );
-
-button.textContent="−";
 
 setTimeout(()=>{
 
@@ -3254,8 +3662,6 @@ document.getElementById(
 form.classList.remove(
 "active"
 );
-
-button.textContent="+";
 
 }
 
@@ -3353,6 +3759,519 @@ x.completato!==true
 
 
 /* =========================
+   MODALITÀ SELEZIONE
+========================= */
+
+function entraModalitaSelezione(modo,pagina){
+
+modalitaSelezione=
+modo;
+
+lavoriSelezionati=
+new Set();
+
+document.querySelectorAll(
+".action-menu,.completed-menu"
+)
+.forEach(menu=>{
+menu.classList.remove("active");
+});
+
+aggiornaBarraSelezione();
+
+if(pagina==="todoPage"){
+
+const lista=
+lavori.filter(
+x=>
+x.attivo===true &&
+x.completato!==true
+);
+
+if(ricercaLavori){
+
+const filtrata=
+lista.filter(x=>
+(x.punto||"")
+.toLowerCase()
+.includes(ricercaLavori) ||
+
+(x.testo||"")
+.toLowerCase()
+.includes(ricercaLavori) ||
+
+(x.note||"")
+.toLowerCase()
+.includes(ricercaLavori)
+);
+
+renderTodoJobs(filtrata);
+
+}else{
+
+renderTodoJobs(lista);
+
+}
+
+}
+
+if(pagina==="urgentPage"){
+
+renderUrgentJobs(
+lavori.filter(
+x=>
+x.attivo===true &&
+x.completato!==true &&
+x.urgente===true
+)
+);
+
+}
+
+if(pagina==="storePage" && puntoSelezionato){
+
+renderStoreJobs(
+puntoSelezionato
+);
+
+}
+
+if(pagina==="completedPage"){
+
+renderCompletedJobs(
+listaCompletatiDelMese()
+);
+
+}
+
+}
+
+function annullaModalitaSelezione(){
+
+modalitaSelezione=null;
+lavoriSelezionati=new Set();
+
+document.querySelectorAll(
+".selection-toolbar"
+)
+.forEach(bar=>{
+bar.classList.remove("active");
+});
+
+document.querySelectorAll(
+".selection-row-selected"
+)
+.forEach(row=>{
+row.classList.remove("selection-row-selected");
+});
+
+aggiornaBarraSelezione();
+
+}
+
+function aggiornaBarraSelezione(){
+
+const pagine=[
+"todo",
+"urgent",
+"store",
+"completed"
+];
+
+pagine.forEach(tipo=>{
+
+const toolbar=
+document.getElementById(
+tipo+"SelectionToolbar"
+);
+
+if(!toolbar)
+return;
+
+if(modalitaSelezione){
+
+toolbar.classList.add("active");
+
+}else{
+
+toolbar.classList.remove("active");
+
+}
+
+const info=
+document.getElementById(
+tipo+"SelectionInfo"
+);
+
+if(info){
+
+const numero=
+lavoriSelezionati.size;
+
+info.textContent=
+numero+
+(
+numero===1
+?" selezionato"
+:" selezionati"
+);
+
+}
+
+const action=
+document.getElementById(
+tipo+"SelectionAction"
+);
+
+if(action){
+
+action.disabled=
+modalitaSelezione==="modifica"
+?lavoriSelezionati.size!==1
+:lavoriSelezionati.size===0;
+
+action.textContent=
+modalitaSelezione==="inoltra"
+?"Inoltra"
+:"Modifica";
+
+}
+
+});
+
+}
+
+function selezionaLavoro(lavoroId){
+
+if(!modalitaSelezione)
+return;
+
+if(
+modalitaSelezione==="modifica" &&
+lavoriSelezionati.has(lavoroId)
+){
+
+lavoriSelezionati.delete(
+lavoroId
+);
+
+}else if(
+modalitaSelezione==="modifica"
+){
+
+lavoriSelezionati.clear();
+
+lavoriSelezionati.add(
+lavoroId
+);
+
+}else{
+
+if(
+lavoriSelezionati.has(lavoroId)
+){
+
+lavoriSelezionati.delete(
+lavoroId
+);
+
+}else{
+
+lavoriSelezionati.add(
+lavoroId
+);
+
+}
+
+}
+
+aggiornaBarraSelezione();
+
+const pagina=
+document.querySelector(
+".page.active"
+);
+
+if(!pagina)
+return;
+
+if(pagina.id==="todoPage"){
+
+const lista=
+lavori.filter(
+x=>
+x.attivo===true &&
+x.completato!==true
+);
+
+renderTodoJobs(
+ricercaLavori
+?lista.filter(x=>
+(x.punto||"").toLowerCase().includes(ricercaLavori) ||
+(x.testo||"").toLowerCase().includes(ricercaLavori) ||
+(x.note||"").toLowerCase().includes(ricercaLavori)
+)
+:lista
+);
+
+}
+
+if(pagina.id==="urgentPage"){
+
+renderUrgentJobs(
+lavori.filter(
+x=>
+x.attivo===true &&
+x.completato!==true &&
+x.urgente===true
+)
+);
+
+}
+
+if(pagina.id==="storePage" && puntoSelezionato){
+
+renderStoreJobs(
+puntoSelezionato
+);
+
+}
+
+if(pagina.id==="completedPage"){
+
+renderCompletedJobs(
+listaCompletatiDelMese()
+);
+
+}
+
+}
+
+async function eseguiAzioneSelezione(){
+
+if(!modalitaSelezione)
+return;
+
+const ids=[
+...lavoriSelezionati
+];
+
+if(!ids.length)
+return;
+
+if(modalitaSelezione==="modifica"){
+
+if(ids.length!==1){
+
+alert(
+"Seleziona un solo lavoro da modificare."
+);
+
+return;
+
+}
+
+const lavoro=
+lavori.find(
+x=>x.id===ids[0]
+);
+
+if(!lavoro)
+return;
+
+const origine=
+document.querySelector(
+".page.active"
+)?.id||
+"todoPage";
+
+annullaModalitaSelezione();
+
+apriSchedaLavoro(
+lavoro.id,
+origine
+);
+
+setTimeout(()=>{
+
+attivaModificaScheda();
+
+},150);
+
+return;
+
+}
+
+if(modalitaSelezione==="inoltra"){
+
+const selezionati=
+ids
+.map(id=>
+lavori.find(
+x=>x.id===id
+)
+)
+.filter(Boolean);
+
+annullaModalitaSelezione();
+
+await inviaLavoriSelezionati(
+selezionati
+);
+
+}
+
+}
+
+async function inviaLavoriSelezionati(lista){
+
+if(!lista.length)
+return;
+
+if(lista.length===1){
+
+await inviaLavoro(
+lista[0]
+);
+
+return;
+
+}
+
+let testo=
+"EDISERVICE\n\n"+
+"LAVORI SELEZIONATI\n\n";
+
+lista.forEach((lavoro,index)=>{
+
+const stato=
+lavoro.urgente===true
+?"URGENTE"
+:lavoro.completato===true
+?"COMPLETATO"
+:"DA FARE";
+
+testo+=
+(index+1)+
+") "+
+(lavoro.testo||
+"Lavoro senza descrizione")+
+"\n";
+
+testo+=
+"PUNTO VENDITA: "+
+(lavoro.punto||
+"Non specificato")+
+"\n";
+
+if(
+(lavoro.note||"").trim()
+){
+
+testo+=
+"NOTE: "+
+lavoro.note.trim()+
+"\n";
+
+}
+
+testo+=
+"STATO: "+
+stato+
+"\n";
+
+if(lavoro.creatoIl){
+
+testo+=
+"INSERITO IL: "+
+formatDataOra(
+lavoro.creatoIl
+)+
+"\n";
+
+}
+
+if(lavoro.completatoIl){
+
+testo+=
+"COMPLETATO IL: "+
+formatDataOra(
+lavoro.completatoIl
+)+
+"\n";
+
+}
+
+testo+="\n";
+
+});
+
+try{
+
+if(navigator.share){
+
+await navigator.share({
+
+title:
+"EDISERVICE - Lavori",
+
+text:
+testo
+
+});
+
+}else if(navigator.clipboard){
+
+await navigator.clipboard.writeText(
+testo
+);
+
+alert(
+"Lavori copiati negli appunti."
+);
+
+}else{
+
+prompt(
+"Copia questi lavori:",
+testo
+);
+
+}
+
+}catch(error){
+
+if(
+error &&
+error.name==="AbortError"
+)
+return;
+
+try{
+
+await navigator.clipboard.writeText(
+testo
+);
+
+alert(
+"Lavori copiati negli appunti."
+);
+
+}catch(e){
+
+prompt(
+"Copia questi lavori:",
+testo
+);
+
+}
+
+}
+
+}
+
+
+/* =========================
    RENDER LAVORI DA FARE
 ========================= */
 
@@ -3364,6 +4283,8 @@ document.getElementById(
 );
 
 c.innerHTML="";
+
+aggiornaBarraSelezione();
 
 if(!lista.length){
 
@@ -3479,6 +4400,13 @@ document.createElement("div");
 r.className=
 "todo-job-row";
 
+if(
+lavoriSelezionati.has(lavoro.id)
+)
+r.classList.add(
+"selection-row-selected"
+);
+
 const main=
 document.createElement("div");
 
@@ -3538,12 +4466,63 @@ content.appendChild(badge);
 
 }
 
+if(modalitaSelezione){
+
+const check=
+document.createElement("button");
+
+check.className=
+"selection-check";
+
+check.type="button";
+
+check.textContent=
+lavoriSelezionati.has(lavoro.id)
+?"✓"
+:"";
+
+if(
+lavoriSelezionati.has(lavoro.id)
+){
+
+check.classList.add(
+"selected"
+);
+
+}
+
+check.onclick=e=>{
+
+e.stopPropagation();
+
+selezionaLavoro(
+lavoro.id
+);
+
+};
+
+main.appendChild(
+check
+);
+
+}
+
 main.append(
 dot,
 content
 );
 
 main.onclick=()=>{
+
+if(modalitaSelezione){
+
+selezionaLavoro(
+lavoro.id
+);
+
+return;
+
+}
 
 apriSchedaLavoro(
 lavoro.id,
@@ -3553,6 +4532,8 @@ lavoro.id,
 };
 
 r.appendChild(main);
+
+if(!modalitaSelezione){
 
 const actions=
 document.createElement("div");
@@ -3626,35 +4607,15 @@ lavoro.id
 
 };
 
-const share=
-document.createElement("button");
-
-share.className=
-"symbol-btn symbol-share";
-
-share.title=
-"Invia";
-
-share.textContent="↗";
-
-share.onclick=e=>{
-
-e.stopPropagation();
-
-inviaLavoro(
-lavoro
-);
-
-};
-
 actions.append(
 complete,
 urgent,
-del,
-share
+del
 );
 
 r.appendChild(actions);
+
+}
 
 return r;
 
@@ -3669,6 +4630,8 @@ function apriPuntoVendita(
 punto,
 categoria
 ){
+
+annullaModalitaSelezione();
 
 puntoSelezionato=
 punto;
@@ -3711,11 +4674,6 @@ document.getElementById(
 "active"
 );
 
-document.getElementById(
-"addWorkToggle"
-)
-.textContent="+";
-
 renderStoreJobs(
 punto
 );
@@ -3739,6 +4697,8 @@ document.getElementById(
 );
 
 c.innerHTML="";
+
+aggiornaBarraSelezione();
 
 const lista=
 lavori.filter(
@@ -3775,7 +4735,24 @@ document.createElement("div");
 card.className=
 "job-card job-clickable";
 
+if(
+lavoriSelezionati.has(lavoro.id)
+)
+card.classList.add(
+"selection-row-selected"
+);
+
 card.onclick=()=>{
+
+if(modalitaSelezione){
+
+selezionaLavoro(
+lavoro.id
+);
+
+return;
+
+}
 
 apriSchedaLavoro(
 lavoro.id,
@@ -3783,6 +4760,53 @@ lavoro.id,
 );
 
 };
+
+const main=
+document.createElement("div");
+
+main.style.display="flex";
+main.style.alignItems="flex-start";
+main.style.gap="10px";
+
+if(modalitaSelezione){
+
+const check=
+document.createElement("button");
+
+check.className=
+"selection-check";
+
+check.type="button";
+
+check.textContent=
+lavoriSelezionati.has(lavoro.id)
+?"✓"
+:"";
+
+if(
+lavoriSelezionati.has(lavoro.id)
+)
+check.classList.add("selected");
+
+check.onclick=e=>{
+
+e.stopPropagation();
+
+selezionaLavoro(
+lavoro.id
+);
+
+};
+
+main.appendChild(check);
+
+}
+
+const content=
+document.createElement("div");
+
+content.style.flex="1";
+content.style.minWidth="0";
 
 const text=
 document.createElement("div");
@@ -3793,7 +4817,7 @@ text.className=
 text.textContent=
 lavoro.testo||"";
 
-card.appendChild(text);
+content.appendChild(text);
 
 if(lavoro.note){
 
@@ -3806,9 +4830,15 @@ note.className=
 note.textContent=
 "Note: "+lavoro.note;
 
-card.appendChild(note);
+content.appendChild(note);
 
 }
+
+main.appendChild(content);
+
+card.appendChild(main);
+
+if(!modalitaSelezione){
 
 const actions=
 document.createElement("div");
@@ -3892,6 +4922,8 @@ del
 );
 
 card.appendChild(actions);
+
+}
 
 return card;
 
@@ -4189,11 +5221,6 @@ document.getElementById(
 "active"
 );
 
-document.getElementById(
-"addWorkToggle"
-)
-.textContent="+";
-
 button.disabled=false;
 
 button.textContent=
@@ -4339,6 +5366,8 @@ document.getElementById(
 
 c.innerHTML="";
 
+aggiornaBarraSelezione();
+
 if(!lista.length){
 
 c.innerHTML=
@@ -4428,14 +5457,12 @@ document.createElement("div");
 r.className=
 "urgent-job-row job-clickable";
 
-r.onclick=()=>{
-
-apriSchedaLavoro(
-job.id,
-"urgentPage"
+if(
+lavoriSelezionati.has(job.id)
+)
+r.classList.add(
+"selection-row-selected"
 );
-
-};
 
 const dot=
 document.createElement("div");
@@ -4474,6 +5501,68 @@ note.textContent=
 content.appendChild(note);
 
 }
+
+if(modalitaSelezione){
+
+const check=
+document.createElement("button");
+
+check.className=
+"selection-check";
+
+check.type="button";
+
+check.textContent=
+lavoriSelezionati.has(job.id)
+?"✓"
+:"";
+
+if(
+lavoriSelezionati.has(job.id)
+)
+check.classList.add("selected");
+
+check.onclick=e=>{
+
+e.stopPropagation();
+
+selezionaLavoro(
+job.id
+);
+
+};
+
+r.appendChild(
+check
+);
+
+}
+
+r.onclick=()=>{
+
+if(modalitaSelezione){
+
+selezionaLavoro(
+job.id
+);
+
+return;
+
+}
+
+apriSchedaLavoro(
+job.id,
+"urgentPage"
+);
+
+};
+
+r.append(
+dot,
+content
+);
+
+if(!modalitaSelezione){
 
 const actions=
 document.createElement("div");
@@ -4545,39 +5634,17 @@ job.id
 
 };
 
-const share=
-document.createElement("button");
-
-share.className=
-"symbol-btn symbol-share";
-
-share.textContent="↗";
-
-share.title=
-"Invia";
-
-share.onclick=e=>{
-
-e.stopPropagation();
-
-inviaLavoro(
-job
-);
-
-};
-
 actions.append(
 complete,
 urgent,
-del,
-share
+del
 );
 
-r.append(
-dot,
-content,
+r.appendChild(
 actions
 );
+
+}
 
 g.appendChild(r);
 
@@ -4606,6 +5673,7 @@ document.getElementById(
 c.innerHTML="";
 
 aggiornaTitoloMeseCompletati();
+aggiornaBarraSelezione();
 
 if(!lista.length){
 
@@ -4696,22 +5764,20 @@ document.createElement("div");
 r.className=
 "completed-job-row job-clickable";
 
-r.onclick=()=>{
-
-apriSchedaLavoro(
-job.id,
-"completedPage"
+if(
+lavoriSelezionati.has(job.id)
+)
+r.classList.add(
+"selection-row-selected"
 );
 
-};
-
-const check=
+const checkDone=
 document.createElement("div");
 
-check.className=
+checkDone.className=
 "completed-check";
 
-check.textContent="✓";
+checkDone.textContent="✓";
 
 const content=
 document.createElement("div");
@@ -4744,6 +5810,68 @@ note.textContent=
 content.appendChild(note);
 
 }
+
+if(modalitaSelezione){
+
+const select=
+document.createElement("button");
+
+select.className=
+"selection-check";
+
+select.type="button";
+
+select.textContent=
+lavoriSelezionati.has(job.id)
+?"✓"
+:"";
+
+if(
+lavoriSelezionati.has(job.id)
+)
+select.classList.add("selected");
+
+select.onclick=e=>{
+
+e.stopPropagation();
+
+selezionaLavoro(
+job.id
+);
+
+};
+
+r.appendChild(
+select
+);
+
+}
+
+r.onclick=()=>{
+
+if(modalitaSelezione){
+
+selezionaLavoro(
+job.id
+);
+
+return;
+
+}
+
+apriSchedaLavoro(
+job.id,
+"completedPage"
+);
+
+};
+
+r.append(
+checkDone,
+content
+);
+
+if(!modalitaSelezione){
 
 const actions=
 document.createElement("div");
@@ -4798,11 +5926,11 @@ redo,
 del
 );
 
-r.append(
-check,
-content,
+r.appendChild(
 actions
 );
+
+}
 
 g.appendChild(r);
 
@@ -4826,6 +5954,8 @@ function toggleMenuCompletati(event){
 if(event)
 event.stopPropagation();
 
+chiudiTuttiMenu();
+
 const menu=
 document.getElementById(
 "completedMenu"
@@ -4840,13 +5970,7 @@ document.addEventListener(
 "click",
 function(){
 
-const menu=
-document.getElementById(
-"completedMenu"
-);
-
-if(menu)
-menu.classList.remove("active");
+chiudiTuttiMenu();
 
 }
 );
@@ -6414,6 +7538,8 @@ document.getElementById(
 .addEventListener(
 "click",
 ()=>{
+
+annullaModalitaSelezione();
 
 aggiornaTitoloMeseCompletati();
 
