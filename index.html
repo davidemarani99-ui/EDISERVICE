@@ -357,20 +357,34 @@ opacity:.35;
 cursor:default
 }
 
+/*
+   IMPORTANTE:
+   I cerchi di selezione sono NASCOSTI
+   normalmente.
+   Diventano visibili solo quando viene
+   aggiunta la classe selection-visible.
+*/
+
 .selection-check{
+display:none;
 width:30px;
 height:30px;
 min-width:30px;
 border-radius:50%;
 border:2px solid #bbb;
 background:#fff;
-display:flex;
 align-items:center;
 justify-content:center;
 font-size:17px;
 font-weight:900;
 color:#fff;
-cursor:pointer
+cursor:pointer;
+padding:0;
+margin:0
+}
+
+.selection-check.selection-visible{
+display:flex
 }
 
 .selection-check.selected{
@@ -1082,8 +1096,6 @@ font-weight:800;
 line-height:1.35;
 white-space:pre-wrap
 }
-
-/* CAMPO TESTO LAVORO IN MODIFICA */
 
 #photoDetailTitleInput{
 display:none;
@@ -3790,6 +3802,17 @@ x.completato!==true
 
 function entraModalitaSelezione(modo,pagina){
 
+/*
+   La modalità viene attivata SOLO
+   quando l'utente preme Modifica/Inoltra.
+*/
+
+if(
+modo!=="modifica" &&
+modo!=="inoltra"
+)
+return;
+
 modalitaSelezione=
 modo;
 
@@ -3891,6 +3914,18 @@ document.querySelectorAll(
 row.classList.remove("selection-row-selected");
 });
 
+/*
+   Rimuove anche eventuali controlli di selezione
+   rimasti nel DOM.
+*/
+
+document.querySelectorAll(
+".selection-check"
+)
+.forEach(check=>{
+check.classList.remove("selection-visible");
+});
+
 aggiornaBarraSelezione();
 
 }
@@ -3969,7 +4004,10 @@ modalitaSelezione==="inoltra"
 
 function selezionaLavoro(lavoroId){
 
-if(!modalitaSelezione)
+if(
+modalitaSelezione!=="modifica" &&
+modalitaSelezione!=="inoltra"
+)
 return;
 
 if(
@@ -4075,7 +4113,10 @@ listaCompletatiDelMese()
 
 async function eseguiAzioneSelezione(){
 
-if(!modalitaSelezione)
+if(
+modalitaSelezione!=="modifica" &&
+modalitaSelezione!=="inoltra"
+)
 return;
 
 const ids=[
@@ -4427,7 +4468,11 @@ r.className=
 "todo-job-row";
 
 if(
-lavoriSelezionati.has(lavoro.id)
+lavoriSelezionati.has(lavoro.id) &&
+(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+)
 )
 r.classList.add(
 "selection-row-selected"
@@ -4492,13 +4537,22 @@ content.appendChild(badge);
 
 }
 
-if(modalitaSelezione){
+/*
+   IL CERCHIO VIENE CREATO SOLO
+   SE SIAMO DAVVERO IN MODALITÀ
+   MODIFICA O INOLTRA.
+*/
+
+if(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+){
 
 const check=
 document.createElement("button");
 
 check.className=
-"selection-check";
+"selection-check selection-visible";
 
 check.type="button";
 
@@ -4540,7 +4594,10 @@ content
 
 main.onclick=()=>{
 
-if(modalitaSelezione){
+if(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+){
 
 selezionaLavoro(
 lavoro.id
@@ -4559,7 +4616,10 @@ lavoro.id,
 
 r.appendChild(main);
 
-if(!modalitaSelezione){
+if(
+modalitaSelezione!=="modifica" &&
+modalitaSelezione!=="inoltra"
+){
 
 const actions=
 document.createElement("div");
@@ -4762,7 +4822,11 @@ card.className=
 "job-card job-clickable";
 
 if(
-lavoriSelezionati.has(lavoro.id)
+lavoriSelezionati.has(lavoro.id) &&
+(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+)
 )
 card.classList.add(
 "selection-row-selected"
@@ -4770,7 +4834,10 @@ card.classList.add(
 
 card.onclick=()=>{
 
-if(modalitaSelezione){
+if(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+){
 
 selezionaLavoro(
 lavoro.id
@@ -4794,13 +4861,16 @@ main.style.display="flex";
 main.style.alignItems="flex-start";
 main.style.gap="10px";
 
-if(modalitaSelezione){
+if(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+){
 
 const check=
 document.createElement("button");
 
 check.className=
-"selection-check";
+"selection-check selection-visible";
 
 check.type="button";
 
@@ -4864,7 +4934,10 @@ main.appendChild(content);
 
 card.appendChild(main);
 
-if(!modalitaSelezione){
+if(
+modalitaSelezione!=="modifica" &&
+modalitaSelezione!=="inoltra"
+){
 
 const actions=
 document.createElement("div");
@@ -5484,7 +5557,11 @@ r.className=
 "urgent-job-row job-clickable";
 
 if(
-lavoriSelezionati.has(job.id)
+lavoriSelezionati.has(job.id) &&
+(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+)
 )
 r.classList.add(
 "selection-row-selected"
@@ -5528,13 +5605,16 @@ content.appendChild(note);
 
 }
 
-if(modalitaSelezione){
+if(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+){
 
 const check=
 document.createElement("button");
 
 check.className=
-"selection-check";
+"selection-check selection-visible";
 
 check.type="button";
 
@@ -5566,7 +5646,10 @@ check
 
 r.onclick=()=>{
 
-if(modalitaSelezione){
+if(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+){
 
 selezionaLavoro(
 job.id
@@ -5588,7 +5671,10 @@ dot,
 content
 );
 
-if(!modalitaSelezione){
+if(
+modalitaSelezione!=="modifica" &&
+modalitaSelezione!=="inoltra"
+){
 
 const actions=
 document.createElement("div");
@@ -5791,7 +5877,11 @@ r.className=
 "completed-job-row job-clickable";
 
 if(
-lavoriSelezionati.has(job.id)
+lavoriSelezionati.has(job.id) &&
+(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+)
 )
 r.classList.add(
 "selection-row-selected"
@@ -5837,13 +5927,16 @@ content.appendChild(note);
 
 }
 
-if(modalitaSelezione){
+if(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+){
 
 const select=
 document.createElement("button");
 
 select.className=
-"selection-check";
+"selection-check selection-visible";
 
 select.type="button";
 
@@ -5875,7 +5968,10 @@ select
 
 r.onclick=()=>{
 
-if(modalitaSelezione){
+if(
+modalitaSelezione==="modifica" ||
+modalitaSelezione==="inoltra"
+){
 
 selezionaLavoro(
 job.id
@@ -5897,7 +5993,10 @@ checkDone,
 content
 );
 
-if(!modalitaSelezione){
+if(
+modalitaSelezione!=="modifica" &&
+modalitaSelezione!=="inoltra"
+){
 
 const actions=
 document.createElement("div");
@@ -6481,9 +6580,6 @@ return;
 modificaSchedaAttiva=
 true;
 
-
-/* TESTO LAVORO */
-
 const titleRead=
 document.getElementById(
 "photoDetailTitle"
@@ -6504,9 +6600,6 @@ titleInput.classList.add(
 "editing"
 );
 
-
-/* NOTE */
-
 document.getElementById(
 "photoDetailNoteInput"
 )
@@ -6514,18 +6607,12 @@ document.getElementById(
 "editing"
 );
 
-
-/* FOTO */
-
 document.getElementById(
 "photoToolbar"
 )
 .classList.add(
 "editing"
 );
-
-
-/* PULSANTI */
 
 document.getElementById(
 "photoEditActions"
@@ -6539,9 +6626,6 @@ document.getElementById(
 )
 .style.display=
 "none";
-
-
-/* AZIONI FOTO */
 
 document.getElementById(
 "photoModalActions"
@@ -6564,9 +6648,6 @@ function impostaVisualizzazioneScheda(){
 modificaSchedaAttiva=
 false;
 
-
-/* TESTO */
-
 const titleRead=
 document.getElementById(
 "photoDetailTitle"
@@ -6584,18 +6665,12 @@ titleInput.classList.remove(
 titleRead.style.display=
 "block";
 
-
-/* NOTE */
-
 document.getElementById(
 "photoDetailNoteInput"
 )
 .classList.remove(
 "editing"
 );
-
-
-/* FOTO */
 
 document.getElementById(
 "photoToolbar"
@@ -6604,9 +6679,6 @@ document.getElementById(
 "editing"
 );
 
-
-/* AZIONI */
-
 document.getElementById(
 "photoEditActions"
 )
@@ -6614,17 +6686,11 @@ document.getElementById(
 "active"
 );
 
-
-/* MODIFICA */
-
 document.getElementById(
 "photoEditButton"
 )
 .style.display=
 "block";
-
-
-/* MODALE FOTO */
 
 document.getElementById(
 "photoModalActions"
@@ -6647,24 +6713,17 @@ function annullaModificaScheda(){
 if(!lavoroFotoAperto)
 return;
 
-
-/* RIPRISTINA TESTO */
-
 document.getElementById(
 "photoDetailTitleInput"
 )
 .value=
 lavoroFotoAperto.testo||"";
 
-
-/* RIPRISTINA NOTE */
-
 document.getElementById(
 "photoDetailNoteInput"
 )
 .value=
 lavoroFotoAperto.note||"";
-
 
 impostaVisualizzazioneScheda();
 
@@ -6696,9 +6755,6 @@ titleInput.value.trim();
 const note=
 noteInput.value.trim();
 
-
-/* CONTROLLO */
-
 if(!testo){
 
 alert(
@@ -6713,8 +6769,6 @@ return;
 
 try{
 
-/* SALVA TESTO + NOTE SU FIREBASE */
-
 await db.collection(
 "lavori"
 )
@@ -6727,17 +6781,11 @@ note:note
 
 });
 
-
-/* AGGIORNA OGGETTO LOCALE */
-
 lavoroFotoAperto.testo=
 testo;
 
 lavoroFotoAperto.note=
 note;
-
-
-/* AGGIORNA VISUALIZZAZIONE */
 
 document.getElementById(
 "photoDetailTitle"
@@ -6752,21 +6800,11 @@ document.getElementById(
 note||
 "Nessuna nota.";
 
-
-/* ESCE DALLA MODIFICA */
-
 impostaVisualizzazioneScheda();
-
-
-/* AGGIORNA TUTTE LE LISTE */
 
 aggiornaTutto();
 
-
-/* AGGIORNA LA SCHEDA */
-
 aggiornaSchedaAperta();
-
 
 alert(
 "Modifiche salvate."
