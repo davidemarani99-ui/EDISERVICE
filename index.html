@@ -810,7 +810,6 @@ background:#ffebee;
 color:#d32f2f
 }
 
-/* Il pulsante "Da rifare" non è più blu */
 .symbol-redo{
 background:#f1f1f1;
 color:#555
@@ -1082,6 +1081,25 @@ font-size:21px;
 font-weight:800;
 line-height:1.35;
 white-space:pre-wrap
+}
+
+/* CAMPO TESTO LAVORO IN MODIFICA */
+
+#photoDetailTitleInput{
+display:none;
+margin-top:10px;
+font-size:17px;
+font-weight:650;
+background:#fafafa;
+border:1px solid #ddd;
+border-radius:13px;
+padding:13px;
+width:100%;
+outline:none
+}
+
+#photoDetailTitleInput.editing{
+display:block
 }
 
 .photo-detail-date{
@@ -2206,6 +2224,13 @@ class="photo-detail-title"
 id="photoDetailTitle"
 ></div>
 
+<input
+id="photoDetailTitleInput"
+class="photo-notes-input"
+type="text"
+placeholder="Descrivi il lavoro..."
+>
+
 <div
 class="photo-detail-date"
 id="photoDetailCreated"
@@ -2489,6 +2514,7 @@ let annoCompletatiVisualizzato=
 oggiArchivio.getFullYear();
 
 let archivioMeseInizializzato=false;
+
 
 /* =========================
    STATO SELEZIONE
@@ -5926,9 +5952,7 @@ redo,
 del
 );
 
-r.appendChild(
-actions
-);
+r.appendChild(actions);
 
 }
 
@@ -6277,9 +6301,10 @@ testo
 }
 
 
-/* =========================
+/* =========================================================
    SCHEDA LAVORO
-========================= */
+   MODIFICA TESTO + NOTE + FOTO
+========================================================= */
 
 function apriSchedaLavoro(
 id,
@@ -6314,6 +6339,12 @@ document.getElementById(
 "photoDetailTitle"
 )
 .textContent=
+lavoro.testo||"";
+
+document.getElementById(
+"photoDetailTitleInput"
+)
+.value=
 lavoro.testo||"";
 
 document.getElementById(
@@ -6364,6 +6395,7 @@ renderFotoLavoro();
 
 }
 
+
 function aggiornaSchedaAperta(){
 
 if(!lavoroFotoAperto)
@@ -6382,6 +6414,12 @@ document.getElementById(
 "photoDetailTitle"
 )
 .textContent=
+lavoro.testo||"";
+
+document.getElementById(
+"photoDetailTitleInput"
+)
+.value=
 lavoro.testo||"";
 
 document.getElementById(
@@ -6430,6 +6468,11 @@ renderFotoLavoro();
 
 }
 
+
+/* =========================================================
+   ATTIVA MODIFICA
+========================================================= */
+
 function attivaModificaScheda(){
 
 if(!lavoroFotoAperto)
@@ -6438,6 +6481,32 @@ return;
 modificaSchedaAttiva=
 true;
 
+
+/* TESTO LAVORO */
+
+const titleRead=
+document.getElementById(
+"photoDetailTitle"
+);
+
+const titleInput=
+document.getElementById(
+"photoDetailTitleInput"
+);
+
+titleInput.value=
+lavoroFotoAperto.testo||"";
+
+titleRead.style.display=
+"none";
+
+titleInput.classList.add(
+"editing"
+);
+
+
+/* NOTE */
+
 document.getElementById(
 "photoDetailNoteInput"
 )
@@ -6445,12 +6514,18 @@ document.getElementById(
 "editing"
 );
 
+
+/* FOTO */
+
 document.getElementById(
 "photoToolbar"
 )
 .classList.add(
 "editing"
 );
+
+
+/* PULSANTI */
 
 document.getElementById(
 "photoEditActions"
@@ -6465,6 +6540,9 @@ document.getElementById(
 .style.display=
 "none";
 
+
+/* AZIONI FOTO */
+
 document.getElementById(
 "photoModalActions"
 )
@@ -6476,10 +6554,38 @@ renderFotoLavoro();
 
 }
 
+
+/* =========================================================
+   VISUALIZZAZIONE NORMALE
+========================================================= */
+
 function impostaVisualizzazioneScheda(){
 
 modificaSchedaAttiva=
 false;
+
+
+/* TESTO */
+
+const titleRead=
+document.getElementById(
+"photoDetailTitle"
+);
+
+const titleInput=
+document.getElementById(
+"photoDetailTitleInput"
+);
+
+titleInput.classList.remove(
+"editing"
+);
+
+titleRead.style.display=
+"block";
+
+
+/* NOTE */
 
 document.getElementById(
 "photoDetailNoteInput"
@@ -6488,12 +6594,18 @@ document.getElementById(
 "editing"
 );
 
+
+/* FOTO */
+
 document.getElementById(
 "photoToolbar"
 )
 .classList.remove(
 "editing"
 );
+
+
+/* AZIONI */
 
 document.getElementById(
 "photoEditActions"
@@ -6502,11 +6614,17 @@ document.getElementById(
 "active"
 );
 
+
+/* MODIFICA */
+
 document.getElementById(
 "photoEditButton"
 )
 .style.display=
 "block";
+
+
+/* MODALE FOTO */
 
 document.getElementById(
 "photoModalActions"
@@ -6519,10 +6637,27 @@ renderFotoLavoro();
 
 }
 
+
+/* =========================================================
+   ANNULLA MODIFICA
+========================================================= */
+
 function annullaModificaScheda(){
 
 if(!lavoroFotoAperto)
 return;
+
+
+/* RIPRISTINA TESTO */
+
+document.getElementById(
+"photoDetailTitleInput"
+)
+.value=
+lavoroFotoAperto.testo||"";
+
+
+/* RIPRISTINA NOTE */
 
 document.getElementById(
 "photoDetailNoteInput"
@@ -6530,24 +6665,55 @@ document.getElementById(
 .value=
 lavoroFotoAperto.note||"";
 
+
 impostaVisualizzazioneScheda();
 
 }
+
+
+/* =========================================================
+   SALVA MODIFICHE
+========================================================= */
 
 async function salvaModificheScheda(){
 
 if(!lavoroFotoAperto)
 return;
 
-const input=
+const titleInput=
+document.getElementById(
+"photoDetailTitleInput"
+);
+
+const noteInput=
 document.getElementById(
 "photoDetailNoteInput"
 );
 
+const testo=
+titleInput.value.trim();
+
 const note=
-input.value.trim();
+noteInput.value.trim();
+
+
+/* CONTROLLO */
+
+if(!testo){
+
+alert(
+"Inserisci il testo del lavoro."
+);
+
+titleInput.focus();
+
+return;
+
+}
 
 try{
+
+/* SALVA TESTO + NOTE SU FIREBASE */
 
 await db.collection(
 "lavori"
@@ -6555,12 +6721,29 @@ await db.collection(
 .doc(lavoroFotoAperto.id)
 .update({
 
+testo:testo,
+
 note:note
 
 });
 
+
+/* AGGIORNA OGGETTO LOCALE */
+
+lavoroFotoAperto.testo=
+testo;
+
 lavoroFotoAperto.note=
 note;
+
+
+/* AGGIORNA VISUALIZZAZIONE */
+
+document.getElementById(
+"photoDetailTitle"
+)
+.textContent=
+testo;
 
 document.getElementById(
 "photoDetailNoteRead"
@@ -6569,7 +6752,21 @@ document.getElementById(
 note||
 "Nessuna nota.";
 
+
+/* ESCE DALLA MODIFICA */
+
 impostaVisualizzazioneScheda();
+
+
+/* AGGIORNA TUTTE LE LISTE */
+
+aggiornaTutto();
+
+
+/* AGGIORNA LA SCHEDA */
+
+aggiornaSchedaAperta();
+
 
 alert(
 "Modifiche salvate."
@@ -6577,7 +6774,9 @@ alert(
 
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
 alert(
 "Errore nel salvataggio delle modifiche."
